@@ -496,6 +496,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4484591312116288}
+  - component: {fileID: 9063904034436008254}
+  - component: {fileID: 234335207231712973}
   m_Layer: 0
   m_Name: RightControllerAnchor
   m_TagString: Untagged
@@ -517,6 +519,32 @@ Transform:
   m_Father: {fileID: 487254}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9063904034436008254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054112583220142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a9bbff9573640c4b632fdb041ec67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabButton: 6
+--- !u!135 &234335207231712973
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054112583220142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1983321904398200
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +554,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4593680705043960}
+  - component: {fileID: 1995293846882245886}
+  - component: {fileID: 358096587552749519}
   m_Layer: 0
   m_Name: LeftControllerAnchor
   m_TagString: Untagged
@@ -547,6 +577,32 @@ Transform:
   m_Father: {fileID: 482130}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1995293846882245886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983321904398200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a9bbff9573640c4b632fdb041ec67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabButton: 7
+--- !u!135 &358096587552749519
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983321904398200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3095753527011566151
 PrefabInstance:
   m_ObjectHideFlags: 0
