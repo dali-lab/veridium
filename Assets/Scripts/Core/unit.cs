@@ -14,9 +14,14 @@ namespace sib
         public float x, y, z;
     }
 
-    // Struct used to enumerate a bond - made up of a start and endpoint
+    // Struct used to enumerate a bond - made up of two vertex indices 
+    // where the bonds starts and ends respsectively
     public struct bond {
         public int startIndex, endIndex;
+    }
+
+    public struct Line {
+        public Vector3 start, end;
     }
 
     // Enum used to enumerate unit cell types
@@ -211,6 +216,7 @@ namespace sib
     public class UnitCell6 {
         // Number of vertices in the cell
         private int numVertices;
+        private int numBonds;
 
         // The unit cell's position in world space
         private Vector3 worldPosition;
@@ -229,6 +235,8 @@ namespace sib
 
         // The array containing the cell's vertices
         private Atom[] vertices;
+
+        private bond[] bonds;
 
         // Default constructor
         public UnitCell6() {
@@ -357,18 +365,27 @@ namespace sib
             switch(structure) {
                 case CellVariation.SIMPLE:
                     this.numVertices = 8;
+                    this.numBonds = 12;
                     break;
                 case CellVariation.FACE:
                     this.numVertices = 14;
+                    // temporary value
+                    this.numBonds = 12;
                     break;
                 case CellVariation.BODY:
                     this.numVertices = 9;
+                    // temporary value
+                    this.numBonds = 12;
                     break;
                 case CellVariation.BASE:
                     this.numVertices = 10;
+                    // temporary value
+                    this.numBonds = 12;
                     break;
                 default:
                     this.numVertices = 0;
+                    // temporary value
+                    this.numBonds = 12;
                     break;
             }
         }
@@ -405,6 +422,12 @@ namespace sib
                     newVertices.Add(newAtom);
                 }
             }
+
+            // NOT FINAL IMPLEMENTATION
+            for ( int i = 0; i < this.numBonds; i ++ ) {
+                this.bonds[i] = Constants.cell6Bonds[i];
+            }
+
             return newVertices;
         }
 
@@ -417,6 +440,15 @@ namespace sib
             y = unitCellPosition.y + (vertexPosRel.y * (b/2));
             z = unitCellPosition.z + (vertexPosRel.z * (c/2));
             return new Vector3(x, y, z);
+        }
+
+        public Line[] getBonds() {
+            Line[] lines = new Line[this.numBonds];
+            for ( int i = 0 ; i < this.numBonds; i ++ ) {
+                bond b = this.bonds[i];
+                lines[i] = new Line(){ start=this.vertices[b.startIndex].getPosition(), end=this.vertices[b.endIndex].getPosition() };
+            }
+            return lines;
         }
 
         // Returns the vertex array
