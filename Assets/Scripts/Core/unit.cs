@@ -9,9 +9,9 @@ using UnityEngine;
 
 namespace sib
 {
-    // Struct for storing 3 doubles in a vector
+    // Struct for storing 3 floats in a vector
     public struct vec3 {
-        public double x, y, z;
+        public float x, y, z;
     }
 
     // Struct used to enumerate a bond - made up of a start and endpoint
@@ -216,10 +216,10 @@ namespace sib
         private Vector3 worldPosition;
 
         // The angles within the cell
-        private double alpha, beta, gamma;
+        private float alpha, beta, gamma;
 
         // The side lengths of cell
-        private double a, b, c;
+        private float a, b, c;
 
         // The type of the unit cell
         private CellType type;
@@ -254,7 +254,7 @@ namespace sib
          * and angles.
          */
         public UnitCell6(CellType type, CellVariation structure, Vector3 worldPosition,
-            double a, double b, double c, double alpha, double beta, double gamme) {
+            float a, float b, float c, float alpha, float beta, float gamme) {
 
             bool valid = false;
             this.worldPosition = worldPosition;
@@ -410,9 +410,9 @@ namespace sib
 
         // Transforms the relative position of unit cell vertex to world space coordinates
         public Vector3 generateVertexPosition(Vector3 unitCellPosition, Vector3 vertexPosRel, 
-            double a, double b, double c, double alpha, double beta, double gamma)
+            float a, float b, float c, float alpha, float beta, float gamma)
         {
-            double x, y, z;
+            float x, y, z;
             x = unitCellPosition.x + (vertexPosRel.x * (a/2));
             y = unitCellPosition.y + (vertexPosRel.y * (b/2));
             z = unitCellPosition.z + (vertexPosRel.z * (c/2));
