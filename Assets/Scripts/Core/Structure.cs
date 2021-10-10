@@ -10,7 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 
 namespace SIB_Interaction{
-    public class Structure : XRSimpleInteractable
+    public class Structure : XRGrabInteractable
     {
         public GameObject structure;            // The structure on the podium
         private bool grabbed;                   // Whether the structure has been grabbed by the user
@@ -29,7 +29,7 @@ namespace SIB_Interaction{
         void Update()
         {
             // Ensure the object does not move due to physics
-            structure.transform.localPosition = new Vector3(0,0,0);
+            //structure.transform.localPosition = new Vector3(0,0,0);
 
             if(!grabbed){
                 // Check if rotating
