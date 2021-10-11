@@ -14,15 +14,15 @@ namespace sib
         public float x, y, z;
     }
 
-    // Struct used to enumerate a bond - made up of two vertex indices 
-    // where the bonds starts and ends respsectively
-    public struct bond {
-        public int startIndex, endIndex;
-    }
+    // // Struct used to enumerate a bond - made up of two vertex indices 
+    // // where the bonds starts and ends respsectively
+    // public struct bond {
+    //     public int startIndex, endIndex;
+    // }
 
-    public struct Line {
-        public Vector3 start, end;
-    }
+    // public struct Line {
+    //     public Vector3 start, end;
+    // }
 
     // Enum used to enumerate unit cell types
     public enum CellType {
@@ -123,19 +123,30 @@ namespace sib
             { CellType.HEX, new CellVariation[] { CellVariation.SIMPLE } }
         };
 
-        public static bond[] cell6Bonds = new bond[] {
-            new bond() { startIndex=0, endIndex=1 }, //AB
-            new bond() { startIndex=0, endIndex=2 }, //AC
-            new bond() { startIndex=0, endIndex=3 }, //AD
-            new bond() { startIndex=1, endIndex=5 }, //BF
-            new bond() { startIndex=1, endIndex=6 }, //BG
-            new bond() { startIndex=2, endIndex=4 }, //CE
-            new bond() { startIndex=2, endIndex=6 }, //CG
-            new bond() { startIndex=3, endIndex=4 }, //DE
-            new bond() { startIndex=3, endIndex=5 }, //DF
-            new bond() { startIndex=4, endIndex=7 }, //EH
-            new bond() { startIndex=5, endIndex=7 }, //FH
-            new bond() { startIndex=6, endIndex=7 } //GH
+        // public static bond[] cell6Bonds = new bond[] {
+        //     new bond() { startIndex=0, endIndex=1 }, //AB
+        //     new bond() { startIndex=0, endIndex=2 }, //AC
+        //     new bond() { startIndex=0, endIndex=3 }, //AD
+        //     new bond() { startIndex=1, endIndex=5 }, //BF
+        //     new bond() { startIndex=1, endIndex=6 }, //BG
+        //     new bond() { startIndex=2, endIndex=4 }, //CE
+        //     new bond() { startIndex=2, endIndex=6 }, //CG
+        //     new bond() { startIndex=3, endIndex=4 }, //DE
+        //     new bond() { startIndex=3, endIndex=5 }, //DF
+        //     new bond() { startIndex=4, endIndex=7 }, //EH
+        //     new bond() { startIndex=5, endIndex=7 }, //FH
+        //     new bond() { startIndex=6, endIndex=7 } //GH
+        // };
+
+        public static int[,] cell6BondMap = new int[,] {
+            { 1, 2, 3 },
+            { 0, 5, 6 },
+            { 0, 4, 6 },
+            { 0, 4, 5 },
+            { 2, 3, 7 },
+            { 1, 3, 7 },
+            { 1, 2, 7 },
+            { 4, 5, 6}
         };
     }
 
@@ -161,6 +172,14 @@ namespace sib
             this.element = element;
             this.position = position;
         }
+        
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            // TODO: write your implementation of GetHashCode() here
+            throw new System.NotImplementedException();
+            return base.GetHashCode();
+        }
 
         /**
          * @function compare
@@ -169,7 +188,7 @@ namespace sib
          * Compares another atom to itself. Returns true if it has the same
          * position and atomic number.
          */
-        public bool compare(Atom otherAtom) {
+        public bool Equals(Atom otherAtom) {
             if (otherAtom.getAtomicNumber() == this.atomicNumber && 
                 otherAtom.getPosition().x == this.position.x &&
                 otherAtom.getPosition().y == this.position.y &&
@@ -184,7 +203,7 @@ namespace sib
          * @return  int     The Atom's atomic number
          * Returns the atomic number for the Atom
          */
-        public int getAtomicNumber() {
+        public int GetAtomicNumber() {
             return this.atomicNumber;
         }
 
@@ -193,7 +212,7 @@ namespace sib
          * @return  string     The Atom's name
          * Returns the name the Atom
          */
-        public string getElement() {
+        public string GetElement() {
             return this.element;
         }
 
@@ -202,10 +221,57 @@ namespace sib
          * @return  Vector3     The Atom's  position
          * Returns the position of the Atom
          */
-        public Vector3 getPosition() {
+        public Vector3 GetPosition() {
             return this.position;
         }
-    };
+
+        public string Debug() {
+            string output = "";
+            output += "Atom " + this.element + " Atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
+            return output;
+        }
+    }
+
+    public class Bond {
+        private Atom start;
+        private Atom end;
+
+        public Bond(Atom start, Atom end) {
+            this.start = start;
+            this.end = end;
+        }
+
+        public Atom GetStart() {
+            return this.start;
+        }
+
+        public Atom GetEnd() {
+            return this.end;
+        }
+
+        public bool Equals(Bond other) {
+            if (this.start.Equals(other.GetStart()) && this.end.Equals(other.GetEnd())) {
+                return true;
+            } else if (this.end.Equals(other.GetStart()) && this.start.Equals(other.GetEnd())) {
+                return true;
+            }
+            return false;
+        }
+
+        public Vector3 GetStartPos() {
+            return this.start.GetPosition();
+        }
+
+        public Vector3 GetEndPos() {
+            return this.end.GetPosition();
+        }
+
+        public string Debug() {
+            string output = "";
+            output += "Start : " + start.Debug() + "End : " + end.Debug();
+            return output;
+        }
+    }
 
     /**
     * @class UnitCell6
@@ -236,7 +302,8 @@ namespace sib
         // The array containing the cell's vertices
         private Atom[] vertices;
 
-        private bond[] bonds;
+        // The bonds connecting the vertices
+        private Bond[] bonds;
 
         // Default constructor
         public UnitCell6() {
@@ -398,19 +465,19 @@ namespace sib
          * Creates and adds atoms to the unit cell. Checks against the overlap array to make sure
          * that the unit cell doesn't create duplicate atoms.
          */
-        public List<Atom> addVertices(Atom[] overlap, int atomicNumber, string elementName) {
+        public List<Atom> AddVertices(Atom[] overlap, int atomicNumber, string elementName) {
             if (this.numVertices < 0) {
                 return null;
             }
             List<Atom> newVertices = new List<Atom>();
             for ( int i = 0; i < this.numVertices; i ++ ) {
-                Vector3 atomPosition = generateVertexPosition(this.worldPosition, Constants.cell6BasicPositions[i], 
+                Vector3 atomPosition = GenerateVertexPosition(this.worldPosition, Constants.cell6BasicPositions[i], 
                     this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
                 Atom newAtom = new Atom(atomicNumber, elementName, atomPosition);
                 bool overlaps = false;
                 if (overlap.Length > 0) {
                     for ( int j = 0; j < overlap.Length; j ++ ) {
-                        if (newAtom.compare(overlap[j])) {
+                        if (newAtom.Equals(overlap[j])) {
                             overlaps = true;
                             this.vertices[i] = overlap[i];
                             break;
@@ -432,7 +499,7 @@ namespace sib
         }
 
         // Transforms the relative position of unit cell vertex to world space coordinates
-        public Vector3 generateVertexPosition(Vector3 unitCellPosition, Vector3 vertexPosRel, 
+        public Vector3 GenerateVertexPosition(Vector3 unitCellPosition, Vector3 vertexPosRel, 
             float a, float b, float c, float alpha, float beta, float gamma)
         {
             float x, y, z;
@@ -442,26 +509,56 @@ namespace sib
             return new Vector3(x, y, z);
         }
 
-        public Line[] getBonds() {
-            Line[] lines = new Line[this.numBonds];
-            for ( int i = 0 ; i < this.numBonds; i ++ ) {
-                bond b = this.bonds[i];
-                lines[i] = new Line(){ start=this.vertices[b.startIndex].getPosition(), end=this.vertices[b.endIndex].getPosition() };
+        public void AddBonds() {
+            List<Bond> generatedBonds = new List<Bond>();
+            for ( int i = 0; i < this.numVertices; i ++ ) {
+                if ( i >= Constants.cell6BondMap.Length ) {
+                    continue;
+                }
+
+                Atom startVertex = this.vertices[i];
+                int[] endIndices = Constants.cell6BondMap[i];
+                foreach (int endIndex in endIndices) {
+                    if (endIndex >= this.numVertices) {
+                        continue;
+                    }
+
+                    bool duplicate = false;
+                    Atom endVertex = vertices[endIndex];
+                    Bond newBond = new Bond(startVertex, endVertex);
+                    foreach (Bond bond in generatedBonds) {3
+                        if (bond.Equals(newbond)) {
+                            duplicate = true;
+                        }
+                    }
+                    if (!duplicate) {
+                        generatedBonds.Add(newBond);
+                        this.bonds[i] = newBond;
+                    }
+                }
             }
-            return lines;
         }
 
+        // public Line[] GetBonds() {
+        //     Line[] lines = new Line[this.numBonds];
+        //     for ( int i = 0 ; i < this.numBonds; i ++ ) {
+        //         bond b = this.bonds[i];
+        //         lines[i] = new Line(){ start=this.vertices[b.startIndex].GetPosition(), end=this.vertices[b.endIndex].GetPosition() };
+        //     }
+        //     return lines;
+        // }
+
         // Returns the vertex array
-        public Atom[] getVertices() {
+        public Atom[] GetVertices() {
             return this.vertices;
         }
 
         // Debugging function - prints the unit cell to console
-        public string getDebugInfo() {
+        public string Debug() {
             string debuginfo = "Vertices : \n";
             
             for ( int i = 0; i < numVertices; i ++ ) {
-                debuginfo += "v" + i.ToString() + " (" + this.vertices[i].getPosition().x.ToString() + ", " + this.vertices[i].getPosition().y.ToString() + ", " + this.vertices[i].getPosition().z.ToString() + ")\n";
+                debuginfo += "v" + i.ToString() + " (" + this.vertices[i].GetPosition().x.ToString() + ", " + this.vertices[i].GetPosition().y.ToString() + ", " + this.vertices[i].getPosition().z.ToString() + ")\n";
             }
 
             return debuginfo;
