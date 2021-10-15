@@ -33,7 +33,7 @@ public class StructureBuilder : MonoBehaviour
 
         (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "vertices added";
 
-        test.AddBonds();
+        test.AddBonds(new Dictionary<Vector3, Bond>());
 
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "bonds added";
 

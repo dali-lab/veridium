@@ -464,7 +464,7 @@ namespace sib
             return new Vector3(x, y, z);
         }
 
-        public void AddBonds() {
+        public void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
             for ( int startIndex = 0; startIndex < this.numVertices; startIndex ++ ) {
                 if ( startIndex >= Constants.cell6BondMap.Length ) {
                     continue;
@@ -500,7 +500,19 @@ namespace sib
                     (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Duplication checked";
 
                     if (!duplicate) {
-                        bonds.Add(newBond);
+                        Vector3 midpoint = (newBond.GetStartPos() - newBond.GetEndPos())/2;
+                        Bond crystalDuplicate;;
+                        if (crystalBonds.TryGetValue(midpoint, out crystalDuplicate)) {
+                            if (crystalDuplicate.Equals(newBond)) {
+                                bonds.Add(crystalDuplicate);
+                            } else {
+                                bonds.Add(newBond);
+                                crystalBonds[midpoint] = newBond;
+                            }
+                        } else {
+                            bonds.Add(newBond);
+                            crystalBonds[midpoint] = newBond;
+                        }
                     }
                 }
             }
@@ -540,16 +552,40 @@ namespace sib
             return debuginfo;
         }
 
-        public UnitCell6 GenerateNeighbor(Vector3 direction, Dictionary<Vector3, Atom> crystalAtoms) {
-            direction.Normalize();
-            if (!direction.Equals(Vector3.forward) && !direction.Equals(Vector3.back) &&!direction.Equals(Vector3.right) 
-                &&!direction.Equals(Vector3.left) &&!direction.Equals(Vector3.up) &&!direction.Equals(Vector3.down) ) {
-                return null;
+        public void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
+
+            Vector3[] possibleDirections = new Vector3[] {
+                Vector3.forward,
+                Vector3.back,
+                Vector3.right,
+                Vector3.left,
+                Vector3.up,
+                Vector3.down
+            };
+
+            foreach (Vector3 direction in possibleDirections) {
+                float translation = 1;
+
+                if (direction == Vector3.forward || direction == Vector3.back) {
+                    translation = this.a;
+                } else if (direction == Vector3.right || direction == Vector3.left) {
+                    translation = this.b;
+                } else if (direction == Vector3.up || direction == Vector3.down) {
+                    translation = this.c;
+                }
+
+                Vector3 newCellPos = this.worldPosition + (direction * translation);
+                UnitCell6 possibleDuplicate;
+                if (crystalCells.TryGetValue(newCellPos, out possibleDuplicate)) {
+                    continue;
+                } else {
+                    UnitCell6 newCell = new UnitCell6(this.type, this.structure, newCellPos, 
+                        this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
+                    newCell.AddVertices(crystalAtoms, 0, "");
+                    newCell.AddBonds(crystalBonds);
+                    crystalCells[newCellPos] = newCell;
+                }
             }
-
-            // Vector3 newWorldPos = 
-
-            return null;
         }
     }
 }
