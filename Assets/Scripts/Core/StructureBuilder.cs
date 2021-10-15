@@ -22,16 +22,39 @@ public class StructureBuilder : MonoBehaviour
 
     public void BuildStructure()
     {
-        UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.SIMPLE,
-            new Vector3(0, 0, 0), 2, 2, 2, 90, 90, 90);
-        test.addVertices(new Atom[0], 0, null);
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "BuildStructure called";
 
-        Atom[] vertices = test.getVertices();
+        UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.FACE,
+            gameObject.transform.position, 0.66f, 0.66f, 0.66f, 90, 90, 90);
 
-        //Line[] lines = test.getLines();
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "test Atom instantiated";
+        test.AddVertices(new Dictionary<Vector3, Atom>(), 0, null);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "vertices added";
+
+        test.AddBonds();
+
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "bonds added";
+
+        string debugInfo = test.Debug();
+        Debug.Log(debugInfo);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+
+        Atom[] vertices = test.GetVertices();
+
+        List<Bond> bonds = test.GetBonds();
 
         foreach (Atom vert in vertices) {
-            Instantiate(atomPrefab, vert.getPosition()/3 + gameObject.transform.position, Quaternion.identity).transform.SetParent(gameObject.transform);
+            Instantiate(atomPrefab, vert.GetPosition(), Quaternion.identity).transform.SetParent(gameObject.transform);
+        }
+
+        foreach (Bond bond in bonds) {
+            Vector3 start = bond.GetStartPos();
+            Vector3 end = bond.GetEndPos();
+            Vector3 midpoint = (start + end)/2;
+            Instantiate(linePrefab, midpoint/3 + gameObject.transform.position, Quaternion.LookRotation(end-start, Vector3.up));
         }
         /*
         foreach (Line edge in lines) {
