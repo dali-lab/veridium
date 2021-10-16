@@ -10,40 +10,44 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 
 namespace SIB_Interaction{
-    public class Structure : XRGrabInteractable
+    public class Structure : MonoBehaviour
     {
         public GameObject structure;            // The structure on the podium
         private bool grabbed;                   // Whether the structure has been grabbed by the user
+        public GameObject headSet;              // The eye position of the player
+        public float respawnDistance = 1;
+
 
         // Start is called before the first frame update
         void Start()
         {
-            structure.GetComponent<Rigidbody>().angularVelocity = new Vector3(1,-1,0);
             if(structure == null){
                 InitStructure();
             }
             
         }
+        
 
         // Update is called once per frame
         void Update()
         {
-            // Ensure the object does not move due to physics
-            //structure.transform.localPosition = new Vector3(0,0,0);
 
             if(!grabbed){
                 // Check if rotating
-                if (structure.GetComponent<Rigidbody>().angularVelocity.magnitude > 0.5){
-
+                //if (structure.GetComponent<Rigidbody>().angularVelocity.magnitude > 0.5){
                 
-                } else {
+                //} else {
 
-                    // Snap the object to a convenient rotation
-                    Quaternion closestSide = GetClosestSide(structure.transform.rotation);
-                    structure.transform.rotation = Quaternion.Slerp(structure.transform.rotation, closestSide, Time.deltaTime*5);
-                }
-            } else {
-                // Update the structure's rotation when it is grabbed
+                    // Snap the object to closest rotation
+                //    Quaternion closestSide = GetClosestSide(structure.transform.rotation);
+                //    structure.transform.rotation = Quaternion.Slerp(structure.transform.rotation, closestSide, Time.deltaTime*5);
+                //}
+            }
+
+            // If the structure is too far from the player and not on the pedestal, put it on the pedestal
+            if ((structure.transform.position - headSet.transform.position).magnitude > respawnDistance){
+                structure.transform.localPosition = Vector3.zero;
+                structure.transform.rotation = Quaternion.identity; 
             }
         }
 
@@ -66,8 +70,6 @@ namespace SIB_Interaction{
                 }
             }
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = directions[idx].ToString();
-
             return(directions[idx]);
         }
 
@@ -82,14 +84,6 @@ namespace SIB_Interaction{
             // Create a new structure
             // return structureBuilder.BuildStructure();
             return null;
-        }
-
-        public void BeginInteraction(){
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "starting interaction";
-        }
-
-        public void EndInteraction(){
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "ending interaction";
         }
     }
 }
