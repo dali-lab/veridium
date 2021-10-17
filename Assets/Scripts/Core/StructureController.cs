@@ -83,12 +83,13 @@ public class StructureController : MonoBehaviour
         // Reset the scaleObject to the grabber
         scaleObject.transform.localScale = Vector3.one;
         scaleObject.transform.rotation = grabber.transform.rotation;
-        scaleObject.transform.position = grabber.transform.position;
+        scaleObject.transform.position = hand.transform.position;
 
         // Reparent the structure to the scaleObject and correct its scale
         gameObject.transform.parent = scaleObject.transform;
         gameObject.transform.localScale = scale;
         oneHandGrab = true;
+
     }
 
     // Logic for the first frame of 2 hand grab

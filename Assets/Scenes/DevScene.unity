@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grab1: {fileID: 1921977736}
   grab2: {fileID: 896244173}
-  scaleObject: {fileID: 1573779922}
   structure: {fileID: 126527828}
   hand1: {fileID: 328513710}
   hand2: {fileID: 1802533856}
+  scaleObject: {fileID: 1573779922}
