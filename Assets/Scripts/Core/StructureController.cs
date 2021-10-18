@@ -3,130 +3,158 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class StructureController : MonoBehaviour
-{
-
-    /// <summary>
-    /// Structure Controller handles the input from the grab handles 
-    /// in the structure to solve for the appropriate motion of the
-    /// structure. This handles one hand grab and two hand grab, the
-    /// latter for scaling. 
-    /// </summary>
-
-    private bool grab1selected = false, grab2selected = false;              // Keeps track of the grabbed states of the handles
-    public GameObject grab1, grab2, structure, hand1, hand2;                // GameObject References
-    public GameObject scaleObject;                                          // An empty game object to parent the structure to. Makes math easier.
-    private bool twoHandGrab, oneHandGrab;                                  // Whether in two hand scaling mode, one hand rotation/translation mode
-    private float twoHandDistance;                                          // Initial distance between hands in scaling mode
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+namespace SIB_Interaction{
+    public class StructureController : XRGrabInteractable
     {
 
-        // Choose between two hand scaling and one hand translation/rotation
-        if(grab1selected && grab2selected) {
+        /// <summary>
+        /// Structure Controller handles the input from the grab handles 
+        /// in the structure to solve for the appropriate motion of the
+        /// structure. This handles one hand grab and two hand grab, the
+        /// latter for scaling. 
+        /// </summary>
 
-            // Setup 2 hand grab if this is the first frame of two hand grab
-            if (!twoHandGrab) Start2HandGrab();
+        private bool scaleGrabberSelected, structureSelected;                   // Keeps track of the grabbed state of the handle
+        public float minScale = 1f, maxScale = 1.5f, softScaleBound = 2.5f;    // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
+        public GameObject scaleGrabber, structure, hand1, hand2;                // GameObject References
+        private bool twoHandGrab;                                               // Whether in two hand scaling mode, one hand rotation/translation mode
+        private float twoHandDistance;                                          // Initial distance between hands in scaling mode
+        private Vector3 interactorPosition = Vector3.zero, beginningScale;      // offset interaction position
+        private Quaternion interactorRotation = Quaternion.identity;            // offset interaction rotation
+        private Vector3 initialHandPosition1, initialHandPosition2;             // controller starting locations
+        private Quaternion initialObjectRotation;                               // gameObject rotation
+        private Vector3 initialObjectScale, initialObjectDirection;             // gameObject scale, direction of gameObject to midpoint of both controllers
 
-            // Update the scale object's transform based on where the hands have moved
-            scaleObject.transform.position = (hand1.transform.position + hand2.transform.position)/2;
 
-            scaleObject.transform.localScale = Vector3.one * ((((grab1.transform.position - grab2.transform.position).magnitude/twoHandDistance-1)/2)+1);
 
-            scaleObject.transform.rotation = Quaternion.LookRotation(grab1.transform.position - grab2.transform.position, Vector3.up);
+        // extends OnSelectEntering from XRGrabInteractable. Stores initial information from the interactors
+        protected override void OnSelectEntering(XRBaseInteractor interactor) {
+
+            base.OnSelectEntering(interactor); // Run this method in parent
+
+            // Store the attach transform of the interactor
+            interactorPosition = interactor.attachTransform.localPosition;
+            interactorRotation = interactor.attachTransform.localRotation;
             
-        } else if (grab1selected || grab2selected) {
+            // offsets the interactor's attach transform to match the structure's
+            bool hasAttach = attachTransform != null;
+            interactor.attachTransform.position = hasAttach ? attachTransform.position : transform.position;
+            interactor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
 
-            GameObject grabber = grab1selected ? grab1 : grab2;
-            GameObject hand = grab1selected ? hand1 : hand2;
+            structureSelected = true;
 
-            // Setup 1 hand grab if this is the first frame of one hand grab
-            if(!oneHandGrab) Start1HandGrab(grabber, hand);
-
-            // Stop 2 hand grab if transitioning to 1 hand grab
-            if(twoHandGrab) twoHandGrab = false;
-
-            // Update the scaleObject's position and rotation to match the grabber
-            scaleObject.transform.position = grabber.transform.position;
-            scaleObject.transform.rotation = grabber.transform.rotation;
-
-        } else if (oneHandGrab){
-
-            // Transition to not grabbing
-            gameObject.transform.parent = structure.transform;
-            oneHandGrab = false;
         }
 
-        // Lock the grabbers to the structure when not grabbing it
-        if (!grab1selected) grab1.transform.position = gameObject.transform.position;
-        if (!grab2selected) grab2.transform.position = gameObject.transform.position;
-        
-    }
+        // extends OnSelectExiting from XRGrabInteractabe. Resets the structure to its state before grabbing
+        protected override void OnSelectExiting(XRBaseInteractor interactor) {
+            
+            base.OnSelectExiting(interactor); // Run this method in parent
 
+            // Reset the attach transform to its original position
+            interactor.attachTransform.localPosition = interactorPosition;
+            interactor.attachTransform.localRotation = interactorRotation;
 
-    // Logic for the first frame of 1 hand grab
-    private void Start1HandGrab(GameObject grabber, GameObject hand){
-        
-        // Store the world scale of the structure
-        Vector3 scale = gameObject.transform.lossyScale;
+            // Reset variables to zero
+            interactorPosition = Vector3.zero;
+            interactorRotation = Quaternion.identity;
 
-        // Reparent the structure to the base so we can mess around with the scaleObject
-        gameObject.transform.parent = structure.transform;
+            structureSelected = false;
 
-        // Reset the scaleObject to the grabber
-        scaleObject.transform.localScale = Vector3.one;
-        scaleObject.transform.rotation = grabber.transform.rotation;
-        scaleObject.transform.position = hand.transform.position;
+        }
 
-        // Reparent the structure to the scaleObject and correct its scale
-        gameObject.transform.parent = scaleObject.transform;
-        gameObject.transform.localScale = scale;
-        oneHandGrab = true;
+        // Update is called once per frame
+        void Update()
+        {
+            scaleGrabber.SetActive(structureSelected);
+            
+            if(scaleGrabberSelected && structureSelected) {
 
-    }
+                if(!twoHandGrab) {
 
-    // Logic for the first frame of 2 hand grab
-    private void Start2HandGrab(){
+                    attachTargetBoth();
 
-        // Reparent the structure to the base so we can mess around with the scaleObject
-        gameObject.transform.parent = structure.transform;
+                    twoHandGrab = true;
+                }
 
-        // Set the scale object's initial position and scale 
-        scaleObject.transform.position = (hand1.transform.position + hand2.transform.position)/2;
-        twoHandDistance = (hand1.gameObject.transform.position - hand2.gameObject.transform.position).magnitude;
-        scaleObject.transform.localScale = Vector3.one;
-        scaleObject.transform.rotation = Quaternion.LookRotation(grab1.transform.position - grab2.transform.position, Vector3.up);
+                // Update scaling and location, then clamp the scale between the minimum and maximum
+                updateTargetBoth();
+                ClampScale();
 
-        // Parent the structure to the scale object
-        gameObject.transform.parent = scaleObject.transform;
-        twoHandGrab = true;
-        oneHandGrab = false;
-    }
+            } else {
+                
+                twoHandGrab = false;
 
-    // Called by XR grab interactable in the structure
-    public void Grab1Selected() {
-        grab1selected = true;
-    }
+                scaleGrabber.transform.position = gameObject.transform.position;
 
-    // Called by XR grab interactable in the structure
-    public void Grab1Deselected() {
-        grab1selected = false;
-    }
+                SmoothClampScale();
+            }
+        }
 
-    // Called by XR grab interactable in the structure
-    public void Grab2Selected() {
-        grab2selected = true;
-    }
+        private void ClampScale() {
 
-    // Called by XR grab interactable in the structure
-    public void Grab2Deselected() {
-        grab2selected = false;
+            if (gameObject.transform.lossyScale.magnitude < minScale / softScaleBound) {
+
+                gameObject.transform.localScale = gameObject.transform.localScale * (minScale / softScaleBound) / gameObject.transform.localScale.magnitude;
+
+            } else if (gameObject.transform.lossyScale.magnitude > maxScale * softScaleBound) {
+
+                gameObject.transform.localScale = gameObject.transform.localScale * maxScale * softScaleBound / gameObject.transform.localScale.magnitude;
+
+            }
+        }
+
+        private void SmoothClampScale() {
+            
+            if (gameObject.transform.lossyScale.magnitude < minScale) {
+
+                gameObject.transform.localScale = (1 / ((gameObject.transform.localScale.magnitude / minScale - 1) * Time.deltaTime * 5 + 1)) * gameObject.transform.localScale;
+            } else if (gameObject.transform.lossyScale.magnitude > maxScale) {
+
+                gameObject.transform.localScale = (1 / ((gameObject.transform.localScale.magnitude / maxScale - 1) * Time.deltaTime * 5 + 1)) * gameObject.transform.localScale;
+
+            }
+
+        }
+
+        private void attachTargetBoth() {
+            initialHandPosition1 = hand1.transform.position;
+            initialHandPosition2 = hand2.transform.position;
+            initialObjectRotation = gameObject.transform.rotation;
+            initialObjectScale = gameObject.transform.localScale;
+            initialObjectDirection = gameObject.transform.position - (initialHandPosition1 + initialHandPosition2) * 0.5f; 
+        }
+
+        private void updateTargetBoth() {
+            Vector3 currentHandPosition1 = hand1.transform.position; // current first hand position
+            Vector3 currentHandPosition2 = hand2.transform.position; // current second hand position
+
+            Vector3 handDir1 = (initialHandPosition1 - initialHandPosition2).normalized; // direction vector of initial first and second hand position
+            Vector3 handDir2 = (currentHandPosition1 - currentHandPosition2).normalized; // direction vector of current first and second hand position 
+
+            Quaternion handRot = Quaternion.FromToRotation(handDir1, handDir2); // calculate rotation based on those two direction vectors
+
+            float currentGrabDistance = Vector3.Distance(currentHandPosition1, currentHandPosition2);
+            float initialGrabDistance = Vector3.Distance(initialHandPosition1, initialHandPosition2);
+            float p = (currentGrabDistance / initialGrabDistance); // percentage based on the distance of the initial positions and the new positions
+
+            Vector3 newScale = new Vector3(p * initialObjectScale.x, p * initialObjectScale.y, p * initialObjectScale.z); // calculate new object scale with p
+
+            gameObject.transform.rotation = handRot * initialObjectRotation; // add rotation
+            gameObject.transform.localScale = newScale; // set new scale
+            
+            // set the position of the object to the center of both hands based on the original object direction relative to the new scale and rotation
+            gameObject.transform.position = (0.5f * (currentHandPosition1 + currentHandPosition2)) + (handRot * (initialObjectDirection * p));
+
+        }
+
+        // Called by XR grab interactable in the structure
+        public void ScaleGrabberSelected() {
+            scaleGrabberSelected = true;
+        }
+
+        // Called by XR grab interactable in the structure
+        public void ScaleGrabberDeselected() {
+            scaleGrabberSelected = false;
+        }
     }
 }
