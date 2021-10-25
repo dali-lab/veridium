@@ -24,11 +24,12 @@ namespace SIB_Interaction{
         private Vector3 initialHandPosition1, initialHandPosition2;             // controller starting locations
         private Quaternion initialObjectRotation;                               // gameObject rotation
         private Vector3 initialObjectScale, initialObjectDirection;             // gameObject scale, direction of gameObject to midpoint of both controllers
+        private XRBaseInteractor grabInteractor;
 
 
 
         // extends OnSelectEntering from XRGrabInteractable. Stores initial information from the interactors
-        protected override void OnSelectEntering(XRBaseInteractor interactor) {
+        protected override void OnSelectEntering(XRBaseInteractor interactor){
 
             base.OnSelectEntering(interactor); // Run this method in parent
 
@@ -40,6 +41,8 @@ namespace SIB_Interaction{
             bool hasAttach = attachTransform != null;
             interactor.attachTransform.position = hasAttach ? attachTransform.position : transform.position;
             interactor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
+
+            grabInteractor = interactor;
 
             structureSelected = true;
 
@@ -57,6 +60,8 @@ namespace SIB_Interaction{
             // Reset variables to zero
             interactorPosition = Vector3.zero;
             interactorRotation = Quaternion.identity;
+
+            grabInteractor = null;
 
             structureSelected = false;
 
@@ -116,6 +121,19 @@ namespace SIB_Interaction{
 
         }
 
+        private void EndTwoHandGrab() {
+
+            // Store the attach transform of the interactor
+            interactorPosition = grabInteractor.attachTransform.localPosition;
+            interactorRotation = grabInteractor.attachTransform.localRotation;
+            
+            // offsets the interactor's attach transform to match the structure's
+            bool hasAttach = attachTransform != null;
+            grabInteractor.attachTransform.position = hasAttach ? attachTransform.position : transform.position;
+            grabInteractor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
+
+        }
+
         private void attachTargetBoth() {
             initialHandPosition1 = hand1.transform.position;
             initialHandPosition2 = hand2.transform.position;
@@ -155,6 +173,8 @@ namespace SIB_Interaction{
         // Called by XR grab interactable in the structure
         public void ScaleGrabberDeselected() {
             scaleGrabberSelected = false;
+
+            if(twoHandGrab) EndTwoHandGrab();
         }
     }
 }
