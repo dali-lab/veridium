@@ -22,7 +22,7 @@ public class StructureBuilder : MonoBehaviour
 
     public void BuildStructure()
     {
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "BuildStructure called";
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "BuildStructure called";
 
         UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.FACE,
             gameObject.transform.position, 0.66f, 0.66f, 0.66f, 90, 90, 90);
@@ -42,26 +42,39 @@ public class StructureBuilder : MonoBehaviour
 
         (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
 
-        Atom[] vertices = test.GetVertices();
 
-        List<Bond> bonds = test.GetBonds();
+        // test.Draw(atomPrefab, linePrefab, gameObject);
+        // Atom[] vertices = test.GetVertices();
 
-        foreach (Atom vert in vertices) {
-            Instantiate(atomPrefab, vert.GetPosition(), Quaternion.identity).transform.SetParent(gameObject.transform);
-        }
+        // List<Bond> bonds = test.GetBonds();
 
-        foreach (Bond bond in bonds) {
-            Vector3 start = bond.GetStartPos();
-            Vector3 end = bond.GetEndPos();
-            Vector3 midpoint = (start + end)/2;
-            Instantiate(linePrefab, midpoint/3 + gameObject.transform.position, Quaternion.LookRotation(end-start, Vector3.up));
-        }
-        /*
-        foreach (Line edge in lines) {
-            Vector3 start = edge.start;
-            Vector3 end = edge.end;
-            Vector3 midpoint = (start + end)/2;
-            Instantiate(linePrefab, midpoint, Quaternion.LookRotation((end-start), Vector3.up));
-        }*/
+        // foreach (Atom vert in vertices) {
+        //     vert.Draw(atomPrefab, gameObject);
+        // }
+
+        // foreach (Bond bond in bonds) {
+        //     Vector3 start = bond.GetStartPos();
+        //     Vector3 end = bond.GetEndPos();
+        //     Vector3 midpoint = (start + end)/2;
+        //     Instantiate(linePrefab, midpoint/3 + gameObject.transform.position, Quaternion.LookRotation(end-start, Vector3.up));
+        // }
+
+        Crystal crystal = new Crystal(gameObject.transform.position);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal initialized";
+
+        crystal.SetState(CrystalState.SINGLECELL);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal state set";
+
+        crystal.Construct(CellType.CUBIC, CellVariation.FACE, 0.66f, 0.66f, 0.66f, 90, 90, 90, 10);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal constructed";
+
+        crystal.SetState(CrystalState.INFINITE);
+
+        crystal.Draw(atomPrefab, linePrefab, gameObject);
+
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal drawn";
     }
 }
