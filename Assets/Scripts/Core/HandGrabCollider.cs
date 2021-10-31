@@ -6,16 +6,7 @@ public class HandGrabCollider : MonoBehaviour
 {
 
     public MeshFilter meshFilter;
-    public MeshCollider meshCollider;
+    public BoxCollider boxCollider;
     public HandDistanceGrabbable handDistanceGrabbable;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-
-        meshCollider.sharedMesh = null;
-        meshCollider.sharedMesh = meshFilter.mesh;
-        
-    }
 
 }

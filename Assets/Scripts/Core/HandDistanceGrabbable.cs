@@ -7,6 +7,8 @@ public class HandDistanceGrabbable : XRGrabInteractable
 {
 
     private Vector3 colliderCenter;
+    private bool hovered;
+    private bool hoveredLastFrame;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,16 @@ public class HandDistanceGrabbable : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
+
+        if(hoveredLastFrame){
+            
+        } else if(hovered){
+
+            UnHovered();
+            
+        }
+
+        hovered = false;
         
     }
 
@@ -27,13 +39,15 @@ public class HandDistanceGrabbable : XRGrabInteractable
 
         GetComponent<BoxCollider>().center = transform.InverseTransformPoint(hand.transform.position);
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = transform.InverseTransformPoint(hand.transform.position).ToString();
-
+        hovered = true;
+        hoveredLastFrame = true;
     }
 
     public void UnHovered(){
         GetComponent<ToggleOutline>().toggleOutline(false);
 
         GetComponent<BoxCollider>().center = colliderCenter;
+
+        hovered = false;
     }
 }

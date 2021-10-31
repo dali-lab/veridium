@@ -46,5 +46,9 @@ namespace SIB_Interaction{
             // return structureBuilder.BuildStructure();
             return null;
         }
+
+        public void ElementAdded(PTElement element){
+            
+        }
     }
 }

@@ -24,6 +24,9 @@ public class PTElement : MonoBehaviour
     {
 
         if(interacted && unHeldTimer < maxUnHeldTime){
+
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = unHeldTimer.ToString();
+
             unHeldTimer += Time.deltaTime;
 
             if(unHeldTimer > maxUnHeldTime){
