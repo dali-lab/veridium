@@ -27,7 +27,14 @@ namespace sib
             this.drawMode = CrystalState.SINGLECELL;
         }
 
+        public void ClearCrystal(GameObject builder) {
+            foreach (Transform child in builder.transform) {
+                MonoBehaviour.Destroy(child.gameObject);
+            }
+        }
+
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            ClearCrystal(builder);
             switch (this.drawMode) {
                 case CrystalState.SINGLECELL:
                     if (this.unitCells.ContainsKey(centerPoint)) {
