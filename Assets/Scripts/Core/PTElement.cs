@@ -6,16 +6,14 @@ public class PTElement : MonoBehaviour
 {
 
     public string elementName;
-    private GameObject home;
+    public GameObject home;
     private float unHeldTimer = 0f;
     public float maxUnHeldTime = 1f;
-    private bool interacted;
+    private bool interacted = true;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        home = transform.parent.gameObject;
         
     }
 
@@ -23,17 +21,22 @@ public class PTElement : MonoBehaviour
     void Update()
     {
 
-        if(interacted && unHeldTimer < maxUnHeldTime){
+        if(!interacted){
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = unHeldTimer.ToString();
+            if(unHeldTimer < maxUnHeldTime){
 
-            unHeldTimer += Time.deltaTime;
+                unHeldTimer += Time.deltaTime;
 
-            if(unHeldTimer > maxUnHeldTime){
-                transform.position = home.transform.position;
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = unHeldTimer.ToString();
+
+            } else {
+
+                unHeldTimer = 0f;
+                gameObject.transform.position = home.transform.position;
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "moving back home";
+
             }
-        } else {
-            unHeldTimer = 0f;
+
         }
         
     }

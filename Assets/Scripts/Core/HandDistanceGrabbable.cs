@@ -19,13 +19,14 @@ public class HandDistanceGrabbable : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
+        gameObject.GetComponent<Rigidbody>().isKinematic = hovered;
 
         if(hoveredLastFrame){
             
         } else if(hovered){
 
             UnHovered();
-            
+
         }
 
         hovered = false;
