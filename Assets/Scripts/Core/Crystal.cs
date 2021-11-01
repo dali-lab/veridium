@@ -66,10 +66,10 @@ namespace sib
             this.unitCells[this.centerPoint] = originCell;
 
             originCell.AddVertices(this.atoms, 0, "");
-            //originCell.AddBonds(this.bonds);
+            originCell.AddBonds(this.bonds);
 
             string debugInfo = originCell.Debug();
-            Debug.Log(debugInfo);
+            // Debug.Log(debugInfo);
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
 
@@ -102,6 +102,9 @@ namespace sib
                         }
                     }
                 }
+                debugInfo += "Pass complete\n";
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+
             //     foreach (KeyValuePair<Vector3, UnitCell6> item in this.unitCells) {
             //         debugInfo += "Checking unit cell construction at position\n";
             //         (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
@@ -118,9 +121,16 @@ namespace sib
             //         }
             //         index ++;
             //     }
-                debugInfo += "Pass complete\n";
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
             }
+        }
+        public string Debug() {
+            string debugInfo = "";
+            if (this.unitCells.ContainsKey(this.centerPoint)) {
+                debugInfo += "Center Vertex Info: " + this.unitCells[this.centerPoint].Debug();
+            } else {
+                debugInfo += "No center point available";
+            }
+            return debugInfo;
         }
 
     }

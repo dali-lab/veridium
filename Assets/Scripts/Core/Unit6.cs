@@ -420,7 +420,7 @@ namespace sib
                     UnitCell6 newCell = new UnitCell6(this.type, this.structure, newCellPos, 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
                     newCell.AddVertices(crystalAtoms, 0, "");
-                    //newCell.AddBonds(crystalBonds);
+                    newCell.AddBonds(crystalBonds);
                     crystalCells[newCellPos] = newCell;
                 }
 
