@@ -20,6 +20,22 @@ public class StructureBuilder : MonoBehaviour
         
     }
 
+    public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
+        Crystal crystal = new Crystal(gameObject.transform.position);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal initialized";
+
+        crystal.SetState(state);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal state set";
+
+        crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, 10);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal constructed";
+
+        crystal.Draw(atomPrefab, linePrefab, gameObject);
+    }
+
     public void BuildStructure()
     {
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "BuildStructure called";
