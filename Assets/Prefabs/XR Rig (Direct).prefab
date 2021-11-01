@@ -2807,6 +2807,7 @@ GameObject:
   - component: {fileID: 3657761366441445124}
   - component: {fileID: 3657761366441445147}
   - component: {fileID: 3657761366441445125}
+  - component: {fileID: 2078824037863683531}
   m_Layer: 6
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -2965,10 +2966,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2078824037863683531}
+        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_MethodName: grabBegun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2078824037863683531}
+        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_MethodName: grabEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -3026,6 +3051,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2078824037863683531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657761366441445145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb7b23a46508402d891f454359c6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPointZOffset: -0.5
+  rayDistance: 3
+  distanceGrabActive: 1
+  headset: {fileID: 3657761366712215386}
 --- !u!1 &3657761366480257892
 GameObject:
   m_ObjectHideFlags: 0
@@ -4179,6 +4220,8 @@ GameObject:
   - component: {fileID: 3657761366975003025}
   - component: {fileID: 3657761366975003024}
   - component: {fileID: 3657761366975003026}
+  - component: {fileID: 8278060769670824136}
+  - component: {fileID: 7504483578990469883}
   m_Layer: 6
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -4337,10 +4380,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7504483578990469883}
+        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_MethodName: grabBegun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7504483578990469883}
+        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_MethodName: grabEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -4398,6 +4465,38 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8278060769670824136
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657761366975003030}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7504483578990469883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657761366975003030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb7b23a46508402d891f454359c6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPointZOffset: -0.5
+  rayDistance: 3
+  distanceGrabActive: 1
+  headset: {fileID: 3657761366712215386}
 --- !u!1 &3657761366977744244
 GameObject:
   m_ObjectHideFlags: 0
