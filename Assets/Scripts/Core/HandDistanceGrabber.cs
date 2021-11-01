@@ -31,7 +31,7 @@ namespace SIB_Interaction{
                 Physics.SphereCast(transform.position, 0.2f, transform.forward, out hit, Mathf.Infinity, layerMask);
 
                 HandDistanceGrabbable hovered = null;
-                if (hit.collider.gameObject.transform.parent.gameObject.GetComponent<HandDistanceGrabbable>() != null) hovered = hit.collider.gameObject.transform.parent.gameObject.GetComponent<HandDistanceGrabbable>();
+                if (hit.collider.gameObject.GetComponent<HandDistanceGrabbable>() != null) hovered = hit.collider.gameObject.GetComponent<HandDistanceGrabbable>();
 
                 if (lastFrameHovered != null && hovered != lastFrameHovered){
                     lastFrameHovered.UnHovered();

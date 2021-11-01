@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class HandDistanceGrabbable : XRGrabInteractable
+public class HandDistanceGrabbable : MonoBehaviour
 {
 
     private Vector3 colliderCenter;
     private bool hovered;
     private bool hoveredLastFrame;
+    public GameObject handCollider;
+    private bool selected;
 
     // Start is called before the first frame update
     void Start()
@@ -30,15 +32,27 @@ public class HandDistanceGrabbable : XRGrabInteractable
         }
 
         hovered = false;
+
+        if(selected){
+
+            gameObject.transform.position = handCollider.transform.position;
+
+        }
         
+    }
+
+    public void Selected(){
+        selected = true;
+    }
+
+    public void UnSelected(){
+        selected = false;
     }
 
     public void Hovered(GameObject hand){
         GetComponent<ToggleOutline>().toggleOutline(true);
 
-        colliderCenter = GetComponent<BoxCollider>().center;
-
-        GetComponent<BoxCollider>().center = transform.InverseTransformPoint(hand.transform.position);
+        handCollider.transform.position = hand.transform.position;
 
         hovered = true;
         hoveredLastFrame = true;
@@ -47,7 +61,7 @@ public class HandDistanceGrabbable : XRGrabInteractable
     public void UnHovered(){
         GetComponent<ToggleOutline>().toggleOutline(false);
 
-        GetComponent<BoxCollider>().center = colliderCenter;
+        handCollider.transform.localPosition = Vector3.zero;
 
         hovered = false;
     }

@@ -27,13 +27,10 @@ public class PTElement : MonoBehaviour
 
                 unHeldTimer += Time.deltaTime;
 
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = unHeldTimer.ToString();
-
             } else {
 
                 unHeldTimer = 0f;
                 gameObject.transform.position = home.transform.position;
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "moving back home";
 
             }
 
