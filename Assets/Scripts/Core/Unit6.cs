@@ -293,7 +293,7 @@ namespace sib
                     }
 
                     if (!duplicate) {
-                        Vector3 midpoint = (newBond.GetStartPos() - newBond.GetEndPos())/2;
+                        Vector3 midpoint = (newBond.GetStartPos() + newBond.GetEndPos())/2;
                         // If an equivalent bond already exists within the Crystal structure, use it instead
                         Bond crystalDuplicate;;
                         if (crystalBonds.TryGetValue(midpoint, out crystalDuplicate)) {
