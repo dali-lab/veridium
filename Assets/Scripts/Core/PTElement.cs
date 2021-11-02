@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using sib;
 
 public class PTElement : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PTElement : MonoBehaviour
     private float unHeldTimer = 0f;
     public float maxUnHeldTime = 1f;
     private bool interacted = true;
+    public CellType type = CellType.CUBIC;
+    public CellVariation variation = CellVariation.SIMPLE;
 
     // Start is called before the first frame update
     void Start()

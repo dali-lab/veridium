@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using sib;
 
 /// <summary>
 /// Structure.cs controls the main structure on the podium 
@@ -16,14 +17,14 @@ namespace SIB_Interaction{
         private bool grabbed;                   // Whether the structure has been grabbed by the user
         public GameObject headSet;              // The eye position of the player
         public float respawnDistance = 1;
+        public StructureBuilder structureBuilder;
+        public float sideLength = 0.5f;
+        public float sphereRadius = 0.05f;
 
 
         // Start is called before the first frame update
         void Start()
         {
-            if(structure == null) {
-                InitStructure();
-            }
             
         }
         
@@ -34,20 +35,12 @@ namespace SIB_Interaction{
 
         }
 
-        // Constructs the structure that will be displayed
-        private GameObject InitStructure() {
-
-            // Clear any existing structure
-            if(structure != null) {
-                Destroy(structure);
-            }
-
-            // Create a new structure
-            // return structureBuilder.BuildStructure();
-            return null;
+        public void ElementAdded(PTElement element){
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "trying to build";
+            structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius);
         }
 
-        public void ElementAdded(PTElement element){
+        public void ElementRemoved(){
             
         }
     }

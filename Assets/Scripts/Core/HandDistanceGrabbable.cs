@@ -64,5 +64,6 @@ public class HandDistanceGrabbable : MonoBehaviour
         handCollider.transform.localPosition = Vector3.zero;
 
         hovered = false;
+        hoveredLastFrame = false;
     }
 }
