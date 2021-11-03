@@ -25,9 +25,7 @@ namespace SIB_Interaction{
 
             base.OnSelectEntering(interactable);
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = interactable.gameObject.GetComponent<PTElementCollider>().element.ToString();
-
-            heldElement = interactable.gameObject.GetComponent<PTElementCollider>().element;
+            heldElement = interactable.gameObject.GetComponent<PTElement>();
             structureBase.ElementAdded(heldElement);
 
         }
@@ -39,7 +37,6 @@ namespace SIB_Interaction{
             structureBase.ElementRemoved();
 
             heldElement = null;
-
         }
     }
 }

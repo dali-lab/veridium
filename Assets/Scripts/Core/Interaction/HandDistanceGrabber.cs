@@ -34,6 +34,12 @@ namespace SIB_Interaction{
 
                 if (hovered != null){
                     hovered.Hovered(gameObject);
+
+                    GetComponent<SphereCollider>().center = transform.InverseTransformPoint(hovered.transform.position);
+                } else {
+
+                    GetComponent<SphereCollider>().center = Vector3.zero;
+                    
                 }
             }
         }
