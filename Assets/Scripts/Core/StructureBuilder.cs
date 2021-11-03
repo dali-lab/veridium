@@ -83,7 +83,7 @@ public class StructureBuilder : MonoBehaviour
 
         //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal state set";
 
-        crystal.Construct(CellType.CUBIC, CellVariation.SIMPLE, 0.66f, 0.66f, 0.66f, 90, 90, 90, 10);
+        crystal.Construct(CellType.CUBIC, CellVariation.FACE, 0.66f, 0.66f, 0.66f, 90, 90, 90, 10);
 
         //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal constructed";
 
