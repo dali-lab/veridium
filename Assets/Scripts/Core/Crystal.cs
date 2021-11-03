@@ -27,7 +27,14 @@ namespace sib
             this.drawMode = CrystalState.SINGLECELL;
         }
 
+        public void ClearCrystal(GameObject builder) {
+            foreach (Transform child in builder.transform) {
+                MonoBehaviour.Destroy(child.gameObject);
+            }
+        }
+
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            ClearCrystal(builder);
             switch (this.drawMode) {
                 case CrystalState.SINGLECELL:
                     if (this.unitCells.ContainsKey(centerPoint)) {
@@ -91,6 +98,7 @@ namespace sib
                     UnitCell6 cell = cells[cellIndex];
                     Vector3 position = positions[cellIndex];
                     if (!constructedPositions.Contains(position)) {
+                        constructedPositions.Add(position);
                         debugInfo += "New positon validated\n";
                         if (cell != null) {
                             cell.GenerateNeighbors(this.atoms, this.bonds, this.unitCells);
