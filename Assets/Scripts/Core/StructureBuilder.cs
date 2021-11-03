@@ -11,13 +11,13 @@ public class StructureBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BuildStructure();
+        //BuildStructure();
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Rotate(Vector3.up* Time.deltaTime*10);
+        
     }
 
     public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
@@ -44,10 +44,10 @@ public class StructureBuilder : MonoBehaviour
             gameObject.transform.position, 0.66f, 0.66f, 0.66f, 90, 90, 90);
 
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "test Atom instantiated";
+        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "test Atom instantiated";
         test.AddVertices(new Dictionary<Vector3, Atom>(), 0, null);
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "vertices added";
+        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "vertices added";
 
         test.AddBonds(new Dictionary<Vector3, Bond>());
 
@@ -56,7 +56,7 @@ public class StructureBuilder : MonoBehaviour
         string debugInfo = test.Debug();
         Debug.Log(debugInfo);
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
 
 
         // test.Draw(atomPrefab, linePrefab, gameObject);
@@ -77,23 +77,23 @@ public class StructureBuilder : MonoBehaviour
 
         Crystal crystal = new Crystal(gameObject.transform.position);
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal initialized";
+        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal initialized";
 
         crystal.SetState(CrystalState.SINGLECELL);
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal state set";
+        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal state set";
 
         crystal.Construct(CellType.CUBIC, CellVariation.SIMPLE, 0.66f, 0.66f, 0.66f, 90, 90, 90, 10);
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal constructed";
+        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal constructed";
 
-        crystal.SetState(CrystalState.INFINITE);
+        crystal.SetState(CrystalState.SINGLECELL);
 
         crystal.Draw(atomPrefab, linePrefab, gameObject);
 
         debugInfo = crystal.Debug();
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
 
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal drawn";
     }

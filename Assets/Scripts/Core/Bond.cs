@@ -93,8 +93,10 @@ namespace sib
          */
         public void Draw(GameObject linePrefab, GameObject builder) {
             Vector3 midpoint = (this.start.GetPosition() + this.end.GetPosition())/2;
-            MonoBehaviour.Instantiate(linePrefab, midpoint/3 + builder.transform.position, 
-                Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
+            MonoBehaviour.Instantiate(linePrefab, midpoint, 
+                Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up)).transform.SetParent(builder.transform);
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = midpoint.ToString();
+
         }
 
     }

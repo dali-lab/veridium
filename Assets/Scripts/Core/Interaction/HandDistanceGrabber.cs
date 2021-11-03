@@ -9,7 +9,6 @@ namespace SIB_Interaction{
         public float startPointZOffset = -.5f, rayDistance = 3f;
         public bool distanceGrabActive = true;
         public GameObject headset;
-        private HandDistanceGrabbable lastFrameHovered;
         private int layerMask;
         private bool grabbing;
 
@@ -33,23 +32,14 @@ namespace SIB_Interaction{
                 HandDistanceGrabbable hovered = null;
                 if (hit.collider.gameObject.GetComponent<HandDistanceGrabbable>() != null) hovered = hit.collider.gameObject.GetComponent<HandDistanceGrabbable>();
 
-                if (lastFrameHovered != null && hovered != lastFrameHovered){
-                    lastFrameHovered.UnHovered();
-                }
-
-                lastFrameHovered = null;
-
                 if (hovered != null){
                     hovered.Hovered(gameObject);
-                    lastFrameHovered = hovered;
                 }
             }
         }
 
         public void grabBegun(){
             grabbing = true;
-
-            lastFrameHovered.UnHovered();
         }
 
         public void grabEnded(){

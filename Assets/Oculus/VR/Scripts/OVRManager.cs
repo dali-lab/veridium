@@ -23,7 +23,7 @@ permissions and limitations under the License.
 #endif
 
 #if !UNITY_2018_3_OR_NEWER
-#error Oculus Utilities require Unity 2018.3 or higher.
+//error Oculus Utilities require Unity 2018.3 or higher.
 #endif
 
 using System;
