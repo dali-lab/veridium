@@ -98,6 +98,7 @@ namespace sib
                     UnitCell6 cell = cells[cellIndex];
                     Vector3 position = positions[cellIndex];
                     if (!constructedPositions.Contains(position)) {
+                        constructedPositions.Add(position);
                         debugInfo += "New positon validated\n";
                         if (cell != null) {
                             cell.GenerateNeighbors(this.atoms, this.bonds, this.unitCells);
