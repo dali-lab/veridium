@@ -23,26 +23,21 @@ public class HandDistanceGrabbable : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().isKinematic = hovered;
 
-        if(hoveredLastFrame){
-            
-        } else if(hovered){
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = selected.ToString();
 
-            UnHovered();
-
-        }
+        if(hoveredLastFrame && ! hovered) UnHovered();
 
         hovered = false;
 
-        if(selected){
-
-            gameObject.transform.position = handCollider.transform.position;
-
-        }
+        if(selected) gameObject.transform.position = handCollider.transform.position;
         
     }
 
     public void Selected(){
-        selected = true;
+
+        //if (interactor.GetType() == typeof(XRDirectInteractor)){
+            selected = true;
+        //}
     }
 
     public void UnSelected(){
