@@ -23,8 +23,6 @@ public class HandDistanceGrabbable : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().isKinematic = hovered;
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = selected.ToString();
-
         if(hoveredLastFrame && ! hovered) UnHovered();
 
         hovered = false;
@@ -34,10 +32,7 @@ public class HandDistanceGrabbable : MonoBehaviour
     }
 
     public void Selected(){
-
-        //if (interactor.GetType() == typeof(XRDirectInteractor)){
-            selected = true;
-        //}
+        selected = true;
     }
 
     public void UnSelected(){
@@ -46,6 +41,8 @@ public class HandDistanceGrabbable : MonoBehaviour
 
     public void Hovered(GameObject hand){
         GetComponent<ToggleOutline>().toggleOutline(true);
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = hand.transform.position.ToString();
 
         handCollider.transform.position = hand.transform.position;
 
