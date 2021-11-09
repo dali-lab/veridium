@@ -70,19 +70,20 @@ namespace SIB_Interaction{
         // Update is called once per frame
         void Update()
         {
+
             scaleGrabber.SetActive(structureSelected);
             
             if(scaleGrabberSelected && structureSelected) {
 
                 if(!twoHandGrab) {
 
-                    attachTargetBoth();
+                    AttachTargetBoth();
 
                     twoHandGrab = true;
                 }
 
                 // Update scaling and location, then clamp the scale between the minimum and maximum
-                updateTargetBoth();
+                UpdateTargetBoth();
                 ClampScale();
 
             } else {
@@ -134,7 +135,7 @@ namespace SIB_Interaction{
 
         }
 
-        private void attachTargetBoth() {
+        private void AttachTargetBoth() {
             initialHandPosition1 = hand1.transform.position;
             initialHandPosition2 = hand2.transform.position;
             initialObjectRotation = gameObject.transform.rotation;
@@ -142,7 +143,7 @@ namespace SIB_Interaction{
             initialObjectDirection = gameObject.transform.position - (initialHandPosition1 + initialHandPosition2) * 0.5f; 
         }
 
-        private void updateTargetBoth() {
+        private void UpdateTargetBoth() {
             Vector3 currentHandPosition1 = hand1.transform.position; // current first hand position
             Vector3 currentHandPosition2 = hand2.transform.position; // current second hand position
 
@@ -167,11 +168,13 @@ namespace SIB_Interaction{
 
         // Called by XR grab interactable in the structure
         public void ScaleGrabberSelected() {
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "selected";
             scaleGrabberSelected = true;
         }
 
         // Called by XR grab interactable in the structure
         public void ScaleGrabberDeselected() {
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "deselected";
             scaleGrabberSelected = false;
 
             if(twoHandGrab) EndTwoHandGrab();

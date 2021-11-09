@@ -26,14 +26,16 @@ public class HandDistanceGrabbable : MonoBehaviour
     }
 
     public void Hovered(GameObject hand){
-        GetComponent<ToggleOutline>().toggleOutline(true);
+
+        GetComponent<Outline>().enabled = true;
 
         hovered = true;
         hoveredLastFrame = true;
     }
 
     public void UnHovered(){
-        GetComponent<ToggleOutline>().toggleOutline(false);
+
+        GetComponent<Outline>().enabled = false;
 
         hovered = false;
         hoveredLastFrame = false;

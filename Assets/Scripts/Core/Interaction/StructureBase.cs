@@ -36,7 +36,6 @@ namespace SIB_Interaction{
         }
 
         public void ElementAdded(PTElement element){
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "trying to build";
             structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius);
         }
 

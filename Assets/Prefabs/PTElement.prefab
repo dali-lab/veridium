@@ -9,15 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981979524324664694}
+  - component: {fileID: 7766797239739653141}
   - component: {fileID: 6079781780944814031}
   - component: {fileID: 1139634914230391189}
   - component: {fileID: 7977114506403240280}
   - component: {fileID: 7550559951849918020}
-  - component: {fileID: 1569435544824003385}
-  - component: {fileID: 5601246468105233844}
-  - component: {fileID: 7766797239739653141}
   - component: {fileID: 1287086107974112698}
   - component: {fileID: 7844924287055149873}
+  - component: {fileID: 8024336821334130892}
   m_Layer: 7
   m_Name: DistanceGrabbable
   m_TagString: Untagged
@@ -39,6 +38,23 @@ Transform:
   m_Father: {fileID: 4278618305942748021}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7766797239739653141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506996978073560556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcd300057b054b04ad120d97b8e63e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Copper
+  home: {fileID: 9130913863735385194}
+  maxUnHeldTime: 1
+  type: 0
+  variation: 0
 --- !u!33 &6079781780944814031
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46,7 +62,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506996978073560556}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2930184177208560141, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
 --- !u!23 &1139634914230391189
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -55,7 +71,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506996978073560556}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -66,7 +82,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100002, guid: ff6dc36862fe41641bb21568d92147c9, type: 3}
+  - {fileID: 7108631595466352291, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
+  - {fileID: 6032018737518785298, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,53 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc84c194db85c4ccc86ddc1f73a5364d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1569435544824003385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506996978073560556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &5601246468105233844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506996978073560556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d56c97fcce0cae4bb6bc906767413f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7766797239739653141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506996978073560556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcd300057b054b04ad120d97b8e63e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Copper
-  home: {fileID: 9130913863735385194}
-  maxUnHeldTime: 1
-  type: 0
-  variation: 0
 --- !u!65 &1287086107974112698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -174,7 +144,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.12, y: 0.12, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7844924287055149873
 MonoBehaviour:
@@ -247,7 +217,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
-  m_AttachEaseInTime: 0.15
+  m_AttachEaseInTime: 1
   m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -283,6 +253,24 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!114 &8024336821334130892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506996978073560556}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.27058825, g: 0.6901961, b: 0.9019608, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &9130913863735385194
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,12 +298,12 @@ Transform:
   m_GameObject: {fileID: 9130913863735385194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 981979524324664694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 6.956, z: 0}
 --- !u!114 &394103918283963828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +319,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   m_AttachTransform: {fileID: 0}
   m_StartingSelectedInteractable: {fileID: 7844924287055149873}
   m_HoverEntered:
@@ -375,5 +363,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
