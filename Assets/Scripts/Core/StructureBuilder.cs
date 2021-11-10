@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using UnityEngine;
 using sib;
 
@@ -21,19 +24,51 @@ public class StructureBuilder : MonoBehaviour
     }
 
     public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
+        string debugString = "";
+
+        Stopwatch stopwatch = new Stopwatch();
+
+        stopwatch.Start();
         Crystal crystal = new Crystal(gameObject.transform.position);
+        stopwatch.Stop();
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal initialized";
+        TimeSpan ts = stopwatch.Elapsed;
+        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+        debugString += "Time elapsed in crystal initialization " + elapsedTime + "\n";
 
+        stopwatch.Start();
         crystal.SetState(state);
+        stopwatch.Stop();
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal state set";
+        ts = stopwatch.Elapsed;
+        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+        debugString += "Time elapsed in crystal state setting" + elapsedTime + "\n";
 
-        crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, 10);
+        stopwatch.Start();
+        crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, 0);
+        stopwatch.Stop();
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal constructed";
+        ts = stopwatch.Elapsed;
+        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+        debugString += "Time elapsed in crystal construction" + elapsedTime + "\n";
 
+        stopwatch.Start();
         crystal.Draw(atomPrefab, linePrefab, gameObject);
+        stopwatch.Stop();
+
+        ts = stopwatch.Elapsed;
+        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+        debugString += "Time elapsed in crystal drawing" + elapsedTime + "\n";
+
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
     }
 
     public void BuildStructure()
@@ -54,7 +89,7 @@ public class StructureBuilder : MonoBehaviour
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "bonds added";
 
         string debugInfo = test.Debug();
-        Debug.Log(debugInfo);
+        // Debug.Log(debugInfo);
 
         //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
 
