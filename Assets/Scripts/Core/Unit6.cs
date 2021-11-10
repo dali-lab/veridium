@@ -347,7 +347,7 @@ namespace sib
 
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
 
             string debugOutput = "";
             // int index = 0;
@@ -367,7 +367,7 @@ namespace sib
                 }
             }
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
 
             foreach ( Bond bond in this.bonds ) {
                 bond.Draw(linePrefab, builder);
@@ -383,7 +383,7 @@ namespace sib
          */
         public void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
 
             string debugString = "";
 
@@ -427,12 +427,12 @@ namespace sib
                 debugString += "\n";
                 index ++;
 
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
+                // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
             }
 
             debugString += "Exited Successfuly";
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
         }
     }
 }

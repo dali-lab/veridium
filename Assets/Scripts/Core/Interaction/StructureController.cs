@@ -168,13 +168,13 @@ namespace SIB_Interaction{
 
         // Called by XR grab interactable in the structure
         public void ScaleGrabberSelected() {
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "selected";
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "selected";
             scaleGrabberSelected = true;
         }
 
         // Called by XR grab interactable in the structure
         public void ScaleGrabberDeselected() {
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "deselected";
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "deselected";
             scaleGrabberSelected = false;
 
             if(twoHandGrab) EndTwoHandGrab();

@@ -95,7 +95,7 @@ namespace sib
             Vector3 midpoint = (this.start.GetPosition() + this.end.GetPosition())/2;
             MonoBehaviour.Instantiate(linePrefab, midpoint, 
                 Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up)).transform.SetParent(builder.transform);
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = midpoint.ToString();
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = midpoint.ToString();
 
         }
 
