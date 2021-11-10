@@ -27,7 +27,7 @@ namespace SIB_Interaction{
             
                 RaycastHit hit;
                 Vector3 direction = (transform.position - (headset.transform.position + new Vector3(0,0,startPointZOffset))).normalized;
-                Physics.SphereCast(transform.position, 0.2f, transform.forward, out hit, Mathf.Infinity, layerMask);
+                Physics.SphereCast(transform.position, 0.05f, transform.forward, out hit, Mathf.Infinity, layerMask);
 
                 HandDistanceGrabbable hovered = null;
                 if (hit.collider.gameObject.GetComponent<HandDistanceGrabbable>() != null) hovered = hit.collider.gameObject.GetComponent<HandDistanceGrabbable>();

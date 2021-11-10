@@ -414,7 +414,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305089259}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -581,6 +581,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2078824037863683531, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+      propertyPath: demoer
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3657761366408896661, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -644,6 +648,10 @@ PrefabInstance:
     - target: {fileID: 3657761366975003024, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_InteractionLayerMask.m_Bits
       value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504483578990469883, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+      propertyPath: demoer
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
