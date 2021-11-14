@@ -175,6 +175,22 @@ namespace sib
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
         }
+
+        public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
+            HashSet<Atom> atomList = new HashSet<Atom>();
+            UnitCell6[] cells = new UnitCell6[unitCells.Count];
+            unitCells.Values.CopyTo(cells, 0);
+            for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
+                if (cells[cellIndex] != null) {
+                    List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
+                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; i ++ ) {
+                        atomList.Add(planeAtoms[atomIndex]);
+                    }
+                }
+            }
+            return atomList;
+        }
+
         public string Debug() {
             string debugInfo = "";
             if (this.unitCells.ContainsKey(this.centerPoint)) {

@@ -323,6 +323,18 @@ namespace sib
             return this.bonds;
         }
 
+        public List<Atom> GetPlaneAtIndex(int planarIndex) {
+            List<Atom> atomList = new List<Atom>();  // Max of 6 atoms in a planar set
+            if ( planarIndex > (Constants.planarIndices.Length - 1) ) {
+                return null;
+            }
+            int[] indexList = Constants.planarIndices[planarIndex];
+            for ( int i = 0; i < indexList.Length; i ++ ) {
+                atomList.Add(this.vertices[indexList[i]]);
+            }
+            return atomList;
+        }
+
         // Debugging function - prints the unit cell to console
         public string Debug() {
             string debuginfo = "";

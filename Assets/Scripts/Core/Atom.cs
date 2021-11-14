@@ -23,6 +23,8 @@ namespace sib
         // The name of the element
         private string element;
 
+        private GameObject drawnObject;
+
         /**
          * Constructor - creates a new Atom object
          */
@@ -30,6 +32,7 @@ namespace sib
             this.atomicNumber = atomicNumber;
             this.element = element;
             this.position = position;
+            this.drawnObject = null;
         }
 
         /**
@@ -91,7 +94,12 @@ namespace sib
          * Draws the atom by instantiating a prefab at the correct position and attatching it to the builder
          */
         public void Draw(GameObject atomPrefab, GameObject builder) {
-            MonoBehaviour.Instantiate(atomPrefab, this.position, Quaternion.identity).transform.SetParent(builder.transform);
+            this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, this.position, Quaternion.identity);
+            drawnObject.transform.SetParent(builder.transform);
+        }
+
+        public GameObject GetDrawnObject() {
+            return this.drawnObject;
         }
     }
 }
