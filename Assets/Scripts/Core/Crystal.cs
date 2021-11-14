@@ -33,6 +33,11 @@ namespace sib
             foreach (Transform child in builder.transform) {
                 MonoBehaviour.Destroy(child.gameObject);
             }
+
+            this.atoms = new Dictionary<Vector3, Atom>();
+            this.bonds = new Dictionary<Vector3, Bond>();
+            this.unitCells = new Dictionary<Vector3, UnitCell6>();
+            this.drawMode = CrystalState.SINGLECELL;
         }
 
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
