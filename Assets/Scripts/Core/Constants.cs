@@ -98,5 +98,11 @@ namespace sib
             new int[] { 0, 1, 2, 6 },
             new int[] { 3, 4, 5, 7 }
         };
+
+        public static int[][] planarIndices = new int[][] {
+            new int[] { 0, 1, 2, 6, 12 },
+            new int[] { 3, 4, 5, 7, 13 },
+            new int [] { 8, 9, 10, 11, 14 }
+        };
     }
 }

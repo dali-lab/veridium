@@ -33,6 +33,11 @@ namespace sib
             foreach (Transform child in builder.transform) {
                 MonoBehaviour.Destroy(child.gameObject);
             }
+
+            this.atoms = new Dictionary<Vector3, Atom>();
+            this.bonds = new Dictionary<Vector3, Bond>();
+            this.unitCells = new Dictionary<Vector3, UnitCell6>();
+            this.drawMode = CrystalState.SINGLECELL;
         }
 
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
@@ -161,6 +166,22 @@ namespace sib
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
         }
+
+        public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
+            HashSet<Atom> atomList = new HashSet<Atom>();
+            UnitCell6[] cells = new UnitCell6[unitCells.Count];
+            unitCells.Values.CopyTo(cells, 0);
+            for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
+                if (cells[cellIndex] != null) {
+                    List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
+                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; i ++ ) {
+                        atomList.Add(planeAtoms[atomIndex]);
+                    }
+                }
+            }
+            return atomList;
+        }
+
         public string Debug() {
             string debugInfo = "";
             if (this.unitCells.ContainsKey(this.centerPoint)) {
