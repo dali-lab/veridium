@@ -26,8 +26,8 @@ namespace SIB_Interaction{
             base.OnSelectEntering(interactable);
 
             heldElement = interactable.gameObject.GetComponent<PTElement>();
-            structureBase.ElementAdded(heldElement);
 
+            structureBase.ElementAdded(heldElement);
         }
 
         protected override void OnSelectExiting(XRBaseInteractable interactable){
@@ -38,5 +38,6 @@ namespace SIB_Interaction{
 
             heldElement = null;
         }
+
     }
 }

@@ -43,6 +43,7 @@ public class PTElement : MonoBehaviour
 
     public void Interacted(){
         interacted = true;
+        unHeldTimer = 0;
     }
 
     public void UnInteracted(){

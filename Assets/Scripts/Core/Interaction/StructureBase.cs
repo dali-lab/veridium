@@ -36,7 +36,9 @@ namespace SIB_Interaction{
         }
 
         public void ElementAdded(PTElement element){
+
             structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius);
+
         }
 
         public void ElementRemoved(){

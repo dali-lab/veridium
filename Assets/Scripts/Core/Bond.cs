@@ -93,11 +93,12 @@ namespace sib
          */
         public void Draw(GameObject linePrefab, GameObject builder) {
             Vector3 midpoint = (this.start.GetPosition() + this.end.GetPosition())/2;
-            MonoBehaviour.Instantiate(linePrefab, midpoint, 
-                Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up)).transform.SetParent(builder.transform);
-            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = midpoint.ToString();
+            float distance = Vector3.Distance(this.start.GetPosition(), this.end.GetPosition());
 
+            GameObject edge = MonoBehaviour.Instantiate(linePrefab, midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
+                
+            edge.transform.SetParent(builder.transform);
+            edge.transform.localScale = new Vector3(1/0.3f,1/0.3f,distance/0.15f);
         }
-
     }
 }

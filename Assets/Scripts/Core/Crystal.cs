@@ -40,10 +40,8 @@ namespace sib
             switch (this.drawMode) {
                 case CrystalState.SINGLECELL:
                     if (this.unitCells.ContainsKey(centerPoint)) {
-                        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell at centerpoint";
                         this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
                     } else {
-                        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "no atom at centerpoint";
                     }
                     break;
                 case CrystalState.MULTICELL:
@@ -104,9 +102,6 @@ namespace sib
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
             debugString += "Time elapsed in AddBonds" + elapsedTime + "\n";
-            // Debug.Log(debugInfo);
-
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
 
             HashSet<Vector3> constructedPositions = new HashSet<Vector3>();
 
@@ -116,14 +111,12 @@ namespace sib
             for ( int i = 0; i < constructionDepth; i ++ ) {
                 // int index = 0;
                 // debugString += "New pass starting at depth " + i.ToString() + "\n";
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
                 UnitCell6[] cells = new UnitCell6[unitCells.Count];
                 Vector3[] positions = new Vector3[unitCells.Count];
                 unitCells.Values.CopyTo(cells, 0);
                 unitCells.Keys.CopyTo(positions, 0);
                 for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
                     // debugString += "Checking unit cell construction at position\n";
-                    //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
                     UnitCell6 cell = cells[cellIndex];
                     Vector3 position = positions[cellIndex];
                     if (!constructedPositions.Contains(position)) {
@@ -132,10 +125,8 @@ namespace sib
                         if (cell != null) {
                             cell.GenerateNeighbors(this.atoms, this.bonds, this.unitCells);
                             // debugString += "Neighbors generated in pass " + i.ToString() + " for vertex " + index.ToString();
-                            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
                         } else {
                             // debugString += "No entry found in unitCells for requested position";
-                            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
                         }
                     }
                 }

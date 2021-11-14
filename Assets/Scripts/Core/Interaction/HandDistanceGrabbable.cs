@@ -19,7 +19,7 @@ public class HandDistanceGrabbable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hoveredLastFrame && ! hovered) UnHovered();
+        if(hoveredLastFrame && !hovered) UnHovered();
 
         hovered = false;
         

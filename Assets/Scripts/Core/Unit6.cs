@@ -274,9 +274,6 @@ namespace sib
                 Atom startVertex = this.vertices[startIndex];
                 int[] endIndices = Constants.cell6BondMap[startIndex];
 
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = 
-                            ("Start vertex and possible ends retreived. \n start vertex: " + startVertex.Debug());
-
                 // Loops through indices of all vertices that should be bound to the startVertex
                 foreach (int endIndex in endIndices) {
                     if (endIndex >= this.numVertices) {
@@ -310,7 +307,6 @@ namespace sib
                     }
                 }
             }
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds added " + bonds.Count.ToString() + "\n";
         }
 
         // Returns the vertex array

@@ -19735,6 +19735,14 @@ PrefabInstance:
       value: Zinc
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Zinc
       objectReference: {fileID: 0}
@@ -19807,6 +19815,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Cadmium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -19883,6 +19899,14 @@ PrefabInstance:
       value: Beryllium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Beryllium
       objectReference: {fileID: 0}
@@ -19955,6 +19979,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Sodium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -20031,6 +20059,14 @@ PrefabInstance:
       value: Hafnium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Hafnium
       objectReference: {fileID: 0}
@@ -20103,6 +20139,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Magnesium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -20179,6 +20223,10 @@ PrefabInstance:
       value: Lead
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Lead
       objectReference: {fileID: 0}
@@ -20251,18 +20299,26 @@ PrefabInstance:
     - target: {fileID: 6079781780944814031, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4630882937589237854, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
+      objectReference: {fileID: -2268668110476304425, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
-      value: Thalium
+      value: Technetium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
-      value: Thalium
+      value: Technetium
       objectReference: {fileID: 0}
     - target: {fileID: 9130913863735385194, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
-      value: ThaliumSocket
+      value: TechnetiumSocket
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
@@ -20405,6 +20461,10 @@ PrefabInstance:
       value: Platinum
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Platinum
       objectReference: {fileID: 0}
@@ -20477,6 +20537,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Zirconium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -20553,6 +20621,10 @@ PrefabInstance:
       value: Potassium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Potassium
       objectReference: {fileID: 0}
@@ -20625,6 +20697,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Gold
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -20701,6 +20777,14 @@ PrefabInstance:
       value: Rhenium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Rhenium
       objectReference: {fileID: 0}
@@ -20773,6 +20857,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Tantalum
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -20849,6 +20937,10 @@ PrefabInstance:
       value: Molybdenum
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Molybdenum
       objectReference: {fileID: 0}
@@ -20921,6 +21013,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Osmium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -20997,6 +21097,10 @@ PrefabInstance:
       value: Rhodium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Rhodium
       objectReference: {fileID: 0}
@@ -21069,6 +21173,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Caesium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -21145,6 +21253,10 @@ PrefabInstance:
       value: Niobium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Niobium
       objectReference: {fileID: 0}
@@ -21217,6 +21329,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Lithium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -21367,6 +21483,10 @@ PrefabInstance:
       value: Iron
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Iron
       objectReference: {fileID: 0}
@@ -21439,6 +21559,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Scandium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -21663,6 +21791,14 @@ PrefabInstance:
       value: Ruthenium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Ruthenium
       objectReference: {fileID: 0}
@@ -21811,6 +21947,10 @@ PrefabInstance:
       value: Nickel
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Nickel
       objectReference: {fileID: 0}
@@ -21883,6 +22023,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Lanthanum
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -21959,6 +22107,10 @@ PrefabInstance:
       value: Tungsten
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Tungsten
       objectReference: {fileID: 0}
@@ -22031,6 +22183,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Cobalt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -22107,6 +22267,10 @@ PrefabInstance:
       value: Calcium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Calcium
       objectReference: {fileID: 0}
@@ -22175,14 +22339,26 @@ PrefabInstance:
     - target: {fileID: 6079781780944814031, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -2268668110476304425, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
+      objectReference: {fileID: 4630882937589237854, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
+    - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_Name
+      value: Thallium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
-      value: Technetium
+      value: Thallium
       objectReference: {fileID: 0}
     - target: {fileID: 9130913863735385194, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
-      value: TechnetiumSocket
+      value: ThalliumSocket
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
@@ -22249,6 +22425,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Chromium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -22323,6 +22503,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Strontium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -22547,6 +22731,14 @@ PrefabInstance:
       value: Yttrium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Yttrium
       objectReference: {fileID: 0}
@@ -22622,7 +22814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: variation
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -22699,6 +22891,10 @@ PrefabInstance:
       value: Palladium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Palladium
       objectReference: {fileID: 0}
@@ -22771,6 +22967,14 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Titanium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -22847,6 +23051,10 @@ PrefabInstance:
       value: Silver
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Silver
       objectReference: {fileID: 0}
@@ -22919,6 +23127,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Barium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
@@ -22995,6 +23207,10 @@ PrefabInstance:
       value: Iridium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Iridium
       objectReference: {fileID: 0}
@@ -23069,6 +23285,10 @@ PrefabInstance:
       value: Vanadium
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName
       value: Vanadium
       objectReference: {fileID: 0}
@@ -23141,6 +23361,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Rubidium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: elementName

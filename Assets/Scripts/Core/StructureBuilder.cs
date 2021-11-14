@@ -11,6 +11,8 @@ public class StructureBuilder : MonoBehaviour
     public GameObject atomPrefab;
     public GameObject linePrefab;
 
+    private Crystal crystal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +75,10 @@ public class StructureBuilder : MonoBehaviour
 
     public void BuildStructure()
     {
+
+        gameObject.transform.localPosition = Vector3.zero;
+        gameObject.transform.localScale = Vector3.one;
+        gameObject.transform.rotation = Quaternion.identity;
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "BuildStructure called";
 
         UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.FACE,
@@ -110,7 +116,7 @@ public class StructureBuilder : MonoBehaviour
         //     Instantiate(linePrefab, midpoint/3 + gameObject.transform.position, Quaternion.LookRotation(end-start, Vector3.up));
         // }
 
-        Crystal crystal = new Crystal(gameObject.transform.position);
+        crystal = new Crystal(gameObject.transform.position);
 
         //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Crystal initialized";
 
