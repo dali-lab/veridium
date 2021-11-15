@@ -174,7 +174,7 @@ namespace sib
             for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
                 if (cells[cellIndex] != null) {
                     List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
-                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; i ++ ) {
+                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; atomIndex ++ ) {
                         atomList.Add(planeAtoms[atomIndex]);
                     }
                 }

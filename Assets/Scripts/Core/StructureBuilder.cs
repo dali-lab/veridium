@@ -10,8 +10,6 @@ public class StructureBuilder : MonoBehaviour
 {
     public GameObject atomPrefab;
     public GameObject linePrefab;
-    Crystal crystal;
-
     private Crystal crystal;
 
     // Start is called before the first frame update
