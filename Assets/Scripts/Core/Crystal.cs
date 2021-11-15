@@ -13,7 +13,7 @@ namespace sib
         INFINITE
     };
 
-    class Crystal {
+    public class Crystal {
 
         private Vector3 centerPoint;
         private Dictionary<Vector3, Atom> atoms;
@@ -41,7 +41,6 @@ namespace sib
         }
 
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
-            ClearCrystal(builder);
             switch (this.drawMode) {
                 case CrystalState.SINGLECELL:
                     if (this.unitCells.ContainsKey(centerPoint)) {
@@ -183,7 +182,7 @@ namespace sib
             for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
                 if (cells[cellIndex] != null) {
                     List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
-                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; i ++ ) {
+                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; atomIndex ++ ) {
                         atomList.Add(planeAtoms[atomIndex]);
                     }
                 }
