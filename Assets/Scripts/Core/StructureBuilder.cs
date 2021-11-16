@@ -25,7 +25,11 @@ public class StructureBuilder : MonoBehaviour
     }
 
     public void DestroyCell() {
-        crystal.ClearCrystal(this.gameObject);
+        this.crystal.ClearCrystal(this.gameObject);
+    }
+
+    public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
+        return this.crystal.GetPlanarAtoms(planeIndex);
     }
 
     public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
@@ -44,7 +48,7 @@ public class StructureBuilder : MonoBehaviour
         debugString += "Time elapsed in crystal initialization " + elapsedTime + "\n";
 
         stopwatch.Start();
-        crystal.SetState(state);
+        this.crystal.SetState(state);
         stopwatch.Stop();
 
         ts = stopwatch.Elapsed;
@@ -54,7 +58,7 @@ public class StructureBuilder : MonoBehaviour
         debugString += "Time elapsed in crystal state setting" + elapsedTime + "\n";
 
         stopwatch.Start();
-        crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, 0);
+        this.crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, 0);
         stopwatch.Stop();
 
         ts = stopwatch.Elapsed;
@@ -64,7 +68,7 @@ public class StructureBuilder : MonoBehaviour
         debugString += "Time elapsed in crystal construction" + elapsedTime + "\n";
 
         stopwatch.Start();
-        crystal.Draw(atomPrefab, linePrefab, gameObject);
+        this.crystal.Draw(atomPrefab, linePrefab, gameObject);
         stopwatch.Stop();
 
         ts = stopwatch.Elapsed;
