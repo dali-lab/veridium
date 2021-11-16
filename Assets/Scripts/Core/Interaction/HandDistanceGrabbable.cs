@@ -9,6 +9,7 @@ public class HandDistanceGrabbable : MonoBehaviour
     private Vector3 colliderCenter;
     private bool hovered;
     private bool hoveredLastFrame;
+    public GameObject glowObject;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,9 @@ public class HandDistanceGrabbable : MonoBehaviour
 
     public void Hovered(GameObject hand){
 
-        GetComponent<Outline>().enabled = true;
+        //GetComponent<Outline>().enabled = true;
+
+        glowObject.SetActive(true);
 
         hovered = true;
         hoveredLastFrame = true;
@@ -35,7 +38,9 @@ public class HandDistanceGrabbable : MonoBehaviour
 
     public void UnHovered(){
 
-        GetComponent<Outline>().enabled = false;
+        //GetComponent<Outline>().enabled = false;
+
+        glowObject.SetActive(false);
 
         hovered = false;
         hoveredLastFrame = false;

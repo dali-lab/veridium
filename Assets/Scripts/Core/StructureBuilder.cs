@@ -10,7 +10,7 @@ public class StructureBuilder : MonoBehaviour
 {
     public GameObject atomPrefab;
     public GameObject linePrefab;
-    private Crystal crystal;
+    Crystal crystal;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,11 @@ public class StructureBuilder : MonoBehaviour
     }
 
     public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
+
+        gameObject.transform.parent.localPosition = Vector3.zero;
+        gameObject.transform.parent.localRotation = Quaternion.identity;
+        gameObject.transform.parent.localScale = Vector3.one;
+
         string debugString = "";
 
         Stopwatch stopwatch = new Stopwatch();

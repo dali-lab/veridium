@@ -20,6 +20,7 @@ namespace SIB_Interaction{
         public StructureBuilder structureBuilder;
         public float sideLength = 0.5f;
         public float sphereRadius = 0.05f;
+        public GameObject textRender;
 
 
         // Start is called before the first frame update
@@ -38,11 +39,15 @@ namespace SIB_Interaction{
         public void ElementAdded(PTElement element){
 
             structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius);
+            textRender.GetComponent<MeshRenderer>().enabled = true;
 
         }
 
         public void ElementRemoved(){
-            
+
+            structureBuilder.DestroyCell();
+            textRender.GetComponent<MeshRenderer>().enabled = false;
+
         }
     }
 }
