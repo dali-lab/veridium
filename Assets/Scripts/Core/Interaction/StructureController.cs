@@ -15,7 +15,7 @@ namespace SIB_Interaction{
         /// </summary>
 
         private bool scaleGrabberSelected, structureSelected;                   // Keeps track of the grabbed state of the handle
-        public float minScale = 1f, maxScale = 1.5f, softScaleBound = 2.5f;    // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
+        public float minScale = 1f, maxScale = 1.5f, softScaleBound = 2.5f;     // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
         public GameObject scaleGrabber, structure, hand1, hand2;                // GameObject References
         private bool twoHandGrab;                                               // Whether in two hand scaling mode, one hand rotation/translation mode
         private float twoHandDistance;                                          // Initial distance between hands in scaling mode
@@ -24,7 +24,7 @@ namespace SIB_Interaction{
         private Vector3 initialHandPosition1, initialHandPosition2;             // controller starting locations
         private Quaternion initialObjectRotation;                               // gameObject rotation
         private Vector3 initialObjectScale, initialObjectDirection;             // gameObject scale, direction of gameObject to midpoint of both controllers
-        private XRBaseInteractor grabInteractor;
+        private XRBaseInteractor grabInteractor;                                // The grab interactor currently handling this gameObject
 
 
 
@@ -71,8 +71,10 @@ namespace SIB_Interaction{
         void Update()
         {
 
+            // Only allow two hand grabbing if one hand grabbing is active
             scaleGrabber.SetActive(structureSelected);
             
+            // When two hand grabbing is active, attach the gameObject to the hands
             if(scaleGrabberSelected && structureSelected) {
 
                 if(!twoHandGrab) {
@@ -96,6 +98,7 @@ namespace SIB_Interaction{
             }
         }
 
+        // Keeps the gameObject from growing too big or too small instantaneously
         private void ClampScale() {
 
             if (gameObject.transform.lossyScale.magnitude < minScale / softScaleBound) {
@@ -109,6 +112,7 @@ namespace SIB_Interaction{
             }
         }
 
+        // Keeps the gameObject from growing to big or too smalle over time
         private void SmoothClampScale() {
             
             if (gameObject.transform.lossyScale.magnitude < minScale) {
@@ -122,6 +126,7 @@ namespace SIB_Interaction{
 
         }
 
+        // Resets the two hand grab to original
         private void EndTwoHandGrab() {
 
             // Store the attach transform of the interactor
@@ -135,6 +140,7 @@ namespace SIB_Interaction{
 
         }
 
+        // Store information and attach the gameObject to the hands
         private void AttachTargetBoth() {
             initialHandPosition1 = hand1.transform.position;
             initialHandPosition2 = hand2.transform.position;
@@ -143,6 +149,7 @@ namespace SIB_Interaction{
             initialObjectDirection = gameObject.transform.position - (initialHandPosition1 + initialHandPosition2) * 0.5f; 
         }
 
+        // Update the position, rotation, and scale for the gameObject every frame for two hand grab
         private void UpdateTargetBoth() {
             Vector3 currentHandPosition1 = hand1.transform.position; // current first hand position
             Vector3 currentHandPosition2 = hand2.transform.position; // current second hand position

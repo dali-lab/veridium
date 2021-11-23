@@ -6,6 +6,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace SIB_Interaction{
     public class ElementLoader : XRSocketInteractor
     {
+
+        /// <summary>
+        /// Element Loader is attached to a game object with a collider and allows element tiles to snap
+        /// into the socket and prompts the structureBase to build that structure.
+        /// Extends XRSocketInteractor
+        /// </summary>
+
         public PTElement heldElement;
         public StructureBase structureBase;
 
@@ -21,6 +28,7 @@ namespace SIB_Interaction{
             
         }
 
+        // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
         protected override void OnSelectEntering(XRBaseInteractable interactable){
 
             base.OnSelectEntering(interactable);
@@ -30,6 +38,7 @@ namespace SIB_Interaction{
             structureBase.ElementAdded(heldElement);
         }
 
+        // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
         protected override void OnSelectExiting(XRBaseInteractable interactable){
 
             base.OnSelectExiting(interactable);
