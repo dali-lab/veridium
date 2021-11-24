@@ -274,9 +274,6 @@ namespace sib
                 Atom startVertex = this.vertices[startIndex];
                 int[] endIndices = Constants.cell6BondMap[startIndex];
 
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = 
-                            ("Start vertex and possible ends retreived. \n start vertex: " + startVertex.Debug());
-
                 // Loops through indices of all vertices that should be bound to the startVertex
                 foreach (int endIndex in endIndices) {
                     if (endIndex >= this.numVertices) {
@@ -310,7 +307,6 @@ namespace sib
                     }
                 }
             }
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds added " + bonds.Count.ToString() + "\n";
         }
 
         // Returns the vertex array
@@ -321,6 +317,18 @@ namespace sib
         // Returns the List of bonds
         public List<Bond> GetBonds() {
             return this.bonds;
+        }
+
+        public List<Atom> GetPlaneAtIndex(int planarIndex) {
+            List<Atom> atomList = new List<Atom>();  // Max of 6 atoms in a planar set
+            if ( planarIndex > (Constants.planarIndices.Length - 1) ) {
+                return null;
+            }
+            int[] indexList = Constants.planarIndices[planarIndex];
+            for ( int i = 0; i < indexList.Length; i ++ ) {
+                atomList.Add(this.vertices[indexList[i]]);
+            }
+            return atomList;
         }
 
         // Debugging function - prints the unit cell to console
@@ -347,7 +355,7 @@ namespace sib
 
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
 
             string debugOutput = "";
             // int index = 0;
@@ -367,7 +375,7 @@ namespace sib
                 }
             }
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
 
             foreach ( Bond bond in this.bonds ) {
                 bond.Draw(linePrefab, builder);
@@ -383,7 +391,7 @@ namespace sib
          */
         public void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
 
             string debugString = "";
 
@@ -427,12 +435,12 @@ namespace sib
                 debugString += "\n";
                 index ++;
 
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
+                // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
             }
 
             debugString += "Exited Successfuly";
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
+            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
         }
     }
 }

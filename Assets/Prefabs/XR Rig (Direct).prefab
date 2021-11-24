@@ -3049,7 +3049,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.025
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2078824037863683531
 MonoBehaviour:
@@ -3067,6 +3067,7 @@ MonoBehaviour:
   rayDistance: 3
   distanceGrabActive: 1
   headset: {fileID: 3657761366712215386}
+  demoer: {fileID: 0}
 --- !u!1 &3657761366480257892
 GameObject:
   m_ObjectHideFlags: 0
@@ -4463,7 +4464,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.025
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8278060769670824136
 Rigidbody:
@@ -4497,6 +4498,7 @@ MonoBehaviour:
   rayDistance: 3
   distanceGrabActive: 1
   headset: {fileID: 3657761366712215386}
+  demoer: {fileID: 0}
 --- !u!1 &3657761366977744244
 GameObject:
   m_ObjectHideFlags: 0

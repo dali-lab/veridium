@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 
 namespace sib
 {
@@ -11,7 +13,7 @@ namespace sib
         INFINITE
     };
 
-    class Crystal {
+    public class Crystal {
 
         private Vector3 centerPoint;
         private Dictionary<Vector3, Atom> atoms;
@@ -31,17 +33,19 @@ namespace sib
             foreach (Transform child in builder.transform) {
                 MonoBehaviour.Destroy(child.gameObject);
             }
+
+            this.atoms = new Dictionary<Vector3, Atom>();
+            this.bonds = new Dictionary<Vector3, Bond>();
+            this.unitCells = new Dictionary<Vector3, UnitCell6>();
+            this.drawMode = CrystalState.SINGLECELL;
         }
 
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
-            ClearCrystal(builder);
             switch (this.drawMode) {
                 case CrystalState.SINGLECELL:
                     if (this.unitCells.ContainsKey(centerPoint)) {
-                        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell at centerpoint";
                         this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
                     } else {
-                        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "no atom at centerpoint";
                     }
                     break;
                 case CrystalState.MULTICELL:
@@ -68,49 +72,70 @@ namespace sib
             float a, float b, float c, float alpha, float beta, float gamma, 
             int constructionDepth) {
 
+            Stopwatch stopwatch = new Stopwatch();
+            string debugString = "";
+            
+            stopwatch.Start();
             UnitCell6 originCell = new UnitCell6(type, variation, 
                 this.centerPoint, a, b, c, alpha, beta, gamma);
             this.unitCells[this.centerPoint] = originCell;
+            stopwatch.Stop();
 
+            TimeSpan ts = stopwatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+            debugString += "Time elapsed in cell initialization " + elapsedTime + "\n";
+
+            stopwatch.Start();
             originCell.AddVertices(this.atoms, 0, "");
+            stopwatch.Stop();
+
+            ts = stopwatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+            debugString += "Time elapsed in AddVertices" + elapsedTime + "\n";
+
+            stopwatch.Start();
             originCell.AddBonds(this.bonds);
+            stopwatch.Stop();
 
-            string debugInfo = originCell.Debug();
-            // Debug.Log(debugInfo);
-
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+            ts = stopwatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+            debugString += "Time elapsed in AddBonds" + elapsedTime + "\n";
 
             HashSet<Vector3> constructedPositions = new HashSet<Vector3>();
 
-            debugInfo += "Construction depth : " + constructionDepth.ToString() + "\n";
+            // debugString += "Construction depth : " + constructionDepth.ToString() + "\n";
 
+            stopwatch.Start();
             for ( int i = 0; i < constructionDepth; i ++ ) {
-                int index = 0;
-                debugInfo += "New pass starting at depth " + i.ToString() + "\n";
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+                // int index = 0;
+                // debugString += "New pass starting at depth " + i.ToString() + "\n";
                 UnitCell6[] cells = new UnitCell6[unitCells.Count];
                 Vector3[] positions = new Vector3[unitCells.Count];
                 unitCells.Values.CopyTo(cells, 0);
                 unitCells.Keys.CopyTo(positions, 0);
                 for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
-                    debugInfo += "Checking unit cell construction at position\n";
-                    //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+                    // debugString += "Checking unit cell construction at position\n";
                     UnitCell6 cell = cells[cellIndex];
                     Vector3 position = positions[cellIndex];
                     if (!constructedPositions.Contains(position)) {
                         constructedPositions.Add(position);
-                        debugInfo += "New positon validated\n";
+                        // debugString += "New positon validated\n";
                         if (cell != null) {
                             cell.GenerateNeighbors(this.atoms, this.bonds, this.unitCells);
-                            debugInfo += "Neighbors generated in pass " + i.ToString() + " for vertex " + index.ToString();
-                            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+                            // debugString += "Neighbors generated in pass " + i.ToString() + " for vertex " + index.ToString();
                         } else {
-                            debugInfo += "No entry found in unitCells for requested position";
-                            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
+                            // debugString += "No entry found in unitCells for requested position";
                         }
                     }
                 }
-                debugInfo += "Pass complete\n";
+
+                // debugString += "Pass complete\n";
                 //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugInfo;
 
             //     foreach (KeyValuePair<Vector3, UnitCell6> item in this.unitCells) {
@@ -130,7 +155,32 @@ namespace sib
             //         index ++;
             //     }
             }
+
+            stopwatch.Stop();
+            ts = stopwatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                ts.Hours, ts.Minutes, ts.Seconds,
+                ts.Milliseconds / 10);
+            debugString += "Time elapsed in crystal building" + elapsedTime + "\n";
+
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
         }
+
+        public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
+            HashSet<Atom> atomList = new HashSet<Atom>();
+            UnitCell6[] cells = new UnitCell6[unitCells.Count];
+            unitCells.Values.CopyTo(cells, 0);
+            for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
+                if (cells[cellIndex] != null) {
+                    List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
+                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; atomIndex ++ ) {
+                        atomList.Add(planeAtoms[atomIndex]);
+                    }
+                }
+            }
+            return atomList;
+        }
+
         public string Debug() {
             string debugInfo = "";
             if (this.unitCells.ContainsKey(this.centerPoint)) {
