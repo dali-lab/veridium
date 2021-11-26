@@ -96,6 +96,7 @@ namespace sib
         public void Draw(GameObject atomPrefab, GameObject builder) {
             this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, this.position, Quaternion.identity);
             drawnObject.transform.SetParent(builder.transform);
+            //drawnObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Coloration.GetColorByNumber(this.atomicNumber));
         }
 
         public GameObject GetDrawnObject() {
