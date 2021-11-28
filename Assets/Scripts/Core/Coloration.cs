@@ -131,7 +131,9 @@ public class Coloration
 
         Color color = new Color();
 
-        string hex = Colors[element];
+        string hex = "#" + Colors[element];
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = hex;
 
         if (ColorUtility.TryParseHtmlString(hex, out color)){
             return color;
@@ -145,7 +147,7 @@ public class Coloration
 
         List<string> keyList = new List<string>(Colors.Keys);
 
-        return (GetColor(keyList[atomicNumber]));
+        return (GetColor(keyList[atomicNumber-1]));
 
     }
 }

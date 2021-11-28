@@ -17,7 +17,7 @@ namespace SIB_Interaction{
         public float respawnDistance = 1;           // Distance from the podium at which the structure should teleport home
         public StructureBuilder structureBuilder;   // Reference to the structureBuilder which implements the construction of the structure
         public float sideLength = 0.5f;             // Standard side length of a unit cell
-        public float sphereRadius = 0.05f;          // Radius of the spheres
+        public float sphereRadius = 0.075f;          // Radius of the spheres
 
 
         // Start is called before the first frame update
@@ -36,7 +36,7 @@ namespace SIB_Interaction{
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
 
-            structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius/*, element.elementName*/);
+            structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius);
 
         }
 
