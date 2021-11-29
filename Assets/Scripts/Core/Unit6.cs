@@ -202,6 +202,21 @@ namespace sib
             }
         }
 
+        public List<Atom> GetMillerAtoms(int h, int k , int l) {
+            List<Atom> atoms = new List<Atom>();
+            double planarDistanceFromOrigin = Math.Sqrt(Math.Pow(h, 2) + Math.Pow(k , 2) + Math.Pow(l, 2));
+            for ( int i = 0; i < Constants.cell6BasicPositions.Length; i ++ ) {
+                if ( i > this.numVertices) {
+                    continue;
+                }
+                Vector3 cellSpaceAtomPosition = Constants.cell6BasicPositions[i];
+                if ((cellSpaceAtomPosition.x*h + cellSpaceAtomPosition.y*k + cellSpaceAtomPosition.z*l) == planarDistanceFromOrigin) {
+                    atoms.Add(this.vertices[i]);
+                }
+            }
+            return atoms;
+        }
+
         /**
          * @function    AddVertices
          * @input overlap           An array of atoms that are already enclosed in other unit cells
@@ -274,6 +289,9 @@ namespace sib
                 Atom startVertex = this.vertices[startIndex];
                 int[] endIndices = Constants.cell6BondMap[startIndex];
 
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = 
+                            ("Start vertex and possible ends retreived. \n start vertex: " + startVertex.Debug());
+
                 // Loops through indices of all vertices that should be bound to the startVertex
                 foreach (int endIndex in endIndices) {
                     if (endIndex >= this.numVertices) {
@@ -307,6 +325,7 @@ namespace sib
                     }
                 }
             }
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds added " + bonds.Count.ToString() + "\n";
         }
 
         // Returns the vertex array
@@ -353,21 +372,21 @@ namespace sib
             return debuginfo;
         }
 
+        /**
+         * @function Draw
+         * @input atomPrefab    GameObject reference to the prefab describing 
+         *                      each Atom's appearance
+         * @input atomPrefab    GameObject reference to the prefab describing 
+         *                      each Bond's appearance
+         * @input builder       Reference to StructureBuilder instance
+         * Draws the UnitCell's Atoms and bonds to the scene.
+         */
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
 
-            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
 
             string debugOutput = "";
-            // int index = 0;
-
-            // foreach ( Atom atom in this.vertices ) {
-            //     if (atom != null) {
-            //         atom.Draw(atomPrefab, builder);
-            //     } else {
-            //         debugOutput += "Null atom at index " + index.ToString();
-            //     }
-            //     index ++;
-            // }
+            
 
             for ( int i = 0; i < this.numVertices; i ++ ) {
                 if (this.vertices[i] != null) {
@@ -375,7 +394,7 @@ namespace sib
                 }
             }
 
-            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
 
             foreach ( Bond bond in this.bonds ) {
                 bond.Draw(linePrefab, builder);
@@ -384,17 +403,21 @@ namespace sib
 
         /**
          * @function GenerateNeighbors
-         * @input cystalAtoms Dictionary mapping positions in world space to the atoms at those positions
-         * @input crystalBonds Dictionary mapping positions in world space to Bonds at those positions
-         * @input crystallCells Dictionary mapping positions in world space to unit cells centered at those
-         * positions
+         * @input cystalAtoms   Dictionary mapping positions in world space to 
+         *                      the atoms at those positions
+         * @input crystalBonds  Dictionary mapping positions in world space to 
+         *                      Bonds at those positions
+         * @input crystallCells Dictionary mapping positions in world space to 
+         *                      unit cells centered at those positions
          */
         public void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
 
-            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
 
             string debugString = "";
 
+            // A list of the directions in which neighbors can be generated 
+            // relative to the starting position/orientation of the cell
             Vector3[] possibleDirections = new Vector3[] {
                 Vector3.forward,
                 Vector3.back,
@@ -404,9 +427,12 @@ namespace sib
                 Vector3.down
             };
 
+            // Loop that creates and verfies validity of new unit cells in each 
+            // possible adjacent position
             int index = 0;
 
             foreach (Vector3 direction in possibleDirections) {
+                // Determines position of new Unit Cell
                 float translation = 1;
 
                 if (direction == Vector3.forward || direction == Vector3.back) {
@@ -421,10 +447,12 @@ namespace sib
 
                 debugString += "Pass " + index.ToString() + "new Cell Position " + newCellPos.ToString();
 
+                // Verifies that the unit cell is not a duplicate
                 UnitCell6 possibleDuplicate;
                 if (crystalCells.TryGetValue(newCellPos, out possibleDuplicate)) {
                     continue;
                 } else {
+                    // Builds the unit cell and adds it to the crystal
                     UnitCell6 newCell = new UnitCell6(this.type, this.structure, newCellPos, 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
                     newCell.AddVertices(crystalAtoms, 0, "");
@@ -435,12 +463,12 @@ namespace sib
                 debugString += "\n";
                 index ++;
 
-                // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
             }
 
             debugString += "Exited Successfuly";
 
-            // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
         }
     }
 }
