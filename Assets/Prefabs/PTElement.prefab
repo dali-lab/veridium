@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 921125170992599556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.0057}
-  m_LocalScale: {x: 101, y: 101, z: 101}
+  m_LocalScale: {x: 102, y: 102, z: 105}
   m_Children: []
   m_Father: {fileID: 981979524324664694}
   m_RootOrder: 0
@@ -144,7 +144,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506996978073560556}
-  m_Mesh: {fileID: 2930184177208560141, guid: 78c09e103885d4b5fbc84a51d13464b1, type: 3}
+  m_Mesh: {fileID: 2930184177208560141, guid: faa8ed7de1cd54f5c9d0b04dd960a80a, type: 3}
 --- !u!23 &1139634914230391189
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_ShowInteractableHoverMeshes: 1
+  m_ShowInteractableHoverMeshes: 0
   m_InteractableHoverMeshMaterial: {fileID: 0}
   m_InteractableCantHoverMeshMaterial: {fileID: 0}
   m_SocketActive: 1

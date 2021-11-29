@@ -70,6 +70,7 @@ namespace SIB_Interaction{
         // Update is called once per frame
         void Update()
         {
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = transform.position.ToString();
 
             // Only allow two hand grabbing if one hand grabbing is active
             scaleGrabber.SetActive(structureSelected);
