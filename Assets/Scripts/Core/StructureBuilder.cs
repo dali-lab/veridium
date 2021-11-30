@@ -38,16 +38,6 @@ public class StructureBuilder : MonoBehaviour
     }
 
     /**
-     * @function GetPlanarAtoms
-     * @input planeIndex    Desired miller index of returned atoms
-     * @return HashSet      HashSet containing the Atoms being returned
-     * Returns ouptut of crystal.GetPlanarAtoms for the planeIndex
-     */
-    public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
-        return this.crystal.GetPlanarAtoms(planeIndex);
-    }
-
-    /**
      * @function GetMillerAtoms
      * @input h         Miller index corresponding to x value of normal vector
      * @input k         Miller index corresponding to y value of normal vector
@@ -116,5 +106,18 @@ public class StructureBuilder : MonoBehaviour
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
         debugString += "Time elapsed in crystal drawing" + elapsedTime + "\n";
+
+        // HashSet<Atom> millerAtoms = this.crystal.GetMillerAtoms(1, 0, 0);
+        // debugString = "Miller retreival did not crash\n";
+
+        // if (millerAtoms.Count > 0) {
+        //     foreach ( Atom atom in millerAtoms ) {
+        //         debugString += atom.Debug();
+        //     }
+        // } else {
+        //     debugString += "Miller retreival failed to find any atoms\n";
+        // }
+
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
     }
 }
