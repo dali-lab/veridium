@@ -32,7 +32,7 @@ If you choose just the Build option, this will create an apk file that will be s
 
 ### Gameplay
 
-Look towards your left and reach out towards the periodic table. Use the grip button on your Oculus controler to select an element and place it into the podium in front of you. Reach out and grab the crystal structure in front of you to move, rotate, resize, and manipulate it in space.
+Look towards your left and reach out towards the periodic table. Use the grip button on your Oculus controler to select an element and place it into the podium in front of you. Reach out and grab the crystal structure floating above the podium to move, rotate, resize, and manipulate it in space.
 
 Seeing is Believing  is designed for the Oculus Quest, and is best experienced with the Oculus Quest 2 headset and controllers.
 
