@@ -1,6 +1,6 @@
 # seeing-is-believing
 
-Seeing is believing is a VR experience that aims to help users better understand metal crystal lattices. It allows them to view and manipulate the crystal latices of different metal structures in a virtual reality scene.
+Seeing is believing is a VR experience that allows users to view and manipulate the crystal latices of metal structures in a virtual reality scene.
 
 # Architecture
 
