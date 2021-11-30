@@ -287,7 +287,12 @@ namespace sib
                 }
 
                 Atom startVertex = this.vertices[startIndex];
-                int[] endIndices = Constants.cell6BondMap[startIndex];
+                int[] endIndices;
+                if ( this.structure == CellVariation.BODY && startIndex == 8) {
+                    endIndices = Constants.cell6BondMap[startIndex + 6];
+                } else {
+                    endIndices = Constants.cell6BondMap[startIndex];
+                }
 
                 (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = 
                             ("Start vertex and possible ends retreived. \n start vertex: " + startVertex.Debug());
@@ -338,6 +343,7 @@ namespace sib
             return this.bonds;
         }
 
+        // DEBUGGING FUNCTION: Used this to make sure the Crystal Miller functions worked
         public List<Atom> GetPlaneAtIndex(int planarIndex) {
             List<Atom> atomList = new List<Atom>();  // Max of 6 atoms in a planar set
             if ( planarIndex > (Constants.planarIndices.Length - 1) ) {
@@ -409,6 +415,8 @@ namespace sib
          *                      Bonds at those positions
          * @input crystallCells Dictionary mapping positions in world space to 
          *                      unit cells centered at those positions
+         * Creates duplicates of itself that exist exactly adjacent to itself 
+         * in world space. Adds the duplicates to the crystalCells hashmap
          */
         public void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
 
