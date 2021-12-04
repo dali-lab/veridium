@@ -416,6 +416,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1658ada476914779b383410410e72be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &899615186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3657761366408896749, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+  m_PrefabInstance: {fileID: 49375671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &899615195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899615186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13186e61fdd044a88a1665435637374c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LeftHandMoveAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Hand Move
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: df33829e-260b-49c4-b949-28d3b10cfed3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_RightHandMoveAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Hand Move
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 776e8c06-fce3-4729-b9aa-e9b60b5b4938
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: 0}
+  threshold: 0.8
+  resetThreshold: 0.2
+  structureBase: {fileID: 936844115}
 --- !u!1001 &936844114
 PrefabInstance:
   m_ObjectHideFlags: 0
