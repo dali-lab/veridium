@@ -24,7 +24,6 @@ namespace sib
         private string element;
 
         private GameObject drawnObject;
-        private bool metallic = true;
 
         /**
          * Constructor - creates a new Atom object
@@ -105,6 +104,12 @@ namespace sib
             }
         }
 
+        /**
+         * @function GetDrawnObject
+         * @return GameObject representing Atom in the scene. Null if Atom 
+         * hasn't been instantiated in current context.
+         * Returns the GameObject corresponding to the Atom.
+         */
         public GameObject GetDrawnObject() {
             return this.drawnObject;
         }
