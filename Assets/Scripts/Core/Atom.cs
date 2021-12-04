@@ -24,6 +24,7 @@ namespace sib
         private string element;
 
         private GameObject drawnObject;
+        private bool metallic = true;
 
         /**
          * Constructor - creates a new Atom object
@@ -86,6 +87,7 @@ namespace sib
             output += "Atom " + this.element + " Atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
             return output;
         }
+        
 
         /**
          * @function Draw
