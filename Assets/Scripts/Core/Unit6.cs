@@ -34,7 +34,7 @@ namespace sib
     * Implements functionality for building the cell, adding vertices, and implementing
     * modifications based on cell type and variation.
     */
-    public class UnitCell6 {
+    public class UnitCell6 : UnitCell {
         // Number of vertices in the cell
         private int numVertices;
 
@@ -202,7 +202,7 @@ namespace sib
             }
         }
 
-        public List<Atom> GetMillerAtoms(int h, int k , int l) {
+        public override List<Atom> GetMillerAtoms(int h, int k , int l) {
             List<Atom> atoms = new List<Atom>();
             double planarDistanceFromOrigin = Math.Sqrt(Math.Pow(h, 2) + Math.Pow(k , 2) + Math.Pow(l, 2));
             for ( int i = 0; i < Constants.cell6BasicPositions.Length; i ++ ) {
@@ -225,11 +225,10 @@ namespace sib
          * Creates and adds atoms to the unit cell. Checks against the overlap array to make sure
          * that the unit cell doesn't create duplicate atoms.
          */
-        public List<Atom> AddVertices(Dictionary<Vector3, Atom> crystalAtoms, int atomicNumber, string elementName) {
+        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms, int atomicNumber, string elementName) {
             if (this.numVertices < 0) {
-                return null;
+                return;
             }
-            List<Atom> newVertices = new List<Atom>();
             int[] vertexIndices = Constants.cell6VariationMap[this.structure];
             int cellIndex = 0;
             foreach ( int index in vertexIndices ) {
@@ -247,11 +246,9 @@ namespace sib
                 }
                 if (!overlaps) {
                     this.vertices[cellIndex] = newAtom;
-                    newVertices.Add(newAtom);
                 }
                 cellIndex ++;
             }
-            return newVertices;
         }
 
        /**
@@ -279,7 +276,7 @@ namespace sib
          * mid point position to bonds already in the Crystal structure
          * Adds bonds to the unit cell taking special care not to add the same bonds twice
          */
-        public void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
+        public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
             // Loops through each vertex in the unit cell
             for ( int startIndex = 0; startIndex < this.numVertices; startIndex ++ ) {
                 if ( startIndex >= Constants.cell6BondMap.Length ) {
@@ -334,30 +331,30 @@ namespace sib
         }
 
         // Returns the vertex array
-        public Atom[] GetVertices() {
+        public override Atom[] GetVertices() {
             return this.vertices;
         }
 
         // Returns the List of bonds
-        public List<Bond> GetBonds() {
+        public override List<Bond> GetBonds() {
             return this.bonds;
         }
 
-        // DEBUGGING FUNCTION: Used this to make sure the Crystal Miller functions worked
-        public List<Atom> GetPlaneAtIndex(int planarIndex) {
-            List<Atom> atomList = new List<Atom>();  // Max of 6 atoms in a planar set
-            if ( planarIndex > (Constants.planarIndices.Length - 1) ) {
-                return null;
-            }
-            int[] indexList = Constants.planarIndices[planarIndex];
-            for ( int i = 0; i < indexList.Length; i ++ ) {
-                atomList.Add(this.vertices[indexList[i]]);
-            }
-            return atomList;
-        }
+        // // DEBUGGING FUNCTION: Used this to make sure the Crystal Miller functions worked
+        // public List<Atom> GetPlaneAtIndex(int planarIndex) {
+        //     List<Atom> atomList = new List<Atom>();  // Max of 6 atoms in a planar set
+        //     if ( planarIndex > (Constants.planarIndices.Length - 1) ) {
+        //         return null;
+        //     }
+        //     int[] indexList = Constants.planarIndices[planarIndex];
+        //     for ( int i = 0; i < indexList.Length; i ++ ) {
+        //         atomList.Add(this.vertices[indexList[i]]);
+        //     }
+        //     return atomList;
+        // }
 
         // Debugging function - prints the unit cell to console
-        public string Debug() {
+        public override string Debug() {
             string debuginfo = "";
 
             debuginfo += "WorldPosition : " + this.worldPosition.ToString() + "\n";
@@ -387,7 +384,7 @@ namespace sib
          * @input builder       Reference to StructureBuilder instance
          * Draws the UnitCell's Atoms and bonds to the scene.
          */
-        public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+        public override void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
 
@@ -418,7 +415,7 @@ namespace sib
          * Creates duplicates of itself that exist exactly adjacent to itself 
          * in world space. Adds the duplicates to the crystalCells hashmap
          */
-        public void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
+        public override void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
 

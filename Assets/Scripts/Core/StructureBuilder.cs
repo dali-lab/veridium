@@ -20,7 +20,7 @@ public class StructureBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        BuildHex();
     }
 
     // Update is called once per frame
@@ -119,5 +119,17 @@ public class StructureBuilder : MonoBehaviour
         // }
 
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+    }
+
+    public void BuildHex() {
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Builing Hex"; 
+        UnitCell test = new UnitCell8(this.gameObject.transform.position, 0.2f, 0.2f);
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex Initialized"; 
+        test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Vertices Added"; 
+        test.AddBonds(new Dictionary<Vector3, Bond>());
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds Added"; 
+        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
+        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex drawn"; 
     }
 }

@@ -212,27 +212,27 @@ namespace sib
         }
 
 
-        /**
-         * @function GetPlanarAtoms
-         * @input planeIndex    Miller index of desired plane
-         * Uses Unit6's built in miller index capabilities ot return a Hashset
-         * containing all the atoms in the Crystal that are in the Miller index
-         * of their unit cell corresponding to the input planeIndex.
-         */
-        public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
-            HashSet<Atom> atomList = new HashSet<Atom>();
-            UnitCell6[] cells = new UnitCell6[unitCells.Count];
-            unitCells.Values.CopyTo(cells, 0);
-            for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
-                if (cells[cellIndex] != null) {
-                    List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
-                    for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; atomIndex ++ ) {
-                        atomList.Add(planeAtoms[atomIndex]);
-                    }
-                }
-            }
-            return atomList;
-        }
+        // /**
+        //  * @function GetPlanarAtoms
+        //  * @input planeIndex    Miller index of desired plane
+        //  * Uses Unit6's built in miller index capabilities ot return a Hashset
+        //  * containing all the atoms in the Crystal that are in the Miller index
+        //  * of their unit cell corresponding to the input planeIndex.
+        //  */
+        // public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
+        //     HashSet<Atom> atomList = new HashSet<Atom>();
+        //     UnitCell6[] cells = new UnitCell6[unitCells.Count];
+        //     unitCells.Values.CopyTo(cells, 0);
+        //     for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
+        //         if (cells[cellIndex] != null) {
+        //             List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
+        //             for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; atomIndex ++ ) {
+        //                 atomList.Add(planeAtoms[atomIndex]);
+        //             }
+        //         }
+        //     }
+        //     return atomList;
+        // }
 
         public HashSet<Atom> GetMillerAtoms(int h, int k , int l) {
             HashSet<Atom> atomList = new HashSet<Atom>();
