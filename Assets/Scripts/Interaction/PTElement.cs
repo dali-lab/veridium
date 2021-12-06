@@ -44,6 +44,8 @@ namespace SIB_Interaction{
                     unHeldTimer = 0f;
                     gameObject.transform.position = home.transform.position;
 
+                    GetComponent<AudioSource>().Play();
+
                 }
 
             }

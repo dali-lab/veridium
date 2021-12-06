@@ -36,6 +36,8 @@ namespace SIB_Interaction{
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
             structureBase.ElementAdded(heldElement);
+
+            if(heldElement != null) GetComponent<AudioSource>().Play();
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
