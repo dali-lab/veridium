@@ -66,21 +66,21 @@ namespace sib
 
         public static Vector3[] cell8BasicPositions = new Vector3[] {
             // top half
-            new Vector3(0, 0, 0.5f),                               // 0
-            new Vector3(0, 1, 0.5f),                               // 1
-            new Vector3((float)(Math.Sqrt(3)/2), 0.5f, 0.5f),       // 2
-            new Vector3(-(float)(Math.Sqrt(3)/2), 0.5f, 0.5f),      // 3
-            new Vector3(0, -1, 0.5f),                               // 4
-            new Vector3((float)(Math.Sqrt(3)/2), -0.5f, 0.5f),      // 5
-            new Vector3(-(float)(Math.Sqrt(3)/2), -0.5f, 0.5f),     // 6
+            new Vector3(0.0f, 0.0f, 0.5f),                               // 0
+            new Vector3(0.0f, 1.0f, 0.5f),                               // 1
+            new Vector3((Mathf.Sqrt(3)/2.0f), 0.5f, 0.5f),       // 2
+            new Vector3(-(Mathf.Sqrt(3)/2.0f), 0.5f, 0.5f),      // 3
+            new Vector3(0.0f, -1.0f, 0.5f),                               // 4
+            new Vector3((Mathf.Sqrt(3)/2.0f), -0.5f, 0.5f),      // 5
+            new Vector3(-(Mathf.Sqrt(3)/2.0f), -0.5f, 0.5f),     // 6
             // bottom half
             new Vector3(0, 0, -0.5f),                              // 7
             new Vector3(0, 1, -0.5f),                              // 8
-            new Vector3((float)(Math.Sqrt(3)/2), 0.5f, -0.5f),      // 9
-            new Vector3(-(float)(Math.Sqrt(3)/2), 0.5f, -0.5f),     // 10
+            new Vector3((Mathf.Sqrt(3)/2.0f), 0.5f, -0.5f),      // 9
+            new Vector3(-(Mathf.Sqrt(3)/2.0f), 0.5f, -0.5f),     // 10
             new Vector3(0, -1, -0.5f),                               // 11
-            new Vector3((float)(Math.Sqrt(3)/2), -0.5f, -0.5f),     // 12
-            new Vector3(-(float)(Math.Sqrt(3)/2), -0.5f, -0.5f)     // 13
+            new Vector3((Mathf.Sqrt(3)/2.0f), -0.5f, -0.5f),     // 12
+            new Vector3(-(Mathf.Sqrt(3)/2.0f), -0.5f, -0.5f)     // 13
         };
 
         public static Dictionary<CellVariation, int[]> cell6VariationMap = new Dictionary<CellVariation, int[]> {

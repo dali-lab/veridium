@@ -20,7 +20,8 @@ public class StructureBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BuildHex();
+        // BuildHex();
+        BuildHexCrystal();
     }
 
     // Update is called once per frame
@@ -135,8 +136,8 @@ public class StructureBuilder : MonoBehaviour
 
     public void BuildHexCrystal() {
         Crystal test = new Crystal(this.gameObject.transform.position);
-        test.SetState(CrystalState.SINGLECELL);
-        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 5);
+        test.SetState(CrystalState.INFINITE);
+        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 1);
         test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 }

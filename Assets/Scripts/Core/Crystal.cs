@@ -106,7 +106,7 @@ namespace sib
                     }
 
                     foreach ( Bond bond in this.bonds.Values ) {
-                        bond.Draw(atomPrefab, builder);
+                        bond.Draw(linePrefab, builder);
                     }
                     
                     break;
