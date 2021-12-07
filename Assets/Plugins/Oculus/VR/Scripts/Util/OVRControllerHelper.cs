@@ -11,12 +11,30 @@ permissions and limitations under the License.
 ************************************************************************************/
 
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using UnityEngine.XR;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Simple helper script that conditionally enables rendering of a controller if it is connected.
 /// </summary>
 public class OVRControllerHelper : MonoBehaviour
 {
+
+	public InputActionProperty m_controllerPrimaryAction;
+	public InputActionProperty m_controllerSecondaryAction;
+	public InputActionProperty m_controllerStartAction;
+	public InputActionProperty m_controllerPrimaryThumbstickAction;
+	public InputActionProperty m_controllerTriggerAction;
+	public InputActionProperty m_controllerGripAction;
+
+	private bool primary;
+	private bool secondary;
+
 	/// <summary>
 	/// The root GameObject that represents the Oculus Touch for Quest And RiftS Controller model (Left).
 	/// </summary>
@@ -71,6 +89,12 @@ public class OVRControllerHelper : MonoBehaviour
 
 	void Start()
 	{
+
+		m_controllerPrimaryAction.action.performed += context => {primary = true;};
+		m_controllerPrimaryAction.action.canceled += context => {primary = false;};
+		m_controllerSecondaryAction.action.performed += context => {secondary = true;};
+		m_controllerSecondaryAction.action.canceled += context => {secondary = false;};
+
 		OVRPlugin.SystemHeadset headset = OVRPlugin.GetSystemHeadsetType();
 		switch (headset)
 		{
@@ -98,9 +122,31 @@ public class OVRControllerHelper : MonoBehaviour
 		m_modelOculusTouchQuest2RightController.SetActive(false);
 	}
 
+	public void ActivatePrimary(){
+		primary = true;
+	}
+
+	public void DeactivatePrimary(){
+		primary = false;
+	}
+
 	void Update()
 	{
-		bool controllerConnected = OVRInput.IsControllerConnected(m_controller);
+
+		// This is a very long-winded way of determining whether this controller is connected. Couldn't find a better way
+		bool controllerConnected = false;
+
+		var controllers = new List<UnityEngine.XR.InputDevice>();
+		var desiredCharacteristics = m_controller == OVRInput.Controller.LTouch ? 
+			UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller : 
+			UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller;
+		UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, controllers);
+
+		foreach (UnityEngine.XR.InputDevice device in controllers){
+
+			if(device.isValid) controllerConnected = true;
+
+		}
 
 		if ((controllerConnected != m_prevControllerConnected) || !m_prevControllerConnectedCached)
 		{
@@ -148,12 +194,16 @@ public class OVRControllerHelper : MonoBehaviour
 
 		if (m_animator != null)
 		{
-			m_animator.SetFloat("Button 1", OVRInput.Get(OVRInput.Button.One, m_controller) ? 1.0f : 0.0f);
-			m_animator.SetFloat("Button 2", OVRInput.Get(OVRInput.Button.Two, m_controller) ? 1.0f : 0.0f);
+
+			float joyX = m_controllerPrimaryThumbstickAction.action.ReadValue<Vector2>().x;
+			float joyY = m_controllerPrimaryThumbstickAction.action.ReadValue<Vector2>().y;
+
+			m_animator.SetFloat("Button 1", primary ? 1.0f : 0.0f);
+			m_animator.SetFloat("Button 2", secondary ? 1.0f : 0.0f);
 			m_animator.SetFloat("Button 3", OVRInput.Get(OVRInput.Button.Start, m_controller) ? 1.0f : 0.0f);
 
-			m_animator.SetFloat("Joy X", OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, m_controller).x);
-			m_animator.SetFloat("Joy Y", OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, m_controller).y);
+			m_animator.SetFloat("Joy X", joyX);
+			m_animator.SetFloat("Joy Y", joyY);
 
 			m_animator.SetFloat("Trigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller));
 			m_animator.SetFloat("Grip", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller));
