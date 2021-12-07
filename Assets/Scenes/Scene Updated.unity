@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 537928783}
   - component: {fileID: 537928782}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Background Noise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

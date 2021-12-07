@@ -85,6 +85,8 @@ public class OVRControllerHelper : MonoBehaviour
 				break;
 		}
 
+		//activeControllerType = ControllerType.Quest2;
+
 		Debug.LogFormat("OVRControllerHelp: Active controller type: {0} for product {1}", activeControllerType, OVRPlugin.productName);
 
 		// Hide all controller models until controller get connected
@@ -116,6 +118,7 @@ public class OVRControllerHelper : MonoBehaviour
 			}
 			else if (activeControllerType == ControllerType.Quest2)
 			{
+
 				m_modelOculusTouchQuestAndRiftSLeftController.SetActive(false);
 				m_modelOculusTouchQuestAndRiftSRightController.SetActive(false);
 				m_modelOculusTouchRiftLeftController.SetActive(false);

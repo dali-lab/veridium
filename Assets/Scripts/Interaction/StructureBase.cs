@@ -46,5 +46,17 @@ namespace SIB_Interaction{
             structureBuilder.DestroyCell();
 
         }
+
+        public void InfiniteView(){
+
+
+
+        }
+
+        public void MultiCellView(){
+
+
+            
+        }
     }
 }

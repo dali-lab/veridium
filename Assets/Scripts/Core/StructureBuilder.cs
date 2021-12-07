@@ -59,6 +59,12 @@ public class StructureBuilder : MonoBehaviour
      * Creates a crystal according to the given input specificaitons and draws * it to the scene. Times the runtime of processes for benchmarking
      */
     public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
+
+        // Reset the transform of the structure when building it
+        transform.parent.localPosition = Vector3.zero;
+        transform.parent.localScale = Vector3.one;
+        transform.parent.localRotation = Quaternion.identity;
+
         string debugString = "";
 
         Stopwatch stopwatch = new Stopwatch();
