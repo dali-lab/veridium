@@ -123,7 +123,7 @@ public class StructureBuilder : MonoBehaviour
 
     public void BuildHex() {
         (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Builing Hex"; 
-        UnitCell test = new UnitCell8(this.gameObject.transform.position, 0.2f, 0.2f);
+        UnitCell test = new UnitCell8(this.gameObject.transform.position, 0.2f, 0.2f, true);
         (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex Initialized"; 
         test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Vertices Added"; 
@@ -131,5 +131,12 @@ public class StructureBuilder : MonoBehaviour
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds Added"; 
         test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
         // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex drawn"; 
+    }
+
+    public void BuildHexCrystal() {
+        Crystal test = new Crystal(this.gameObject.transform.position);
+        test.SetState(CrystalState.SINGLECELL);
+        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 5);
+        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 }

@@ -44,7 +44,7 @@ namespace sib
         private Dictionary<Vector3, Bond> bonds;
 
         // The Dictionary relating the positions of each Unit cell in the crystal structure to the atom itself
-        private Dictionary<Vector3, UnitCell6> unitCells;
+        private Dictionary<Vector3, UnitCell> unitCells;
 
         // The current drawing context for the crystal
         private CrystalState drawMode;
@@ -57,7 +57,7 @@ namespace sib
         public Crystal(Vector3 centerPoint) {
             this.atoms = new Dictionary<Vector3, Atom>();
             this.bonds = new Dictionary<Vector3, Bond>();
-            this.unitCells = new Dictionary<Vector3, UnitCell6>();
+            this.unitCells = new Dictionary<Vector3, UnitCell>();
             this.centerPoint = centerPoint;
             this.drawMode = CrystalState.SINGLECELL;
         }
@@ -76,7 +76,7 @@ namespace sib
 
             this.atoms = new Dictionary<Vector3, Atom>();
             this.bonds = new Dictionary<Vector3, Bond>();
-            this.unitCells = new Dictionary<Vector3, UnitCell6>();
+            this.unitCells = new Dictionary<Vector3, UnitCell>();
             this.drawMode = CrystalState.SINGLECELL;
         }
 
@@ -148,8 +148,13 @@ namespace sib
             
             // Construct the origin cell
             stopwatch.Start();
-            UnitCell6 originCell = new UnitCell6(type, variation, 
-                this.centerPoint, a, b, c, alpha, beta, gamma);
+            UnitCell originCell;
+            if (type == CellType.HEX) {
+                originCell = new UnitCell8(this.centerPoint, a, b, false);
+            } else {
+                originCell = new UnitCell6(type, variation, 
+                    this.centerPoint, a, b, c, alpha, beta, gamma);
+            }
             this.unitCells[this.centerPoint] = originCell;
             stopwatch.Stop();
 
@@ -185,12 +190,12 @@ namespace sib
             // Recursively add surrounding unit cells using Unit6's GenerateNeighbors function
             stopwatch.Start();
             for ( int i = 0; i < constructionDepth; i ++ ) {
-                UnitCell6[] cells = new UnitCell6[unitCells.Count];
+                UnitCell[] cells = new UnitCell[unitCells.Count];
                 Vector3[] positions = new Vector3[unitCells.Count];
                 unitCells.Values.CopyTo(cells, 0);
                 unitCells.Keys.CopyTo(positions, 0);
                 for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
-                    UnitCell6 cell = cells[cellIndex];
+                    UnitCell cell = cells[cellIndex];
                     Vector3 position = positions[cellIndex];
                     if (!constructedPositions.Contains(position)) {
                         constructedPositions.Add(position);
@@ -211,32 +216,9 @@ namespace sib
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
         }
 
-
-        // /**
-        //  * @function GetPlanarAtoms
-        //  * @input planeIndex    Miller index of desired plane
-        //  * Uses Unit6's built in miller index capabilities ot return a Hashset
-        //  * containing all the atoms in the Crystal that are in the Miller index
-        //  * of their unit cell corresponding to the input planeIndex.
-        //  */
-        // public HashSet<Atom> GetPlanarAtoms(int planeIndex) {
-        //     HashSet<Atom> atomList = new HashSet<Atom>();
-        //     UnitCell6[] cells = new UnitCell6[unitCells.Count];
-        //     unitCells.Values.CopyTo(cells, 0);
-        //     for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
-        //         if (cells[cellIndex] != null) {
-        //             List<Atom> planeAtoms = cells[cellIndex].GetPlaneAtIndex(planeIndex);
-        //             for ( int atomIndex  = 0; atomIndex < planeAtoms.Count; atomIndex ++ ) {
-        //                 atomList.Add(planeAtoms[atomIndex]);
-        //             }
-        //         }
-        //     }
-        //     return atomList;
-        // }
-
         public HashSet<Atom> GetMillerAtoms(int h, int k , int l) {
             HashSet<Atom> atomList = new HashSet<Atom>();
-            UnitCell6[] cells = new UnitCell6[unitCells.Count];
+            UnitCell[] cells = new UnitCell[unitCells.Count];
             unitCells.Values.CopyTo(cells, 0);
             for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
                 if (cells[cellIndex] != null) {
