@@ -36,8 +36,18 @@ public class StructureBuilder : MonoBehaviour
         
     }
 
+    public void HighlightPlane(int index){
+
+        /*
+        foreach (Atom atom in GetPlanarAtoms(index)){
+            atom.GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(29));
+            atom.GetDrawnObject().GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
+        }*/
+
+    }
+
     /**
-     * @function DestoryCell
+     * @function DestroyCell
      * Removes the crystal from the scene.
      */
     public void DestroyCell() {

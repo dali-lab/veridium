@@ -24,6 +24,7 @@ namespace sib
         private string element;
 
         private GameObject drawnObject;
+        private bool metallic = true;
 
         /**
          * Constructor - creates a new Atom object
@@ -86,6 +87,7 @@ namespace sib
             output += "Atom " + this.element + " Atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
             return output;
         }
+        
 
         /**
          * @function Draw
@@ -96,6 +98,12 @@ namespace sib
         public void Draw(GameObject atomPrefab, GameObject builder) {
             this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, this.position, Quaternion.identity);
             drawnObject.transform.SetParent(builder.transform);
+            drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(/*this.atomicNumber*/29);
+
+            if(metallic){
+                drawnObject.GetComponentInChildren<Renderer>().material.SetFloat("_Metallic", 1.0f);
+                drawnObject.GetComponentInChildren<Renderer>().material.SetFloat("_Glossiness", 0.65f);
+            }
         }
 
         /**
