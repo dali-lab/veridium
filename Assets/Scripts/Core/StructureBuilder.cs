@@ -21,7 +21,8 @@ public class StructureBuilder : MonoBehaviour
     void Start()
     {
         // BuildHex();
-        BuildHexCrystal();
+        // BuildHexCrystal();
+        TestUnit6Millers();
     }
 
     // Update is called once per frame
@@ -139,5 +140,25 @@ public class StructureBuilder : MonoBehaviour
         test.SetState(CrystalState.INFINITE);
         test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 1);
         test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
+    }
+
+    public void TestUnit6Millers() {
+        string debugString = "";
+        UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.SIMPLE, this.gameObject.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
+        test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
+        test.AddBonds(new Dictionary<Vector3, Bond>());
+        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
+        List<Atom> millerAtoms = test.GetMillerAtoms(1, 1, 1);
+        if (millerAtoms.Count > 0) {
+            debugString += "GetMillerAtoms returned atoms" + "\n";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+        } else {
+            debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+        }
+        foreach (Atom atom in millerAtoms) {
+            debugString += atom.Debug();
+        }
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
     }
 }
