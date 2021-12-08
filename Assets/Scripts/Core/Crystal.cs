@@ -150,9 +150,9 @@ namespace sib
             stopwatch.Start();
             UnitCell originCell;
             if (type == CellType.HEX) {
-                originCell = new UnitCell8(this.centerPoint, a, b, false);
+                originCell = new UnitCell8(atomicNumber, this.centerPoint, a, b, false);
             } else {
-                originCell = new UnitCell6(type, variation, 
+                originCell = new UnitCell6(atomicNumber, type, variation, 
                     this.centerPoint, a, b, c, alpha, beta, gamma);
             }
             this.unitCells[this.centerPoint] = originCell;
@@ -166,7 +166,7 @@ namespace sib
 
             // Add vertices and bonds to origin cell
             stopwatch.Start();
-            originCell.AddVertices(this.atoms, 0, "");
+            originCell.AddVertices(this.atoms);
             stopwatch.Stop();
 
             ts = stopwatch.Elapsed;

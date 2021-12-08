@@ -38,6 +38,9 @@ namespace sib
         // Number of vertices in the cell
         private int numVertices;
 
+        // Atomic number of atoms within unit cell
+        private int atomicNumber;
+
         // The unit cell's position in world space
         private Vector3 worldPosition;
 
@@ -83,7 +86,7 @@ namespace sib
          * Builds a unit cell with a given type, structure, worldPosition, side lengths,
          * and angles.
          */
-        public UnitCell6(CellType type, CellVariation structure, Vector3 worldPosition,
+        public UnitCell6(int atomicNumber, CellType type, CellVariation structure, Vector3 worldPosition,
             float a, float b, float c, float alpha, float beta, float gamma) {
 
             bool valid = false;
@@ -92,6 +95,7 @@ namespace sib
             this.structure = structure;
             this.vertices = new Atom[Constants.cell6Vertices];
             this.bonds = new List<Bond>();
+            this.atomicNumber = atomicNumber;
 
             // Checks that the variation + cell type combination is valid
             foreach (CellVariation allowedVar in Constants.validCells[type]) {
@@ -232,7 +236,7 @@ namespace sib
          * Creates and adds atoms to the unit cell. Checks against the overlap array to make sure
          * that the unit cell doesn't create duplicate atoms.
          */
-        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms, int atomicNumber, string elementName) {
+        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms) {
             if (this.numVertices < 0) {
                 return;
             }
@@ -242,7 +246,7 @@ namespace sib
                 Vector3 atomPosition = GenerateVertexPosition(this.worldPosition, Constants.cell6BasicPositions[index], 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
 
-                Atom newAtom = new Atom(atomicNumber, elementName, atomPosition);
+                Atom newAtom = new Atom(this.atomicNumber, atomPosition);
                 bool overlaps = false;
                 Atom duplicate;
                 if (crystalAtoms.TryGetValue(atomPosition, out duplicate)) {
@@ -452,9 +456,9 @@ namespace sib
                     continue;
                 } else {
                     // Builds the unit cell and adds it to the crystal
-                    UnitCell6 newCell = new UnitCell6(this.type, this.structure, newCellPos, 
+                    UnitCell6 newCell = new UnitCell6(this.atomicNumber, this.type, this.structure, newCellPos, 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
-                    newCell.AddVertices(crystalAtoms, 0, "");
+                    newCell.AddVertices(crystalAtoms);
                     newCell.AddBonds(crystalBonds);
                     crystalCells[newCellPos] = newCell;
                 }

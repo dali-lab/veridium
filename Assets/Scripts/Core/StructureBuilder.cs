@@ -24,7 +24,7 @@ public class StructureBuilder : MonoBehaviour
 
         // Tests.TestHex(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestHexCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        // Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
+        Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
