@@ -20,11 +20,14 @@ public class StructureBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // BuildHex();
-        // BuildHexCrystal();
-        // TestUnit6Millers();
-        // TestUnit8Millers();
-        TestMillerCrystal();
+        // TESTS: Uncomment a test to run it at start
+
+        // Tests.TestHex(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestHexCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
     // Update is called once per frame
@@ -110,97 +113,5 @@ public class StructureBuilder : MonoBehaviour
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
         debugString += "Time elapsed in crystal drawing" + elapsedTime + "\n";
-
-        // HashSet<Atom> millerAtoms = this.crystal.GetMillerAtoms(1, 0, 0);
-        // debugString = "Miller retreival did not crash\n";
-
-        // if (millerAtoms.Count > 0) {
-        //     foreach ( Atom atom in millerAtoms ) {
-        //         debugString += atom.Debug();
-        //     }
-        // } else {
-        //     debugString += "Miller retreival failed to find any atoms\n";
-        // }
-
-        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-    }
-
-    public void BuildHex() {
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Builing Hex"; 
-        UnitCell test = new UnitCell8(this.gameObject.transform.position, 0.2f, 0.2f, true);
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex Initialized"; 
-        test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
-        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Vertices Added"; 
-        test.AddBonds(new Dictionary<Vector3, Bond>());
-        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds Added"; 
-        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
-        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex drawn"; 
-    }
-
-    public void BuildHexCrystal() {
-        Crystal test = new Crystal(this.gameObject.transform.position);
-        test.SetState(CrystalState.INFINITE);
-        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 0, 1);
-        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
-    }
-
-    public void TestUnit6Millers() {
-        string debugString = "";
-        UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.FACE, this.gameObject.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
-        test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
-        test.AddBonds(new Dictionary<Vector3, Bond>());
-        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
-        List<Atom> millerAtoms = test.GetMillerAtoms(1, 0, 0);
-        if (millerAtoms.Count > 0) {
-            debugString += "GetMillerAtoms returned atoms" + "\n";
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-        } else {
-            debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-        }
-        foreach (Atom atom in millerAtoms) {
-            debugString += atom.Debug();
-        }
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-    }
-
-    public void TestUnit8Millers() {
-        string debugString = "";
-        UnitCell8 test = new UnitCell8(this.gameObject.transform.position, 0.2f, 0.4f, false);
-        test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
-        test.AddBonds(new Dictionary<Vector3, Bond>());
-        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
-        List<Atom> millerAtoms = test.GetMillerAtoms(-1, 0, 0);
-        if (millerAtoms.Count > 0) {
-            debugString += "GetMillerAtoms returned atoms" + "\n";
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-        } else {
-            debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-        }
-        foreach (Atom atom in millerAtoms) {
-            debugString += atom.Debug();
-        }
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-    }
-
-    public void TestMillerCrystal() {
-        string debugString = "";
-        Crystal test = new Crystal(this.gameObject.transform.position);
-        test.SetState(CrystalState.INFINITE);
-        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 0, 1);
-        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
-        HashSet<Atom> crystalMillerAtoms = test.GetMillerAtoms(-1, 0, 0);
-        if (crystalMillerAtoms.Count > 0) {
-            debugString += "GetMillerAtoms returned atoms" + "\n";
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-        } else {
-            debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
-        }
-        foreach (Atom atom in crystalMillerAtoms) {
-            debugString += atom.Debug();
-        }
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
     }
 }
