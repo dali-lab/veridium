@@ -22,7 +22,8 @@ public class StructureBuilder : MonoBehaviour
     {
         // BuildHex();
         // BuildHexCrystal();
-        TestUnit6Millers();
+        // TestUnit6Millers();
+        TestUnit8Millers();
     }
 
     // Update is called once per frame
@@ -144,11 +145,31 @@ public class StructureBuilder : MonoBehaviour
 
     public void TestUnit6Millers() {
         string debugString = "";
-        UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.SIMPLE, this.gameObject.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
+        UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.FACE, this.gameObject.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
         test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
         test.AddBonds(new Dictionary<Vector3, Bond>());
         test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
-        List<Atom> millerAtoms = test.GetMillerAtoms(1, 1, 1);
+        List<Atom> millerAtoms = test.GetMillerAtoms(1, 0, 0);
+        if (millerAtoms.Count > 0) {
+            debugString += "GetMillerAtoms returned atoms" + "\n";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+        } else {
+            debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+        }
+        foreach (Atom atom in millerAtoms) {
+            debugString += atom.Debug();
+        }
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+    }
+
+    public void TestUnit8Millers() {
+        string debugString = "";
+        UnitCell8 test = new UnitCell8(this.gameObject.transform.position, 0.2f, 0.4f, false);
+        test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
+        test.AddBonds(new Dictionary<Vector3, Bond>());
+        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
+        List<Atom> millerAtoms = test.GetMillerAtoms(1, 0, 0);
         if (millerAtoms.Count > 0) {
             debugString += "GetMillerAtoms returned atoms" + "\n";
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
