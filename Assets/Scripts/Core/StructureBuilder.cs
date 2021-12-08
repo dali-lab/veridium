@@ -23,7 +23,8 @@ public class StructureBuilder : MonoBehaviour
         // BuildHex();
         // BuildHexCrystal();
         // TestUnit6Millers();
-        TestUnit8Millers();
+        // TestUnit8Millers();
+        TestMillerCrystal();
     }
 
     // Update is called once per frame
@@ -61,7 +62,7 @@ public class StructureBuilder : MonoBehaviour
      * @input sphereRadius  The size of the Atoms
      * Creates a crystal according to the given input specificaitons and draws * it to the scene. Times the runtime of processes for benchmarking
      */
-    public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
+    public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius, int atomicNumber = 0) {
         string debugString = "";
 
         Stopwatch stopwatch = new Stopwatch();
@@ -90,7 +91,7 @@ public class StructureBuilder : MonoBehaviour
 
         // Adds Atoms and bonds to the crystal
         stopwatch.Start();
-        this.crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, 0);
+        this.crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, atomicNumber, 0);
         stopwatch.Stop();
 
         ts = stopwatch.Elapsed;
@@ -139,7 +140,7 @@ public class StructureBuilder : MonoBehaviour
     public void BuildHexCrystal() {
         Crystal test = new Crystal(this.gameObject.transform.position);
         test.SetState(CrystalState.INFINITE);
-        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 1);
+        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 0, 1);
         test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
@@ -169,7 +170,7 @@ public class StructureBuilder : MonoBehaviour
         test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
         test.AddBonds(new Dictionary<Vector3, Bond>());
         test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
-        List<Atom> millerAtoms = test.GetMillerAtoms(1, 0, 0);
+        List<Atom> millerAtoms = test.GetMillerAtoms(-1, 0, 0);
         if (millerAtoms.Count > 0) {
             debugString += "GetMillerAtoms returned atoms" + "\n";
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
@@ -178,6 +179,26 @@ public class StructureBuilder : MonoBehaviour
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
         foreach (Atom atom in millerAtoms) {
+            debugString += atom.Debug();
+        }
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+    }
+
+    public void TestMillerCrystal() {
+        string debugString = "";
+        Crystal test = new Crystal(this.gameObject.transform.position);
+        test.SetState(CrystalState.INFINITE);
+        test.Construct(CellType.HEX, CellVariation.SIMPLE, 0.2f, 0.4f, 0, 0, 0, 0, 0, 1);
+        test.Draw(this.atomPrefab, this.linePrefab, this.gameObject);
+        HashSet<Atom> crystalMillerAtoms = test.GetMillerAtoms(-1, 0, 0);
+        if (crystalMillerAtoms.Count > 0) {
+            debugString += "GetMillerAtoms returned atoms" + "\n";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+        } else {
+            debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+        }
+        foreach (Atom atom in crystalMillerAtoms) {
             debugString += atom.Debug();
         }
         (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 

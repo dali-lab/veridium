@@ -141,7 +141,7 @@ namespace sib
          */
         public void Construct(CellType type, CellVariation variation,
             float a, float b, float c, float alpha, float beta, float gamma, 
-            int constructionDepth) {
+            int atomicNumber, int constructionDepth) {
 
             Stopwatch stopwatch = new Stopwatch();
             string debugString = "";
