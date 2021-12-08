@@ -172,10 +172,18 @@
                     "interactions": ""
                 },
                 {
-                    "name": "triggerscalar",
+                    "name": "TriggerScalar",
                     "type": "Value",
                     "id": "85bc269c-5550-4124-bef9-822fbcaba2ca",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "GripScalar",
+                    "type": "Value",
+                    "id": "b56d02c5-8e79-49d8-9b16-e6275835768d",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }
@@ -514,7 +522,7 @@
                 {
                     "name": "",
                     "id": "713613a1-eb20-4a2c-8ebb-f19a9bdea26f",
-                    "path": "<XRController>/primaryButton",
+                    "path": "<XRController>{LeftHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -525,7 +533,7 @@
                 {
                     "name": "",
                     "id": "5f3f7d16-a01d-477f-8013-288e7e1514be",
-                    "path": "<XRController>/secondaryButton",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -536,11 +544,22 @@
                 {
                     "name": "",
                     "id": "bd99dc3f-c978-47f0-ab9f-140c2a646c32",
-                    "path": "<XRController>{LeftHand}/triggerButton",
+                    "path": "<XRController>{LeftHand}/trigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "triggerscalar",
+                    "action": "TriggerScalar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "325e39af-1a7e-4d18-af5c-7a2c286fd9fd",
+                    "path": "<XRController>{LeftHand}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GripScalar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -667,6 +686,22 @@
                     "type": "Button",
                     "id": "41dea46e-8785-4456-905d-6cf9a02ab1d8",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TriggerScalar",
+                    "type": "Value",
+                    "id": "d783f7d8-d1a1-436c-8770-573ab180d60c",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "GripScalar",
+                    "type": "Value",
+                    "id": "a9b3f8c3-1a9e-4c38-9b5f-c58a0239f2b2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }
@@ -994,7 +1029,7 @@
                 {
                     "name": "",
                     "id": "05322105-2c14-461b-a918-ffe025124e3b",
-                    "path": "<XRController>/primaryButton",
+                    "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -1005,11 +1040,44 @@
                 {
                     "name": "",
                     "id": "a359d526-33bd-409f-997c-5abf12642db3",
-                    "path": "<XRController>/secondaryButton",
+                    "path": "<XRController>{RightHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "PressB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ab7bbc1-d893-4c2c-af21-e7929b5e81c1",
+                    "path": "<XRController>{RightHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerScalar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1743e5d-caad-4446-9a53-be724a36295f",
+                    "path": "<XRController>{RightHand}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GripScalar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6034914e-e39d-4b74-b135-1b2e1faeecd9",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": "Continuous Move",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1223,7 +1223,7 @@ PrefabInstance:
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerGripAction.m_Reference
       value: 
-      objectReference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: 500544447179904344, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerGripAction.m_Action.m_Id
       value: 8b78d7b6-066f-458d-b132-4635d636bc89
@@ -1243,7 +1243,7 @@ PrefabInstance:
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerTriggerAction.m_Reference
       value: 
-      objectReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: -1571090238030465271, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerGripAction.m_Action.m_Name
       value: Controller Grip
@@ -1295,7 +1295,7 @@ PrefabInstance:
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerPrimaryThumbstickAction.m_Reference
       value: 
-      objectReference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerPrimaryThumbstickAction.m_Action.m_Id
       value: 020628ef-5576-4a1d-a360-b9ed82fe89b0
@@ -1397,7 +1397,7 @@ PrefabInstance:
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerGripAction.m_Reference
       value: 
-      objectReference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: 8049483841198437922, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerGripAction.m_Action.m_Id
       value: 17db1cfa-ca71-4a22-b40d-bbba0213d376
@@ -1417,7 +1417,7 @@ PrefabInstance:
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerTriggerAction.m_Reference
       value: 
-      objectReference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: -8786333557388677714, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controllerGripAction.m_Action.m_Name
       value: Controller Grip

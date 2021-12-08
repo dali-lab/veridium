@@ -27,7 +27,6 @@ public class OVRControllerHelper : MonoBehaviour
 
 	public InputActionProperty m_controllerPrimaryAction;
 	public InputActionProperty m_controllerSecondaryAction;
-	public InputActionProperty m_controllerStartAction;
 	public InputActionProperty m_controllerPrimaryThumbstickAction;
 	public InputActionProperty m_controllerTriggerAction;
 	public InputActionProperty m_controllerGripAction;
@@ -198,15 +197,17 @@ public class OVRControllerHelper : MonoBehaviour
 			float joyX = m_controllerPrimaryThumbstickAction.action.ReadValue<Vector2>().x;
 			float joyY = m_controllerPrimaryThumbstickAction.action.ReadValue<Vector2>().y;
 
+			float triggerPressed = m_controllerTriggerAction.action.ReadValue<float>();
+			float gripPressed = m_controllerGripAction.action.ReadValue<float>();
+
 			m_animator.SetFloat("Button 1", primary ? 1.0f : 0.0f);
 			m_animator.SetFloat("Button 2", secondary ? 1.0f : 0.0f);
-			m_animator.SetFloat("Button 3", OVRInput.Get(OVRInput.Button.Start, m_controller) ? 1.0f : 0.0f);
 
 			m_animator.SetFloat("Joy X", joyX);
 			m_animator.SetFloat("Joy Y", joyY);
 
-			m_animator.SetFloat("Trigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller));
-			m_animator.SetFloat("Grip", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller));
+			m_animator.SetFloat("Trigger", triggerPressed);
+			m_animator.SetFloat("Grip", gripPressed);
 		}
 	}
 }
