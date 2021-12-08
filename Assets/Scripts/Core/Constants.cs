@@ -64,6 +64,25 @@ namespace sib
             new Vector3(0, 0, 0)        // 14
         };
 
+        public static Vector3[] cell8BasicPositions = new Vector3[] {
+            // bottom half
+            new Vector3(0, 0, -0.5f),                              // 0
+            new Vector3(0, 1, -0.5f),                              // 1
+            new Vector3((Mathf.Sqrt(3.0f)/2.0f), 0.5f, -0.5f),      // 2
+            new Vector3(-(Mathf.Sqrt(3.0f)/2.0f), 0.5f, -0.5f),     // 3
+            new Vector3(0, -1, -0.5f),                               // 4
+            new Vector3((Mathf.Sqrt(3.0f)/2.0f), -0.5f, -0.5f),     // 5
+            new Vector3(-(Mathf.Sqrt(3.0f)/2.0f), -0.5f, -0.5f),     // 6
+            // top half
+            new Vector3(0.0f, 0.0f, 0.5f),                               // 7
+            new Vector3(0.0f, 1.0f, 0.5f),                               // 8
+            new Vector3((Mathf.Sqrt(3.0f)/2.0f), 0.5f, 0.5f),       // 9
+            new Vector3(-(Mathf.Sqrt(3)/2.0f), 0.5f, 0.5f),      // 10
+            new Vector3(0.0f, -1.0f, 0.5f),                               // 11
+            new Vector3((Mathf.Sqrt(3.0f)/2.0f), -0.5f, 0.5f),      // 12
+            new Vector3(-(Mathf.Sqrt(3.0f)/2.0f), -0.5f, 0.5f)     // 13
+        };
+
         public static Dictionary<CellVariation, int[]> cell6VariationMap = new Dictionary<CellVariation, int[]> {
             { CellVariation.SIMPLE, new int[] { 0, 1, 2, 3, 4, 5, 6, 7 } },
             { CellVariation.BASE, new int[] { 0, 1 , 2, 3, 4, 5, 6, 7, 8, 9 } },
@@ -100,10 +119,21 @@ namespace sib
             new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }
         };
 
-        public static int[][] planarIndices = new int[][] {
-            new int[] { 0, 1, 2, 6, 12 },
-            new int[] { 3, 4, 5, 7, 13 },
-            new int [] { 8, 9, 10, 11, 14 }
+        public static int[][] cell8BondMap = new int[][] {
+            new int[] { 1, 2, 3, 4, 5, 6 , 7 },     // 0
+            new int[] { 0, 2, 3, 8 },              // 1
+            new int[] { 0, 1, 5, 9 },              // 2
+            new int[] { 0, 1, 6, 10 },              // 3
+            new int[] { 0, 5, 6, 11 },              // 4
+            new int[] { 0, 2, 4, 12 },              // 5
+            new int[] { 0, 3, 4, 13 },              // 6
+            new int[] { 0, 8, 9, 10, 11, 12, 13 }, // 7
+            new int[] { 1, 7, 9, 10 },             // 8
+            new int[] { 2, 7, 8, 12 },             // 9
+            new int[] { 3, 7, 8, 13 },             // 10
+            new int[] { 4, 7, 12, 13 },            // 11
+            new int[] { 5, 7, 9, 11 },              // 12
+            new int[] { 6, 7, 10, 11 }              // 13
         };
     }
 }

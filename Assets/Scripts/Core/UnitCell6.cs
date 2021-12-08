@@ -34,7 +34,7 @@ namespace sib
     * Implements functionality for building the cell, adding vertices, and implementing
     * modifications based on cell type and variation.
     */
-    public class UnitCell6 {
+    public class UnitCell6 : UnitCell {
         // Number of vertices in the cell
         private int numVertices;
 
@@ -202,15 +202,22 @@ namespace sib
             }
         }
 
-        public List<Atom> GetMillerAtoms(int h, int k , int l) {
+        public override List<Atom> GetMillerAtoms(int h, int k , int l) {
+            if (this.numVertices < 4 || this.vertices[0] == null || this.vertices[1] == null|| this.vertices[2] == null || this.vertices[3] == null) {
+                return null;
+            }
+
+            Vector3 bottomCorner = this.vertices[0].GetPosition();
+            Vector3 a1, a2, a3;
+            a1 = this.vertices[3].GetPosition() - bottomCorner;
+            a2 = this.vertices[2].GetPosition() - bottomCorner;
+            a3 = this.vertices[1].GetPosition() - bottomCorner;
+
+            float planarSeparation = Mathf.Sqrt(1/((h^2)/(Mathf.Pow(this.a, 2)) + (k^2)/(Mathf.Pow(this.b, 2)) + (l^2)/(Mathf.Pow(this.c, 2))));
+
             List<Atom> atoms = new List<Atom>();
-            double planarDistanceFromOrigin = Math.Sqrt(Math.Pow(h, 2) + Math.Pow(k , 2) + Math.Pow(l, 2));
-            for ( int i = 0; i < Constants.cell6BasicPositions.Length; i ++ ) {
-                if ( i > this.numVertices) {
-                    continue;
-                }
-                Vector3 cellSpaceAtomPosition = Constants.cell6BasicPositions[i];
-                if ((cellSpaceAtomPosition.x*h + cellSpaceAtomPosition.y*k + cellSpaceAtomPosition.z*l) == planarDistanceFromOrigin) {
+            for ( int i = 0; i < this.numVertices; i ++ ) {
+                if (Miller.PointInMillerPlane(this.vertices[i].GetPosition(), h, k, l, bottomCorner, a1, a2, a3, planarSeparation)) {
                     atoms.Add(this.vertices[i]);
                 }
             }
@@ -225,11 +232,10 @@ namespace sib
          * Creates and adds atoms to the unit cell. Checks against the overlap array to make sure
          * that the unit cell doesn't create duplicate atoms.
          */
-        public List<Atom> AddVertices(Dictionary<Vector3, Atom> crystalAtoms, int atomicNumber, string elementName) {
+        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms, int atomicNumber, string elementName) {
             if (this.numVertices < 0) {
-                return null;
+                return;
             }
-            List<Atom> newVertices = new List<Atom>();
             int[] vertexIndices = Constants.cell6VariationMap[this.structure];
             int cellIndex = 0;
             foreach ( int index in vertexIndices ) {
@@ -247,11 +253,9 @@ namespace sib
                 }
                 if (!overlaps) {
                     this.vertices[cellIndex] = newAtom;
-                    newVertices.Add(newAtom);
                 }
                 cellIndex ++;
             }
-            return newVertices;
         }
 
        /**
@@ -279,7 +283,7 @@ namespace sib
          * mid point position to bonds already in the Crystal structure
          * Adds bonds to the unit cell taking special care not to add the same bonds twice
          */
-        public void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
+        public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
             // Loops through each vertex in the unit cell
             for ( int startIndex = 0; startIndex < this.numVertices; startIndex ++ ) {
                 if ( startIndex >= Constants.cell6BondMap.Length ) {
@@ -334,30 +338,17 @@ namespace sib
         }
 
         // Returns the vertex array
-        public Atom[] GetVertices() {
+        public override Atom[] GetVertices() {
             return this.vertices;
         }
 
         // Returns the List of bonds
-        public List<Bond> GetBonds() {
+        public override List<Bond> GetBonds() {
             return this.bonds;
         }
 
-        // DEBUGGING FUNCTION: Used this to make sure the Crystal Miller functions worked
-        public List<Atom> GetPlaneAtIndex(int planarIndex) {
-            List<Atom> atomList = new List<Atom>();  // Max of 6 atoms in a planar set
-            if ( planarIndex > (Constants.planarIndices.Length - 1) ) {
-                return null;
-            }
-            int[] indexList = Constants.planarIndices[planarIndex];
-            for ( int i = 0; i < indexList.Length; i ++ ) {
-                atomList.Add(this.vertices[indexList[i]]);
-            }
-            return atomList;
-        }
-
         // Debugging function - prints the unit cell to console
-        public string Debug() {
+        public override string Debug() {
             string debuginfo = "";
 
             debuginfo += "WorldPosition : " + this.worldPosition.ToString() + "\n";
@@ -387,7 +378,7 @@ namespace sib
          * @input builder       Reference to StructureBuilder instance
          * Draws the UnitCell's Atoms and bonds to the scene.
          */
-        public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+        public override void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
 
@@ -418,7 +409,7 @@ namespace sib
          * Creates duplicates of itself that exist exactly adjacent to itself 
          * in world space. Adds the duplicates to the crystalCells hashmap
          */
-        public void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell6> crystalCells) {
+        public override void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell> crystalCells) {
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
 
@@ -456,7 +447,7 @@ namespace sib
                 debugString += "Pass " + index.ToString() + "new Cell Position " + newCellPos.ToString();
 
                 // Verifies that the unit cell is not a duplicate
-                UnitCell6 possibleDuplicate;
+                UnitCell possibleDuplicate;
                 if (crystalCells.TryGetValue(newCellPos, out possibleDuplicate)) {
                     continue;
                 } else {

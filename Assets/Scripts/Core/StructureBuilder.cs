@@ -20,7 +20,14 @@ public class StructureBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // TESTS: Uncomment a test to run it at start
 
+        // Tests.TestHex(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestHexCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
     // Update is called once per frame
@@ -58,7 +65,7 @@ public class StructureBuilder : MonoBehaviour
      * @input sphereRadius  The size of the Atoms
      * Creates a crystal according to the given input specificaitons and draws * it to the scene. Times the runtime of processes for benchmarking
      */
-    public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius) {
+    public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius, int atomicNumber = 0) {
 
         // Reset the transform of the structure when building it
         transform.parent.localPosition = Vector3.zero;
@@ -93,7 +100,7 @@ public class StructureBuilder : MonoBehaviour
 
         // Adds Atoms and bonds to the crystal
         stopwatch.Start();
-        this.crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, 0);
+        this.crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, atomicNumber, 0);
         stopwatch.Stop();
 
         ts = stopwatch.Elapsed;
@@ -112,18 +119,5 @@ public class StructureBuilder : MonoBehaviour
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
         debugString += "Time elapsed in crystal drawing" + elapsedTime + "\n";
-
-        // HashSet<Atom> millerAtoms = this.crystal.GetMillerAtoms(1, 0, 0);
-        // debugString = "Miller retreival did not crash\n";
-
-        // if (millerAtoms.Count > 0) {
-        //     foreach ( Atom atom in millerAtoms ) {
-        //         debugString += atom.Debug();
-        //     }
-        // } else {
-        //     debugString += "Miller retreival failed to find any atoms\n";
-        // }
-
-        // (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
     }
 }
