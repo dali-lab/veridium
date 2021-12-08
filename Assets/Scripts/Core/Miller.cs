@@ -10,7 +10,7 @@ namespace sib
 {
     public static class Miller
     {
-        public static List<Vector3> GetMillerIndecesForCell(CellType type, CellVariation variation) {
+        public static List<Vector3> GetMillerIndicesForCell(CellType type, CellVariation variation) {
             List<Vector3> millerIndices = new List<Vector3>();
             switch (variation) {
                 case CellVariation.SIMPLE:

@@ -133,8 +133,6 @@ public class Coloration
 
         string hex = "#" + Colors[element];
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = hex;
-
         if (ColorUtility.TryParseHtmlString(hex, out color)){
             return color;
         } else {
@@ -148,6 +146,16 @@ public class Coloration
         List<string> keyList = new List<string>(Colors.Keys);
 
         return (GetColor(keyList[atomicNumber-1]));
+
+    }
+
+    public static int GetNumberByName(string name){
+
+        List<string> keyList = new List<string>(Colors.Keys);
+
+        if (keyList.Contains(name)) return keyList.IndexOf(name) + 1;
+
+        return 0;
 
     }
 }

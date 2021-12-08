@@ -36,7 +36,9 @@ namespace SIB_Interaction{
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
 
-            structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius);
+            int atomicNumber = Coloration.GetNumberByName(element.name);
+
+            structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius, atomicNumber);
 
         }
 

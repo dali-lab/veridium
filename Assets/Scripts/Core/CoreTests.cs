@@ -9,15 +9,15 @@ namespace sib
     public static class Tests
     {
         public static void TestHex(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Builing Hex"; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Builing Hex"; 
             UnitCell test = new UnitCell8(builder.transform.position, 0.2f, 0.2f, true);
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex Initialized"; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex Initialized"; 
             test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Vertices Added"; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Vertices Added"; 
             test.AddBonds(new Dictionary<Vector3, Bond>());
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds Added"; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds Added"; 
             test.Draw(atomPrefab, linePrefab, builder);
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex drawn"; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex drawn"; 
         }
 
         public static void TestHexCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
@@ -36,15 +36,15 @@ namespace sib
             List<Atom> millerAtoms = test.GetMillerAtoms(1, 0, 0);
             if (millerAtoms.Count > 0) {
                 debugString += "GetMillerAtoms returned atoms" + "\n";
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             } else {
                 debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             }
             foreach (Atom atom in millerAtoms) {
                 debugString += atom.Debug();
             }
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
 
         public static void TestUnit8Millers(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
@@ -56,15 +56,15 @@ namespace sib
             List<Atom> millerAtoms = test.GetMillerAtoms(-1, 0, 0);
             if (millerAtoms.Count > 0) {
                 debugString += "GetMillerAtoms returned atoms" + "\n";
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             } else {
                 debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             }
             foreach (Atom atom in millerAtoms) {
                 debugString += atom.Debug();
             }
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
 
         public static void TestMillerCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
@@ -76,15 +76,15 @@ namespace sib
             HashSet<Atom> crystalMillerAtoms = test.GetMillerAtoms(-1, 0, 0);
             if (crystalMillerAtoms.Count > 0) {
                 debugString += "GetMillerAtoms returned atoms" + "\n";
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             } else {
                 debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             }
             foreach (Atom atom in crystalMillerAtoms) {
                 debugString += atom.Debug();
             }
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
 
         public static void TestMillerLists(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
@@ -103,10 +103,10 @@ namespace sib
             testBody.AddBonds(new Dictionary<Vector3, Bond>());
             testFace.AddBonds(new Dictionary<Vector3, Bond>());
 
-            List<Vector3> hexMillers = Miller.GetMillerIndecesForCell(CellType.HEX, CellVariation.SIMPLE);
-            List<Vector3> simpleMillers = Miller.GetMillerIndecesForCell(CellType.CUBIC, CellVariation.SIMPLE);
-            List<Vector3> bodyMillers = Miller.GetMillerIndecesForCell(CellType.CUBIC, CellVariation.BODY);
-            List<Vector3> faceMillers = Miller.GetMillerIndecesForCell(CellType.CUBIC, CellVariation.FACE);
+            List<Vector3> hexMillers = Miller.GetMillerIndicesForCell(CellType.HEX, CellVariation.SIMPLE);
+            List<Vector3> simpleMillers = Miller.GetMillerIndicesForCell(CellType.CUBIC, CellVariation.SIMPLE);
+            List<Vector3> bodyMillers = Miller.GetMillerIndicesForCell(CellType.CUBIC, CellVariation.BODY);
+            List<Vector3> faceMillers = Miller.GetMillerIndicesForCell(CellType.CUBIC, CellVariation.FACE);
 
             int testsFailed = 0;
             string debugString = "";
@@ -167,7 +167,7 @@ namespace sib
             } else {
                 debugString += testsFailed.ToString() + " tests failed\n";
             }
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
     }
 }

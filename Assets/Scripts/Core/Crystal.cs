@@ -213,7 +213,7 @@ namespace sib
                 ts.Milliseconds / 10);
             debugString += "Time elapsed in crystal building" + elapsedTime + "\n";
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
         }
 
         public HashSet<Atom> GetMillerAtoms(int h, int k , int l) {
