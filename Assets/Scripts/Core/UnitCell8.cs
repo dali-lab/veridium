@@ -6,6 +6,7 @@ namespace sib
 {
     public class UnitCell8 : UnitCell
     {
+        private int atomicNumber;
         private int numVertices;
         private Vector3 worldPosition;
         private float baseLength;
@@ -15,6 +16,7 @@ namespace sib
         private bool inverted;
 
         public UnitCell8() {
+            this.atomicNumber = 0;
             this.numVertices = 0;
             this.baseLength = 0;
             this.height = 0;
@@ -24,7 +26,7 @@ namespace sib
             this.inverted = false;
         }
 
-        public UnitCell8(Vector3 position, float baseLength, float height, bool inverted) {
+        public UnitCell8(int atomicNumber, Vector3 position, float baseLength, float height, bool inverted) {
             this.worldPosition = position;
             this.baseLength = baseLength;
             this.height = height;
@@ -56,7 +58,7 @@ namespace sib
             return atoms;
         }
 
-        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms, int atomicNumber, string elementName) {
+        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms) {
             if (this.numVertices == 0) {
                 return;
             }
@@ -64,8 +66,8 @@ namespace sib
             for ( int i = 0; i < this.numVertices; i ++ ) {
                 Vector3 relPosition = Constants.cell8BasicPositions[i];
                 Vector3 atomPosition = GenerateVertexPosition(relPosition);
-                Atom newAtom = new Atom(atomicNumber, elementName, atomPosition);
-                
+                Atom newAtom = new Atom(this.atomicNumber, atomPosition);
+
                 bool overlaps = false;
                 Atom duplicate;
                 if (crystalAtoms.TryGetValue(atomPosition, out duplicate)) {
@@ -213,8 +215,8 @@ namespace sib
             if (crystalCells.TryGetValue(newCellPos, out possibleDuplicate)) {
                 return;
             } else {
-                UnitCell8 newCell = new UnitCell8(newCellPos, this.baseLength, this.height, invert);
-                newCell.AddVertices(crystalAtoms, 0, "");
+                UnitCell8 newCell = new UnitCell8(this.atomicNumber, newCellPos, this.baseLength, this.height, invert);
+                newCell.AddVertices(crystalAtoms);
                 newCell.AddBonds(crystalBonds);
                 crystalCells[newCellPos] = newCell;
             }
