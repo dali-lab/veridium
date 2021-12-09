@@ -12,13 +12,13 @@ using sib;
 namespace SIB_Interaction{
     public class StructureBase : MonoBehaviour
     {
-        public GameObject structure;                // The structure on the podium
-        private bool grabbed;                       // Whether the structure has been grabbed by the user
-        public float respawnDistance = 1;           // Distance from the podium at which the structure should teleport home
-        public StructureBuilder structureBuilder;   // Reference to the structureBuilder which implements the construction of the structure
-        public float sideLength = 0.5f;             // Standard side length of a unit cell
-        public float sphereRadius = 0.075f;          // Radius of the spheres
-        public int planeIndex = 0;                   // Index of the currently visualized plane
+        public GameObject structure;                    // The structure on the podium
+        private bool grabbed;                           // Whether the structure has been grabbed by the user
+        public float respawnDistance = 1;               // Distance from the podium at which the structure should teleport home
+        public StructureBuilder structureBuilder;       // Reference to the structureBuilder which implements the construction of the structure
+        public float sideLength = 0.5f;                 // Standard side length of a unit cell
+        public float sphereRadius = 0.075f;             // Radius of the spheres
+        public int planeIndex = 0;                      // Index of the currently visualized plane
 
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
@@ -26,6 +26,8 @@ namespace SIB_Interaction{
             int atomicNumber = Coloration.GetNumberByName(element.name);
 
             structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius, atomicNumber);
+
+            planeIndex = 0;
 
         }
 

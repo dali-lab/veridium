@@ -136,7 +136,7 @@ public class Coloration
         if (ColorUtility.TryParseHtmlString(hex, out color)){
             return color;
         } else {
-            return new Color();
+            return Color.white;
         }
 
     }
