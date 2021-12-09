@@ -29,11 +29,11 @@ namespace sib
 
         public static void TestUnit6Millers(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
             string debugString = "";
-            UnitCell6 test = new UnitCell6(5, CellType.CUBIC, CellVariation.FACE, builder.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
+            UnitCell6 test = new UnitCell6(5, CellType.CUBIC, CellVariation.BODY, builder.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
             test.AddVertices(new Dictionary<Vector3, Atom>());
             test.AddBonds(new Dictionary<Vector3, Bond>());
             test.Draw(atomPrefab, linePrefab, builder);
-            List<Atom> millerAtoms = test.GetMillerAtoms(1, 0, 0);
+            List<Atom> millerAtoms = test.GetMillerAtoms(2, 0, 0);
             if (millerAtoms.Count > 0) {
                 debugString += "GetMillerAtoms returned atoms" + "\n";
                 //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
@@ -110,6 +110,8 @@ namespace sib
 
             int testsFailed = 0;
             string debugString = "";
+
+            debugString += "Hexagonals contains " + hexMillers.Count.ToString() + "vectors";
             foreach (Vector3 millerVec in hexMillers) {
                 int  h, k, l;
                 h = (int)millerVec.x;
@@ -123,6 +125,7 @@ namespace sib
                 }
             }
 
+            debugString += "Simple contains " + simpleMillers.Count.ToString() + "vectors";
             foreach (Vector3 millerVec in simpleMillers) {
                 int  h, k, l;
                 h = (int)millerVec.x;
@@ -136,6 +139,7 @@ namespace sib
                 }
             }
 
+            debugString += "Body contains " + bodyMillers.Count.ToString() + "vectors";
             foreach (Vector3 millerVec in bodyMillers) {
                 int  h, k, l;
                 h = (int)millerVec.x;
@@ -149,6 +153,7 @@ namespace sib
                 }
             }
 
+            debugString += "Face contains " + faceMillers.Count.ToString() + "vectors";
             foreach (Vector3 millerVec in faceMillers) {
                 int  h, k, l;
                 h = (int)millerVec.x;
@@ -163,7 +168,7 @@ namespace sib
             }
 
             if (testsFailed == 0) {
-                debugString = "All tests passed!";
+                debugString += "All tests passed!";
             } else {
                 debugString += testsFailed.ToString() + " tests failed\n";
             }

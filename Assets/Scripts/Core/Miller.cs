@@ -11,22 +11,31 @@ namespace sib
     public static class Miller
     {
         public static List<Vector3> GetMillerIndicesForCell(CellType type, CellVariation variation) {
+            if (type == CellType.HEX) {
+                return GetMillerIndicesForHexagonal();
+            }
             List<Vector3> millerIndices = new List<Vector3>();
             switch (variation) {
                 case CellVariation.SIMPLE:
-                    for ( int h = -1; h <= 1; h ++ ) {
-                        for ( int k = -1; k <= 1; k ++ ) {
-                            for ( int l = -1; l <= 1; l ++ ) {
-                                Vector3 millerIndex = new Vector3(h, k, l);
+                    for ( int h = 0; h <= 1; h ++ ) {
+                        for ( int k = 0; k <= 1; k ++ ) {
+                            for ( int l = 0; l <= 1; l ++ ) {
+                                if (!(h == 0 && k == 0 && l == 0)) {
+                                    Vector3 millerIndex = new Vector3(h, k, l);
+                                    millerIndices.Add(millerIndex);
+                                }
                             }
                         }
                     }
                     break;
                 case CellVariation.BODY:
-                    for ( int h = -1; h <= 1; h ++ ) {
-                        for ( int k = -1; k <= 1; k ++ ) {
-                            for ( int l = -1; l <= 1; l ++ ) {
-                                Vector3 millerIndex = new Vector3(h, k, l);
+                    for ( int h = 0; h <= 1; h ++ ) {
+                        for ( int k = 0; k <= 1; k ++ ) {
+                            for ( int l = 0; l <= 1; l ++ ) {
+                                if (!(h == 0 && k == 0 && l == 0)) {
+                                    Vector3 millerIndex = new Vector3(h, k, l);
+                                    millerIndices.Add(millerIndex);
+                                }
                             }
                         }
                     }
@@ -35,10 +44,13 @@ namespace sib
                     millerIndices.Add(new Vector3(0, 0, 2));
                     break;
                 default:
-                    for ( int h = -2; h <= 2; h ++ ) {
-                        for ( int k = -2; k <= 2; k ++ ) {
-                            for ( int l = -2; l <= 2; l ++ ) {
-                                Vector3 millerIndex = new Vector3(h, k, l);
+                    for ( int h = 0; h <= 2; h ++ ) {
+                        for ( int k = 0; k <= 2; k ++ ) {
+                            for ( int l = 0; l <= 2; l ++ ) {
+                                if (!(h == 0 && k == 0 && l == 0) && !(h == 2 && k == 2 && l == 2) && !(h == 2 && k == 1 && l == 1)) {
+                                    Vector3 millerIndex = new Vector3(h, k, l);
+                                    millerIndices.Add(millerIndex);
+                                }
                             }
                         }
                     }
@@ -48,11 +60,19 @@ namespace sib
         }
 
         public static List<Vector3> GetMillerIndicesForHexagonal() {
+            UnitCell8 hex = new UnitCell8(0, new Vector3(0, 0, 0), 0.2f, 0.4f, false);
+            hex.AddVertices(new Dictionary<Vector3, Atom>());
+            hex.AddBonds(new Dictionary<Vector3, Bond>());
             List<Vector3> hexagonalIndices = new List<Vector3>();
             for ( int h = -2; h <= 2; h ++ ) {
                 for ( int k = -2; k <= 2; k ++ ) {
                     for ( int l = -2; l <= 2; l ++ ) {
-                        Vector3 millerIndex = new Vector3(h, k, l);
+                        if (!(h == 0 && k == 0 && l == 0)) {
+                            if (hex.GetMillerAtoms(h, k, l).Count > 0) {
+                                Vector3 millerIndex = new Vector3(h, k, l);
+                                hexagonalIndices.Add(millerIndex);
+                            }
+                        }
                     }
                 }
             }
@@ -105,7 +125,7 @@ namespace sib
                 Vector3 normal = Vector3.Cross(lhs, rhs);
 
                 Plane millerPlane = new Plane(normal, startPoint);
-                if (millerPlane.GetDistanceToPoint(point) == 0 || (millerPlane.GetDistanceToPoint(point) % planarSeparation) == 0) {
+                if (millerPlane.GetDistanceToPoint(point) == 0) {
                     return true;
                 }
             }
