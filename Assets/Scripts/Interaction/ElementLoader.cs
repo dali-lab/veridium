@@ -16,18 +16,6 @@ namespace SIB_Interaction{
         public PTElement heldElement;
         public StructureBase structureBase;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
         protected override void OnSelectEntering(XRBaseInteractable interactable){
 
@@ -36,6 +24,8 @@ namespace SIB_Interaction{
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
             structureBase.ElementAdded(heldElement);
+
+            if(heldElement != null) GetComponent<AudioSource>().Play();
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot

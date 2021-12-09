@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
 using sib;
+using System.Linq;
 
 public class StructureBuilder : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class StructureBuilder : MonoBehaviour
 
     /// Crystal object being drawn to scene
     private Crystal crystal;
+    CellType cellType;
+    CellVariation cellVariation;
+    public int numPlanes;
+    public bool initialized {get; private set;}
 
     // Start is called before the first frame update
     void Start()
@@ -36,12 +41,34 @@ public class StructureBuilder : MonoBehaviour
         
     }
 
+    public void HighlightPlaneAtIndex(int index){
+        
+        if(!initialized) return;
+
+        foreach(KeyValuePair<Vector3, Atom> atom in crystal.atoms){
+            atom.Value.Unhighlight();
+        }
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count.ToString() + " planes found. Current plane: " + index.ToString();
+
+        Vector3 millerIndices = Miller.GetMillerIndicesForCell(cellType, cellVariation)[index];
+        
+        foreach (Atom atom in GetMillerAtoms((int) millerIndices.x, (int) millerIndices.y, (int) millerIndices.z)){
+
+            atom.Highlight();
+
+        }
+
+    }
+
     /**
-     * @function DestoryCell
+     * @function DestroyCell
      * Removes the crystal from the scene.
      */
     public void DestroyCell() {
         this.crystal.ClearCrystal(this.gameObject);
+
+        initialized = false;
     }
 
     /**
@@ -66,6 +93,17 @@ public class StructureBuilder : MonoBehaviour
      * Creates a crystal according to the given input specificaitons and draws * it to the scene. Times the runtime of processes for benchmarking
      */
     public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius, int atomicNumber = 0) {
+
+        // Reset the transform of the structure when building it
+        transform.parent.localPosition = Vector3.zero;
+        transform.parent.localScale = Vector3.one;
+        transform.parent.localRotation = Quaternion.identity;
+
+        cellType = type;
+        cellVariation = variation;
+        numPlanes = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count;
+        initialized = true;
+
         string debugString = "";
 
         Stopwatch stopwatch = new Stopwatch();

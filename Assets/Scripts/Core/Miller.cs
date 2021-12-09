@@ -10,7 +10,7 @@ namespace sib
 {
     public static class Miller
     {
-        public static List<Vector3> GetMillerIndecesForCell(CellType type, CellVariation variation) {
+        public static List<Vector3> GetMillerIndicesForCell(CellType type, CellVariation variation) {
             if (type == CellType.HEX) {
                 return GetMillerIndicesForHexagonal();
             }
