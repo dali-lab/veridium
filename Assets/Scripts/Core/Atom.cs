@@ -85,7 +85,7 @@ namespace sib
         public void Draw(GameObject atomPrefab, GameObject builder) {
             this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, this.position, Quaternion.identity);
             drawnObject.transform.SetParent(builder.transform);
-            drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(/*this.atomicNumber*/29);
+            drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
 
             if(metallic){
                 drawnObject.GetComponentInChildren<Renderer>().material.SetFloat("_Metallic", 1.0f);
@@ -104,7 +104,7 @@ namespace sib
         }
 
         public void Highlight(){
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.white);
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(atomicNumber));
             GetDrawnObject().GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
         }
 

@@ -51,7 +51,7 @@ namespace SIB_Interaction{
         public void Switch(bool right){
 
             planeIndex += right ? 1 : -1;
-            if(planeIndex > structureBuilder.numPlanes -1) planeIndex -= structureBuilder.numPlanes;
+            if(planeIndex > structureBuilder.numPlanes - 1) planeIndex -= structureBuilder.numPlanes;
             if(planeIndex < 0) planeIndex += structureBuilder.numPlanes;
 
             structureBuilder.HighlightPlaneAtIndex(planeIndex);

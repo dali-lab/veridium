@@ -35,9 +35,8 @@ namespace SIB_Interaction{
 
                 if (Mathf.Abs(input) > threshold){
 
-                    structureBase.Switch(input > 0);
-                    (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "debug6";
                     triggered = true;
+                    structureBase.Switch(input > 0);
 
                 }
 

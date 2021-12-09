@@ -29,7 +29,7 @@ public class StructureBuilder : MonoBehaviour
 
         // Tests.TestHex(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestHexCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
@@ -49,7 +49,7 @@ public class StructureBuilder : MonoBehaviour
             atom.Value.Unhighlight();
         }
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count.ToString() + " planes found";
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count.ToString() + " planes found. Current plane: " + index.ToString();
 
         Vector3 millerIndices = Miller.GetMillerIndicesForCell(cellType, cellVariation)[index];
         
