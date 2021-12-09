@@ -37,14 +37,14 @@ namespace sib
 
         // The Dictionary relating the posititions of each atom in the crystal  
         // structure to the atom itself
-        private Dictionary<Vector3, Atom> atoms;
+        public Dictionary<Vector3, Atom> atoms {get; private set;}
 
         // The Dictionary relating the positions of each bond in the crystal 
         // structure to the atom itself
-        private Dictionary<Vector3, Bond> bonds;
+        public Dictionary<Vector3, Bond> bonds {get; private set;}
 
         // The Dictionary relating the positions of each Unit cell in the crystal structure to the atom itself
-        private Dictionary<Vector3, UnitCell> unitCells;
+        public Dictionary<Vector3, UnitCell> unitCells {get; private set;}
 
         // The current drawing context for the crystal
         private CrystalState drawMode;

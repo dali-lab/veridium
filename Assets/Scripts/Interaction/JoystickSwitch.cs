@@ -10,19 +10,17 @@ namespace SIB_Interaction{
     public class JoystickSwitch : MonoBehaviour
     {
 
-        public InputActionProperty m_LeftHandMoveAction;
-        public InputActionProperty m_RightHandMoveAction;
+        public InputActionProperty m_HandMoveAction;
         public float threshold = 0.8f;
         public float resetThreshold = 0.2f;
         public StructureBase structureBase;
-        private bool triggered;
+        private bool triggered = false;
 
         public Vector2 ReadInput()
         {
-            var leftHandValue = m_LeftHandMoveAction.action?.ReadValue<Vector2>() ?? Vector2.zero;
-            var rightHandValue = m_RightHandMoveAction.action?.ReadValue<Vector2>() ?? Vector2.zero;
+            var HandValue = m_HandMoveAction.action?.ReadValue<Vector2>() ?? Vector2.zero;
 
-            return leftHandValue + rightHandValue;
+            return HandValue;
         }
 
         void Update(){
@@ -38,6 +36,7 @@ namespace SIB_Interaction{
                 if (Mathf.Abs(input) > threshold){
 
                     structureBase.Switch(input > 0);
+                    (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "debug6";
                     triggered = true;
 
                 }

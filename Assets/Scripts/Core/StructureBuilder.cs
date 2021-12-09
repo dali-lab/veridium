@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
 using sib;
+using System.Linq;
 
 public class StructureBuilder : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class StructureBuilder : MonoBehaviour
 
     /// Crystal object being drawn to scene
     private Crystal crystal;
+    CellType cellType;
+    CellVariation cellVariation;
+    public int numPlanes;
+    public bool initialized {get; private set;}
 
     // Start is called before the first frame update
     void Start()
@@ -36,13 +41,23 @@ public class StructureBuilder : MonoBehaviour
         
     }
 
-    public void HighlightPlane(int index){
+    public void HighlightPlaneAtIndex(int index){
+        
+        if(!initialized) return;
 
-        /*
-        foreach (Atom atom in GetPlanarAtoms(index)){
-            atom.GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(29));
-            atom.GetDrawnObject().GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
-        }*/
+        foreach(KeyValuePair<Vector3, Atom> atom in crystal.atoms){
+            atom.Value.Unhighlight();
+        }
+
+        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count.ToString() + " planes found";
+
+        Vector3 millerIndices = Miller.GetMillerIndicesForCell(cellType, cellVariation)[index];
+        
+        foreach (Atom atom in GetMillerAtoms((int) millerIndices.x, (int) millerIndices.y, (int) millerIndices.z)){
+
+            atom.Highlight();
+
+        }
 
     }
 
@@ -52,6 +67,8 @@ public class StructureBuilder : MonoBehaviour
      */
     public void DestroyCell() {
         this.crystal.ClearCrystal(this.gameObject);
+
+        initialized = false;
     }
 
     /**
@@ -81,6 +98,11 @@ public class StructureBuilder : MonoBehaviour
         transform.parent.localPosition = Vector3.zero;
         transform.parent.localScale = Vector3.one;
         transform.parent.localRotation = Quaternion.identity;
+
+        cellType = type;
+        cellVariation = variation;
+        numPlanes = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count;
+        initialized = true;
 
         string debugString = "";
 

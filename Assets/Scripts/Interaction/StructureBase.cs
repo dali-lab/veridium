@@ -18,6 +18,7 @@ namespace SIB_Interaction{
         public StructureBuilder structureBuilder;   // Reference to the structureBuilder which implements the construction of the structure
         public float sideLength = 0.5f;             // Standard side length of a unit cell
         public float sphereRadius = 0.075f;          // Radius of the spheres
+        public int planeIndex = 0;                   // Index of the currently visualized plane
 
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
@@ -25,8 +26,6 @@ namespace SIB_Interaction{
             int atomicNumber = Coloration.GetNumberByName(element.name);
 
             structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius, atomicNumber);
-
-            HighlightPlane(001);
 
         }
 
@@ -48,18 +47,15 @@ namespace SIB_Interaction{
 
             
         }
-        public void HighlightPlane(int index){
-
-            structureBuilder.HighlightPlane(index);
-
-        }
 
         public void Switch(bool right){
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = right ? "switched right" : "switched left";
+            planeIndex += right ? 1 : -1;
+            if(planeIndex > structureBuilder.numPlanes -1) planeIndex -= structureBuilder.numPlanes;
+            if(planeIndex < 0) planeIndex += structureBuilder.numPlanes;
+
+            structureBuilder.HighlightPlaneAtIndex(planeIndex);
 
         }
-
-
     }
 }

@@ -115,5 +115,15 @@ namespace sib
         public GameObject GetDrawnObject() {
             return this.drawnObject;
         }
+
+        public void Highlight(){
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.white);
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
+        }
+
+        public void Unhighlight(){
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.black);
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.DisableKeyword("_EMISSION");
+        }
     }
 }
