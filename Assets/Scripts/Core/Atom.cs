@@ -20,18 +20,14 @@ namespace sib
         // The number of protons in the atom
         private int atomicNumber;
 
-        // The name of the element
-        private string element;
-
         private GameObject drawnObject;
         private bool metallic = true;
 
         /**
          * Constructor - creates a new Atom object
          */
-        public Atom(int atomicNumber, string element, Vector3 position) {
+        public Atom(int atomicNumber, Vector3 position) {
             this.atomicNumber = atomicNumber;
-            this.element = element;
             this.position = position;
             this.drawnObject = null;
         }
@@ -61,15 +57,6 @@ namespace sib
         }
 
         /**
-         * @function getElement
-         * @return  string     The Atom's name
-         * Returns the name the Atom
-         */
-        public string GetElement() {
-            return this.element;
-        }
-
-        /**
          * @function getPosition
          * @return  Vector3     The Atom's  position
          * Returns the position of the Atom
@@ -84,7 +71,7 @@ namespace sib
          */
         public string Debug() {
             string output = "";
-            output += "Atom " + this.element + " Atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
+            output += "Atom w atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
             return output;
         }
         

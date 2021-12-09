@@ -7,7 +7,7 @@ namespace sib
     public abstract class UnitCell
     {
         public abstract List<Atom> GetMillerAtoms(int h, int k, int l);
-        public abstract void AddVertices(Dictionary<Vector3, Atom> crystalAtoms, int atomicNumber, string elementName);
+        public abstract void AddVertices(Dictionary<Vector3, Atom> crystalAtoms);
         public abstract void AddBonds(Dictionary<Vector3, Bond> crystalBonds);
         public abstract Atom[] GetVertices();
         public abstract List<Bond> GetBonds();

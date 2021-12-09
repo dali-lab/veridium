@@ -10,9 +10,9 @@ namespace sib
     {
         public static void TestHex(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Builing Hex"; 
-            UnitCell test = new UnitCell8(builder.transform.position, 0.2f, 0.2f, true);
+            UnitCell test = new UnitCell8(0, builder.transform.position, 0.2f, 0.2f, true);
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex Initialized"; 
-            test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
+            test.AddVertices(new Dictionary<Vector3, Atom>());
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Vertices Added"; 
             test.AddBonds(new Dictionary<Vector3, Bond>());
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds Added"; 
@@ -29,8 +29,8 @@ namespace sib
 
         public static void TestUnit6Millers(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
             string debugString = "";
-            UnitCell6 test = new UnitCell6(CellType.CUBIC, CellVariation.FACE, builder.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
-            test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
+            UnitCell6 test = new UnitCell6(5, CellType.CUBIC, CellVariation.FACE, builder.transform.position, 0.3f, 0.3f, 0.3f, 0, 0, 0);
+            test.AddVertices(new Dictionary<Vector3, Atom>());
             test.AddBonds(new Dictionary<Vector3, Bond>());
             test.Draw(atomPrefab, linePrefab, builder);
             List<Atom> millerAtoms = test.GetMillerAtoms(1, 0, 0);
@@ -49,8 +49,8 @@ namespace sib
 
         public static void TestUnit8Millers(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
             string debugString = "";
-            UnitCell8 test = new UnitCell8(builder.transform.position, 0.2f, 0.4f, false);
-            test.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
+            UnitCell8 test = new UnitCell8(0, builder.transform.position, 0.2f, 0.4f, false);
+            test.AddVertices(new Dictionary<Vector3, Atom>());
             test.AddBonds(new Dictionary<Vector3, Bond>());
             test.Draw(atomPrefab, linePrefab, builder);
             List<Atom> millerAtoms = test.GetMillerAtoms(-1, 0, 0);
@@ -88,15 +88,15 @@ namespace sib
         }
 
         public static void TestMillerLists(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
-            UnitCell8 testHex = new UnitCell8(builder.transform.position, 0.2f, 0.4f, false);
-            UnitCell6 testSimple = new UnitCell6(CellType.CUBIC, CellVariation.SIMPLE, builder.transform.position, 0.2f, 0.2f, 0.2f, 90, 90, 90);
-            UnitCell6 testBody = new UnitCell6(CellType.CUBIC, CellVariation.BODY, builder.transform.position, 0.2f, 0.2f, 0.2f, 90, 90, 90);
-            UnitCell6 testFace = new UnitCell6(CellType.CUBIC, CellVariation.FACE, builder.transform.position, 0.2f, 0.2f, 0.2f, 90, 90, 90);
+            UnitCell8 testHex = new UnitCell8(0, builder.transform.position, 0.2f, 0.4f, false);
+            UnitCell6 testSimple = new UnitCell6(0, CellType.CUBIC, CellVariation.SIMPLE, builder.transform.position, 0.2f, 0.2f, 0.2f, 90, 90, 90);
+            UnitCell6 testBody = new UnitCell6(0, CellType.CUBIC, CellVariation.BODY, builder.transform.position, 0.2f, 0.2f, 0.2f, 90, 90, 90);
+            UnitCell6 testFace = new UnitCell6(0, CellType.CUBIC, CellVariation.FACE, builder.transform.position, 0.2f, 0.2f, 0.2f, 90, 90, 90);
 
-            testHex.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
-            testSimple.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
-            testBody.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
-            testFace.AddVertices(new Dictionary<Vector3, Atom>(), 0, "");
+            testHex.AddVertices(new Dictionary<Vector3, Atom>());
+            testSimple.AddVertices(new Dictionary<Vector3, Atom>());
+            testBody.AddVertices(new Dictionary<Vector3, Atom>());
+            testFace.AddVertices(new Dictionary<Vector3, Atom>());
             
             testHex.AddBonds(new Dictionary<Vector3, Bond>());
             testSimple.AddBonds(new Dictionary<Vector3, Bond>());
