@@ -6,26 +6,30 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 
 namespace SIB_Animation{
+
     public class Anim_SpinUp : AnimationBase
     {
 
-        Vector3 originalPosition;
-        Vector3 originalScale;
-        Quaternion originalRotation;
+        /// <summary>
+        /// Implements a spin up animation. Includes a rotation, ease in scaling,
+        /// and ease in upward translation.
+        /// </summary>
 
-        public float maxHeight = 0.0f;
-        public float startHeight = -0.5f;
-        public int numRotations = 1;
+        Vector3 originalPosition;           // Initial local position of the gameObject
+        Vector3 originalScale;              // Initial local scale of the gameObject
+        Quaternion originalRotation;        // Initial local rotation of the gameObject
+        public float maxHeight = 0.0f;      // Distance above the initial height that the object will go
+        public float startHeight = -0.5f;   // Distance below the initial height that the object will start
+        public int numRotations = 1;        // Number of complete rotations that the object should complete
 
         // Update is called once per frame
         protected override void UpdateAnim()
         {
 
-            base.Update();
-
-            gameObject.transform.localPosition = originalPosition + new Vector3(0, Height(elapsedTime), 0);
-            gameObject.transform.localScale = originalScale * Scale(elapsedTime);
-            gameObject.transform.localRotation = originalRotation * Rotation(elapsedTime);
+            // Update the transform of the gameObject
+            gameObject.transform.localPosition = originalPosition + new Vector3(0, Height(elapsedTimePercent), 0);
+            gameObject.transform.localScale = originalScale * Scale(elapsedTimePercent);
+            gameObject.transform.localRotation = originalRotation * Rotation(elapsedTimePercent);
             
         }
 
@@ -34,10 +38,12 @@ namespace SIB_Animation{
 
             base.Play();
 
+            // Store the initial tranform of the gameObject
             originalPosition = gameObject.transform.localPosition;
             originalScale = gameObject.transform.localScale;
             originalRotation = gameObject.transform.localRotation;
 
+            // If the object is interactable, it shouldn't be during the animation
             if (GetComponent<XRGrabInteractable>() != null) GetComponent<XRGrabInteractable>().enabled = false;
 
         }
@@ -47,6 +53,7 @@ namespace SIB_Animation{
 
             base.Pause();
 
+            // If the animation stops, it should be interactable again.
             if (GetComponent<XRGrabInteractable>() != null) GetComponent<XRGrabInteractable>().enabled = true;
 
         }
@@ -56,41 +63,33 @@ namespace SIB_Animation{
 
             base.Reset();
 
+            // Reset the transform of the gameObject. Should only happen if the animation has already played or bad things may happen
             gameObject.transform.localPosition = originalPosition;
             gameObject.transform.localScale = originalScale;
             gameObject.transform.localRotation = originalRotation;
 
         }
 
+        // Finds the relative vertical offset 
         private float Height(float time){
-            
-            float percentDone = time/duration;
 
-            return (float) EaseIn(time/duration) * (maxHeight - startHeight) + startHeight;
+            return (float) EaseOut(time) * (maxHeight - startHeight) + startHeight;
 
         }
 
+        // Finds the relative uniform scale for the object
         private float Scale(float time){
 
-            return EaseIn(time/duration);
+            return EaseOut(time);
 
         }
 
+        // Finds the relative rotation
         private Quaternion Rotation(float time){
 
-            float rotation = EaseIn(time/duration) * numRotations * 360;
+            float rotation = EaseOut(time) * numRotations * 360;
 
             return Quaternion.Euler(0, rotation, 0);
-
-        }
-
-        private float EaseIn(float percent){
-
-            if (percent >= 0.99) return 1f;
-
-            if (percent < 0) return 0f;
-
-            return (float) (2 / (1 + Mathf.Pow(2.71828182846f, -6f * percent)) - 0.995f);
 
         }
     }

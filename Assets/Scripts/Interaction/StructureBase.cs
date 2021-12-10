@@ -43,18 +43,28 @@ namespace SIB_Interaction{
 
         }
 
+        // Enables infinite view for the crystal lattice
         public void InfiniteView(){
 
 
 
         }
 
+        // Enables multi-cell view for the crystal
         public void MultiCellView(){
 
 
             
         }
 
+        // Enables single cell view for the crystal
+        public void SingleCellView(){
+
+
+
+        }
+
+        // Called by joystick switch, switches the plane index up or down
         public void Switch(bool right){
 
             planeIndex += right ? 1 : -1;

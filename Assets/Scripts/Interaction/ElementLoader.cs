@@ -13,8 +13,9 @@ namespace SIB_Interaction{
         /// Extends XRSocketInteractor
         /// </summary>
 
-        public PTElement heldElement;
-        public StructureBase structureBase;
+        public PTElement heldElement;           // Current element in the slot
+        public StructureBase structureBase;     // StructureBase that this loads elements for
+
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
         protected override void OnSelectEntering(XRBaseInteractable interactable){
