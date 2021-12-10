@@ -560,24 +560,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13186e61fdd044a88a1665435637374c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LeftHandMoveAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Hand Move
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: df33829e-260b-49c4-b949-28d3b10cfed3
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_RightHandMoveAction:
+  m_HandMoveAction:
     m_UseReference: 0
     m_Action:
-      m_Name: Right Hand Move
+      m_Name: 
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 776e8c06-fce3-4729-b9aa-e9b60b5b4938
+      m_Id: 
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []

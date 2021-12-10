@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using sib;
+using SIB_Animation;
 
 /// <summary>
 /// StructureBase controls the main structure on the podium 
@@ -19,6 +20,8 @@ namespace SIB_Interaction{
         public float sideLength = 0.5f;                 // Standard side length of a unit cell
         public float sphereRadius = 0.075f;             // Radius of the spheres
         public int planeIndex = 0;                      // Index of the currently visualized plane
+        public Anim_SpinUp spinUpAnimation;             // The animation that spawns this structure in
+
 
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
@@ -28,6 +31,8 @@ namespace SIB_Interaction{
             structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius, atomicNumber);
 
             planeIndex = 0;
+
+            //if (spinUpAnimation != null) spinUpAnimation.PlayFromStart();
 
         }
 
