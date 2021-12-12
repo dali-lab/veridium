@@ -14,9 +14,9 @@ namespace SIB_Animation{
         /// FinishedEvent. 
         /// </summary>
 
-        public bool playOnStart;                                // Whether this animation should begin playing immediately
+        public bool playOnStart, indefiniteDuration;            // Whether this animation should begin playing immediately, and whether it should ever stop
         public float duration = 2;                              // Total length of the animation
-        UnityEvent FinishedEvent;                               // Event invoked when the animation is finished
+        public UnityEvent FinishedEvent {get; private set;}     // Event invoked when the animation is finished
         protected float elapsedTime = 0, elapsedTimePercent;    // Total time since the animation has started and time as a fraction of duration
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
@@ -53,7 +53,7 @@ namespace SIB_Animation{
             }
 
             // If the animation has run its course, stop it
-            if (elapsedTime >= duration) FinishedPlaying();
+            if (!indefiniteDuration && elapsedTime >= duration) FinishedPlaying();
 
         }
 
@@ -61,11 +61,10 @@ namespace SIB_Animation{
         public virtual void Play(){
 
             // Start the animation over if it is already at its end
-            if(elapsedTime >= duration) {
+            if(!indefiniteDuration && elapsedTime >= duration) {
 
-                PlayFromStart();
-
-                return;
+                elapsedTime = 0;
+                elapsedTimePercent = 0;
 
             }
 
@@ -75,7 +74,7 @@ namespace SIB_Animation{
 
         }
 
-        // Update function for the animation, will only be called if playing is true
+        // Update function for the animation, will only be called if playing is true or scrubbing
         protected virtual void UpdateAnim(){
 
         }
@@ -95,14 +94,34 @@ namespace SIB_Animation{
 
         }
 
+        public virtual void PlayFromEnd(){
+
+            Play();
+            Pause();
+
+            elapsedTime = duration;
+            elapsedTimePercent = 1;
+
+            UpdateAnim();
+
+        }
+
         // Resets the animation. Overriden by individual animations
-        public virtual void Reset(){
+        public void Reset(){
 
             elapsedTime = 0;
             elapsedTimePercent = 0;
+            FinishedEvent = new UnityEvent();
 
             // Animations collect information when they start playing. Resetting before then can break things
-            if (!begunPlaying) return;
+            if (begunPlaying) ResetChild();
+
+            begunPlaying = false;
+
+        }
+
+        // This is a separate function so that it can be canceled in the child by Reset
+        protected virtual void ResetChild(){
 
         }
 
@@ -112,6 +131,20 @@ namespace SIB_Animation{
             Pause();
 
             FinishedEvent.Invoke();
+
+        }
+
+        // Scrubs the animation backward or forward depending on the sign of time delta
+        public void Scrub(float timeDelta){
+                
+            elapsedTime += timeDelta;
+
+            elapsedTimePercent = elapsedTime/duration;
+
+            UpdateAnim();
+
+            // If the animation has run its course, stop it
+            if (!indefiniteDuration && (elapsedTime >= duration || elapsedTime < 0)) FinishedPlaying();
 
         }
 
@@ -137,7 +170,7 @@ namespace SIB_Animation{
             // 2pi/3
             float c4 = (2 * Mathf.PI) / 3;
 
-            // 2^(-10x) * sin((10x - 3/4) 2pi/3) +1
+            // 2^(-10x) * sin(20pi*x/3 - pi/2) + 1
             return Mathf.Pow(2f, -10f * x) * Mathf.Sin((x * 10f - 0.75f) * c4) + 1;
 
         }

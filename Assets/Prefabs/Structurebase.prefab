@@ -191,7 +191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStart: 0
-  duration: 2
+  indefiniteDuration: 0
+  duration: 1.5
   maxHeight: 0
   startHeight: -0.5
   numRotations: 1

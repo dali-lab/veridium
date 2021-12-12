@@ -32,7 +32,7 @@ namespace SIB_Interaction{
 
             planeIndex = 0;
 
-            //if (spinUpAnimation != null) spinUpAnimation.PlayFromStart();
+            if (spinUpAnimation != null) spinUpAnimation.PlayFromStart();
 
         }
 

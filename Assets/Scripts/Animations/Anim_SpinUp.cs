@@ -58,15 +58,19 @@ namespace SIB_Animation{
 
         }
 
-        public override void Reset()
+        protected override void ResetChild()
         {
 
-            base.Reset();
+            base.ResetChild();
 
             // Reset the transform of the gameObject. Should only happen if the animation has already played or bad things may happen
             gameObject.transform.localPosition = originalPosition;
             gameObject.transform.localScale = originalScale;
             gameObject.transform.localRotation = originalRotation;
+
+            originalPosition = Vector3.zero;
+            originalRotation = Quaternion.identity;
+            originalScale = Vector3.one;
 
         }
 

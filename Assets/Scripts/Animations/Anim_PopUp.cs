@@ -34,14 +34,17 @@ namespace SIB_Animation{
 
         }
 
-        public override void Reset()
+        protected override void ResetChild()
         {
 
-            base.Reset();
+            base.ResetChild();
 
             // Resets the transform to initial conditions
             gameObject.transform.localPosition = originalPosition;
             gameObject.transform.localScale = originalScale;
+
+            originalPosition = Vector3.zero;
+            originalScale = Vector3.one;
         
         }
 
