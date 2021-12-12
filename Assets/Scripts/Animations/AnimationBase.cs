@@ -17,9 +17,11 @@ namespace SIB_Animation{
         public bool playOnStart, indefiniteDuration;            // Whether this animation should begin playing immediately, and whether it should ever stop
         public float duration = 2;                              // Total length of the animation
         public UnityEvent FinishedEvent {get; private set;}     // Event invoked when the animation is finished
-        protected float elapsedTime = 0, elapsedTimePercent;    // Total time since the animation has started and time as a fraction of duration
+        public float elapsedTime {get; private set;}            // Total time since the animation has started
+        protected float elapsedTimePercent;                     // Time as a fraction of duration
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
+
 
         void Awake(){
 
@@ -135,9 +137,9 @@ namespace SIB_Animation{
         }
 
         // Scrubs the animation backward or forward depending on the sign of time delta
-        public void Scrub(float timeDelta){
+        public void Scrub(float newTime){
                 
-            elapsedTime += timeDelta;
+            elapsedTime = newTime;
 
             elapsedTimePercent = elapsedTime/duration;
 
@@ -148,31 +150,5 @@ namespace SIB_Animation{
 
         }
 
-        // Exponential easing out
-        protected float EaseOut(float x){
-
-            // Function is only valid between 0 and 1
-            if (x >= 0.99) return 1f;
-            if (x < 0) return 0f;
-
-            // 2/(1+e^-6x) - 1
-            return (float) (2 / (1 + Mathf.Pow(2.71828182846f, -6f * x)) - 0.995f);
-
-        }
-
-        // Elastic easing out
-        protected float EaseOutElastic(float x){
-
-            // Function is only valid between 0 and 1
-            if (x >= 0.99) return 1f;
-            if (x < 0) return 0f;
-
-            // 2pi/3
-            float c4 = (2 * Mathf.PI) / 3;
-
-            // 2^(-10x) * sin(20pi*x/3 - pi/2) + 1
-            return Mathf.Pow(2f, -10f * x) * Mathf.Sin((x * 10f - 0.75f) * c4) + 1;
-
-        }
     }
 }

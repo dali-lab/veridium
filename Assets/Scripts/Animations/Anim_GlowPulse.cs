@@ -12,9 +12,14 @@ namespace SIB_Animation{
         /// be set to pulse indefinitely until stopped.
         /// </summary>
 
-        public Color emissionColor;         // Color that this object should glow. In most cases, should be set to the material's albedo
-        float blinksPerSecond = 0.5f;       // Number of bright peaks of the sin wave per second
-        float minIntensity = 0.5f;          // Minimum intensity of the glow effect. The emission will oscillate between the minimum and full brightness
+        public Color emissionColor;             // Color that this object should glow. In most cases, should be set to the material's albedo
+        public float blinksPerSecond = 0.5f;    // Number of bright peaks of the sin wave per second
+        public float minIntensity = 0.5f;       // Minimum intensity of the glow effect. The emission will oscillate between the minimum and full brightness
+
+
+        public Anim_GlowPulse(){
+            indefiniteDuration = true;
+        }
 
         protected override void UpdateAnim()
         {
@@ -50,7 +55,9 @@ namespace SIB_Animation{
 
             float angle = time * 2 * Mathf.PI * blinksPerSecond;
 
-            return Mathf.Sin(angle) * (1 - minIntensity) + minIntensity;
+            float brightness = Mathf.Sin(angle);
+
+            return brightness;
 
         }
     }

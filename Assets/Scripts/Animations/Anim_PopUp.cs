@@ -51,14 +51,14 @@ namespace SIB_Animation{
         // Finds the updated relative position of the object
         private Vector3 Position(float time){
             
-            return Vector3.Lerp(startOffset, endOffset, EaseOutElastic(time));
+            return Vector3.Lerp(startOffset, endOffset, Easing.EaseOut(time, Easing.EasingType.Elastic));
 
         }
 
         // Finds the updated relative uniform scale of the object
         private float Scale(float time){
 
-            return EaseOut(time);
+            return Easing.EaseOut(time, Easing.EasingType.Exponential);
 
         }
     }
