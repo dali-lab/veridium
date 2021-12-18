@@ -144,6 +144,16 @@ namespace sib
                     this.gamma = 90;
 
                     break;
+                case CellType.RHOMBO:
+                    this.a = a;
+                    this.b = a;
+                    this.c = a;
+
+                    this.alpha = alpha;
+                    this.beta = alpha;
+                    this.gamma = alpha;
+
+                    break;
                 case CellType.MONO:
                     this.a = a;
                     this.b = b;
@@ -240,13 +250,23 @@ namespace sib
             if (this.numVertices < 0) {
                 return;
             }
+            string debugString = "";
             int[] vertexIndices = Constants.cell6VariationMap[this.structure];
             int cellIndex = 0;
+            debugString += "Generating vertices \n";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
             foreach ( int index in vertexIndices ) {
                 Vector3 atomPosition = GenerateVertexPosition(this.worldPosition, Constants.cell6BasicPositions[index], 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
 
+                debugString += "Index " + index.ToString()+ " atom position " + atomPosition.ToString() + "\n";
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
+
                 Atom newAtom = new Atom(this.atomicNumber, atomPosition);
+
+                debugString += "Atom initialized \n";
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
+
                 bool overlaps = false;
                 Atom duplicate;
                 if (crystalAtoms.TryGetValue(atomPosition, out duplicate)) {
@@ -259,6 +279,9 @@ namespace sib
                     this.vertices[cellIndex] = newAtom;
                 }
                 cellIndex ++;
+
+                debugString += "Atom added to dictionary \n";
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
             }
         }
 
@@ -274,11 +297,22 @@ namespace sib
         public Vector3 GenerateVertexPosition(Vector3 unitCellPosition, Vector3 vertexPosRel, 
             float a, float b, float c, float alpha, float beta, float gamma)
         {
-            float x, y, z;
-            x = unitCellPosition.x + (vertexPosRel.x * (a/2));
-            y = unitCellPosition.y + (vertexPosRel.y * (b/2));
-            z = unitCellPosition.z + (vertexPosRel.z * (c/2));
-            return new Vector3(x, y, z);
+            Vector3 a1, a2, a3;
+
+            float cx = c * Mathf.Cos(Mathf.Deg2Rad * beta);
+            float cy = c * (Mathf.Cos(Mathf.Deg2Rad * alpha) - Mathf.Cos(Mathf.Deg2Rad * beta) * Mathf.Cos(Mathf.Deg2Rad * gamma)) / (Mathf.Sin(Mathf.Deg2Rad * gamma));
+            float cz = Mathf.Sqrt(Mathf.Abs(Mathf.Pow(c, 2) - Mathf.Pow(cx, 2) - Mathf.Pow(cy, 2)));
+
+            a1 = Vector3.right * a;
+            a2 = (Vector3.right * (b * Mathf.Cos(Mathf.Deg2Rad * gamma))) + (Vector3.up * (b * Mathf.Sin(Mathf.Deg2Rad * gamma)));
+            a3 = new Vector3(cx, cy, cz);
+
+            Vector3 origin = -(1.0f / 2.0f) * (a1 + a2 + a3);
+            Vector3 primitiveCoordinateRel = vertexPosRel + new Vector3(1, 1, 1);
+            Vector3 primitiveCoordinate = (1.0f/2.0f) * (primitiveCoordinateRel.x * a1 + primitiveCoordinateRel.y * a2 + primitiveCoordinateRel.z * a3);
+            Vector3 normalizedCoordinate = primitiveCoordinate + origin;
+            
+            return unitCellPosition + normalizedCoordinate;
         }
 
         /**
@@ -430,23 +464,33 @@ namespace sib
                 Vector3.down
             };
 
+            Vector3 a1, a2, a3;
+
+            float cx = c * Mathf.Cos(Mathf.Deg2Rad * this.beta);
+            float cy = c * (Mathf.Cos(Mathf.Deg2Rad * this.alpha) - Mathf.Cos(Mathf.Deg2Rad * this.beta) * Mathf.Cos(Mathf.Deg2Rad * this.gamma)) / (Mathf.Sin(Mathf.Deg2Rad * this.gamma));
+            float cz = Mathf.Sqrt(Mathf.Pow(c, 2) - Mathf.Pow(cx, 2) - Mathf.Pow(cy, 2));
+
+            a1 = Vector3.right * this.a;
+            a2 = (Vector3.right * (this.b * Mathf.Cos(Mathf.Deg2Rad * this.gamma))) + (Vector3.up * (this.b * Mathf.Sin(Mathf.Deg2Rad * this.gamma)));
+            a3 = new Vector3(cx, cy, cz);
+
             // Loop that creates and verfies validity of new unit cells in each 
             // possible adjacent position
             int index = 0;
 
             foreach (Vector3 direction in possibleDirections) {
                 // Determines position of new Unit Cell
-                float translation = 1;
+                Vector3 translation = new Vector3(0, 0, 0);
 
-                if (direction == Vector3.forward || direction == Vector3.back) {
-                    translation = this.a;
-                } else if (direction == Vector3.right || direction == Vector3.left) {
-                    translation = this.b;
+                if (direction == Vector3.right || direction == Vector3.left) {
+                    translation = a1*direction.x;
                 } else if (direction == Vector3.up || direction == Vector3.down) {
-                    translation = this.c;
+                    translation = -a2*direction.y;
+                } else if (direction == Vector3.forward || direction == Vector3.back) {
+                    translation = a3*direction.z;
                 }
 
-                Vector3 newCellPos = this.worldPosition + (direction * translation);
+                Vector3 newCellPos = this.worldPosition + translation;
 
                 debugString += "Pass " + index.ToString() + "new Cell Position " + newCellPos.ToString();
 

@@ -27,7 +27,15 @@ public class StructureBuilder : MonoBehaviour
         // Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestTriclinic(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestMonoclinic(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestTriclinicCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestMonoClinicCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestRhomboCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestRhombohedral(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestOrthoCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
+        //Tests.TestTetraCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
     // Update is called once per frame

@@ -8,6 +8,44 @@ namespace sib
 {
     public static class Tests
     {
+
+
+        public static void TestRhombohedral(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            string debugString = "TestRhombo called \n";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
+
+            UnitCell test = new UnitCell6(0, CellType.RHOMBO, CellVariation.SIMPLE, builder.transform.position, 0.3f, 0.3f, 0.3f, 60, 60, 60);
+
+            debugString += "Unit Cell Initialized \n";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
+
+            test.AddVertices(new Dictionary<Vector3, Atom>());
+
+            debugString += "Vertices added \n";
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
+
+            test.AddBonds(new Dictionary<Vector3, Bond>());
+
+            debugString += test.Debug();
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
+
+            test.Draw(atomPrefab, linePrefab, builder);
+        }
+
+        public static void TestMonoclinic(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            UnitCell test = new UnitCell6(0, CellType.MONO, CellVariation.BASE, builder.transform.position, 0.3f, 0.3f, 0.3f, 90, 90, 120);
+            test.AddVertices(new Dictionary<Vector3, Atom>());
+            test.AddBonds(new Dictionary<Vector3, Bond>());
+            test.Draw(atomPrefab, linePrefab, builder);
+        }
+
+        public static void TestTriclinic(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            UnitCell test = new UnitCell6(0, CellType.TRI, CellVariation.SIMPLE, builder.transform.position, 0.5f, 0.3f, 0.3f, 110, 70, 120);
+            test.AddVertices(new Dictionary<Vector3, Atom>());
+            test.AddBonds(new Dictionary<Vector3, Bond>());
+            test.Draw(atomPrefab, linePrefab, builder);
+        }
+
         public static void TestHex(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Builing Hex"; 
             UnitCell test = new UnitCell8(0, builder.transform.position, 0.2f, 0.2f, true);
@@ -18,6 +56,41 @@ namespace sib
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Bonds Added"; 
             test.Draw(atomPrefab, linePrefab, builder);
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Hex drawn"; 
+        }
+
+        public static void TestOrthoCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            Crystal test = new Crystal(builder.transform.position);
+            test.SetState(CrystalState.INFINITE);
+            test.Construct(CellType.ORTHO, CellVariation.BODY, 0.3f, 0.4f, 0.5f, 90, 90, 90, 0, 2);
+            test.Draw(atomPrefab, linePrefab, builder);
+        }
+
+        public static void TestTetraCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            Crystal test = new Crystal(builder.transform.position);
+            test.SetState(CrystalState.INFINITE);
+            test.Construct(CellType.TETRA, CellVariation.BODY, 0.3f, 0.3f, 0.6f, 90, 90, 90, 0, 2);
+            test.Draw(atomPrefab, linePrefab, builder);
+        }
+
+        public static void TestRhomboCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            Crystal test = new Crystal(builder.transform.position);
+            test.SetState(CrystalState.INFINITE);
+            test.Construct(CellType.RHOMBO, CellVariation.SIMPLE, 0.3f, 0.3f, 0.3f, 60, 60, 60, 0, 2);
+            test.Draw(atomPrefab, linePrefab, builder);
+        }
+
+        public static void TestTriclinicCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            Crystal test = new Crystal(builder.transform.position);
+            test.SetState(CrystalState.INFINITE);
+            test.Construct(CellType.TRI, CellVariation.SIMPLE, 0.3f, 0.4f, 0.5f, 100, 70, 120, 0, 2);
+            test.Draw(atomPrefab, linePrefab, builder);
+        }
+
+        public static void TestMonoClinicCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+            Crystal test = new Crystal(builder.transform.position);
+            test.SetState(CrystalState.INFINITE);
+            test.Construct(CellType.MONO, CellVariation.BASE, 0.3f, 0.4f, 0.5f, 90, 90, 120, 0, 2);
+            test.Draw(atomPrefab, linePrefab, builder);
         }
 
         public static void TestHexCrystal(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
