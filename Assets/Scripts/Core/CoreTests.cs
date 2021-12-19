@@ -8,8 +8,6 @@ namespace sib
 {
     public static class Tests
     {
-
-
         public static void TestRhombohedral(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
             string debugString = "TestRhombo called \n";
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;

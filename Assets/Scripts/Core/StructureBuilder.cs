@@ -102,7 +102,7 @@ public class StructureBuilder : MonoBehaviour
 
         // Adds Atoms and bonds to the crystal
         stopwatch.Start();
-        this.crystal.Construct(type, variation, sideLength, sideLength, sideLength, 90, 90, 90, atomicNumber, 0);
+        this.crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 2);
         stopwatch.Stop();
 
         ts = stopwatch.Elapsed;

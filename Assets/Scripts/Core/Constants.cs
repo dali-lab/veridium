@@ -20,6 +20,16 @@ namespace sib
         // The maximum number of vertices in an 8-sided unit cell
         public static int cell8Vertices = 15;
 
+        // Default values for unit cell side lengths
+        public static float defaultA = 0.5f;
+        public static float defaultB = 0.6f;
+        public static float defaultC = 0.4f;
+
+        // Default values for unit cell angles
+        public static float defaultAlpha = 60;
+        public static float defaultBeta = 70;
+        public static float defaultGamma = 80;
+
         // A list of the 15 points in a 6-sided cell - the first 
         // 8 are found in all 6-sided unit cells, the next 8 are found
         // in face-centered cells, and the last one is a center point
