@@ -159,17 +159,9 @@ namespace sib
                     this.b = b;
                     this.c = c;
 
-                    this.alpha = alpha;
-                    this.beta = beta;
+                    this.alpha = 90;
+                    this.beta = 90;
                     this.gamma = gamma;
-
-                    if ((alpha != 90 && beta != 90)) {
-                        this.alpha = 90;
-                    } else if (alpha != 90 && gamma != 90) {
-                        this.beta = 90;
-                    } else if (beta != 90 && gamma != 90) {
-                        this.gamma = 90;
-                    }
 
                     break;
                 case CellType.TRI:
