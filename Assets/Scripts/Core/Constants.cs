@@ -74,6 +74,7 @@ namespace sib
             new Vector3(0, 0, 0)        // 14
         };
 
+        // The array of 14 generic cell positions for an 8 sided unit cell
         public static Vector3[] cell8BasicPositions = new Vector3[] {
             // bottom half
             new Vector3(0, 0, -0.5f),                              // 0
@@ -93,6 +94,8 @@ namespace sib
             new Vector3(-(Mathf.Sqrt(3.0f)/2.0f), -0.5f, 0.5f)     // 13
         };
 
+        // The hashmap relating UnitCell6 variations to the indices of the 
+        // vertices in cell6BasicPositions that they contain
         public static Dictionary<CellVariation, int[]> cell6VariationMap = new Dictionary<CellVariation, int[]> {
             { CellVariation.SIMPLE, new int[] { 0, 1, 2, 3, 4, 5, 6, 7 } },
             { CellVariation.BASE, new int[] { 0, 1 , 2, 3, 4, 5, 6, 7, 8, 9 } },
@@ -111,6 +114,10 @@ namespace sib
             { CellType.HEX, new CellVariation[] { CellVariation.SIMPLE } }
         };
 
+        // An array of bonded atom indices for each atom in the UnitCell6
+        // The array at each index represents the list of atoms connected to 
+        // the atom of that index in cell6BasicPositions. The integer values
+        // represent other indices in cell6BasicPositions
         public static int[][] cell6BondMap = new int[][] {
             new int[] { 1, 2, 3 },
             new int[] { 0, 5, 6 },
@@ -129,6 +136,10 @@ namespace sib
             new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }
         };
 
+         // An array of bonded atom indices for each atom in the UnitCell8
+        // The array at each index represents the list of atoms connected to 
+        // the atom of that index in cell8BasicPositions. The integer values
+        // represent other indices in cell8BasicPositions
         public static int[][] cell8BondMap = new int[][] {
             new int[] { 1, 2, 3, 4, 5, 6 , 7 },     // 0
             new int[] { 0, 2, 3, 8 },              // 1
