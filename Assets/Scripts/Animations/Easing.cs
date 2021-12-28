@@ -13,7 +13,8 @@ namespace SIB_Animation{
             Quadratic,
             Linear,
             Back,
-            Bounce
+            Bounce,
+            Pointer
         };
 
         // Main function
@@ -56,6 +57,16 @@ namespace SIB_Animation{
             }
 
             return x;
+        }
+
+        public static float EaseFull(float x, EasingType easingType){
+
+            switch (easingType){
+                case EasingType.Pointer:
+                    return EasePointer(x);
+            }
+
+            return (x);
         }
 
         // Exponential easing out
@@ -184,5 +195,14 @@ namespace SIB_Animation{
             return 1 - EaseOutBounce(1-x);
         }
 
+        private static float EasePointer(float x){
+
+            // Function is only valid between 0 and 1
+            if (x >= 0.995) return 1f;
+            if (x < 0) return 0f;
+
+
+            return 6.26f * (1f-Mathf.Cos(2*Mathf.PI*x)) * (x-1f)*(x-1f)*(x-1f)*(x-1f);
+        }
     }
 }

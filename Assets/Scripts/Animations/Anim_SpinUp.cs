@@ -14,7 +14,7 @@ namespace SIB_Animation{
         /// </summary>
 
         Vector3 originalPosition;           // Initial local position of the gameObject
-        Vector3 originalScale;              // Initial local scale of the gameObject
+        public float targetScale = 1;       // Initial local scale of the gameObject
         Quaternion originalRotation;        // Initial local rotation of the gameObject
         public float maxHeight = 0.0f;      // Distance above the initial height that the object will go
         public float startHeight = -0.5f;   // Distance below the initial height that the object will start
@@ -28,7 +28,7 @@ namespace SIB_Animation{
 
             // Update the transform of the gameObject
             gameObject.transform.localPosition = originalPosition + new Vector3(0, Height(elapsedTimePercent), 0);
-            gameObject.transform.localScale = originalScale * Scale(elapsedTimePercent);
+            gameObject.transform.localScale = targetScale * Vector3.one * Scale(elapsedTimePercent);
             gameObject.transform.localRotation = originalRotation * Rotation(elapsedTimePercent);
             
         }
@@ -40,7 +40,6 @@ namespace SIB_Animation{
 
             // Store the initial tranform of the gameObject
             originalPosition = gameObject.transform.localPosition;
-            originalScale = gameObject.transform.localScale;
             originalRotation = gameObject.transform.localRotation;
 
             // If the object is interactable, it shouldn't be during the animation
@@ -65,31 +64,32 @@ namespace SIB_Animation{
 
             // Reset the transform of the gameObject. Should only happen if the animation has already played or bad things may happen
             gameObject.transform.localPosition = originalPosition;
-            gameObject.transform.localScale = originalScale;
             gameObject.transform.localRotation = originalRotation;
 
             originalPosition = Vector3.zero;
             originalRotation = Quaternion.identity;
-            originalScale = Vector3.one;
 
         }
 
         // Finds the relative vertical offset 
-        private float Height(float time){
+        private float Height(float time)
+        {
 
             return (float) Easing.EaseOut(time, easingType) * (maxHeight - startHeight) + startHeight;
 
         }
 
         // Finds the relative uniform scale for the object
-        private float Scale(float time){
+        private float Scale(float time)
+        {
 
             return Easing.EaseOut(time, easingType);
 
         }
 
         // Finds the relative rotation
-        private Quaternion Rotation(float time){
+        private Quaternion Rotation(float time)
+        {
 
             float rotation = Easing.EaseOut(time, easingType) * numRotations * 360;
 

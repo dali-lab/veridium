@@ -43,6 +43,7 @@ namespace SIB_Interaction{
                     // Teleport home when not interacted for long enough
                     unHeldTimer = 0f;
                     gameObject.transform.position = home.transform.position;
+                    gameObject.transform.rotation = home.transform.rotation;
 
                     GetComponent<AudioSource>().Play();
 

@@ -49,8 +49,6 @@ public class StructureBuilder : MonoBehaviour
             atom.Value.Unhighlight();
         }
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count.ToString() + " planes found. Current plane: " + index.ToString();
-
         Vector3 millerIndices = Miller.GetMillerIndicesForCell(cellType, cellVariation)[index];
         
         foreach (Atom atom in GetMillerAtoms((int) millerIndices.x, (int) millerIndices.y, (int) millerIndices.z)){

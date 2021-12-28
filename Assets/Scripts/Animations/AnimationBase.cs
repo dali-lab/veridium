@@ -10,25 +10,16 @@ namespace SIB_Animation{
         /// <summary>
         /// Animation base is the parent class of all animations for lecture animation
         /// sequences. Other scripts can interact with these animations using Play(),
-        /// Pause(), PlayFromStart(), Reset(), and by adding listeners to the 
-        /// FinishedEvent. 
+        /// Pause(), PlayFromStart(), Reset()
         /// </summary>
 
         public bool playOnStart, indefiniteDuration;            // Whether this animation should begin playing immediately, and whether it should ever stop
         public float duration = 2;                              // Total length of the animation
-        public UnityEvent FinishedEvent {get; private set;}     // Event invoked when the animation is finished
         public float elapsedTime {get; private set;}            // Total time since the animation has started
         protected float elapsedTimePercent;                     // Time as a fraction of duration
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
 
-
-        void Awake(){
-
-            // Initialize the event if it hasn't been
-            if (FinishedEvent == null) FinishedEvent = new UnityEvent();
-
-        }
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -55,7 +46,7 @@ namespace SIB_Animation{
             }
 
             // If the animation has run its course, stop it
-            if (!indefiniteDuration && elapsedTime >= duration) FinishedPlaying();
+            if (!indefiniteDuration && elapsedTime >= duration) Pause();
 
         }
 
@@ -113,7 +104,6 @@ namespace SIB_Animation{
 
             elapsedTime = 0;
             elapsedTimePercent = 0;
-            FinishedEvent = new UnityEvent();
 
             // Animations collect information when they start playing. Resetting before then can break things
             if (begunPlaying) ResetChild();
@@ -127,15 +117,6 @@ namespace SIB_Animation{
 
         }
 
-        // Internal function for ending an animation
-        private void FinishedPlaying(){
-
-            Pause();
-
-            FinishedEvent.Invoke();
-
-        }
-
         // Scrubs the animation backward or forward depending on the sign of time delta
         public void Scrub(float newTime){
                 
@@ -146,7 +127,9 @@ namespace SIB_Animation{
             UpdateAnim();
 
             // If the animation has run its course, stop it
-            if (!indefiniteDuration && (elapsedTime >= duration || elapsedTime < 0)) FinishedPlaying();
+            if (!indefiniteDuration && (elapsedTime >= duration || elapsedTime < 0)) Pause();
+
+            if (elapsedTime <= 0) Reset();
 
         }
 

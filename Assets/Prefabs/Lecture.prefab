@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef46bf4d6f3c348c584e26fe90b676ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnStart: 0
   segments: []
+  audioSource: {fileID: 13450517986752251}
+  sequenceState: 
 --- !u!82 &13450517986752251
 AudioSource:
   m_ObjectHideFlags: 0

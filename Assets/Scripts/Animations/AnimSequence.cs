@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SIB_Animation{
-    public class AnimSequenceBase : MonoBehaviour
+    public class AnimSequence : MonoBehaviour
     {
         
         /// <summary>
@@ -195,6 +195,7 @@ namespace SIB_Animation{
 
             float newTime = audioSource.time + timeDelta;
 
+            // Skip backward if reaching the beginning of the segment
             if(newTime < 0){
 
                 audioSource.Stop();
@@ -216,7 +217,16 @@ namespace SIB_Animation{
 
             audioSource.time = newTime;
 
-            UpdateAnimations();
+            // Find animations that should be playing
+            foreach (animPlayer anim in segments[currentIndex].animations){
+
+                if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time){
+
+                    playingAnims.Add(anim.animation);
+                    anim.animation.Play();
+
+                }
+            }
 
             foreach(AnimationBase anim in playingAnims){
 
@@ -230,6 +240,8 @@ namespace SIB_Animation{
             }
 
             UpdateAnimations();
+
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
 
         }
     }
