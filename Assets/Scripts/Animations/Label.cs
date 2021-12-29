@@ -10,11 +10,11 @@ namespace SIB_Animation{
         /// the Label prefab. Uses DMM units: https://www.ryanhinojosa.com/2018/01/08/device-independent/
         /// </summary>
 
-        public string labelText = "Sample Text";                                        // Text rendered on the label
-        public Vector3 offset = new Vector3(0f, -0.1f, 0.3f);                          // Offset in 2d space because the label always faces the camera
-        public float boxWidthDMM = 300f, fontSizeDMM = 24f, paddingDMM = 16f;           // DMM units for label properties
-        public GameObject textLabel, lineRenderer, lineConnector, plane;                // GameObject references
-        public GameObject controlPoint1, controlPoint2, controlPoint3, controlPoint4;   // Four control points of the line
+        public string labelText = "Sample Text";                                            // Text rendered on the label
+        public Vector3 offset = new Vector3(0f, -0.1f, 0.3f);                               // Offset in 2d space because the label always faces the camera
+        public float boxWidthDMM = 300f, fontSizeDMM = 24f, paddingDMM = 16f;                // DMM units for label properties
+        public GameObject textLabel, lineRenderer, lineConnector, plane;                    // GameObject references
+        public GameObject controlPoint1, controlPoint2, controlPoint3, controlPoint4;       // Four control points of the line
 
         // Start is called before the first frame update
         void Start()

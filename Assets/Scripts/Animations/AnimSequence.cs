@@ -15,6 +15,7 @@ namespace SIB_Animation{
         private int currentIndex = 0;                                   // The index in the list of the animation that is currently playing
         public bool playOnStart;                                        // Whether the animation sequence should play immediately
         public bool playing {get; private set;}                         // Whether this animation sequence is currently playing or not
+        private bool audioHasFinished;                                  // Used to record the end of audio for sequence progression
         public List<animSegment> segments;                              // A list of segments that contain an audio clip and a set of animations
         public AudioSource audioSource;                                 // The audio source for this animation's audio
         private List<AnimationBase> playingAnims;                       // A list of currently playing animations
@@ -24,15 +25,16 @@ namespace SIB_Animation{
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
         [System.Serializable]
         public struct animSegment {
-            public AudioClip audio;
-            public List<animPlayer> animations;
+            public AudioClip audio;                         // Each segment has one audio clip. This should be used for lecture audio
+            public List<animPlayer> animations;             // List of animations set in the inspector.
+            [HideInInspector] public float realDuration;    // The real duration of the segment. Longer than audio clip length if animations run over time
         }
 
         // A single animation on a segment that specifies the animation to play and the time into the clip it should start playing
         [System.Serializable]
         public struct animPlayer {
-            public AnimationBase animation;
-            public float timing;
+            public AnimationBase animation;                 // Animation to play at this time. Set in inspector.
+            public float timing;                            // Start time in seconds of the animation from the beginning of the segment
         }
 
         // Called before start
@@ -41,6 +43,15 @@ namespace SIB_Animation{
             if(audioSource == null) audioSource = GetComponent<AudioSource>();
 
             playingAnims = new List<AnimationBase>();
+
+            // Find the real ending durations of all segments. These will be longer than audio
+            // clip length when animations run longer than it.
+            for(int i = 0; i < segments.Count; i++)
+            {
+                animSegment segment = segments[i];
+                segment.realDuration = GetSegmentRealDuration(segment);
+                segments[i] = segment;
+            }
 
         }
 
@@ -59,6 +70,7 @@ namespace SIB_Animation{
 
             if(playing) UpdateAnimations();
 
+            sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
 
         }
@@ -68,7 +80,7 @@ namespace SIB_Animation{
             // Find animations that should be playing
             foreach (animPlayer anim in segments[currentIndex].animations){
 
-                if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time){
+                if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && (anim.animation.duration + anim.timing > audioSource.time || anim.animation.indefiniteDuration)){
 
                     playingAnims.Add(anim.animation);
                     anim.animation.Play();
@@ -92,12 +104,18 @@ namespace SIB_Animation{
             sequenceState += "audio time: " + string.Format("{0:0.0}", audioSource.time) + "\n";
             sequenceState += "audio length: " + segments[currentIndex].audio.length.ToString() + "\n";
             sequenceState += "audio is playing: " + audioSource.isPlaying.ToString() + "\n";
-            if (!audioSource.isPlaying && audioSource.time >= segments[currentIndex].audio.length){
+
+            bool audioFinished = !audioSource.isPlaying && audioSource.time >= segments[currentIndex].audio.length;
+            bool audioNearlyFinished  = audioSource.isPlaying && audioSource.time >= segments[currentIndex].audio.length - 2 * Time.deltaTime;
+            if (!audioHasFinished) audioHasFinished = audioFinished || audioNearlyFinished;
+
+            // Determine whether there are animations blocking the transition to the next segment
+            if (audioHasFinished){
 
                 bool animsBlockingMove = false;
 
                 foreach (AnimationBase anim in playingAnims){
-                    if (!anim.indefiniteDuration) animsBlockingMove = true;
+                    if (!anim.indefiniteDuration || anim.awaitingAction) animsBlockingMove = true;
                 }
 
                 if (!animsBlockingMove) PlayNextSegment();
@@ -105,11 +123,9 @@ namespace SIB_Animation{
             }
 
             string animsString = "";
-
             foreach (AnimationBase anim in playingAnims){
                 animsString += anim.ToString() + ", ";
             }
-
             sequenceState += "animations playing: " + animsString + "\n";
 
         }
@@ -134,6 +150,8 @@ namespace SIB_Animation{
             audioSource.clip = segment.audio;
             audioSource.Play();
 
+            audioHasFinished = false;
+
         }
 
         // Pauses the current animation
@@ -152,7 +170,7 @@ namespace SIB_Animation{
         // Resets the entire sequence, and prompts each animation that has already begun playing to reset
         public void ResetSequence(){
 
-            audioSource.Pause();
+            PauseSequence();
 
             // Reset all animations
             for (int i = 0; i < segments.Count; i++)
@@ -163,6 +181,7 @@ namespace SIB_Animation{
             }
 
             currentIndex = 0;
+            audioHasFinished = false;
 
         }
 
@@ -184,10 +203,9 @@ namespace SIB_Animation{
             }
 
             currentIndex ++;
-
             audioSource.clip = segments[currentIndex].audio;
-
             audioSource.Play();
+            audioHasFinished = false;
 
         }
 
@@ -201,17 +219,15 @@ namespace SIB_Animation{
                 audioSource.Stop();
 
                 foreach (AnimationBase anim in playingAnims){
-
                     anim.Pause();
                     anim.Reset();
-
                 }
 
                 currentIndex--;
 
                 PlaySegment(segments[currentIndex]);
 
-                newTime += audioSource.clip.length;
+                newTime += segments[currentIndex].realDuration;
 
             }
 
@@ -228,6 +244,7 @@ namespace SIB_Animation{
                 }
             }
 
+            // Scrub animations
             foreach(AnimationBase anim in playingAnims){
 
                 float startTime = 0;
@@ -242,6 +259,20 @@ namespace SIB_Animation{
             UpdateAnimations();
 
             (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
+
+        }
+
+        private float GetSegmentRealDuration(animSegment segment){
+
+            float latestTime = segment.audio.length;
+
+            foreach (animPlayer anim in segment.animations)
+            {
+                float end = anim.timing + anim.animation.duration;
+                if (end > latestTime) latestTime = end;
+            }
+
+            return latestTime;
 
         }
     }

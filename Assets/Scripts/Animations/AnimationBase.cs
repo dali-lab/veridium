@@ -19,6 +19,7 @@ namespace SIB_Animation{
         protected float elapsedTimePercent;                     // Time as a fraction of duration
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
+        public bool awaitingAction {get; protected set;}        // Don't set this directly, should only be used in the AwaitUserBase class
 
 
         // Start is called before the first frame update
@@ -39,7 +40,7 @@ namespace SIB_Animation{
                 
                 elapsedTime += Time.deltaTime;
 
-                elapsedTimePercent = elapsedTime/duration;
+                if (duration != 0) elapsedTimePercent = elapsedTime/duration;
 
                 UpdateAnim();
 
