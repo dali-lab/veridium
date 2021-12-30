@@ -15,25 +15,6 @@ namespace SIB_Animation{
             awaitingAction = true;
         }
 
-        protected override void UpdateAnim()
-        {
-            base.UpdateAnim();
-        }
-
-        public override void Play()
-        {
-            base.Play();
-
-            awaitingAction = true;
-        }
-
-        public override void Pause()
-        {
-            base.Pause();
-
-            awaitingAction = false;
-        }
-
         protected override void ResetChild()
         {
             base.ResetChild();
@@ -47,9 +28,9 @@ namespace SIB_Animation{
         }
 
         // Should be called when the desired action is completed
-        public virtual void completeAction(){
+        public virtual void CompleteAction(){
 
-            Pause();
+            if (playing) awaitingAction = false;
 
         }
 

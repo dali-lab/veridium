@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 7844924287055149873}
   - component: {fileID: 6335639999640188066}
   - component: {fileID: 575372321740565014}
+  - component: {fileID: 2000175532178479950}
   m_Layer: 7
   m_Name: Element Tile
   m_TagString: Untagged
@@ -473,6 +474,24 @@ MonoBehaviour:
   indefiniteDuration: 1
   duration: 0
   highlightObject: {fileID: 921125170992599556}
+--- !u!114 &2000175532178479950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506996978073560556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8afd0fbab914d16af490ec0b4f7395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 1
+  duration: 2
+  emissionColor: {r: 1, g: 1, b: 0, a: 0}
+  blinksPerSecond: 0.5
+  minIntensity: 0.5
 --- !u!1 &9130913863735385194
 GameObject:
   m_ObjectHideFlags: 0
