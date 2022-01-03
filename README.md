@@ -38,7 +38,7 @@ Seeing is Believing  is designed for the Oculus Quest, and is best experienced w
 
 
 ## Authors
-* Sayuri Magnabosco TH, PM
+* Sayuri Magnabosco 2021 + MEM 2023, PM
 * Brendan Keane 2023, designer
 * Macy Toppan 2022, designer+modeler
 * Andy Kotz 2024, developer
