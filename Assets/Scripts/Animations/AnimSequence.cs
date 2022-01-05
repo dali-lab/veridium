@@ -20,6 +20,7 @@ namespace SIB_Animation{
         public AudioSource audioSource;                                 // The audio source for this animation's audio
         private List<AnimationBase> playingAnims;                       // A list of currently playing animations
         public string sequenceState;                                    // For debug purposes
+        private float segmentTime;
 
 
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
@@ -64,6 +65,13 @@ namespace SIB_Animation{
         // Called every frame
         void Update(){
 
+            // Record the time since the beginning of the audio, even if it has finished
+            if (audioHasFinished){
+                if(playing) segmentTime += Time.deltaTime;
+            } else {
+                segmentTime = audioSource.time;
+            }
+
             sequenceState = "";
             sequenceState += "playing: " + playing.ToString() + "\n";
             sequenceState += "current audio: " + audioSource.clip.ToString() + "\n";
@@ -71,7 +79,7 @@ namespace SIB_Animation{
             if(playing) UpdateAnimations();
 
             sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
 
         }
 
@@ -80,7 +88,11 @@ namespace SIB_Animation{
             // Find animations that should be playing
             foreach (animPlayer anim in segments[currentIndex].animations){
 
-                if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && (anim.animation.duration + anim.timing > audioSource.time || anim.animation.indefiniteDuration)){
+                bool afterStart = anim.timing < (audioHasFinished ? segments[currentIndex].audio.length : audioSource.time);
+                bool beforeEnd = anim.animation.duration + anim.timing > audioSource.time;
+                bool endless = anim.animation.indefiniteDuration;
+
+                if(!playingAnims.Contains(anim.animation) && (afterStart && (beforeEnd || endless))){
 
                     playingAnims.Add(anim.animation);
                     anim.animation.Play();
@@ -114,8 +126,15 @@ namespace SIB_Animation{
 
                 bool animsBlockingMove = false;
 
+                // Find animations playing or waiting for input
                 foreach (AnimationBase anim in playingAnims){
-                    if (!anim.indefiniteDuration || anim.awaitingAction) animsBlockingMove = true;
+                    if (!anim.indefiniteDuration || anim.awaitingAction || anim.elapsedTime < anim.duration) animsBlockingMove = true;
+                }
+
+                // Find animations that are yet to play
+                foreach (animPlayer anim in segments[currentIndex].animations){
+                    if (anim.timing + 2 * Time.deltaTime >= segmentTime) animsBlockingMove = true;
+                    if (anim.timing + 2 * Time.deltaTime >= segmentTime) (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = segmentTime.ToString() + ": " + anim.timing.ToString();
                 }
 
                 if (!animsBlockingMove) PlayNextSegment();
@@ -232,6 +251,13 @@ namespace SIB_Animation{
             }
 
             audioSource.time = newTime;
+
+            // Record the time since the beginning of the audio, even if it has finished
+            if (audioHasFinished){
+                if(playing) segmentTime += timeDelta;
+            } else {
+                segmentTime = audioSource.time;
+            }
 
             // Find animations that should be playing
             foreach (animPlayer anim in segments[currentIndex].animations){

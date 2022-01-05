@@ -16,15 +16,19 @@ public class StructureBuilder : MonoBehaviour
     public GameObject linePrefab;
 
     /// Crystal object being drawn to scene
-    private Crystal crystal;
-    CellType cellType;
-    CellVariation cellVariation;
-    public int numPlanes;
+    public Crystal crystal {get; private set;}
+    public CellType cellType;
+    public CellVariation cellVariation;
+    [HideInInspector] public int numPlanes;
     public bool initialized {get; private set;}
+    public bool buildOnStart;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        if(buildOnStart) BuildCell(cellType, cellVariation, CrystalState.SINGLECELL, 0.5f, 0.075f, 23);
+        
         // TESTS: Uncomment a test to run it at start
 
         // Tests.TestHex(this.atomPrefab, this.linePrefab, this.gameObject);
@@ -32,7 +36,7 @@ public class StructureBuilder : MonoBehaviour
         // Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
+        // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
     // Update is called once per frame

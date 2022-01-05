@@ -492,6 +492,7 @@ MonoBehaviour:
   emissionColor: {r: 1, g: 1, b: 0, a: 0}
   blinksPerSecond: 0.5
   minIntensity: 0.5
+  materialIndex: 1
 --- !u!1 &9130913863735385194
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,12 +19,12 @@ namespace SIB_Animation{
         {
             base.Play();
 
-            if(grabInteractable.isSelected) CompleteAction();
+            if(grabInteractable.isSelected && grabInteractable.selectingInteractor is XRDirectInteractor) CompleteAction();
         }
 
         void Grabbed(SelectEnterEventArgs args){
 
-            CompleteAction();
+            if(args.interactor is XRDirectInteractor) CompleteAction();
 
         }
 

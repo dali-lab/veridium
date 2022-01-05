@@ -20,7 +20,7 @@ namespace sib
         // The number of protons in the atom
         private int atomicNumber;
 
-        private GameObject drawnObject;
+        public GameObject drawnObject {get; private set;}
         private bool metallic = true;
 
         /**

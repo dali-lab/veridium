@@ -44,6 +44,11 @@ namespace SIB_Interaction{
                     unHeldTimer = 0f;
                     gameObject.transform.position = home.transform.position;
                     gameObject.transform.rotation = home.transform.rotation;
+                    if(GetComponent<Rigidbody>() != null){
+                        GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+                    }
+
 
                     GetComponent<AudioSource>().Play();
 
