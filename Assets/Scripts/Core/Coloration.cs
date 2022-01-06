@@ -143,6 +143,8 @@ public class Coloration
 
     public static Color GetColorByNumber(int atomicNumber){
 
+        if(atomicNumber <= 0) atomicNumber = 1;
+
         List<string> keyList = new List<string>(Colors.Keys);
 
         return (GetColor(keyList[atomicNumber-1]));

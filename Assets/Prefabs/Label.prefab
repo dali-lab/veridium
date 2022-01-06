@@ -142,10 +142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   labelText: Sample Text
-  offset: {x: 0.1, y: 0.1}
-  boxWidth: 0.1
+  offset: {x: 0.1, y: 0.1, z: 0.1}
+  boxWidthDMM: 300
+  fontSizeDMM: 24
+  paddingDMM: 16
   textLabel: {fileID: 7727699102348643896}
   lineRenderer: {fileID: 8806075965968185656}
+  lineConnector: {fileID: 7898928678322734862}
+  plane: {fileID: 2022924326682800888}
   controlPoint1: {fileID: 7815234809317868173}
   controlPoint2: {fileID: 9168390716766571865}
   controlPoint3: {fileID: 3418897151392933498}
@@ -226,6 +230,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4944302193854511726}
+  - {fileID: 88673921215586589}
   m_Father: {fileID: 3611364265905577294}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -413,6 +418,41 @@ MonoBehaviour:
   showGizmo: 0
   gizmoSize: 0.1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.5}
+--- !u!1 &7898928678322734862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 88673921215586589}
+  m_Layer: 0
+  m_Name: LineConnector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &88673921215586589
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898928678322734862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4581462643491375503}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8254054639955000345
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487d7b72a98e04d9d9a69c8b6a38fa97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineSegmentSize: 0.1
+  lineSegmentSize: 1
   lineWidth: 0.002
   showGizmos: 0
   gizmoSize: 0.1
