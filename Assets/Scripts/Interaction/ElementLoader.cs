@@ -15,6 +15,7 @@ namespace SIB_Interaction{
 
         public PTElement heldElement;           // Current element in the slot
         public StructureBase structureBase;     // StructureBase that this loads elements for
+        public Animator insertedAnimation;      // animator to enable when the element is inserted
 
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
@@ -24,9 +25,13 @@ namespace SIB_Interaction{
 
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
-            structureBase.ElementAdded(heldElement);
+            if(heldElement != null){
 
-            if(heldElement != null) GetComponent<AudioSource>().Play();
+                structureBase.ElementAdded(heldElement);
+                GetComponent<AudioSource>().Play();
+                if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", true);
+
+            }
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
@@ -37,6 +42,8 @@ namespace SIB_Interaction{
             structureBase.ElementRemoved();
 
             heldElement = null;
+
+            if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
         }
 
     }
