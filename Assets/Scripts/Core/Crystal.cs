@@ -18,8 +18,6 @@ namespace sib
         // SINGLECELL describes the state where only the central unit cell gets 
         // rendered
         SINGLECELL,
-        // MULTICELL describes the state where 4 core cells get rendered
-        MULTICELL,
         // INFINITE describes the state where the crystal structure is 
         // generated recursively to a user-specificed recursion depth
         INFINITE
@@ -96,9 +94,6 @@ namespace sib
                     } else {
                         //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "no atom at centerpoint";
                     }
-                    break;
-                case CrystalState.MULTICELL:
-                    this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
                     break;
                 case CrystalState.INFINITE:
                     foreach ( Atom atom in this.atoms.Values ) {
