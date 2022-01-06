@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using SIB_Animation;
 
 public class HandDistanceGrabbable : MonoBehaviour
 {
@@ -13,13 +14,7 @@ public class HandDistanceGrabbable : MonoBehaviour
 
     private bool hovered;               // Whether this distance grabbable is currently hovered
     private bool hoveredLastFrame;      // Whether this distance grabbable was hovered last frame
-    public GameObject glowObject;       // The gameobject that is the highlight for this gameobject.
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Anim_Highlight highlight;     // The Animation to highlight the grabbable
 
     // Update is called once per frame
     void Update()
@@ -35,7 +30,7 @@ public class HandDistanceGrabbable : MonoBehaviour
     // Hovered called by HandDistanceGrabber. Handles highlighting
     public void Hovered(GameObject hand){
 
-        glowObject.SetActive(true);
+        highlight.Highlight();
 
         // Insert code to highlight the interactable
 
@@ -46,7 +41,7 @@ public class HandDistanceGrabbable : MonoBehaviour
     // UnHovered called by HandDistanceGrabbable. Handles unhighlighting
     public void UnHovered(){
 
-        glowObject.SetActive(false);
+        highlight.Unhighlight();
 
         // Insert code to unhighlight the interactable
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8599175688921419718}
   - component: {fileID: 7525836906287132434}
   - component: {fileID: 2923779026218670947}
+  - component: {fileID: 3400050630852772206}
   m_Layer: 3
   m_Name: Structure
   m_TagString: Untagged
@@ -26,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460324923880807827}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.32, z: 1.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 805289184287195002}
   - {fileID: 287370767149879322}
@@ -177,6 +178,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3400050630852772206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460324923880807827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1529501910a4e95b2bf647e2c1941d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 0
+  duration: 1.5
+  maxHeight: 0
+  startHeight: -0.5
+  numRotations: 1
 --- !u!1 &2652680249787089642
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 921810360972710530}
   - component: {fileID: 8221016945136567124}
+  - component: {fileID: 3129836382147990586}
   m_Layer: 0
   m_Name: Structurebase
   m_TagString: Untagged
@@ -227,6 +247,34 @@ MonoBehaviour:
   structureBuilder: {fileID: 3565902425673493353}
   sideLength: 0.5
   sphereRadius: 0.05
+  planeIndex: 0
+  spinUpAnimation: {fileID: 3400050630852772206}
+--- !u!114 &3129836382147990586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652680249787089642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13186e61fdd044a88a1665435637374c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HandMoveAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Hand Move
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 039c8314-4cbc-4fda-a339-e44ec13a7c70
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  threshold: 0.8
+  resetThreshold: 0.2
+  structureBase: {fileID: 8221016945136567124}
 --- !u!1 &6576554569475386608
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atomPrefab: {fileID: 1367041960781036951, guid: e89c0cad30a734d7fa592eb059da7c65, type: 3}
   linePrefab: {fileID: 7311071784215312269, guid: 737e2f4d38c3c4adab3a760be8d4ee73, type: 3}
+  numPlanes: 0
 --- !u!1 &8229882663436134278
 GameObject:
   m_ObjectHideFlags: 0

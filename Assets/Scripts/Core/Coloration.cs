@@ -26,8 +26,8 @@ public class Coloration
             {"Sulfur", "ffff30"},
             {"Chlorine", "1ff01f"},
             {"Argon", "80d1e3"},
-            {"Potassium", "8f4004"},
-            {"Calcium", "3d5500"},
+            {"Potassium", "8f40d4"},
+            {"Calcium", "3dff00"},
             {"Scandium", "e6e6e6"},
             {"Titanium", "bfc2c7"},
             {"Vanadium", "a6a6ab"},
@@ -133,21 +133,31 @@ public class Coloration
 
         string hex = "#" + Colors[element];
 
-        (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = hex;
-
         if (ColorUtility.TryParseHtmlString(hex, out color)){
             return color;
         } else {
-            return new Color();
+            return Color.white;
         }
 
     }
 
     public static Color GetColorByNumber(int atomicNumber){
 
+        if(atomicNumber <= 0) atomicNumber = 1;
+
         List<string> keyList = new List<string>(Colors.Keys);
 
         return (GetColor(keyList[atomicNumber-1]));
+
+    }
+
+    public static int GetNumberByName(string name){
+
+        List<string> keyList = new List<string>(Colors.Keys);
+
+        if (keyList.Contains(name)) return keyList.IndexOf(name) + 1;
+
+        return 0;
 
     }
 }

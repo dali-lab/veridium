@@ -20,19 +20,7 @@ namespace sib
      */
     public static class Miller
     {
-        /**
-         * @function GetMillerIndicesForCell
-         * @input type              The type of the cell
-         * @input variation         The variation of the cell
-         * @return List<Vector3>    A list of vectors where each x, y and z 
-         *                          value respectively correspond go h, k, and 
-         *                          l values of miller index triplets
-         * Returns a rough list of possible miller index triplets for a given 
-         * cell type and variation. KNOWN ISSUE - due to the nature of miller
-         * indices it's possible that the function will return some triplets
-         * that don't correspond to any atoms.
-         */
-        public static List<Vector3> GetMillerIndecesForCell(CellType type, CellVariation variation) {
+        public static List<Vector3> GetMillerIndicesForCell(CellType type, CellVariation variation) {
             if (type == CellType.HEX) {
                 return GetMillerIndicesForHexagonal();
             }

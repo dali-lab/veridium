@@ -80,6 +80,8 @@ namespace SIB_Interaction{
         // Updates whether the direct interactor is grabbing. Should be added to the direct interactor's callbacks
         public void grabBegun(){
             grabbing = true;
+
+            GetComponent<AudioSource>().Play();
         }
 
         // Updates whether the direct interactor is grabbing. Should be added to the direct interactor's callbacks

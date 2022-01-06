@@ -13,20 +13,10 @@ namespace SIB_Interaction{
         /// Extends XRSocketInteractor
         /// </summary>
 
-        public PTElement heldElement;
-        public StructureBase structureBase;
+        public PTElement heldElement;           // Current element in the slot
+        public StructureBase structureBase;     // StructureBase that this loads elements for
+        public Animator insertedAnimation;      // animator to enable when the element is inserted
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
         protected override void OnSelectEntering(XRBaseInteractable interactable){
@@ -35,7 +25,13 @@ namespace SIB_Interaction{
 
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
-            structureBase.ElementAdded(heldElement);
+            if(heldElement != null){
+
+                structureBase.ElementAdded(heldElement);
+                GetComponent<AudioSource>().Play();
+                if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", true);
+
+            }
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
@@ -46,6 +42,8 @@ namespace SIB_Interaction{
             structureBase.ElementRemoved();
 
             heldElement = null;
+
+            if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
         }
 
     }

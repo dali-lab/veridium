@@ -341,8 +341,10 @@ namespace sib
                     endIndices = Constants.cell6BondMap[startIndex];
                 }
 
-                // Loops through indices of all vertices that should be bound 
-                // to the startVertex
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = 
+                //            ("Start vertex and possible ends retreived. \n start vertex: " + startVertex.Debug());
+
+                // Loops through indices of all vertices that should be bound to the startVertex
                 foreach (int endIndex in endIndices) {
                     if (endIndex >= this.numVertices) {
                         continue;
@@ -420,13 +422,19 @@ namespace sib
          * Draws the UnitCell's Atoms and bonds to the scene.
          */
         public override void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
+
+            string debugOutput = "";
             
             // Draws the atoms
             for ( int i = 0; i < this.numVertices; i ++ ) {
                 if (this.vertices[i] != null) {
                     this.vertices[i].Draw(atomPrefab, builder);
                 }
-            }         
+            }
+
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
 
             // Draws the bonds
             foreach ( Bond bond in this.bonds ) {
@@ -446,6 +454,10 @@ namespace sib
          * in world space. Adds the duplicates to the crystalCells hashmap
          */
         public override void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell> crystalCells) {
+
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Generating Unit Cell Neighbors";     
+
+            string debugString = "";
 
             // A list of the directions in which neighbors can be generated 
             // relative to the starting position/orientation of the cell
@@ -500,7 +512,13 @@ namespace sib
                 }
 
                 index ++;
+
+                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
             }
+
+            debugString += "Exited Successfuly";
+
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;  
         }
     }
 }

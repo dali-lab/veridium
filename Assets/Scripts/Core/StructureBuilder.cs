@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
 using sib;
+using System.Linq;
 
 public class StructureBuilder : MonoBehaviour
 {
@@ -15,11 +16,19 @@ public class StructureBuilder : MonoBehaviour
     public GameObject linePrefab;
 
     /// Crystal object being drawn to scene
-    private Crystal crystal;
+    public Crystal crystal {get; private set;}
+    public CellType cellType;
+    public CellVariation cellVariation;
+    [HideInInspector] public int numPlanes;
+    public bool initialized {get; private set;}
+    public bool buildOnStart;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        if(buildOnStart) BuildCell(cellType, cellVariation, CrystalState.SINGLECELL, 0.5f, 0.075f, 23);
+        
         // TESTS: Uncomment a test to run it at start
 
         // Tests.TestHex(this.atomPrefab, this.linePrefab, this.gameObject);
@@ -28,14 +37,6 @@ public class StructureBuilder : MonoBehaviour
         // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
         // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestTriclinic(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestMonoclinic(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestTriclinicCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestMonoClinicCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestRhomboCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestRhombohedral(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestOrthoCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        //Tests.TestTetraCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
     // Update is called once per frame
@@ -44,12 +45,32 @@ public class StructureBuilder : MonoBehaviour
         
     }
 
+    public void HighlightPlaneAtIndex(int index){
+        
+        if(!initialized) return;
+
+        foreach(KeyValuePair<Vector3, Atom> atom in crystal.atoms){
+            atom.Value.Unhighlight();
+        }
+
+        Vector3 millerIndices = Miller.GetMillerIndicesForCell(cellType, cellVariation)[index];
+        
+        foreach (Atom atom in GetMillerAtoms((int) millerIndices.x, (int) millerIndices.y, (int) millerIndices.z)){
+
+            atom.Highlight();
+
+        }
+
+    }
+
     /**
-     * @function DestoryCell
+     * @function DestroyCell
      * Removes the crystal from the scene.
      */
     public void DestroyCell() {
         this.crystal.ClearCrystal(this.gameObject);
+
+        initialized = false;
     }
 
     /**
@@ -74,6 +95,17 @@ public class StructureBuilder : MonoBehaviour
      * Creates a crystal according to the given input specificaitons and draws * it to the scene. Times the runtime of processes for benchmarking
      */
     public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius, int atomicNumber = 0) {
+
+        // Reset the transform of the structure when building it
+        transform.parent.localPosition = Vector3.zero;
+        transform.parent.localScale = Vector3.one;
+        transform.parent.localRotation = Quaternion.identity;
+
+        cellType = type;
+        cellVariation = variation;
+        numPlanes = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count;
+        initialized = true;
+
         string debugString = "";
 
         Stopwatch stopwatch = new Stopwatch();

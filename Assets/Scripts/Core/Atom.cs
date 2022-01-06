@@ -20,7 +20,8 @@ namespace sib
         // The number of protons in the atom
         private int atomicNumber;
 
-        private GameObject drawnObject;
+        public GameObject drawnObject {get; private set;}
+        private bool metallic = true;
 
         /**
          * Constructor - creates a new Atom object
@@ -73,6 +74,7 @@ namespace sib
             output += "Atom w atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
             return output;
         }
+        
 
         /**
          * @function Draw
@@ -83,6 +85,12 @@ namespace sib
         public void Draw(GameObject atomPrefab, GameObject builder) {
             this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, this.position, Quaternion.identity);
             drawnObject.transform.SetParent(builder.transform);
+            drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
+
+            if(metallic){
+                drawnObject.GetComponentInChildren<Renderer>().material.SetFloat("_Metallic", 1.0f);
+                drawnObject.GetComponentInChildren<Renderer>().material.SetFloat("_Glossiness", 0.65f);
+            }
         }
 
         /**
@@ -93,6 +101,16 @@ namespace sib
          */
         public GameObject GetDrawnObject() {
             return this.drawnObject;
+        }
+
+        public void Highlight(){
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(atomicNumber));
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
+        }
+
+        public void Unhighlight(){
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.black);
+            GetDrawnObject().GetComponentInChildren<Renderer>().material.DisableKeyword("_EMISSION");
         }
     }
 }
