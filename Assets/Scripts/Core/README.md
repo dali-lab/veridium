@@ -84,7 +84,7 @@ public string Debug();
 ```
 
 * **Construct** Creates an infinite crystal at a specified recursion depth from a single unit cell. It instantiates the UnitCell of the specified type and variation at the crystal's centerpoint, adding the new atoms, bonds, and cell to their corresponding dictionaries. Then, it calls `GenerateNeighbors` on every UnitCell in the dictionaries as many times as the recursion depth specifies.
-* **Draw** Renders all the atoms and bonds to the scene
+* **Draw** Renders the atoms and bonds to the scene depending on the Crystal's draw state. If the state is set to `INFINITE` it will render every cell in the crystal. If it's `SINGLECELL` it will only render the central one from which the others were generated.
 * **ClearCrystal** Removes the atoms and bonds from the scene and resets the local dictionaries
 * **GetMillerAtoms** Returns all the miller atoms within the crystal for the given miller indices
 * **Debug** Returns a string that describes the crystal for debugging.
