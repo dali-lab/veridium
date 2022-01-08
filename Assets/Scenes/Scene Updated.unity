@@ -581,7 +581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: d3af984958f3743b3a015a6d64a2aa16, type: 3}
       propertyPath: segments.Array.data[2].animations.Array.data[0].timing
-      value: 2.8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: d3af984958f3743b3a015a6d64a2aa16, type: 3}
       propertyPath: segments.Array.data[3].animations.Array.data[0].timing

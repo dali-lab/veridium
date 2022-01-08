@@ -79,7 +79,7 @@ namespace SIB_Animation{
             if(playing) UpdateAnimations();
 
             sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
 
         }
 
@@ -113,7 +113,7 @@ namespace SIB_Animation{
             }
 
             // Determine if everything is ready to move on to the next segment
-            sequenceState += "audio time: " + string.Format("{0:0.0}", audioSource.time) + "\n";
+            sequenceState += "segment time: " + string.Format("{0:0.0}", segmentTime) + "\n";
             sequenceState += "audio length: " + segments[currentIndex].audio.length.ToString() + "\n";
             sequenceState += "audio is playing: " + audioSource.isPlaying.ToString() + "\n";
 
@@ -133,8 +133,8 @@ namespace SIB_Animation{
 
                 // Find animations that are yet to play
                 foreach (animPlayer anim in segments[currentIndex].animations){
-                    if (anim.timing + 2 * Time.deltaTime >= segmentTime) animsBlockingMove = true;
-                    if (anim.timing + 2 * Time.deltaTime >= segmentTime) (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = segmentTime.ToString() + ": " + anim.timing.ToString();
+                    if (anim.timing + 4 * Time.deltaTime <= segmentTime) animsBlockingMove = true;
+                    sequenceState += (anim.timing + 2 * Time.deltaTime - segmentTime).ToString() + "\n";
                 }
 
                 if (!animsBlockingMove) PlayNextSegment();
