@@ -1,7 +1,7 @@
-### seeing-is-believing
+## seeing-is-believing
 # Core Scripts
 
-The Core module encapsulates the functionality needed to procedurally generate and display Bravais lattice structures in Virtual Reality.
+The Core module implements the functionality needed to procedurally generate and display Bravais lattice structures in a Unity scene.
 
 ## Usage
 
