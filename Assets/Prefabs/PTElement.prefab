@@ -98,8 +98,8 @@ GameObject:
   - component: {fileID: 1287086107974112698}
   - component: {fileID: 7844924287055149873}
   - component: {fileID: 6335639999640188066}
-  - component: {fileID: 575372321740565014}
   - component: {fileID: 2000175532178479950}
+  - component: {fileID: 575372321740565014}
   m_Layer: 7
   m_Name: Element Tile
   m_TagString: Untagged
@@ -458,22 +458,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &575372321740565014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506996978073560556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26005852f8db43a3865761a230e19b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnStart: 0
-  indefiniteDuration: 1
-  duration: 0
-  highlightObject: {fileID: 921125170992599556}
 --- !u!114 &2000175532178479950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +477,22 @@ MonoBehaviour:
   blinksPerSecond: 0.5
   minIntensity: 0.5
   materialIndex: 1
+--- !u!114 &575372321740565014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506996978073560556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26005852f8db43a3865761a230e19b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 1
+  duration: 0
+  highlightObject: {fileID: 921125170992599556}
 --- !u!1 &9130913863735385194
 GameObject:
   m_ObjectHideFlags: 0

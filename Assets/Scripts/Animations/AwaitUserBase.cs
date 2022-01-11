@@ -6,7 +6,6 @@ namespace SIB_Animation{
     public class AwaitUserBase : AnimationBase
     {
 
-        public bool completed {get; private set;}           // Whether the user has performed the specified action
         private bool permanentlyCompleted;                  // Does not reset when scrubbing; this is meant so that the user can scrub without repeating actions
 
         public AwaitUserBase(){
@@ -19,7 +18,7 @@ namespace SIB_Animation{
         {
             base.ResetChild();
 
-            completed = false;
+            awaitingAction = true;
         }
 
         // Performs the action automatically. This is to be done while scrubbing
