@@ -33,7 +33,7 @@ namespace SIB_Animation{
         }
 
         // Update is called on each frame
-        void Update()
+        protected virtual void Update()
         {
 
             // Increment animation time and update the animation if it is playing

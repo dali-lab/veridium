@@ -14,8 +14,12 @@ namespace SIB_Animation{
 
         public Color emissionColor;             // Color that this object should glow. In most cases, should be set to the material's albedo
         public float blinksPerSecond = 0.5f;    // Number of bright peaks of the sin wave per second
-        public float minIntensity = 0.5f;       // Minimum intensity of the glow effect. The emission will oscillate between the minimum and full brightness
-        public int materialIndex = 0;
+        public float minIntensity = 0f;         // Minimum intensity of the glow effect. The emission will oscillate between the minimum and full brightness
+        public int materialIndex = 0;           // The material index to apply the glow effect to
+        private float timeAfterEnd;             // For trailing off glow
+        private bool finishCycle;               // For trailing off glow
+        public float maxIntensity = 0.6f;       // Maximum brightness that the glow effect will have
+        [HideInInspector] public bool selfDestruct;
 
 
         public Anim_GlowPulse(){
@@ -28,6 +32,27 @@ namespace SIB_Animation{
 
             // If the renderer exists, pulse the emission
             if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(elapsedTime));
+        }
+
+        
+        protected override void Update(){
+
+            base.Update();
+
+            if(!playing && finishCycle){
+                timeAfterEnd += Time.deltaTime;
+
+                if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(timeAfterEnd));
+
+                if(timeAfterEnd % (1/blinksPerSecond) > (1/blinksPerSecond) - 1.1 * Time.deltaTime){
+                    finishCycle = false;
+                    timeAfterEnd = 0;
+
+                    // Turn off the emission if the animation is paused
+                    if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
+                    if(selfDestruct) Destroy(this);
+                }
+            }
         }
 
         public override void Play()
@@ -47,8 +72,8 @@ namespace SIB_Animation{
         {
             base.Pause();
 
-            // Turn off the emission if the animation is paused
-            if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");;
+            timeAfterEnd = elapsedTime;
+            finishCycle = true;
         }
 
         // Finds the intensity of the emission at a given time
@@ -57,6 +82,10 @@ namespace SIB_Animation{
             float angle = time * 2 * Mathf.PI * blinksPerSecond - Mathf.PI/2;
 
             float brightness = (Mathf.Sin(angle) + 1)/2;
+
+            brightness *= (maxIntensity-minIntensity);
+            
+            brightness += minIntensity;
 
             return brightness;
 

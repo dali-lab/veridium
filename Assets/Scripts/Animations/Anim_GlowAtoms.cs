@@ -10,44 +10,51 @@ namespace SIB_Animation{
     {
 
         public StructureBase structure;
-        private List<Atom> atoms;
+        private List<Anim_GlowPulse> anims;
 
         public Anim_GlowAtoms(){
             indefiniteDuration = true;
+            duration = 0;
+            anims = new List<Anim_GlowPulse>();
         }
 
         public override void Play()
         {
             base.Play();
 
-            atoms.Clear();
-
-            atoms = structure.structureBuilder.crystal.atoms.Values.ToList();
-
-            foreach (Atom atom in atoms)
+            foreach (Atom atom in structure.structureBuilder.crystal.atoms.Values)
             {
-                atom.drawnObject.GetComponentInChildren<Anim_GlowPulse>().Play();
+                Anim_GlowPulse anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_GlowPulse>() as Anim_GlowPulse;
+                anim.emissionColor = new Color(1,1,0);
+                anim.maxIntensity = 0.4f;
+                anim.Play();
+                anims.Add(anim);
             }
         }
 
         public override void Pause()
         {
             base.Pause();
-
-            foreach (Atom atom in atoms)
+            
+            foreach (Anim_GlowPulse anim in anims)
             {
-                atom.drawnObject.GetComponentInChildren<Anim_GlowPulse>().Pause();
+                anim.Pause();
+                anim.selfDestruct = true;
             }
+            anims.Clear();
         }
+
 
         protected override void ResetChild()
         {
             base.ResetChild();
 
-            foreach (Atom atom in atoms)
+            foreach (Anim_GlowPulse anim in anims)
             {
-                atom.drawnObject.GetComponentInChildren<Anim_GlowPulse>().Reset();
+                anim.Pause();
+                anim.selfDestruct = true;
             }
+            anims.Clear();
         }
 
         protected override void UpdateAnim()

@@ -58,8 +58,6 @@ namespace SIB_Interaction{
                 // Move the direct interactor's collider to the DistanceGrabbable's location
                 if (hovered != null){
 
-                    hovered.Hovered(gameObject);
-
                     GetComponent<SphereCollider>().center = transform.InverseTransformPoint(hovered.transform.position);
 
                 } else {

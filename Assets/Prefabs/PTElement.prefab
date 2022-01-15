@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 7977114506403240280}
   - component: {fileID: 7550559951849918020}
   - component: {fileID: 1287086107974112698}
-  - component: {fileID: 7844924287055149873}
   - component: {fileID: 6335639999640188066}
   - component: {fileID: 2000175532178479950}
   - component: {fileID: 575372321740565014}
@@ -217,35 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc84c194db85c4ccc86ddc1f73a5364d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlight: {fileID: 575372321740565014}
---- !u!65 &1287086107974112698
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506996978073560556}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.12, y: 0.12, z: 0.03}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7844924287055149873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506996978073560556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders:
-  - {fileID: 1287086107974112698}
+  m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -266,7 +238,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7766797239739653141}
-        m_TargetAssemblyTypeName: PTElement, Assembly-CSharp
+        m_TargetAssemblyTypeName: SIB_Interaction.PTElement, Assembly-CSharp
         m_MethodName: Interacted
         m_Mode: 1
         m_Arguments:
@@ -281,7 +253,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7766797239739653141}
-        m_TargetAssemblyTypeName: PTElement, Assembly-CSharp
+        m_TargetAssemblyTypeName: SIB_Interaction.PTElement, Assembly-CSharp
         m_MethodName: UnInteracted
         m_Mode: 1
         m_Arguments:
@@ -326,7 +298,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
-  m_AttachEaseInTime: 1
+  m_AttachEaseInTime: 0.15
   m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -362,6 +334,22 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+  selectableBySocketWhenLocked: 1
+  selectableByGrabWhenLocked: 0
+  highlight: {fileID: 575372321740565014}
+--- !u!65 &1287086107974112698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506996978073560556}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12, y: 0.12, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &6335639999640188066
 AudioSource:
   m_ObjectHideFlags: 0
@@ -473,10 +461,13 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 2
+  animSequence: {fileID: 0}
   emissionColor: {r: 1, g: 1, b: 0, a: 0}
   blinksPerSecond: 0.5
-  minIntensity: 0.5
+  minIntensity: 0
   materialIndex: 1
+  maxIntensity: 0.6
+  selfDestruct: 0
 --- !u!114 &575372321740565014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +483,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
+  animSequence: {fileID: 0}
   highlightObject: {fileID: 921125170992599556}
 --- !u!1 &9130913863735385194
 GameObject:
@@ -543,7 +535,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   m_AttachTransform: {fileID: 0}
-  m_StartingSelectedInteractable: {fileID: 7844924287055149873}
+  m_StartingSelectedInteractable: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls: []

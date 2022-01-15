@@ -142,6 +142,8 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+  selectableBySocketWhenLocked: 1
+  selectableByGrabWhenLocked: 0
   minScale: 0.2
   maxScale: 2
   softScaleBound: 1.2
@@ -193,6 +195,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 0
   duration: 1.5
+  animSequence: {fileID: 0}
   targetScale: 1
   maxHeight: 0
   startHeight: -0.5
@@ -209,6 +212,7 @@ GameObject:
   - component: {fileID: 921810360972710530}
   - component: {fileID: 8221016945136567124}
   - component: {fileID: 3129836382147990586}
+  - component: {fileID: 2633949834648244095}
   m_Layer: 0
   m_Name: Structurebase
   m_TagString: Untagged
@@ -252,6 +256,8 @@ MonoBehaviour:
   sphereRadius: 0.05
   planeIndex: 0
   spinUpAnimation: {fileID: 3400050630852772206}
+  elementLoader: {fileID: 5738245579341317080}
+  structureController: {fileID: 8599175688921419718}
 --- !u!114 &3129836382147990586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +283,23 @@ MonoBehaviour:
     m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   threshold: 0.8
   resetThreshold: 0.2
+  structureBase: {fileID: 8221016945136567124}
+--- !u!114 &2633949834648244095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652680249787089642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2b38100649c49bfa0f89ad4ff28eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 1
+  duration: 0
+  animSequence: {fileID: 0}
   structureBase: {fileID: 8221016945136567124}
 --- !u!1 &4336108421094066982
 GameObject:

@@ -46,6 +46,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
+  animSequence: {fileID: 0}
   socketInteractor: {fileID: 0}
   elementName: Copper
 --- !u!1 &630824496707023450
@@ -94,6 +95,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
+  animSequence: {fileID: 0}
   grabInteractable: {fileID: 0}
 --- !u!1 &2162190952360842053
 GameObject:
@@ -141,6 +143,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
+  animSequence: {fileID: 0}
   grabInteractable: {fileID: 0}
 --- !u!1 &2305215005268471281
 GameObject:
@@ -190,6 +193,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
+  animSequence: {fileID: 0}
   awaiters:
   - {fileID: 3835388174447502947}
   - {fileID: 1281349588348103147}
@@ -208,6 +212,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
+  animSequence: {fileID: 0}
   grabInteractable: {fileID: 0}
 --- !u!114 &1281349588348103147
 MonoBehaviour:
@@ -224,6 +229,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
+  animSequence: {fileID: 0}
   socketInteractor: {fileID: 0}
   elementName: Copper
 --- !u!1 &4674809336549942778
@@ -260,6 +266,7 @@ Transform:
   - {fileID: 7233113185374465741}
   - {fileID: 4758940072894207095}
   - {fileID: 2227722682961029381}
+  - {fileID: 2491660912278987370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,27 +294,27 @@ MonoBehaviour:
   - audio: {fileID: 8300000, guid: 1113961ccbfda4232b5c8e9041541cd0, type: 3}
     animations:
     - animation: {fileID: 4192641015350823924}
-      timing: 4
+      timing: 3
     realDuration: 0
   - audio: {fileID: 8300000, guid: 459b2cc9febbe48cea502f25d8dc00c7, type: 3}
     animations:
     - animation: {fileID: 93249211343958270}
-      timing: 3
+      timing: 2
     realDuration: 0
   - audio: {fileID: 8300000, guid: 28e446cf1b7634b00be2ebf8500e43ff, type: 3}
     animations:
     - animation: {fileID: 5289384934699111430}
-      timing: 4.7
+      timing: 4
     realDuration: 0
   - audio: {fileID: 8300000, guid: 99c82bd264c934c399df9f06e2517e03, type: 3}
     animations:
-    - animation: {fileID: 4024326258169836612}
-      timing: 9
+    - animation: {fileID: 8780441506764389089}
+      timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 905389413c5b54a90abba0a1e0d539c3, type: 3}
     animations:
-    - animation: {fileID: 5289384934699111430}
-      timing: 9.3
+    - animation: {fileID: 4024326258169836612}
+      timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 9ad6fc6ddbd3d4307b95715b92ed0948, type: 3}
     animations: []
@@ -446,6 +453,63 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8013767581031664327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2491660912278987370}
+  - component: {fileID: 8780441506764389089}
+  m_Layer: 0
+  m_Name: Return Structure Home
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2491660912278987370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8013767581031664327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4447367329677887165}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8780441506764389089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8013767581031664327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5eb1ba6aa95a4138987c55e89708ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 0
+  duration: 1
+  animSequence: {fileID: 0}
+  endLocation: {x: 0, y: 0, z: 0}
+  updateLocation: 1
+  endRotation: {x: 0, y: 0, z: 0, w: 0}
+  updateRotation: 1
+  endScale: {x: 1, y: 1, z: 1}
+  updateScale: 1
+  endTransform: {fileID: 0}
+  useTransform: 1
+  target: {fileID: 0}
+  easingType: 2
 --- !u!1 &8803784696235653143
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,5 +555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   indefiniteDuration: 1
-  duration: 2
+  duration: 0
+  animSequence: {fileID: 0}
   structure: {fileID: 0}

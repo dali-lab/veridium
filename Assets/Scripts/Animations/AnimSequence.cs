@@ -84,7 +84,7 @@ namespace SIB_Animation{
             if(playing) UpdateAnimations();
 
             sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
             sequenceState = "";
 
         }
