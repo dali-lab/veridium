@@ -541,17 +541,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &626644571 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5289384934699111430, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-  m_PrefabInstance: {fileID: 653119225}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 591db94d6b63744ab9a8486242c935bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &653119225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -640,19 +629,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 881861620}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[4].animations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[5].animations.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[5].animations.Array.data[1].timing
-      value: 23.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[5].animations.Array.data[2].timing
+      propertyPath: playOnStart
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
@@ -663,10 +640,6 @@ PrefabInstance:
       propertyPath: segments.Array.data[4].animations.Array.data[1].animation
       value: 
       objectReference: {fileID: 936844117}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[5].animations.Array.data[1].animation
-      value: 
-      objectReference: {fileID: 626644571}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[5].animations.Array.data[2].animation
       value: 
@@ -899,10 +872,6 @@ PrefabInstance:
       propertyPath: m_InteractionLayerMask.m_Bits
       value: 384
       objectReference: {fileID: 0}
-    - target: {fileID: 8221016945136567124, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
-      propertyPath: structureController
-      value: 
-      objectReference: {fileID: 881861620}
     - target: {fileID: 8599175688921419718, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
       propertyPath: hand1
       value: 

@@ -310,10 +310,16 @@ MonoBehaviour:
     animations:
     - animation: {fileID: 8780441506764389089}
       timing: 0
+    - animation: {fileID: 0}
+      timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 905389413c5b54a90abba0a1e0d539c3, type: 3}
     animations:
     - animation: {fileID: 4024326258169836612}
+      timing: 0
+    - animation: {fileID: 5289384934699111430}
+      timing: 23.5
+    - animation: {fileID: 0}
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 9ad6fc6ddbd3d4307b95715b92ed0948, type: 3}
