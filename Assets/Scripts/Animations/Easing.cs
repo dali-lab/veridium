@@ -64,6 +64,12 @@ namespace SIB_Animation{
             switch (easingType){
                 case EasingType.Pointer:
                     return EasePointer(x);
+                default:
+                    if(x < 0.5){
+                        return EaseIn(2 * x, easingType) / 2;
+                    } else {
+                        return EaseOut(2 * (x - 0.5f), easingType) / 2 + 0.5f;
+                    }
             }
 
             return (x);

@@ -21,6 +21,9 @@ namespace SIB_Interaction{
         public float sphereRadius = 0.075f;             // Radius of the spheres
         public int planeIndex = 0;                      // Index of the currently visualized plane
         public Anim_SpinUp spinUpAnimation;             // The animation that spawns this structure in
+        public bool locked {get; private set;}          // Locked means no interaction
+        public ElementLoader elementLoader;             // Element loader associated with this structure
+        public StructureController structureController; // Structure controller associated with this 
 
 
         // Prompts the structureBuilder to construct a structure base on an element
@@ -73,6 +76,20 @@ namespace SIB_Interaction{
 
             structureBuilder.HighlightPlaneAtIndex(planeIndex);
 
+        }
+
+        public void Lock(){
+            locked = true;
+
+            elementLoader.Lock();
+            structureController.Lock();
+        }
+
+        public void Unlock(){
+            locked = false;
+
+            elementLoader.Unlock();
+            structureController.Unlock();
         }
     }
 }

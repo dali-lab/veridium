@@ -4,48 +4,36 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using SIB_Animation;
 
-public class HandDistanceGrabbable : MonoBehaviour
-{
-    /// <summary>
-    /// HandDistanceGrabbable should be attached to a game object with
-    /// an XR interaction toolkit XRGrabInteractable. This script should
-    /// be modified to highlight and unhighlight the game object.
-    /// </summary>
-
-    private bool hovered;               // Whether this distance grabbable is currently hovered
-    private bool hoveredLastFrame;      // Whether this distance grabbable was hovered last frame
-    public Anim_Highlight highlight;     // The Animation to highlight the grabbable
-
-    // Update is called once per frame
-    void Update()
+namespace SIB_Interaction{
+    public class HandDistanceGrabbable : XRGrabInteractable_Lockable
     {
+        /// <summary>
+        /// HandDistanceGrabbable should be attached to a game object with
+        /// an XR interaction toolkit XRGrabInteractable. This script should
+        /// be modified to highlight and unhighlight the game object.
+        /// </summary>
 
-        // Turn off highlight if not currently hovered
-        if(hoveredLastFrame && !hovered) UnHovered();
+        private bool hovered;               // Whether this distance grabbable is currently hovered
+        public Anim_Highlight highlight;     // The Animation to highlight the grabbable
 
-        hovered = false;
-        
-    }
+        protected override void OnHoverEntered(HoverEnterEventArgs args){
 
-    // Hovered called by HandDistanceGrabber. Handles highlighting
-    public void Hovered(GameObject hand){
+            base.OnHoverEntered(args);
 
-        highlight.Highlight();
+            if(args.interactor is XRDirectInteractor){
+                hovered = true;
+                highlight.Highlight();
+            }
+        }
 
-        // Insert code to highlight the interactable
+        protected override void OnHoverExited(HoverExitEventArgs args){
 
-        hovered = true;
-        hoveredLastFrame = true;
-    }
+            base.OnHoverExited(args);
 
-    // UnHovered called by HandDistanceGrabbable. Handles unhighlighting
-    public void UnHovered(){
-
-        highlight.Unhighlight();
-
-        // Insert code to unhighlight the interactable
-
-        hovered = false;
-        hoveredLastFrame = false;
+            if(args.interactor is XRDirectInteractor){
+                hovered = false;
+                highlight.Unhighlight();
+            }
+        }
     }
 }

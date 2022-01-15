@@ -16,6 +16,7 @@ namespace SIB_Interaction{
         public PTElement heldElement;           // Current element in the slot
         public StructureBase structureBase;     // StructureBase that this loads elements for
         public Animator insertedAnimation;      // animator to enable when the element is inserted
+        private int layerMask;
 
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
@@ -44,6 +45,14 @@ namespace SIB_Interaction{
             heldElement = null;
 
             if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
+        }
+
+        public void Lock(){
+            heldElement.Lock();
+        }
+
+        public void Unlock(){
+            heldElement.Unlock();
         }
 
     }

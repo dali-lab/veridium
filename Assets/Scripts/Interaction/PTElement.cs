@@ -68,5 +68,13 @@ namespace SIB_Interaction{
         public void UnInteracted(){
             interacted = false;
         }
+
+        public void Lock(){
+            GetComponent<XRGrabInteractable_Lockable>().Lock();
+        }
+
+        public void Unlock(){
+            GetComponent<XRGrabInteractable_Lockable>().Unlock();
+        }
     }
 }

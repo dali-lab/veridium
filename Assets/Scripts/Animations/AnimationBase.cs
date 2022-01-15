@@ -20,6 +20,7 @@ namespace SIB_Animation{
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
         public bool awaitingAction {get; protected set;}        // Don't set this directly, should only be used in the AwaitUserBase class
+        [HideInInspector] public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
 
 
         // Start is called before the first frame update
@@ -32,17 +33,17 @@ namespace SIB_Animation{
         }
 
         // Update is called on each frame
-        void Update()
+        protected virtual void Update()
         {
 
             // Increment animation time and update the animation if it is playing
             if (playing){
+
+                UpdateAnim();
                 
                 elapsedTime += Time.deltaTime;
 
                 if (duration != 0) elapsedTimePercent = elapsedTime/duration;
-
-                UpdateAnim();
 
             }
 
@@ -51,7 +52,7 @@ namespace SIB_Animation{
 
         }
 
-        // Call this function to play the animation. Will play from start if the animation is alrady completed
+        // Call this function to play the animation. Will play from start if the animation is already completed
         public virtual void Play(){
 
             // Start the animation over if it is already at its end
@@ -118,7 +119,7 @@ namespace SIB_Animation{
 
         }
 
-        // Scrubs the animation backward or forward depending on the sign of time delta
+        // Sets the time of the animation to the new time parameter
         public void Scrub(float newTime){
                 
             elapsedTime = newTime;

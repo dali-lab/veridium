@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace SIB_Interaction{
-    public class StructureController : XRGrabInteractable
+    public class StructureController : XRGrabInteractable_Lockable
     {
 
         /// <summary>

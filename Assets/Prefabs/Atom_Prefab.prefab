@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 460583531355271296}
   - component: {fileID: 5758987094375566748}
   - component: {fileID: 6810135931450903212}
-  - component: {fileID: 2246736773398903192}
+  - component: {fileID: 4624813097969301009}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2246736773398903192
+--- !u!114 &4624813097969301009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,8 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 2
-  emissionColor: {r: 1, g: 1, b: 0, a: 0}
+  animSequence: {fileID: 0}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
   blinksPerSecond: 0.5
   minIntensity: 0.5
   materialIndex: 0

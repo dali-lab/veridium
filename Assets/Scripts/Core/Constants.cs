@@ -127,13 +127,14 @@ namespace sib
             new int[] { 1, 3, 7 },
             new int[] { 1, 2, 7 },
             new int[] { 4, 5, 6},
-            new int[] { 0, 2, 3, 4 },
-            new int[] { 1, 5, 6, 7 },
-            new int[] { 0, 1, 3, 5 },
-            new int[] { 2, 4, 6, 7 },
-            new int[] { 0, 1, 2, 6 },
-            new int[] { 3, 4, 5, 7 },
-            new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }
+            // Uncomment for bonds between face and body centerred atoms and regular atoms
+            //new int[] { 0, 2, 3, 4 },
+            //new int[] { 1, 5, 6, 7 },
+            //new int[] { 0, 1, 3, 5 },
+            //new int[] { 2, 4, 6, 7 },
+            //new int[] { 0, 1, 2, 6 },
+            //new int[] { 3, 4, 5, 7 },
+            //new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }
         };
 
          // An array of bonded atom indices for each atom in the UnitCell8
