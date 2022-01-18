@@ -19,6 +19,7 @@ namespace SIB_Animation{
         private Vector3 startingPlace;
         private Quaternion startingRotation;
         private Vector3 startingScale;
+        [HideInInspector] public bool easeOutOnly = false;
         
         public override void Play()
         {
@@ -42,7 +43,13 @@ namespace SIB_Animation{
             Quaternion goalRotation = useTransform ? endTransform.rotation : endRotation;
             Vector3 goalScale = useTransform ? endTransform.lossyScale : endScale;
 
-            float alpha = (Easing.EaseFull(elapsedTimePercent,easingType));
+            float alpha;
+
+            if(!easeOutOnly){
+                alpha = (Easing.EaseFull(elapsedTimePercent, easingType));
+            } else {
+                alpha = (Easing.EaseOut(elapsedTimePercent, easingType));
+            }
 
             if(updateLocation) target.transform.position = (goal - startingPlace) * alpha + startingPlace;
             if(updateRotation) target.transform.rotation = Quaternion.Slerp(startingRotation, goalRotation, alpha);

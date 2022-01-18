@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using sib;
+using SIB_Core;
 using SIB_Animation;
 
 /// <summary>
@@ -17,7 +17,7 @@ namespace SIB_Interaction{
         private bool grabbed;                           // Whether the structure has been grabbed by the user
         public float respawnDistance = 1;               // Distance from the podium at which the structure should teleport home
         public StructureBuilder structureBuilder;       // Reference to the structureBuilder which implements the construction of the structure
-        public float sideLength = 0.5f;                 // Standard side length of a unit cell
+        public float sideLength = 1f;                 // Standard side length of a unit cell
         public float sphereRadius = 0.075f;             // Radius of the spheres
         public int planeIndex = 0;                      // Index of the currently visualized plane
         public Anim_SpinUp spinUpAnimation;             // The animation that spawns this structure in
@@ -62,6 +62,35 @@ namespace SIB_Interaction{
 
         // Enables single cell view for the crystal
         public void SingleCellView(){
+
+
+
+        }
+
+        public void ClosePackedView(){
+
+            foreach(Bond bond in structureBuilder.crystal.bonds.Values){
+                Destroy(bond.drawnObject);
+            }
+
+            foreach (Atom atom in structureBuilder.crystal.atoms.Values)
+            {
+                if(atom.drawnObject != null){
+                    Anim_MoveTo anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+                    anim.updateLocation = false;
+                    anim.updateRotation = false;
+                    anim.easingType = Easing.EasingType.Elastic;
+                    anim.easeOutOnly = true;
+                    anim.duration = 2f;
+                    anim.selfDestruct = true;
+                    anim.endScale = new Vector3(.32f,.32f,.32f);
+                    anim.Play();
+                }
+            }
+
+        }
+
+        public void BallAndStickView(){
 
 
 

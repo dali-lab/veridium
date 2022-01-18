@@ -7,10 +7,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using sib;
+using SIB_Core;
 
-namespace sib
-{
+namespace SIB_Core{
     /**
      * @class Tests
      * Static class containing functions used to test the functionality of the * unit cell and crystal classes by drawing them to the scene.

@@ -7,8 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace sib
-{
+namespace SIB_Core{
     /**
     * @class Atom
     * Object class used to store positioning data and distinguishing characteristics for an atom
@@ -83,7 +82,8 @@ namespace sib
          * Draws the atom by instantiating a prefab at the correct position and attatching it to the builder
          */
         public void Draw(GameObject atomPrefab, GameObject builder) {
-            this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, this.position, Quaternion.identity);
+            Vector3 location = Vector3.Scale(builder.transform.rotation * (this.position - builder.transform.position), builder.transform.lossyScale) * (1/builder.transform.localScale.x) + builder.transform.position;
+            this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, location, Quaternion.identity);
             drawnObject.transform.SetParent(builder.transform);
             drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
 

@@ -7,6 +7,7 @@ namespace SIB_Animation{
     {
 
         private bool permanentlyCompleted;                  // Does not reset when scrubbing; this is meant so that the user can scrub without repeating actions
+        public bool skipSegment;
 
         public AwaitUserBase(){
             indefiniteDuration = true;
@@ -30,6 +31,8 @@ namespace SIB_Animation{
         public virtual void CompleteAction(){
 
             if (playing) awaitingAction = false;
+
+            if (skipSegment && animSequence.CanMoveOn()) animSequence.PlayNextSegment();
 
         }
 
