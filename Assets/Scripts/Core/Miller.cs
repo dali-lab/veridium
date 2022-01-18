@@ -9,10 +9,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
-using sib;
+using SIB_Core;
 
-namespace sib
-{
+namespace SIB_Core{
     /**
      * @class Miller
      * Static class containing a set of helper functions used for miller index

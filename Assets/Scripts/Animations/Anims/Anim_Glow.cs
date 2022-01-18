@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SIB_Animation{
-    public class Anim_GlowPulse : AnimationBase
+    public class Anim_Glow : AnimationBase
     {
 
-        /// <summary>
-        /// Glow pulse implements a sinusoidal glow pulse animation on the material of
-        /// the GameObject. This animation is different from the others in that it can
-        /// be set to pulse indefinitely until stopped.
-        /// </summary>
-
-        public Color emissionColor;             // Color that this object should glow. In most cases, should be set to the material's albedo
-        public float blinksPerSecond = 0.5f;    // Number of bright peaks of the sin wave per second
-        public float minIntensity = 0f;         // Minimum intensity of the glow effect. The emission will oscillate between the minimum and full brightness
+        public Color emissionColor;             // Color that this object should glow
+        public float minIntensity = 0f;         // Minimum intensity of the glow effect
         public int materialIndex = 0;           // The material index to apply the glow effect to
         private float timeAfterEnd;             // For trailing off glow
         private bool finishCycle;               // For trailing off glow
         public float maxIntensity = 0.6f;       // Maximum brightness that the glow effect will have
+        public float fadeTime = 0.5f;           // Time to fade in or out
+        public Easing.EasingType easingType;    // Easing function to use while fading
 
 
-        public Anim_GlowPulse(){
+        public Anim_Glow(){
             indefiniteDuration = true;
         }
 
@@ -30,7 +25,9 @@ namespace SIB_Animation{
             base.UpdateAnim();
 
             // If the renderer exists, pulse the emission
-            if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(elapsedTime));
+            if(elapsedTime < fadeTime){
+                if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(elapsedTime/fadeTime));
+            }
         }
 
         
@@ -41,9 +38,9 @@ namespace SIB_Animation{
             if(!playing && finishCycle){
                 timeAfterEnd += Time.deltaTime;
 
-                if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(timeAfterEnd));
+                if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(1f-(timeAfterEnd/fadeTime)));
 
-                if(timeAfterEnd % (1/blinksPerSecond) > (1/blinksPerSecond) - 1.1 * Time.deltaTime){
+                if(timeAfterEnd > fadeTime){
                     finishCycle = false;
                     timeAfterEnd = 0;
 
@@ -76,22 +73,14 @@ namespace SIB_Animation{
         {
             base.Pause();
 
-            timeAfterEnd = elapsedTime;
+            timeAfterEnd = 0f;
             finishCycle = true;
         }
 
         // Finds the intensity of the emission at a given time
         private float Alpha(float time){
 
-            float angle = time * 2 * Mathf.PI * blinksPerSecond - Mathf.PI/2;
-
-            float brightness = (Mathf.Sin(angle) + 1)/2;
-
-            brightness *= (maxIntensity-minIntensity);
-            
-            brightness += minIntensity;
-
-            return brightness;
+            return (maxIntensity - minIntensity) * Easing.EaseFull(time, easingType) + minIntensity;
 
         }
     }

@@ -9,8 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
-namespace sib
-{
+namespace SIB_Core{
 
     // Enum used to describe how the crystal is being rendered in the current 
     // display context
@@ -20,7 +19,17 @@ namespace sib
         SINGLECELL,
         // INFINITE describes the state where the crystal structure is 
         // generated recursively to a user-specificed recursion depth
-        INFINITE
+        INFINITE,
+        MULTICELL
+    };
+
+    public enum CrystalView {
+        // SINGLECELL describes the state where only the central unit cell gets 
+        // rendered
+        BallAndStick,
+        // INFINITE describes the state where the crystal structure is 
+        // generated recursively to a user-specificed recursion depth
+        ClosePacked
     };
 
     /**
@@ -207,8 +216,6 @@ namespace sib
                 ts.Hours, ts.Minutes, ts.Seconds,
                 ts.Milliseconds / 10);
             debugString += "Time elapsed in crystal building" + elapsedTime + "\n";
-
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString;
         }
 
         public HashSet<Atom> GetMillerAtoms(int h, int k , int l) {

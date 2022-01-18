@@ -21,6 +21,7 @@ namespace SIB_Animation{
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
         public bool awaitingAction {get; protected set;}        // Don't set this directly, should only be used in the AwaitUserBase class
         [HideInInspector] public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
+        [HideInInspector] public bool selfDestruct;
 
 
         // Start is called before the first frame update
@@ -48,7 +49,10 @@ namespace SIB_Animation{
             }
 
             // If the animation has run its course, stop it
-            if (!indefiniteDuration && elapsedTime >= duration) Pause();
+            if (!indefiniteDuration && elapsedTime >= duration) {
+                Pause();
+                End();
+            }
 
         }
 
@@ -78,6 +82,12 @@ namespace SIB_Animation{
         public virtual void Pause(){
 
             playing = false;
+
+        }
+
+        public virtual void End(){
+
+            if(selfDestruct) Destroy(this);
 
         }
 

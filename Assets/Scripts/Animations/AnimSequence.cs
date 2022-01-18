@@ -112,6 +112,7 @@ namespace SIB_Animation{
                 if(!anim.playing || anim.elapsedTime < 0){
 
                     anim.Pause();
+                    anim.End();
                     playingAnims.Remove(anim);
 
                 }
@@ -128,23 +129,7 @@ namespace SIB_Animation{
             if (!audioHasFinished) audioHasFinished = audioFinished || audioNearlyFinished;
 
             // Determine whether there are animations blocking the transition to the next segment
-            if (audioHasFinished){
-
-                bool animsBlockingMove = false;
-
-                // Find animations playing or waiting for input
-                foreach (AnimationBase anim in playingAnims){
-                    if (!anim.indefiniteDuration || anim.awaitingAction || anim.elapsedTime < anim.duration) animsBlockingMove = true;
-                }
-
-                // Find if there are animations that have not yet played
-                foreach (AnimPlayer anim in segments[currentIndex].animations){
-                    if (anim.timing + 2f >= segmentTime) animsBlockingMove = true;
-                }
-
-                if (!animsBlockingMove) PlayNextSegment();
-
-            }
+            if (audioHasFinished && CanMoveOn()) PlayNextSegment();
 
             string animsString = "";
             foreach (AnimationBase anim in playingAnims){
@@ -152,6 +137,22 @@ namespace SIB_Animation{
             }
             sequenceState += "animations playing: " + animsString + "\n";
 
+        }
+
+        public bool CanMoveOn(){
+            bool animsBlockingMove = false;
+
+            // Find animations playing or waiting for input
+            foreach (AnimationBase anim in playingAnims){
+                if (!anim.indefiniteDuration || anim.awaitingAction || anim.elapsedTime < anim.duration) animsBlockingMove = true;
+            }
+
+            // Find if there are animations that have not yet played
+            foreach (AnimPlayer anim in segments[currentIndex].animations){
+                if (anim.timing + 2f >= segmentTime) animsBlockingMove = true;
+            }
+
+            return !animsBlockingMove;
         }
 
         // Play the sequence. This will start from where it last left off if paused
@@ -218,12 +219,13 @@ namespace SIB_Animation{
         }
 
         // Plays the next animation in the list and adds the listener to it
-        private void PlayNextSegment(){
+        public void PlayNextSegment(){
 
             audioSource.Stop();
 
             foreach (AnimationBase anim in playingAnims){
                 anim.Pause();
+                anim.End();
             }
 
             currentIndex ++;

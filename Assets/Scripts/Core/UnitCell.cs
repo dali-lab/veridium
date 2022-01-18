@@ -7,8 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace sib
-{
+namespace SIB_Core{
     /**
      * @class UnitCell
      * Defines the UnitCell abstract class interface structure. The abstract

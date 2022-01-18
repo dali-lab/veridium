@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
-using sib;
+using SIB_Core;
 using System.Linq;
 
 public class StructureBuilder : MonoBehaviour
@@ -39,12 +39,6 @@ public class StructureBuilder : MonoBehaviour
         // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void HighlightPlaneAtIndex(int index){
         
         if(!initialized) return;
@@ -71,6 +65,19 @@ public class StructureBuilder : MonoBehaviour
         this.crystal.ClearCrystal(this.gameObject);
 
         initialized = false;
+    }
+
+    public Atom GetAtomAtCoordinate(Vector3 pos){
+
+        Vector3 corrected = pos * 0.25f + transform.position;
+
+        foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms){
+            
+            if((a.Key - corrected).magnitude < 0.1){
+                return a.Value;
+            }
+        }
+        return null;
     }
 
     /**
@@ -134,7 +141,7 @@ public class StructureBuilder : MonoBehaviour
 
         // Adds Atoms and bonds to the crystal
         stopwatch.Start();
-        this.crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 1);
+        this.crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 2);
         stopwatch.Stop();
 
         ts = stopwatch.Elapsed;

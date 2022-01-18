@@ -7,8 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace sib
-{
+namespace SIB_Core{
     /**
      * @class Bond
      * Class that describes a linear bond between two Atom objects. Contains
@@ -19,6 +18,7 @@ namespace sib
         // in this case start and end are simply used to denote the two Atoms at either ends of the Bonds
         private Atom start;
         private Atom end;
+        public GameObject drawnObject {get; private set;}
 
         /**
          * @constructor
@@ -95,10 +95,10 @@ namespace sib
             Vector3 midpoint = (this.start.GetPosition() + this.end.GetPosition())/2;
             float distance = Vector3.Distance(this.start.GetPosition(), this.end.GetPosition());
 
-            GameObject edge = MonoBehaviour.Instantiate(linePrefab, midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
+            drawnObject = MonoBehaviour.Instantiate(linePrefab, midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
                 
-            edge.transform.SetParent(builder.transform);
-            edge.transform.localScale = new Vector3(1/0.3f,1/0.3f,distance/0.15f);
+            drawnObject.transform.SetParent(builder.transform);
+            drawnObject.transform.localScale = new Vector3(1f,1f,distance/0.5f);
         }
     }
 }

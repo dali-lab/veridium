@@ -55,5 +55,12 @@ namespace SIB_Interaction{
             heldElement.Unlock();
         }
 
+        public void ResetStructure(){
+
+            structureBase.ElementRemoved();
+
+            if(heldElement != null) structureBase.ElementAdded(heldElement);
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using sib;
+using SIB_Core;
 
 namespace SIB_Interaction{
     

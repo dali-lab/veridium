@@ -9,6 +9,7 @@ namespace SIB_Interaction{
         public bool locked {get; private set;}
         public bool selectableBySocketWhenLocked = true;
         public bool selectableByGrabWhenLocked = false;
+        private bool rigidBodyEnabled;
 
         public override bool IsSelectableBy(XRBaseInteractor interactor){
             bool baseCase = base.IsSelectableBy(interactor);
@@ -40,10 +41,17 @@ namespace SIB_Interaction{
 
         public void Lock(){
             locked = true;
+            if(GetComponent<Rigidbody>() != null) {
+                rigidBodyEnabled = GetComponent<Rigidbody>().isKinematic;
+                GetComponent<Rigidbody>().isKinematic = true;
+            }
         }
 
         public void Unlock(){
             locked = false;
+            if(GetComponent<Rigidbody>() != null){
+                GetComponent<Rigidbody>().isKinematic = GetComponent<Rigidbody>();
+            }
         }
     }
 }

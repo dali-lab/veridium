@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SIB_Interaction;
-using sib;
+using SIB_Core;
 using System.Linq;
 
 namespace SIB_Animation{

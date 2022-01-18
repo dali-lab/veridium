@@ -7,8 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace sib
-{
+namespace SIB_Core{
     // Static class the wraps global constants pertinent to the unit cell classes
     public static class Constants {
         // The maximum number of vertices in a 6-sided unit cell
