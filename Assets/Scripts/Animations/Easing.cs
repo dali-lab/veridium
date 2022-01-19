@@ -208,7 +208,7 @@ namespace SIB_Animation{
             if (x < 0) return 0f;
 
 
-            return 6.26f * (1f-Mathf.Cos(2*Mathf.PI*x)) * (x-1f)*(x-1f)*(x-1f)*(x-1f);
+            return 3.129f * (1f-Mathf.Cos(2*Mathf.PI*x)) * (x-1f)*(x-1f)*(x-1f)*(x-1f);
         }
     }
 }
