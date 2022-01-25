@@ -368,7 +368,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2078824037863683531}
-        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.HandDistanceGrabber, Assembly-CSharp
         m_MethodName: grabBegun
         m_Mode: 1
         m_Arguments:
@@ -383,7 +383,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2078824037863683531}
-        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.HandDistanceGrabber, Assembly-CSharp
         m_MethodName: grabEnded
         m_Mode: 1
         m_Arguments:
@@ -900,7 +900,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7504483578990469883}
-        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.HandDistanceGrabber, Assembly-CSharp
         m_MethodName: grabBegun
         m_Mode: 1
         m_Arguments:
@@ -915,7 +915,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7504483578990469883}
-        m_TargetAssemblyTypeName: SIB_Interaction.HandDistanceGrabber, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.HandDistanceGrabber, Assembly-CSharp
         m_MethodName: grabEnded
         m_Mode: 1
         m_Arguments:

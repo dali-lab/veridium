@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class AwaitUserBase : AnimationBase
     {
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace SIB_Interaction{
+namespace Veridium_Interaction{
     public class ElementLoader : XRSocketInteractor
     {
 

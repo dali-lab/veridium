@@ -51,7 +51,9 @@ In which x is a value between 0 and 1. These can be used to access the following
 * Back (overshoots target slightly before settling)
 * Elastic (simulates damped spring)
 * Bounce
-* Pointer ()
+* Pointer (satisfying jump forward and settle back)
+
+
 
 ## Basic Structure
 

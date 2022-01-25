@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SIB_Core;
+using Veridium_Core;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class Anim_AddAtoms : AnimationBase
     {
 

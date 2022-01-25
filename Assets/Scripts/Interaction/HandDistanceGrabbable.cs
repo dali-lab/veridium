@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using SIB_Animation;
+using Veridium_Animation;
 
-namespace SIB_Interaction{
+namespace Veridium_Interaction{
     public class HandDistanceGrabbable : XRGrabInteractable_Lockable
     {
         /// <summary>

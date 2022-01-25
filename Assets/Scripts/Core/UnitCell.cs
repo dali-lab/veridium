@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SIB_Core{
+namespace Veridium_Core{
     /**
      * @class UnitCell
      * Defines the UnitCell abstract class interface structure. The abstract

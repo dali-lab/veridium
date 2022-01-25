@@ -657,7 +657,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8599175688921419718}
-        m_TargetAssemblyTypeName: SIB_Interaction.StructureController, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.StructureController, Assembly-CSharp
         m_MethodName: ScaleGrabberSelected
         m_Mode: 1
         m_Arguments:

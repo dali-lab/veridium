@@ -238,7 +238,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7766797239739653141}
-        m_TargetAssemblyTypeName: SIB_Interaction.PTElement, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.PTElement, Assembly-CSharp
         m_MethodName: Interacted
         m_Mode: 1
         m_Arguments:
@@ -253,7 +253,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7766797239739653141}
-        m_TargetAssemblyTypeName: SIB_Interaction.PTElement, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.PTElement, Assembly-CSharp
         m_MethodName: UnInteracted
         m_Mode: 1
         m_Arguments:

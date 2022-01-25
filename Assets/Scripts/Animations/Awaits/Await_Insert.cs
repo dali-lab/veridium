@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using SIB_Interaction;
+using Veridium_Interaction;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class Await_Insert : AwaitUserBase
     {
 

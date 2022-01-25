@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SIB_Core{
+namespace Veridium_Core{
     // Enum used to enumerate unit cell types
     public enum CellType {
         CUBIC,
