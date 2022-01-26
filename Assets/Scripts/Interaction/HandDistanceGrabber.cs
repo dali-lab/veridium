@@ -86,5 +86,10 @@ namespace SIB_Interaction{
         public void grabEnded(){
             grabbing = false;
         }
+
+        // check if the controller is grabbing anything
+        public bool grabbed() {
+            return grabbing;
+        }
     }
 }
