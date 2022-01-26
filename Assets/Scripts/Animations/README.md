@@ -1,4 +1,4 @@
-## seeing-is-believing
+## veridium
 # Animation Scripts
 
 The Animation system is used to create interactive animated lectures for chemistry and physics visualization. The design philosophy behind this system is high modularity, code reuse, and designer-friendly control in unity's GUIs.
