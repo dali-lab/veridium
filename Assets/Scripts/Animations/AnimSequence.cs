@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace Veridium_Animation{
     public class AnimSequence : MonoBehaviour
     {
         
         /// <summary>
-        /// Holds a list of animations and plays them in order. Can await user input
-        /// before proceeding. This should be used to implement entire lecture
-        /// animation sequences
+        /// Holds a list of audio clips and plays them in order with animations. 
+        /// Can await user input before proceeding. This should be used to 
+        /// implement entire lecture animation sequences
         /// </summary>
 
         private int currentIndex = 0;                                   // The index in the list of the animation that is currently playing
@@ -22,8 +25,6 @@ namespace Veridium_Animation{
         private List<AnimationBase> playingAnims;                       // A list of currently playing animations
         public string sequenceState;                                    // For debug purposes
         private float segmentTime;                                      // Time since the beginning of the segment. Equal to audio time if audio has not finished
-        public bool flag;
-        public int i = 1;
 
 
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
@@ -37,9 +38,14 @@ namespace Veridium_Animation{
         // A single animation on a segment that specifies the animation to play and the time into the clip it should start playing
         [System.Serializable]
         public struct AnimPlayer {
+            public ActionType actionType;
             public AnimationBase animation;                 // Animation to play at this time. Set in inspector.
+            public UnityEvent onPlay;
+            public Animator animator;
             public float timing;                            // Start time in seconds of the animation from the beginning of the segment
         }
+
+        public enum ActionType{ AnimationScript, UnityEvent, Animator }
 
         // Called before start
         void Awake(){
@@ -313,17 +319,44 @@ namespace Veridium_Animation{
         }
     }
 
-    [CustomEditor(typeof(AnimSequence))]
-    public class AnimSequenceEditor : Editor {
-        public override void OnInspectorGUI() {
-            var animSequence = target as AnimSequence;
-        
-            animSequence.flag = GUILayout.Toggle(animSequence.flag, "Flag");
-            
-            if(animSequence.flag)
-            EditorGUILayout.IntSlider("I field:", animSequence.i , 1 , 100);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("segments"), true);
-            
+    [CustomPropertyDrawer(typeof(AnimSequence.AnimPlayer))]
+    public class AnimPlayerDrawer : PropertyDrawer
+    {
+        // Draw the property inside the given rect
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            // Using BeginProperty / EndProperty on the parent property means that
+            // prefab override logic works on the entire property.
+            EditorGUI.BeginProperty(position, label, property);
+
+            // Draw label
+            //position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
+
+            // Don't make child fields be indented
+            var indent = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+
+            // Calculate rects
+            var actionTypeRect = new Rect(position.x, position.y, 120, position.height);
+            var timingRect = new Rect(position.x + 290, position.y, position.width - 290, position.height);
+            var inputRect = new Rect(position.x + 125, position.y, 160, position.height);
+
+            // Draw fields - passs GUIContent.none to each so they are drawn without labels
+            EditorGUI.PropertyField(actionTypeRect, property.FindPropertyRelative("actionType"), GUIContent.none);
+            EditorGUI.PropertyField(timingRect, property.FindPropertyRelative("timing"), GUIContent.none);
+            if(property.FindPropertyRelative("actionType").intValue == 0){
+                EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("animation"), GUIContent.none);
+            } else if (property.FindPropertyRelative("actionType").intValue == 1){
+                EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("onPlay"), GUIContent.none);
+            } else {
+                EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("animator"), GUIContent.none);
+            }
+            EditorGUI.PropertyField(timingRect, property.FindPropertyRelative("timing"), GUIContent.none);
+
+            // Set indent back to what it was
+            EditorGUI.indentLevel = indent;
+
+            EditorGUI.EndProperty();
         }
     }
 }
