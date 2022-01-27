@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class AnimationManager : MonoBehaviour
     {
 

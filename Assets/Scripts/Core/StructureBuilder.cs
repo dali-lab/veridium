@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
-using SIB_Core;
+using Veridium_Core;
 using System.Linq;
 
 public class StructureBuilder : MonoBehaviour

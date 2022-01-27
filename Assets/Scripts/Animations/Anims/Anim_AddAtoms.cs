@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SIB_Core;
+using Veridium_Core;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class Anim_AddAtoms : AnimationBase
     {
 
@@ -70,7 +70,7 @@ namespace SIB_Animation{
 
                     // Play a fade in animation 
                     Anim_Fade anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Fade>() as Anim_Fade;
-                    anim.easingType = Easing.EasingType.Exponential;
+                    anim.easingType = EasingType.Exponential;
                     anim.Play();
                     anim.selfDestruct = true;
                 }

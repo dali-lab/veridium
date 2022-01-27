@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class Anim_SpinUp : AnimationBase
     {
 
@@ -19,7 +19,7 @@ namespace SIB_Animation{
         public float maxHeight = 0.0f;      // Distance above the initial height that the object will go
         public float startHeight = -0.5f;   // Distance below the initial height that the object will start
         public int numRotations = 1;        // Number of complete rotations that the object should complete
-        public Easing.EasingType easingType;
+        public EasingType easingType;
 
 
         // Update is called once per frame

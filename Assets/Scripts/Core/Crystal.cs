@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
-namespace SIB_Core{
+namespace Veridium_Core{
 
     // Enum used to describe how the crystal is being rendered in the current 
     // display context

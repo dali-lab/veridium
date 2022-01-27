@@ -110,6 +110,8 @@ public class OVRLipSyncMicInput : MonoBehaviour
     /// </summary>
     private void InitializeMicrophone()
     {
+        // Turned off for RECORD_AUDIO permission
+        /*
         if (initialized)
         {
             return;
@@ -121,7 +123,7 @@ public class OVRLipSyncMicInput : MonoBehaviour
         selectedDevice = Microphone.devices[0].ToString();
         micSelected = true;
         GetMicCaps();
-        initialized = true;
+        initialized = true;*/
     }
 
 
@@ -130,6 +132,8 @@ public class OVRLipSyncMicInput : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // Turned off for RECORD_AUDIO permission
+        /*
         if (!focused)
         {
             if (Microphone.IsRecording(selectedDevice))
@@ -137,7 +141,7 @@ public class OVRLipSyncMicInput : MonoBehaviour
                 StopMicrophone();
             }
             return;
-        }
+        }*/
 
         if (!Application.isPlaying)
         {
@@ -154,6 +158,8 @@ public class OVRLipSyncMicInput : MonoBehaviour
         audioSource.volume = (micInputVolume / 100);
 
         //Hold To Speak
+        // Turned off for RECORD_AUDIO permission
+        /*
         if (micControl == micActivation.HoldToSpeak)
         {
             if (Input.GetKey(micActivationKey))
@@ -170,9 +176,11 @@ public class OVRLipSyncMicInput : MonoBehaviour
                     StopMicrophone();
                 }
             }
-        }
+        }*/
 
         //Push To Talk
+        // Turned off for RECORD_AUDIO permission
+        /*
         if (micControl == micActivation.PushToSpeak)
         {
             if (Input.GetKeyDown(micActivationKey))
@@ -205,7 +213,7 @@ public class OVRLipSyncMicInput : MonoBehaviour
             {
                 micSelected = false;
             }
-        }
+        }*/
     }
 
 
@@ -268,6 +276,8 @@ public class OVRLipSyncMicInput : MonoBehaviour
         float buttonSpaceLeft)
     {
         //If there is more than one device, choose one.
+        // Turned off for RECORD_AUDIO permission
+        /*
         if (Microphone.devices.Length >= 1 && enableMicSelectionGUI == true && micSelected == false)
         {
             for (int i = 0; i < Microphone.devices.Length; ++i)
@@ -283,7 +293,7 @@ public class OVRLipSyncMicInput : MonoBehaviour
                     StartMicrophone();
                 }
             }
-        }
+        }*/
     }
 
     /// <summary>
@@ -294,6 +304,8 @@ public class OVRLipSyncMicInput : MonoBehaviour
         if (micSelected == false) return;
 
         //Gets the frequency of the device
+        // Turned off for RECORD_AUDIO permission
+        /*
         Microphone.GetDeviceCaps(selectedDevice, out minFreq, out maxFreq);
 
         if (minFreq == 0 && maxFreq == 0)
@@ -305,6 +317,7 @@ public class OVRLipSyncMicInput : MonoBehaviour
 
         if (micFrequency > maxFreq)
             micFrequency = maxFreq;
+        */
     }
 
     /// <summary>
@@ -312,6 +325,8 @@ public class OVRLipSyncMicInput : MonoBehaviour
     /// </summary>
     public void StartMicrophone()
     {
+        // Turned off for RECORD_AUDIO permission
+        /*
         if (micSelected == false) return;
 
         //Starts recording
@@ -329,7 +344,7 @@ public class OVRLipSyncMicInput : MonoBehaviour
             throw new Exception("Timeout initializing microphone " + selectedDevice);
         }
         // Play the audio source
-        audioSource.Play();
+        audioSource.Play();*/
     }
 
     /// <summary>
@@ -337,6 +352,8 @@ public class OVRLipSyncMicInput : MonoBehaviour
     /// </summary>
     public void StopMicrophone()
     {
+        // Turned off for RECORD_AUDIO permission
+        /*
         if (micSelected == false) return;
 
         // Overriden with a clip to play? Don't stop the audio source
@@ -351,7 +368,7 @@ public class OVRLipSyncMicInput : MonoBehaviour
         OVRLipSyncContext context = GetComponent<OVRLipSyncContext>();
         context.ResetContext();
 
-        Microphone.End(selectedDevice);
+        Microphone.End(selectedDevice);*/
     }
 
 

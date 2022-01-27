@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SIB_Core;
+using Veridium_Core;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class Anim_GlowAtomsConstant : AnimationBase
     {
 
@@ -51,7 +51,7 @@ namespace SIB_Animation{
                     if(atom.drawnObject != null){
                         if(!steps[currentStep].unglow){
                             Anim_Glow anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Glow>() as Anim_Glow;
-                            anim.easingType = Easing.EasingType.Exponential;
+                            anim.easingType = EasingType.Exponential;
                             anim.selfDestruct = true;
                             anim.emissionColor = steps[currentStep].glowColor;
                             anim.fadeTime = 1f;

@@ -110,7 +110,7 @@ public class ToothMenu : MonoBehaviour
         foreach (GameObject featureKey in features.Keys)
         {
             int numFeatureParts = features[featureKey].Count;
-            float canvasYInterval, canvasXInterval, dX, dY = 0f;
+            float canvasYInterval, canvasXInterval, dY = 0f;
             if (numFeatureParts < 6)
             {
                 canvasYInterval = (canvasHeight) / 5;

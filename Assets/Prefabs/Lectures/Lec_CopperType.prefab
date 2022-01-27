@@ -650,137 +650,287 @@ MonoBehaviour:
   segments:
   - audio: {fileID: 8300000, guid: 35f5ecf1333494fa98bb724a179f9d98, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 6.7
-    - animation: {fileID: 3480751940500483183}
+    - actionType: 0
+      animation: {fileID: 3480751940500483183}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 3
     realDuration: 0
   - audio: {fileID: 8300000, guid: 1113961ccbfda4232b5c8e9041541cd0, type: 3}
     animations:
-    - animation: {fileID: 4192641015350823924}
+    - actionType: 0
+      animation: {fileID: 4192641015350823924}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 459b2cc9febbe48cea502f25d8dc00c7, type: 3}
     animations:
-    - animation: {fileID: 93249211343958270}
+    - actionType: 0
+      animation: {fileID: 93249211343958270}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 1.5
     realDuration: 0
   - audio: {fileID: 8300000, guid: 28e446cf1b7634b00be2ebf8500e43ff, type: 3}
     animations:
-    - animation: {fileID: 5289384934699111430}
+    - actionType: 0
+      animation: {fileID: 5289384934699111430}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 3
     realDuration: 0
   - audio: {fileID: 8300000, guid: 99c82bd264c934c399df9f06e2517e03, type: 3}
     animations:
-    - animation: {fileID: 8780441506764389089}
+    - actionType: 0
+      animation: {fileID: 8780441506764389089}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 905389413c5b54a90abba0a1e0d539c3, type: 3}
     animations:
-    - animation: {fileID: 4024326258169836612}
+    - actionType: 0
+      animation: {fileID: 4024326258169836612}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 93249211343958270}
+    - actionType: 0
+      animation: {fileID: 93249211343958270}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 23
     realDuration: 0
   - audio: {fileID: 8300000, guid: 9ad6fc6ddbd3d4307b95715b92ed0948, type: 3}
     animations:
-    - animation: {fileID: 729088021558630385}
+    - actionType: 0
+      animation: {fileID: 729088021558630385}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 1.05
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 8780441506764389089}
+    - actionType: 0
+      animation: {fileID: 8780441506764389089}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: ff21452f504464fef84fc886ac9498a1, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 5346198251241361437}
+    - actionType: 0
+      animation: {fileID: 5346198251241361437}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 2
     realDuration: 0
   - audio: {fileID: 8300000, guid: 4cc70f780830446c885caecb963ea0f1, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 8469094328874234903}
+    - actionType: 0
+      animation: {fileID: 8469094328874234903}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 2
-    - animation: {fileID: 7579374103356697498}
+    - actionType: 0
+      animation: {fileID: 7579374103356697498}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 4
     realDuration: 0
   - audio: {fileID: 8300000, guid: 31412e29183f347b7a23b5b052081c7a, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 1708411533379534534}
+    - actionType: 0
+      animation: {fileID: 1708411533379534534}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 2
-    - animation: {fileID: 8678882282445788558}
+    - actionType: 0
+      animation: {fileID: 8678882282445788558}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 2
-    - animation: {fileID: 5388814776191419752}
+    - actionType: 0
+      animation: {fileID: 5388814776191419752}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 2
     realDuration: 0
   - audio: {fileID: 8300000, guid: ab5ee7f124bd748188bb0ce6f74eec94, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 444745c5f5cbc42c4bef7a50fc88f826, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 8837474393783743931}
+    - actionType: 0
+      animation: {fileID: 8837474393783743931}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 7711f835b87b947fa816a46234183cf2, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 8937781255171708347}
+    - actionType: 0
+      animation: {fileID: 8937781255171708347}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: e813d476dc8b3480bab7b5610b545a83, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 3943268710299239628}
+    - actionType: 0
+      animation: {fileID: 3943268710299239628}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 75e704142af264b1ba0c107fe4fdfddd, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 3605963620402628579}
+    - actionType: 0
+      animation: {fileID: 3605963620402628579}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 7.5
     realDuration: 0
   - audio: {fileID: 8300000, guid: eb232990ac3dc495bb287756c8bf2dd4, type: 3}
     animations:
-    - animation: {fileID: 93249211343958270}
+    - actionType: 0
+      animation: {fileID: 93249211343958270}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 5289384934699111430}
+    - actionType: 0
+      animation: {fileID: 5289384934699111430}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 8
     realDuration: 0
   - audio: {fileID: 8300000, guid: b35d42bc461d54b3ca16c5bb4be54dea, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 6257611850395251285}
+    - actionType: 0
+      animation: {fileID: 6257611850395251285}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 2.5
-    - animation: {fileID: 8780441506764389089}
+    - actionType: 0
+      animation: {fileID: 8780441506764389089}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0.5
     realDuration: 0
   - audio: {fileID: 8300000, guid: 7d1a77a1bfb9a4cdfa00a3d30dd9ad97, type: 3}
     animations:
-    - animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
-    - animation: {fileID: 4024326258169836612}
+    - actionType: 0
+      animation: {fileID: 4024326258169836612}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
       timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: d1924443774b743af8e387f8f34cdab6, type: 3}
     animations: []
     realDuration: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 13450517986752251}
   sequenceState: 
+  flag: 0
+  i: 1
 --- !u!82 &13450517986752251
 AudioSource:
   m_ObjectHideFlags: 0

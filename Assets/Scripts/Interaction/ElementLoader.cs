@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace SIB_Interaction{
+namespace Veridium_Interaction{
     public class ElementLoader : XRSocketInteractor
     {
 
@@ -20,7 +20,7 @@ namespace SIB_Interaction{
 
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
-        protected override void OnSelectEntering(XRBaseInteractable interactable){
+        protected override void OnSelectEntered(XRBaseInteractable interactable){
 
             base.OnSelectEntering(interactable);
 
@@ -36,7 +36,7 @@ namespace SIB_Interaction{
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
-        protected override void OnSelectExiting(XRBaseInteractable interactable){
+        protected override void OnSelectExited(XRBaseInteractable interactable){
 
             base.OnSelectExiting(interactable);
 

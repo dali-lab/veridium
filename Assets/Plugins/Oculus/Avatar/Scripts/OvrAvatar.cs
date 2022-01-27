@@ -982,7 +982,8 @@ public class OvrAvatar : MonoBehaviour
 
     bool IsValidMic()
     {
-        string[] devices = Microphone.devices;
+        // Turned off for RECORD_AUDIO permission
+        /*string[] devices = Microphone.devices;
 
         if (devices.Length < 1)
         {
@@ -1019,7 +1020,8 @@ public class OvrAvatar : MonoBehaviour
         }
 
         Microphone.End(selectedDevice);
-        return true;
+        return true;*/
+        return false;
     }
 
     void InitPostLoad()

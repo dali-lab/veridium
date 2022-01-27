@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
 
     public class Anim_PopUp : AnimationBase
     {
@@ -51,14 +51,14 @@ namespace SIB_Animation{
         // Finds the updated relative position of the object
         private Vector3 Position(float time){
             
-            return Vector3.Lerp(startOffset, endOffset, Easing.EaseOut(time, Easing.EasingType.Elastic));
+            return Vector3.Lerp(startOffset, endOffset, Easing.EaseOut(time, EasingType.Elastic));
 
         }
 
         // Finds the updated relative uniform scale of the object
         private float Scale(float time){
 
-            return Easing.EaseOut(time, Easing.EasingType.Exponential);
+            return Easing.EaseOut(time, EasingType.Exponential);
 
         }
     }

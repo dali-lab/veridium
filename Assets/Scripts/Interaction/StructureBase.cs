@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using SIB_Core;
-using SIB_Animation;
+using Veridium_Core;
+using Veridium_Animation;
 
 /// <summary>
 /// StructureBase controls the main structure on the podium 
 /// Supports interaction of user and structure
 /// </summary>
 
-namespace SIB_Interaction{
+namespace Veridium_Interaction{
     public class StructureBase : MonoBehaviour
     {
         public GameObject structure;                    // The structure on the podium
@@ -79,7 +79,7 @@ namespace SIB_Interaction{
                     Anim_MoveTo anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
                     anim.updateLocation = false;
                     anim.updateRotation = false;
-                    anim.easingType = Easing.EasingType.Elastic;
+                    anim.easingType = EasingType.Elastic;
                     anim.easeOutOnly = true;
                     anim.duration = 2f;
                     anim.selfDestruct = true;

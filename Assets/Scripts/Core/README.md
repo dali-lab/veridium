@@ -1,4 +1,4 @@
-## seeing-is-believing
+## veridium
 # Core Scripts
 
 The Core module implements the functionality needed to procedurally generate and display Bravais lattice structures in a Unity scene.

@@ -1,4 +1,4 @@
-## seeing-is-believing
+## veridium
 # Animation Scripts
 
 The Animation system is used to create interactive animated lectures for chemistry and physics visualization. The design philosophy behind this system is high modularity, code reuse, and designer-friendly control in unity's GUIs.
@@ -51,7 +51,9 @@ In which x is a value between 0 and 1. These can be used to access the following
 * Back (overshoots target slightly before settling)
 * Elastic (simulates damped spring)
 * Bounce
-* Pointer ()
+* Pointer (satisfying jump forward and settle back)
+
+
 
 ## Basic Structure
 

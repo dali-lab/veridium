@@ -196,6 +196,7 @@ MonoBehaviour:
   indefiniteDuration: 0
   duration: 1.5
   animSequence: {fileID: 0}
+  selfDestruct: 0
   targetScale: 1
   maxHeight: 0
   startHeight: -0.5
@@ -234,6 +235,7 @@ Transform:
   - {fileID: 7075223840439729953}
   - {fileID: 6458486313505795307}
   - {fileID: 177232410486410686}
+  - {fileID: 8328892565985048370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,6 +302,7 @@ MonoBehaviour:
   indefiniteDuration: 1
   duration: 0
   animSequence: {fileID: 0}
+  selfDestruct: 0
   structureBase: {fileID: 8221016945136567124}
 --- !u!1 &4336108421094066982
 GameObject:
@@ -657,7 +660,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8599175688921419718}
-        m_TargetAssemblyTypeName: SIB_Interaction.StructureController, Assembly-CSharp
+        m_TargetAssemblyTypeName: Veridium_Interaction.StructureController, Assembly-CSharp
         m_MethodName: ScaleGrabberSelected
         m_Mode: 1
         m_Arguments:
@@ -766,3 +769,65 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &4330082433217439912
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 921810360972710530}
+    m_Modifications:
+    - target: {fileID: 4956897543516308768, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_Name
+      value: glow_effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0012
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.492
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5031
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+--- !u!4 &8328892565985048370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5729036814610309018, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
+  m_PrefabInstance: {fileID: 4330082433217439912}
+  m_PrefabAsset: {fileID: 0}

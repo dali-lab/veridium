@@ -1,6 +1,6 @@
-# seeing-is-believing
+# veridium
 
-Seeing is believing is a VR experience that allows users to view and manipulate the crystal latices of metal structures in a virtual reality scene.
+Veridium is a VR experience that allows users to view and manipulate the crystal latices of metal structures in a virtual reality scene.
 
 # Architecture
 
@@ -34,7 +34,7 @@ If you choose just the Build option, this will create an apk file that will be s
 
 Look towards your left and reach out towards the periodic table. Use the grip button on your Oculus controler to select an element and place it into the podium in front of you. Reach out and grab the crystal structure floating above the podium to move, rotate, resize, and manipulate it in space.
 
-Seeing is Believing  is designed for the Oculus Quest, and is best experienced with the Oculus Quest 2 headset and controllers.
+Veridium is designed for the Oculus Quest, and is best experienced with the Oculus Quest 2 headset and controllers.
 
 
 ## Authors

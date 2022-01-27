@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
-namespace SIB_Interaction{
+namespace Veridium_Interaction{
 
     public class JoystickSwitch : MonoBehaviour
     {

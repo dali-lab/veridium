@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
-using SIB_Core;
+using Veridium_Core;
 
-namespace SIB_Core{
+namespace Veridium_Core{
     /**
      * @class Miller
      * Static class containing a set of helper functions used for miller index

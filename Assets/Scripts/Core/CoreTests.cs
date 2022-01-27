@@ -7,9 +7,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SIB_Core;
+using Veridium_Core;
 
-namespace SIB_Core{
+namespace Veridium_Core{
     /**
      * @class Tests
      * Static class containing functions used to test the functionality of the * unit cell and crystal classes by drawing them to the scene.

@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SIB_Core{
+namespace Veridium_Core{
     /**
     * @class Atom
     * Object class used to store positioning data and distinguishing characteristics for an atom

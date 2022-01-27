@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SIB_Animation{
+namespace Veridium_Animation{
     public class Anim_Glow : AnimationBase
     {
 
@@ -13,7 +13,7 @@ namespace SIB_Animation{
         private bool finishCycle;               // For trailing off glow
         public float maxIntensity = 0.6f;       // Maximum brightness that the glow effect will have
         public float fadeTime = 0.5f;           // Time to fade in or out
-        public Easing.EasingType easingType;    // Easing function to use while fading
+        public EasingType easingType;    // Easing function to use while fading
 
 
         public Anim_Glow(){
