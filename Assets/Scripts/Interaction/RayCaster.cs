@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SIB_Interaction{
+namespace Veridium_Interaction{
 
     public class RayCaster : MonoBehaviour
     {
