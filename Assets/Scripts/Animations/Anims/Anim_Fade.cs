@@ -12,7 +12,7 @@ namespace Veridium_Animation{
 
         public float startingOpacity = 0f;                                  // Opacity to start from
         public float endingOpacity = 1f;                                    // Opacity to end at
-        public Easing.EasingType easingType = Easing.EasingType.Linear;     // Easing type for the curve between start and end
+        public EasingType easingType = EasingType.Linear;     // Easing type for the curve between start and end
         public int materialIndex = 0;                                       // The index of the material to apply the fading effect to
 
         // Constructor

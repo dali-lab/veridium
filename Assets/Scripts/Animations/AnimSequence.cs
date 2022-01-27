@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 namespace Veridium_Animation{
     public class AnimSequence : MonoBehaviour
@@ -21,6 +22,8 @@ namespace Veridium_Animation{
         private List<AnimationBase> playingAnims;                       // A list of currently playing animations
         public string sequenceState;                                    // For debug purposes
         private float segmentTime;                                      // Time since the beginning of the segment. Equal to audio time if audio has not finished
+        public bool flag;
+        public int i = 1;
 
 
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
@@ -307,6 +310,20 @@ namespace Veridium_Animation{
 
             return latestTime;
 
+        }
+    }
+
+    [CustomEditor(typeof(AnimSequence))]
+    public class AnimSequenceEditor : Editor {
+        public override void OnInspectorGUI() {
+            var animSequence = target as AnimSequence;
+        
+            animSequence.flag = GUILayout.Toggle(animSequence.flag, "Flag");
+            
+            if(animSequence.flag)
+            EditorGUILayout.IntSlider("I field:", animSequence.i , 1 , 100);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("segments"), true);
+            
         }
     }
 }

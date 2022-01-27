@@ -51,7 +51,7 @@ namespace Veridium_Animation{
                     if(atom.drawnObject != null){
                         if(!steps[currentStep].unglow){
                             Anim_Glow anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Glow>() as Anim_Glow;
-                            anim.easingType = Easing.EasingType.Exponential;
+                            anim.easingType = EasingType.Exponential;
                             anim.selfDestruct = true;
                             anim.emissionColor = steps[currentStep].glowColor;
                             anim.fadeTime = 1f;

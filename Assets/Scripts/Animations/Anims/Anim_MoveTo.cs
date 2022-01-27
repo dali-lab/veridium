@@ -15,7 +15,7 @@ namespace Veridium_Animation{
         public Transform endTransform;
         public bool useTransform;
         public GameObject target;
-        public Easing.EasingType easingType = Easing.EasingType.Linear;
+        public EasingType easingType = EasingType.Linear;
         private Vector3 startingPlace;
         private Quaternion startingRotation;
         private Vector3 startingScale;
@@ -31,6 +31,8 @@ namespace Veridium_Animation{
             startingPlace = target.transform.position;
             startingRotation = target.transform.rotation;
             startingScale = target.transform.localScale;
+
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "debug";
 
         }
 

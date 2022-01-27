@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Veridium_Animation{
+
+    // Easing types
+    public enum EasingType {
+        Exponential, 
+        Elastic,
+        Quadratic,
+        Linear,
+        Back,
+        Bounce,
+        Pointer
+    };
+
     public class Easing
     {
-        
-        // Easing types
-        public enum EasingType {
-            Exponential, 
-            Elastic,
-            Quadratic,
-            Linear,
-            Back,
-            Bounce,
-            Pointer
-        };
 
         // Main function
         public static float EaseOut(float x, EasingType easingType){
@@ -71,8 +72,6 @@ namespace Veridium_Animation{
                         return EaseOut(2 * (x - 0.5f), easingType) / 2 + 0.5f;
                     }
             }
-
-            return (x);
         }
 
         // Exponential easing out

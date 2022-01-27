@@ -70,7 +70,7 @@ namespace Veridium_Animation{
 
                     // Play a fade in animation 
                     Anim_Fade anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Fade>() as Anim_Fade;
-                    anim.easingType = Easing.EasingType.Exponential;
+                    anim.easingType = EasingType.Exponential;
                     anim.Play();
                     anim.selfDestruct = true;
                 }

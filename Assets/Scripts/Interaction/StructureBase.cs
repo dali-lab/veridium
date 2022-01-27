@@ -79,7 +79,7 @@ namespace Veridium_Interaction{
                     Anim_MoveTo anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
                     anim.updateLocation = false;
                     anim.updateRotation = false;
-                    anim.easingType = Easing.EasingType.Elastic;
+                    anim.easingType = EasingType.Elastic;
                     anim.easeOutOnly = true;
                     anim.duration = 2f;
                     anim.selfDestruct = true;

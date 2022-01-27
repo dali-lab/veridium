@@ -35,5 +35,9 @@ namespace Veridium_Interaction{
                 highlight.Unhighlight();
             }
         }
+
+        public bool isHovered(){
+            return hovered;
+        }
     }
 }

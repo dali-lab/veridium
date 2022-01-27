@@ -49,7 +49,7 @@ namespace Veridium_Animation{
                     Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
                     if(atom.drawnObject != null){
                         Anim_Fade anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Fade>() as Anim_Fade;
-                        anim.easingType = Easing.EasingType.Exponential;
+                        anim.easingType = EasingType.Exponential;
                         if(!steps[currentStep].fadeIn){
                             anim.startingOpacity = 1f;
                             anim.endingOpacity = 0f;

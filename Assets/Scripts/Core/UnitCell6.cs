@@ -423,17 +423,13 @@ namespace Veridium_Core{
         public override void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
 
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell";
-
-            string debugOutput = "";
             
             // Draws the atoms
             for ( int i = 0; i < this.numVertices; i ++ ) {
                 if (this.vertices[i] != null) {
                     this.vertices[i].Draw(atomPrefab, builder);
                 }
-            }
-
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugOutput;            
+            }          
 
             // Draws the bonds
             foreach ( Bond bond in this.bonds ) {
