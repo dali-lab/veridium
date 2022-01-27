@@ -319,6 +319,7 @@ namespace Veridium_Animation{
         }
     }
 
+    /*
     [CustomPropertyDrawer(typeof(AnimSequence.AnimPlayer))]
     public class AnimPlayerDrawer : PropertyDrawer
     {
@@ -358,5 +359,5 @@ namespace Veridium_Animation{
 
             EditorGUI.EndProperty();
         }
-    }
+    }*/
 }
