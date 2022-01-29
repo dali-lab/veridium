@@ -32,8 +32,6 @@ namespace Veridium_Animation{
             startingRotation = target.transform.rotation;
             startingScale = target.transform.localScale;
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "debug";
-
         }
 
         protected override void UpdateAnim()

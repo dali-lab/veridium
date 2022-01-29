@@ -103,15 +103,28 @@ namespace Veridium_Animation{
             // Find animations that should be playing
             foreach (AnimPlayer anim in segments[currentIndex].animations){
 
-                bool afterStart = anim.timing < segmentTime;
-                bool beforeEnd = anim.animation.duration + anim.timing > segmentTime;
-                bool endless = anim.animation.indefiniteDuration;
+                switch (anim.actionType){
+                    case ActionType.AnimationScript:
 
-                if(!playingAnims.Contains(anim.animation) && (afterStart && (beforeEnd || endless))){
+                        bool afterStart = anim.timing < segmentTime;
+                        bool beforeEnd = anim.animation.duration + anim.timing > segmentTime;
+                        bool endless = anim.animation.indefiniteDuration;
 
-                    playingAnims.Add(anim.animation);
-                    anim.animation.Play();
+                        if(!playingAnims.Contains(anim.animation) && (afterStart && (beforeEnd || endless))){
 
+                            playingAnims.Add(anim.animation);
+                            anim.animation.Play();
+
+                        }
+
+                        break;
+                    case ActionType.UnityEvent:
+                        if(anim.timing < segmentTime) {
+                            anim.onPlay.Invoke();
+                        }
+                        break;
+                    case ActionType.Animator:
+                        break;
                 }
             }
 
@@ -278,11 +291,20 @@ namespace Veridium_Animation{
             // Find animations that should be playing
             foreach (AnimPlayer anim in segments[currentIndex].animations){
 
-                if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time){
+                switch (anim.actionType){
+                    case ActionType.AnimationScript:
+                        if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time){
 
-                    playingAnims.Add(anim.animation);
-                    anim.animation.Play();
+                            playingAnims.Add(anim.animation);
+                            anim.animation.Play();
 
+                        }
+                        break;
+                    case ActionType.UnityEvent:
+                        anim.onPlay.Invoke();
+                        break;
+                    case ActionType.Animator:
+                        break;
                 }
             }
 

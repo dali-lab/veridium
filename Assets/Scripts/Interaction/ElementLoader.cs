@@ -48,7 +48,7 @@ namespace Veridium_Interaction{
         }
 
         public void Lock(){
-            heldElement.Lock();
+            if(heldElement != null) heldElement.Lock();
         }
 
         public void Unlock(){
