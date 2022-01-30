@@ -81,7 +81,7 @@ namespace Veridium_Interaction{
                     anim.updateRotation = false;
                     anim.easingType = EasingType.Elastic;
                     anim.easeOutOnly = true;
-                    anim.duration = 2f;
+                    anim.duration = 3f;
                     anim.selfDestruct = true;
                     anim.endScale = new Vector3(.32f,.32f,.32f);
                     anim.Play();
@@ -111,14 +111,12 @@ namespace Veridium_Interaction{
             locked = true;
 
             elementLoader.Lock();
-            structureController.Lock();
         }
 
         public void Unlock(){
             locked = false;
 
             elementLoader.Unlock();
-            structureController.Unlock();
         }
     }
 }
