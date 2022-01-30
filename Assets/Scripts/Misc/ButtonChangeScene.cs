@@ -14,6 +14,10 @@ public class ButtonChangeScene : MonoBehaviour
     private Vector3 startPos;
     private ConfigurableJoint joint;
 
+    public GameObject fadeScreen;
+    public float fadeDuration;
+    public Color fadeColor;
+
     void Start()
     {
         startPos = transform.localPosition;
@@ -24,6 +28,9 @@ public class ButtonChangeScene : MonoBehaviour
     {
         if (!isPressed && GetValue() + threshold >= 1){
             Pressed();
+        }
+        else if (isPressed){
+            StartCoroutine(fadeRoutine());
         }
 
     }
@@ -40,11 +47,30 @@ public class ButtonChangeScene : MonoBehaviour
     private void Pressed()
     {
         isPressed = true;
-        playGame();
     }
 
-    public void playGame()
+    public void enterMainScene()
     {
         SceneManager.LoadScene(1);
     }
+
+    public IEnumerator fadeRoutine()
+    {
+        float timer = 0;
+        
+        while (timer <= fadeDuration + .1)
+        {
+            Color colorUpdate = fadeColor;
+            colorUpdate.a = Mathf.Lerp(0,1,timer/fadeDuration);
+            fadeScreen.GetComponent<Renderer>().material.SetColor("_BaseColor", colorUpdate);
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        enterMainScene();
+
+    }
+
+    //IEnumerator enterMainSceneRoutine()
 }

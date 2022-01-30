@@ -7,15 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: red
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Name: hologram 1
+  m_Shader: {fileID: -6465566751694194690, guid: 70390bc032c1f8d4d965b10b041aabd1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -60,6 +59,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a7a4da6aaa3a4e509ca25eb063299cf1_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 59967feda939cbd4aa0b6aaa10eca4c7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -77,6 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_9679e6444f324ef8acdaaaa5411ac9b3: 0.02
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -104,12 +108,15 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.6886792, g: 0, b: 0, a: 1}
+    - Color_18bbf8fa18b148628d2878869720cf7e: {r: 0.042452812, g: 0.8259002, b: 1, a: 0}
+    - Color_56c9b794b1a24e6799c7bdd776b8d28c: {r: 0, g: 0.95686245, b: 1, a: 1}
+    - Vector2_338c734b68184d9fafc44a2cdd5c8838: {r: 32, g: 32, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &6482454469956142918
+--- !u!114 &4210456380646756607
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
