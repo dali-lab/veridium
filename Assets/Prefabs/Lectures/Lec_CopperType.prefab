@@ -1364,6 +1364,13 @@ MonoBehaviour:
           m_Calls: []
       animator: {fileID: 0}
       timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: b5fd098bb99ab4ab58325a57ad6206aa, type: 3}
     animations:
@@ -1374,6 +1381,13 @@ MonoBehaviour:
           m_Calls: []
       animator: {fileID: 0}
       timing: 1.5
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: e4d61e157160e4467bc0fac2cf785a53, type: 3}
     animations:
@@ -1522,88 +1536,232 @@ MonoBehaviour:
           m_Calls: []
       animator: {fileID: 0}
       timing: 7.5
-    - actionType: 0
-      animation: {fileID: 2351488179782803115}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 3111987020730070148}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 1.4
-    - actionType: 0
-      animation: {fileID: 6365872309675816847}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8540977485450961342}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 3.3
-    - actionType: 0
-      animation: {fileID: 8537548398500934122}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1034169571089065845}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 4.5
-    - actionType: 0
-      animation: {fileID: 8537548398500934122}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 3111987020730070148}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 8
-    - actionType: 0
-      animation: {fileID: 6365872309675816847}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8540977485450961342}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 8
-    - actionType: 0
-      animation: {fileID: 2351488179782803115}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1034169571089065845}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 8
-    - actionType: 0
-      animation: {fileID: 2351488179782803115}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 3111987020730070148}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 8.7
-    - actionType: 0
-      animation: {fileID: 6365872309675816847}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8540977485450961342}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 8.92
-    - actionType: 0
-      animation: {fileID: 8537548398500934122}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1034169571089065845}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 9.13
-    - actionType: 0
-      animation: {fileID: 4747863717195505625}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 4413965187439920487}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 9.35
-    - actionType: 0
-      animation: {fileID: 7784933522738137728}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 5313885354454409426}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 9.57
-    - actionType: 0
-      animation: {fileID: 4147030597462605604}
+    - actionType: 1
+      animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 5474139978910673291}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       animator: {fileID: 0}
       timing: 9.78
     realDuration: 0
@@ -1617,12 +1775,126 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     - actionType: 0
-      animation: {fileID: 5289384934699111430}
+      animation: {fileID: 1348072739457312234}
       onPlay:
         m_PersistentCalls:
           m_Calls: []
       animator: {fileID: 0}
       timing: 8
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 3111987020730070148}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 1
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 8540977485450961342}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 1
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1034169571089065845}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 1
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 4413965187439920487}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 1
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 5313885354454409426}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 1
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 5474139978910673291}
+            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 1
     realDuration: 0
   - audio: {fileID: 8300000, guid: f747984417675461bb54c5a2d2cad88e, type: 3}
     animations:

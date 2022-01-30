@@ -65,7 +65,7 @@ namespace Veridium_Animation{
                 // Give each animation a reference to the anim sequence
                 foreach (AnimPlayer anim in segment.animations)
                 {
-                    anim.animation.animSequence = this;
+                    if(anim.animation != null) anim.animation.animSequence = this;
                 }
             }
 
@@ -93,7 +93,7 @@ namespace Veridium_Animation{
             if(playing) UpdateAnimations();
 
             sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
             sequenceState = "";
 
         }
@@ -106,15 +106,18 @@ namespace Veridium_Animation{
                 switch (anim.actionType){
                     case ActionType.AnimationScript:
 
-                        bool afterStart = anim.timing < segmentTime;
-                        bool beforeEnd = anim.animation.duration + anim.timing > segmentTime;
-                        bool endless = anim.animation.indefiniteDuration;
+                        if(anim.animation != null){
 
-                        if(!playingAnims.Contains(anim.animation) && (afterStart && (beforeEnd || endless))){
+                            bool afterStart = anim.timing < segmentTime;
+                            bool beforeEnd = anim.animation.duration + anim.timing > segmentTime;
+                            bool endless = anim.animation.indefiniteDuration;
 
-                            playingAnims.Add(anim.animation);
-                            anim.animation.Play();
+                            if(!playingAnims.Contains(anim.animation) && (afterStart && (beforeEnd || endless))){
 
+                                playingAnims.Add(anim.animation);
+                                anim.animation.Play();
+
+                            }
                         }
 
                         break;
@@ -171,7 +174,7 @@ namespace Veridium_Animation{
 
             // Find if there are animations that have not yet played
             foreach (AnimPlayer anim in segments[currentIndex].animations){
-                if (anim.timing + 2f >= segmentTime) animsBlockingMove = true;
+                if (anim.actionType == ActionType.AnimationScript && anim.animation != null && anim.timing + 2f >= segmentTime) animsBlockingMove = true;
             }
 
             return !animsBlockingMove;
@@ -223,7 +226,7 @@ namespace Veridium_Animation{
             for (int i = 0; i < segments.Count; i++)
             {
                 foreach (AnimPlayer anim in segments[i].animations){
-                    anim.animation.Reset();
+                    if(anim.animation != null && anim.actionType == ActionType.AnimationScript) anim.animation.Reset();
                 }
             }
 
@@ -293,11 +296,13 @@ namespace Veridium_Animation{
 
                 switch (anim.actionType){
                     case ActionType.AnimationScript:
-                        if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time){
+                        if(anim.animation != null){
+                            if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time){
 
-                            playingAnims.Add(anim.animation);
-                            anim.animation.Play();
+                                playingAnims.Add(anim.animation);
+                                anim.animation.Play();
 
+                            }
                         }
                         break;
                     case ActionType.UnityEvent:
@@ -314,7 +319,7 @@ namespace Veridium_Animation{
                 float startTime = 0;
 
                 foreach(AnimPlayer timing in segments[currentIndex].animations){
-                    if(timing.animation == anim) startTime = timing.timing;
+                    if(timing.actionType == ActionType.AnimationScript && timing.animation == anim) startTime = timing.timing;
                 }
 
                 anim.Scrub(newTime - startTime);
@@ -332,8 +337,10 @@ namespace Veridium_Animation{
 
             foreach (AnimPlayer anim in segment.animations)
             {
-                float end = anim.timing + anim.animation.duration;
-                if (end > latestTime) latestTime = end;
+                if(anim.animation != null && anim.actionType == ActionType.AnimationScript){
+                    float end = anim.timing + anim.animation.duration;
+                    if (end > latestTime) latestTime = end;
+                }
             }
 
             return latestTime;

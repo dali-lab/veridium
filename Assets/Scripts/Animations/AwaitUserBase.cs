@@ -16,6 +16,14 @@ namespace Veridium_Animation{
             awaitingAction = true;
         }
 
+        public override void Play(){
+
+            Reset();
+
+            base.Play();
+
+        }
+
         protected override void ResetChild()
         {
             base.ResetChild();
@@ -31,23 +39,13 @@ namespace Veridium_Animation{
         // Should be called when the desired action is completed
         public virtual void CompleteAction(){
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "A";
-
             if (playing) awaitingAction = false;
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "B";
-
             if (skipSegment && animSequence.CanMoveOn()) animSequence.PlayNextSegment();
-
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "C";
             
             Invoke("OnComplete", onComplete.timing + Time.deltaTime);
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "D";
-
             Pause();
-
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "J";
         }
 
         private void OnComplete(){

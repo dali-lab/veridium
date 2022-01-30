@@ -105,15 +105,12 @@ namespace Veridium_Core{
             List<Atom> millerAtoms = test.GetMillerAtoms(2, 0, 0);
             if (millerAtoms.Count > 0) {
                 debugString += "GetMillerAtoms returned atoms" + "\n";
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             } else {
                 debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             }
             foreach (Atom atom in millerAtoms) {
                 debugString += atom.Debug();
             }
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
 
         // Tests that UnitCell8.GetMillerAtoms returns values
@@ -126,15 +123,12 @@ namespace Veridium_Core{
             List<Atom> millerAtoms = test.GetMillerAtoms(-1, 0, 0);
             if (millerAtoms.Count > 0) {
                 debugString += "GetMillerAtoms returned atoms" + "\n";
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             } else {
                 debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             }
             foreach (Atom atom in millerAtoms) {
                 debugString += atom.Debug();
             }
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
 
         // Test that Crystal.GetMillerAtoms returns atoms
@@ -147,15 +141,12 @@ namespace Veridium_Core{
             HashSet<Atom> crystalMillerAtoms = test.GetMillerAtoms(-1, 0, 0);
             if (crystalMillerAtoms.Count > 0) {
                 debugString += "GetMillerAtoms returned atoms" + "\n";
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             } else {
                 debugString += "GetMillerAtoms didn't crash but didn't return atoms" + "\n"; 
-                //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
             }
             foreach (Atom atom in crystalMillerAtoms) {
                 debugString += atom.Debug();
             }
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
 
         // Tests that the list of miller atoms returned by 
@@ -246,7 +237,6 @@ namespace Veridium_Core{
             } else {
                 debugString += testsFailed.ToString() + " tests failed\n";
             }
-            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = debugString; 
         }
     }
 }

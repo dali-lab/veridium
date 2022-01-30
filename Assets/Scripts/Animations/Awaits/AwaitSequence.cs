@@ -26,27 +26,23 @@ namespace Veridium_Animation{
 
             waitingIndex = 0;
 
-            for(int i = 0; i <= waitingIndex; i++) {
-                if(awaiters[i] != null) awaiters[i].Reset();
+            foreach (AwaitUserBase awaiter in awaiters) {
+
+                if(awaiter != null) awaiter.Reset();
+
             }
 
         }
 
         public override void Pause(){
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "E";
-
             base.Pause();
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "F";
+            foreach (AwaitUserBase awaiter in awaiters) {
 
-            for(int i = 0; i <= waitingIndex; i++) {
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "G";
-                if(awaiters[i] != null) awaiters[i].Pause();
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "H";
+                //if(awaiter != null) awaiter.Pause();
+
             }
-            
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += "I";
 
         }
 
@@ -61,7 +57,6 @@ namespace Veridium_Animation{
                 waitingIndex ++;
 
                 if(waitingIndex >= awaiters.Count){
-                    (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "";
                     CompleteAction();
                 } else {
                     awaiters[waitingIndex].Reset();
