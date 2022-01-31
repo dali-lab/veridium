@@ -23,8 +23,7 @@ namespace Veridium_Interaction{
         // Start is called before the first frame update
         void Start()
         {
-
-            lineWidth = 0.008f;
+            lineWidth = 0.012f;
             isSelectable = false;
             // get DistanceGrab and RayPoint layermasks for raycast
             layerMaskDistanceGrab = 1 << LayerMask.NameToLayer("DistanceGrab");
@@ -32,42 +31,48 @@ namespace Veridium_Interaction{
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.SetWidth(lineWidth, lineWidth);
             lineRenderer.SetVertexCount(2);                                 // two vertices: start (controller) and end (RayPoint layer)
-
-            // check if the controller is grabbing any tiles
-            grabbing = GetComponent<HandDistanceGrabber>().grabbed();
-
+            grabbing = GetComponent<HandDistanceGrabber>().grabbed();       // check if the controller is grabbing any tiles
             interactor = GetComponent<XRDirectInteractor>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            var origin = transform.position;            
-            RaycastHit hit;
-            grabbing = GetComponent<HandDistanceGrabber>().grabbed();
+            var origin = transform.position;  
+            bool drawline = false;                                          // set true if conditions to render line are met.
+            RaycastHit hit;         
+            RaycastHit hitDistanceGrab;
+            RaycastHit hitRayPoint;
+            grabbing = GetComponent<HandDistanceGrabber>().grabbed();       // check if controller is grabbing anything
 
-            bool hitted = Physics.Raycast(origin, transform.forward, out hit, Mathf.Infinity, layerMaskRayPoint | layerMaskDistanceGrab);
-            
-            // get the game object that the hit is colliding with
-            // if it is not null, it is a grabbable
-            // check if game object is selectable by XR interactor
-            // hit.collider.gameObject.GetComponent<HandDistanceGrabbable>()
-            // IsSelectableBy(XRBaseInteractor interactor)
-            // Perform raycast on DistanceGrab and RayPoint layers
-            if (hit.collider.gameObject.GetComponent<HandDistanceGrabbable>() != null) {    // if object has a hand distance grabbable component, check if it is selectable
-                isSelectable = hit.collider.gameObject.GetComponent<HandDistanceGrabbable>().IsSelectableBy(interactor);
-            }
-            if (hitted && !grabbing && isSelectable) { // if raycast lands on the right layers and controller not grabbing any tile, render line
-                Vector3 endPoint = hit.point;
-                Debug.Log("after displacement: " + origin);
-                origin = origin + transform.forward * 0.0317f;
-                Debug.Log("after displacement: " + origin);
-                lineRenderer.SetWidth(lineWidth, lineWidth);
-                lineRenderer.SetPosition(0, origin);
-                lineRenderer.SetPosition(1, endPoint);  
+            bool hittedDistanceGrab = Physics.SphereCast(origin, 0.05f, transform.forward, out hitDistanceGrab, Mathf.Infinity, layerMaskDistanceGrab);
+            bool hittedRayPoint = Physics.SphereCast(origin, 0.05f, transform.forward, out hitRayPoint, Mathf.Infinity, layerMaskRayPoint);
+            bool hitted = Physics.SphereCast(origin, 0.05f, transform.forward, out hit, Mathf.Infinity, layerMaskRayPoint | layerMaskDistanceGrab);
+
+            // chaining to ensure that it is not null
+            if (hitDistanceGrab.collider == null || hitDistanceGrab.collider.gameObject == null || hitDistanceGrab.collider.gameObject.GetComponent<HandDistanceGrabbable>() == null) {
+                isSelectable = false;
             } else {
-                // if not casting on DistanceGrab or RayPoint layers, make line rendered invisible
-                lineRenderer.SetWidth(0, 0);
+                isSelectable = hitDistanceGrab.collider.gameObject.GetComponent<HandDistanceGrabbable>().IsSelectableBy(interactor);
+            }
+
+            // conditions for rendering line
+            if (grabbing) {         // if controller is grabbing something, do not render line
+                drawline = false;
+            } else if (hittedDistanceGrab && isSelectable) {    // if hit a distanceGrabbable object and it is selectable
+                drawline = true;
+            } else if (hittedRayPoint) {    // if hit raypoint layer mask
+                drawline = true;
+            }
+
+            if (drawline) {
+                Vector3 endPoint = hit.point;
+                origin = origin + transform.forward * 0.0317f;      // shift line rendering origin to front of controller
+                lineRenderer.enabled = true;
+                lineRenderer.SetPosition(0, origin);                // start of line
+                lineRenderer.SetPosition(1, endPoint);              // end of line
+            } else {
+                lineRenderer.enabled = false;
             }
         }
     }
