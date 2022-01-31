@@ -1015,10 +1015,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[15].animations.Array.data[8].timing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[16].animations.Array.data[2].timing
       value: 3.5
       objectReference: {fileID: 0}
@@ -1179,10 +1175,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[15].animations.Array.data[8].actionType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[18].animations.Array.data[10].animation
       value: 
       objectReference: {fileID: 1960634897}
@@ -1219,10 +1211,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[19].animations.Array.data[12].onPlay.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1237,6 +1225,10 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[0].animations.Array.data[3].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1303,6 +1295,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 206439774}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[16].animations.Array.data[1].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 881861620}
@@ -1335,6 +1331,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[2].animations.Array.data[3].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -1349,6 +1349,10 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[19].animations.Array.data[12].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1375,6 +1379,10 @@ PrefabInstance:
       value: UnityEngine.Renderer, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Renderer, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[14].animations.Array.data[13].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.Renderer, UnityEngine
       objectReference: {fileID: 0}
@@ -1397,6 +1405,10 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[15].animations.Array.data[8].onPlay.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[14].animations.Array.data[13].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
