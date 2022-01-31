@@ -15,12 +15,14 @@ namespace Veridium_Interaction{
         private bool interacted = true;                         // Whether this element is held or in a socket
         private float heldTimer = 0f;
         public TMPro.TextMeshPro countdownText;
+        public TMPro.TextMeshPro stationaryCountdown;
 
         // Start is called before the first frame update
         void Start()
         {
 
             countdownText.text = "";
+            stationaryCountdown.text = "";
             
         }
 
@@ -29,6 +31,7 @@ namespace Veridium_Interaction{
         {
 
             countdownText.text = "";
+            stationaryCountdown.text = "";
 
             // Increment the timer if not interacted
             if(!interacted){
@@ -55,7 +58,10 @@ namespace Veridium_Interaction{
 
                     heldTimer += Time.deltaTime;
 
-                    if(heldTimer > 0.5f) countdownText.text = "Exiting in " + (timeUntilExit - heldTimer).ToString("F0") + "...";
+                    if(heldTimer > 0.2f) {
+                        countdownText.text = "Aussteig in " + (timeUntilExit - heldTimer).ToString("F0") + "...";
+                        stationaryCountdown.text = (timeUntilExit - heldTimer).ToString("F0") + "...";
+                    }
 
                 } else {
 
