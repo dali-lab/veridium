@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 140355310}
-  m_IndirectSpecularColor: {r: 0.05598002, g: 0.06828654, b: 0.1486999, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -185,11 +185,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657761366408896661, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.027
+      value: 0.028
       objectReference: {fileID: 0}
     - target: {fileID: 3657761366408896661, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.217
+      value: 0.203
       objectReference: {fileID: 0}
     - target: {fileID: 3657761366408896661, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -242,6 +242,26 @@ PrefabInstance:
     - target: {fileID: 3657761366975003024, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_InteractionLayerMask.m_Bits
       value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342821949634214602, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342821949634214602, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342821949634214602, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342821949634214602, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342821949634214602, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5554813913321335543, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_LocalRotation.x
