@@ -35,6 +35,8 @@ namespace Veridium_Animation{
         {
             base.Play();
             currentStep = -1;
+
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "";
         }
 
         // Called when restarted 
@@ -68,12 +70,19 @@ namespace Veridium_Animation{
                     Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
                     atom.Draw(atomPrefab,structureBuilder.gameObject);
 
+                    (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += atom.drawnObject.ToString();
+
                     // Play a fade in animation 
                     Anim_Fade anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Fade>() as Anim_Fade;
                     anim.easingType = EasingType.Exponential;
                     anim.Play();
                     anim.selfDestruct = true;
                 }
+
+                /*
+                foreach (Atom atom in structureBuilder.crystal.atoms.Values){
+                    atom.Draw(atomPrefab,structureBuilder.gameObject);
+                }*/
             }
         }
     }
