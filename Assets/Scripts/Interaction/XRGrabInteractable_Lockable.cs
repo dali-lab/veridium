@@ -50,7 +50,7 @@ namespace Veridium_Interaction{
         public void Unlock(){
             locked = false;
             if(GetComponent<Rigidbody>() != null){
-                GetComponent<Rigidbody>().isKinematic = GetComponent<Rigidbody>();
+                GetComponent<Rigidbody>().isKinematic = rigidBodyEnabled;
             }
         }
     }
