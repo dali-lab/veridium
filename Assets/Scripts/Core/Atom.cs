@@ -85,6 +85,7 @@ namespace Veridium_Core{
             Vector3 location = Vector3.Scale(builder.transform.rotation * (this.position - builder.transform.position), builder.transform.lossyScale) * (1/builder.transform.localScale.x) + builder.transform.position;
             this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, location, Quaternion.identity);
             drawnObject.transform.SetParent(builder.transform);
+            drawnObject.transform.localScale = Vector3.one;
             drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
 
             if(metallic){

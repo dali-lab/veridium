@@ -98,10 +98,7 @@ namespace Veridium_Core{
             switch (this.drawMode) {
                 case CrystalState.SINGLECELL:
                     if (this.unitCells.ContainsKey(centerPoint)) {
-                        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "Drawing unit cell at centerpoint";
                         this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
-                    } else {
-                        //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "no atom at centerpoint";
                     }
                     break;
                 case CrystalState.INFINITE:
