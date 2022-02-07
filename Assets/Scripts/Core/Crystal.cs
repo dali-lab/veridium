@@ -65,7 +65,7 @@ namespace Veridium_Core{
             this.atoms = new Dictionary<Vector3, Atom>();
             this.bonds = new Dictionary<Vector3, Bond>();
             this.unitCells = new Dictionary<Vector3, UnitCell>();
-            this.centerPoint = centerPoint;
+            this.centerPoint = Vector3.zero;//centerPoint;
             this.drawMode = CrystalState.SINGLECELL;
         }
 
@@ -97,6 +97,11 @@ namespace Veridium_Core{
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
             switch (this.drawMode) {
                 case CrystalState.SINGLECELL:
+                    if (this.unitCells.ContainsKey(centerPoint)) {
+                        this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
+                    }
+                    break;
+                case CrystalState.MULTICELL:
                     if (this.unitCells.ContainsKey(centerPoint)) {
                         this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
                     }
@@ -144,11 +149,6 @@ namespace Veridium_Core{
             float a, float b, float c, float alpha, float beta, float gamma, 
             int atomicNumber, int constructionDepth) {
 
-            Stopwatch stopwatch = new Stopwatch();
-            string debugString = "";
-            
-            // Construct the origin cell
-            stopwatch.Start();
             UnitCell originCell;
             if (type == CellType.HEX) {
                 originCell = new UnitCell8(atomicNumber, this.centerPoint, a, b, false);
@@ -157,44 +157,19 @@ namespace Veridium_Core{
                     this.centerPoint, a, b, c, alpha, beta, gamma);
             }
             this.unitCells[this.centerPoint] = originCell;
-            stopwatch.Stop();
 
-            TimeSpan ts = stopwatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-            debugString += "Time elapsed in cell initialization " + elapsedTime + "\n";
-
-            // Add vertices and bonds to origin cell
-            stopwatch.Start();
             originCell.AddVertices(this.atoms);
-            stopwatch.Stop();
-
-            ts = stopwatch.Elapsed;
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-            debugString += "Time elapsed in AddVertices" + elapsedTime + "\n";
-
-            stopwatch.Start();
             originCell.AddBonds(this.bonds);
-            stopwatch.Stop();
-
-            ts = stopwatch.Elapsed;
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-            debugString += "Time elapsed in AddBonds" + elapsedTime + "\n";
 
             HashSet<Vector3> constructedPositions = new HashSet<Vector3>();
 
-            // Recursively add surrounding unit cells using Unit6's GenerateNeighbors function
-            stopwatch.Start();
             for ( int i = 0; i < constructionDepth; i ++ ) {
+
                 UnitCell[] cells = new UnitCell[unitCells.Count];
                 Vector3[] positions = new Vector3[unitCells.Count];
                 unitCells.Values.CopyTo(cells, 0);
                 unitCells.Keys.CopyTo(positions, 0);
+
                 for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
                     UnitCell cell = cells[cellIndex];
                     Vector3 position = positions[cellIndex];
@@ -206,13 +181,6 @@ namespace Veridium_Core{
                     }
                 }
             }
-
-            stopwatch.Stop();
-            ts = stopwatch.Elapsed;
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds,
-                ts.Milliseconds / 10);
-            debugString += "Time elapsed in crystal building" + elapsedTime + "\n";
         }
 
         public HashSet<Atom> GetMillerAtoms(int h, int k , int l) {
@@ -231,21 +199,5 @@ namespace Veridium_Core{
             }
             return atomList;
         }
-
-        /**
-         * @funciton Debug
-         * @return string   A string describing the state of the crystal
-         * Returns a string respresentation of the objects's state for debugging
-         */
-        public string Debug() {
-            string debugInfo = "";
-            if (this.unitCells.ContainsKey(this.centerPoint)) {
-                debugInfo += "Center Vertex Info: " + this.unitCells[this.centerPoint].Debug();
-            } else {
-                debugInfo += "No center point available";
-            }
-            return debugInfo;
-        }
-
     }
 }

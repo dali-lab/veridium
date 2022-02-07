@@ -348,6 +348,7 @@ namespace Veridium_Animation{
         }
     }
 
+    #if UNITY_EDITOR
     /*
     [CustomPropertyDrawer(typeof(AnimSequence.AnimPlayer))]
     public class AnimPlayerDrawer : PropertyDrawer
@@ -367,19 +368,24 @@ namespace Veridium_Animation{
             EditorGUI.indentLevel = 0;
 
             // Calculate rects
-            var actionTypeRect = new Rect(position.x, position.y, 120, position.height);
-            var timingRect = new Rect(position.x + 290, position.y, position.width - 290, position.height);
-            var inputRect = new Rect(position.x + 125, position.y, 160, position.height);
+            var actionTypeRect = new Rect(position.x, position.y, 120, 20);
+            var timingRect = new Rect(position.x + 290, position.y, 50, 20);
+            var inputRect = new Rect(position.x + 125, position.y, position.width - 200, position.height);
 
             // Draw fields - passs GUIContent.none to each so they are drawn without labels
             EditorGUI.PropertyField(actionTypeRect, property.FindPropertyRelative("actionType"), GUIContent.none);
             EditorGUI.PropertyField(timingRect, property.FindPropertyRelative("timing"), GUIContent.none);
-            if(property.FindPropertyRelative("actionType").intValue == 0){
-                EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("animation"), GUIContent.none);
-            } else if (property.FindPropertyRelative("actionType").intValue == 1){
-                EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("onPlay"), GUIContent.none);
-            } else {
-                EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("animator"), GUIContent.none);
+            
+            switch(property.FindPropertyRelative("actionType").intValue){
+                case 0:
+                    EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("animation"), GUIContent.none);
+                    break;
+                case 1:
+                    EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("onPlay"), GUIContent.none);
+                    break;
+                case 2:
+                    EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("animator"), GUIContent.none);
+                    break;
             }
             EditorGUI.PropertyField(timingRect, property.FindPropertyRelative("timing"), GUIContent.none);
 
@@ -388,5 +394,12 @@ namespace Veridium_Animation{
 
             EditorGUI.EndProperty();
         }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            //set the height of the drawer by the field size and padding
+            return property.FindPropertyRelative("actionType").intValue == 1 ? GetPropertyHeight(property.FindPropertyRelative("onPlay"), GUIContent.none) : GetPropertyHeight(property.FindPropertyRelative("animation"), GUIContent.none);
+        }
     }*/
+    #endif
 }

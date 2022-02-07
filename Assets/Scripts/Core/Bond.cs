@@ -99,6 +99,8 @@ namespace Veridium_Core{
                 
             drawnObject.transform.SetParent(builder.transform);
             drawnObject.transform.localScale = new Vector3(1f,1f,distance/0.5f);
+            drawnObject.transform.localPosition = midpoint;
+            drawnObject.transform.localRotation = Quaternion.LookRotation(end.GetPosition()-start.GetPosition());
         }
     }
 }

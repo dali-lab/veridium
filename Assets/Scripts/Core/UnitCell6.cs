@@ -443,8 +443,6 @@ namespace Veridium_Core{
          */
         public override void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell> crystalCells) {  
 
-            string debugString = "";
-
             // A list of the directions in which neighbors can be generated 
             // relative to the starting position/orientation of the cell
             Vector3[] possibleDirections = new Vector3[] {
@@ -499,9 +497,6 @@ namespace Veridium_Core{
 
                 index ++;
             }
-
-            debugString += "Exited Successfuly";
-
         }
     }
 }

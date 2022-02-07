@@ -69,7 +69,7 @@ public class StructureBuilder : MonoBehaviour
 
     public Atom GetAtomAtCoordinate(Vector3 pos){
 
-        Vector3 corrected = pos * 0.25f + transform.position;
+        Vector3 corrected = pos * 0.25f; //+ transform.position;
 
         foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms){
             
@@ -113,52 +113,9 @@ public class StructureBuilder : MonoBehaviour
         numPlanes = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count;
         initialized = true;
 
-        string debugString = "";
-
-        Stopwatch stopwatch = new Stopwatch();
-
-        // Instantiates the Crystal
-        stopwatch.Start();
         this.crystal = new Crystal(gameObject.transform.position);
-        stopwatch.Stop();
-
-        TimeSpan ts = stopwatch.Elapsed;
-        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal initialization " + elapsedTime + "\n";
-
-        // Sets the crystal's draw state
-        stopwatch.Start();
         this.crystal.SetState(state);
-        stopwatch.Stop();
-
-        ts = stopwatch.Elapsed;
-        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal state setting" + elapsedTime + "\n";
-
-        // Adds Atoms and bonds to the crystal
-        stopwatch.Start();
         this.crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 3);
-        stopwatch.Stop();
-
-        ts = stopwatch.Elapsed;
-        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal construction" + elapsedTime + "\n";
-
-        // Draws the crystal
-        stopwatch.Start();
         this.crystal.Draw(atomPrefab, linePrefab, gameObject);
-        stopwatch.Stop();
-
-        ts = stopwatch.Elapsed;
-        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal drawing" + elapsedTime + "\n";
     }
 }
