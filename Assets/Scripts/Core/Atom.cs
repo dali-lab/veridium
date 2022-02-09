@@ -25,10 +25,10 @@ namespace Veridium_Core{
         /**
          * Constructor - creates a new Atom object
          */
-        public Atom(int atomicNumber, Vector3 position) {
-            this.atomicNumber = atomicNumber;
-            this.position = position;
-            this.drawnObject = null;
+        public Atom(int number, Vector3 pos) {
+            atomicNumber = number;
+            position = pos;
+            drawnObject = null;
         }
 
         /**
@@ -39,8 +39,8 @@ namespace Veridium_Core{
          * position and atomic number.
          */
         public bool Equals(Atom otherAtom) {
-            if (otherAtom.GetAtomicNumber() == this.atomicNumber && 
-                otherAtom.GetPosition() == this.position ) {
+            if (otherAtom.GetAtomicNumber() == atomicNumber && 
+                otherAtom.GetPosition() == position ) {
                     return true;
             }
             return false;
@@ -52,7 +52,7 @@ namespace Veridium_Core{
          * Returns the atomic number for the Atom
          */
         public int GetAtomicNumber() {
-            return this.atomicNumber;
+            return atomicNumber;
         }
 
         /**
@@ -61,7 +61,7 @@ namespace Veridium_Core{
          * Returns the position of the Atom
          */
         public Vector3 GetPosition() {
-            return this.position;
+            return position;
         }
 
         /**
@@ -70,7 +70,7 @@ namespace Veridium_Core{
          */
         public string Debug() {
             string output = "";
-            output += "Atom w atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
+            output += "Atom w atomic Number: " + atomicNumber.ToString() + " Position: (" + position.x.ToString() + ", " + position.y.ToString() + ", " + position.z.ToString() + ")\n";
             return output;
         }
         
@@ -82,10 +82,9 @@ namespace Veridium_Core{
          * Draws the atom by instantiating a prefab at the correct position and attatching it to the builder
          */
         public void Draw(GameObject atomPrefab, GameObject builder) {
-            //Vector3 location = Vector3.Scale(builder.transform.rotation * (this.position - builder.transform.position), builder.transform.lossyScale) * (1/builder.transform.localScale.x) + builder.transform.position;
-            this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, Vector3.zero, Quaternion.identity);
+            drawnObject = MonoBehaviour.Instantiate(atomPrefab, Vector3.zero, Quaternion.identity);
             drawnObject.transform.SetParent(builder.transform);
-            drawnObject.transform.localPosition = this.position;
+            drawnObject.transform.localPosition = position;
             drawnObject.transform.localScale = Vector3.one;
             drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
 
@@ -95,24 +94,14 @@ namespace Veridium_Core{
             }
         }
 
-        /**
-         * @function GetDrawnObject
-         * @return GameObject representing Atom in the scene. Null if Atom 
-         * hasn't been instantiated in current context.
-         * Returns the GameObject corresponding to the Atom.
-         */
-        public GameObject GetDrawnObject() {
-            return this.drawnObject;
-        }
-
         public void Highlight(){
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(atomicNumber));
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
+            drawnObject.GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(atomicNumber));
+            drawnObject.GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
         }
 
         public void Unhighlight(){
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.black);
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.DisableKeyword("_EMISSION");
+            drawnObject.GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.black);
+            drawnObject.GetComponentInChildren<Renderer>().material.DisableKeyword("_EMISSION");
         }
     }
 }

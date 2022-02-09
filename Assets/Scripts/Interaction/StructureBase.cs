@@ -37,6 +37,7 @@ namespace Veridium_Interaction{
 
             if (spinUpAnimation != null) spinUpAnimation.PlayFromStart();
 
+            MultiCellView();
         }
 
         // Prompts the structureBuilder to destroy the cell
@@ -49,21 +50,21 @@ namespace Veridium_Interaction{
         // Enables infinite view for the crystal lattice
         public void InfiniteView(){
 
-
+            structureBuilder.Redraw(CrystalState.INFINITE);
 
         }
 
         // Enables multi-cell view for the crystal
         public void MultiCellView(){
 
-
+            structureBuilder.Redraw(CrystalState.MULTICELL);
             
         }
 
         // Enables single cell view for the crystal
         public void SingleCellView(){
 
-
+            structureBuilder.Redraw(CrystalState.SINGLECELL);
 
         }
 

@@ -64,7 +64,7 @@ namespace Veridium_Core{
 
         // Default constructor
         public UnitCell6() {
-            this.worldPosition = new Vector3(0, 0, 0);
+            worldPosition = new Vector3(0, 0, 0);
 
             alpha = 90;
             beta = 90;
@@ -86,16 +86,16 @@ namespace Veridium_Core{
          * Builds a unit cell with a given type, structure, worldPosition, side 
          * lengths, and angles.
          */
-        public UnitCell6(int atomicNumber, CellType type, CellVariation structure, Vector3 worldPosition,
+        public UnitCell6(int number, CellType cellType, CellVariation structureVariation, Vector3 pos,
             float a, float b, float c, float alpha, float beta, float gamma) {
 
             bool valid = false;
-            this.worldPosition = worldPosition;
-            this.type = type;
-            this.structure = structure;
-            this.vertices = new Atom[Constants.cell6Vertices];
-            this.bonds = new List<Bond>();
-            this.atomicNumber = atomicNumber;
+            worldPosition = pos;
+            type = cellType;
+            structure = structureVariation;
+            vertices = new Atom[Constants.cell6Vertices];
+            bonds = new List<Bond>();
+            atomicNumber = number;
 
             // Checks that the variation + cell type combination is valid
             foreach (CellVariation allowedVar in Constants.validCells[type]) {
@@ -419,6 +419,9 @@ namespace Veridium_Core{
             
             // Draws the atoms
             for ( int i = 0; i < this.numVertices; i ++ ) {
+                if (vertices[i].drawnObject != null){
+                    MonoBehaviour.Destroy(vertices[i].drawnObject);
+                }
                 if (this.vertices[i] != null) {
                     this.vertices[i].Draw(atomPrefab, builder);
                 }
@@ -426,6 +429,9 @@ namespace Veridium_Core{
 
             // Draws the bonds
             foreach ( Bond bond in this.bonds ) {
+                if (bond.drawnObject != null){
+                    MonoBehaviour.Destroy(bond.drawnObject);
+                }
                 bond.Draw(linePrefab, builder);
             }
         }

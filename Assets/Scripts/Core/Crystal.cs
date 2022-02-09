@@ -54,7 +54,7 @@ namespace Veridium_Core{
         public Dictionary<Vector3, UnitCell> unitCells {get; private set;}
 
         // The current drawing context for the crystal
-        private CrystalState drawMode;
+        public CrystalState drawMode;
 
         /**
          * @constructor
@@ -62,11 +62,11 @@ namespace Veridium_Core{
          * Default constructor for Crystal. Creates an empty crystal.
          */
         public Crystal(Vector3 centerPoint) {
-            this.atoms = new Dictionary<Vector3, Atom>();
-            this.bonds = new Dictionary<Vector3, Bond>();
-            this.unitCells = new Dictionary<Vector3, UnitCell>();
-            this.centerPoint = Vector3.zero;//centerPoint;
-            this.drawMode = CrystalState.SINGLECELL;
+            atoms = new Dictionary<Vector3, Atom>();
+            bonds = new Dictionary<Vector3, Bond>();
+            unitCells = new Dictionary<Vector3, UnitCell>();
+            centerPoint = Vector3.zero;//centerPoint;
+            drawMode = CrystalState.SINGLECELL;
         }
 
         /**
@@ -81,10 +81,10 @@ namespace Veridium_Core{
                 MonoBehaviour.Destroy(child.gameObject);
             }
 
-            this.atoms = new Dictionary<Vector3, Atom>();
-            this.bonds = new Dictionary<Vector3, Bond>();
-            this.unitCells = new Dictionary<Vector3, UnitCell>();
-            this.drawMode = CrystalState.SINGLECELL;
+            atoms = new Dictionary<Vector3, Atom>();
+            bonds = new Dictionary<Vector3, Bond>();
+            unitCells = new Dictionary<Vector3, UnitCell>();
+            drawMode = CrystalState.SINGLECELL;
         }
 
         /**
@@ -95,28 +95,88 @@ namespace Veridium_Core{
          * Draws the crystal in the Unity scene
          */
         public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
-            switch (this.drawMode) {
+
+            foreach (Bond bond in bonds.Values)
+            {
+                if(bond.drawnObject != null) MonoBehaviour.Destroy(bond.drawnObject);
+            }
+
+            foreach (Atom atom in atoms.Values)
+            {
+                if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
+            }
+
+            switch (drawMode) {
                 case CrystalState.SINGLECELL:
-                    if (this.unitCells.ContainsKey(centerPoint)) {
-                        this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
+                    if (unitCells.ContainsKey(centerPoint)) {
+                        unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
                     }
                     break;
                 case CrystalState.MULTICELL:
-                    if (this.unitCells.ContainsKey(centerPoint)) {
-                        this.unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
+
+                // TODO for Sid: what i did here is messy. If you make accessing unit cells easier and 
+                // make structures heirarchical in the scene it should be easy to make it look nicer.
+
+                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "";
+
+                    foreach (Atom atom in atoms.Values){
+                        if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
+                    }
+
+                    foreach (Bond bond in bonds.Values){
+                        if(bond.drawnObject != null) MonoBehaviour.Destroy(bond.drawnObject);
+                    }
+                    
+                    for ( float i = 0; i < 2; i++){
+                        for ( float j = 0; j < 2; j++){
+                            for ( float k = 0; k < 2; k++){
+                                Vector3 coord = new Vector3(i,j,k);
+                                UnitCell unitCell = GetUnitCellAtCoordinate(coord);
+                                if (unitCell != null){
+                                    unitCell.Draw(atomPrefab, linePrefab, builder);
+                                }
+                            }
+                        }
+                    }
+                    foreach (Atom atom in atoms.Values){
+                        if(atom.drawnObject != null){
+                            atom.drawnObject.transform.localPosition -= new Vector3(0.25f,0.25f,0.25f);
+                            atom.drawnObject.transform.localPosition /= 2f;
+                            atom.drawnObject.transform.localScale /= 2f;
+                        }
+                    }
+                    foreach (Bond bond in bonds.Values){
+                        if(bond.drawnObject != null){
+                            bond.drawnObject.transform.localPosition -= new Vector3(0.25f,0.25f,0.25f);
+                            bond.drawnObject.transform.localPosition /= 2f;
+                            bond.drawnObject.transform.localScale /= 2f;
+                        }
                     }
                     break;
                 case CrystalState.INFINITE:
-                    foreach ( Atom atom in this.atoms.Values ) {
+                    foreach ( Atom atom in atoms.Values ) {
                         atom.Draw(atomPrefab, builder);
                     }
 
-                    foreach ( Bond bond in this.bonds.Values ) {
+                    foreach ( Bond bond in bonds.Values ) {
                         bond.Draw(linePrefab, builder);
                     }
                     
                     break;
             }
+        }
+
+        public UnitCell GetUnitCellAtCoordinate(Vector3 pos){
+
+        Vector3 corrected = pos * 0.5f;
+
+        foreach (KeyValuePair<Vector3, UnitCell> a in unitCells){
+            
+            if((a.Key - corrected).magnitude < 0.1){
+                return a.Value;
+            }
+        }
+        return null;
         }
 
         /**
@@ -125,7 +185,7 @@ namespace Veridium_Core{
          * Changes the current CrystalState for the Crystal object
          */
         public void SetState(CrystalState newState) {
-            this.drawMode = newState;
+            drawMode = newState;
         }
 
         /**
@@ -151,15 +211,15 @@ namespace Veridium_Core{
 
             UnitCell originCell;
             if (type == CellType.HEX) {
-                originCell = new UnitCell8(atomicNumber, this.centerPoint, a, b, false);
+                originCell = new UnitCell8(atomicNumber, centerPoint, a, b, false);
             } else {
                 originCell = new UnitCell6(atomicNumber, type, variation, 
-                    this.centerPoint, a, b, c, alpha, beta, gamma);
+                    centerPoint, a, b, c, alpha, beta, gamma);
             }
-            this.unitCells[this.centerPoint] = originCell;
+            unitCells[centerPoint] = originCell;
 
-            originCell.AddVertices(this.atoms);
-            originCell.AddBonds(this.bonds);
+            originCell.AddVertices(atoms);
+            originCell.AddBonds(bonds);
 
             HashSet<Vector3> constructedPositions = new HashSet<Vector3>();
 
@@ -176,7 +236,7 @@ namespace Veridium_Core{
                     if (!constructedPositions.Contains(position)) {
                         constructedPositions.Add(position);
                         if (cell != null) {
-                            cell.GenerateNeighbors(this.atoms, this.bonds, this.unitCells);
+                            cell.GenerateNeighbors(atoms, bonds, unitCells);
                         }
                     }
                 }
