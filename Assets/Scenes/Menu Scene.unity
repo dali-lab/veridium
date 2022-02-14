@@ -451,39 +451,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2844359484141293311, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2844359484141293311, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2844359484141293311, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2844359484141293311, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2844359484141293311, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.35
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 2844359484141293311, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4091876301315285336, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 6686097678407549244, guid: ae35f7be0db1d497f9777ddbeb168117, type: 3}
     - target: {fileID: 6838642803327018541, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7318310289519313741, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 2.6806872
+      value: 2.6806874
       objectReference: {fileID: 0}
     - target: {fileID: 7318310289519313741, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_ConnectedAnchor.z

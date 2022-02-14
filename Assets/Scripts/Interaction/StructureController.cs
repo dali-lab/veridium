@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Veridium_Core;
 
 namespace Veridium_Interaction{
     public class StructureController : XRGrabInteractable_Lockable
@@ -15,7 +16,7 @@ namespace Veridium_Interaction{
         /// </summary>
 
         private bool scaleGrabberSelected, structureSelected;                   // Keeps track of the grabbed state of the handle
-        public float minScale = 1f, maxScale = 1.5f, softScaleBound = 2.5f;     // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
+        public float minScale = 1f, maxScale = 10f, softScaleBound = 15f;     // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
         public GameObject scaleGrabber, structure, hand1, hand2;                // GameObject References
         private bool twoHandGrab;                                               // Whether in two hand scaling mode, one hand rotation/translation mode
         private float twoHandDistance;                                          // Initial distance between hands in scaling mode
@@ -25,6 +26,7 @@ namespace Veridium_Interaction{
         private Quaternion initialObjectRotation;                               // gameObject rotation
         private Vector3 initialObjectScale, initialObjectDirection;             // gameObject scale, direction of gameObject to midpoint of both controllers
         private XRBaseInteractor grabInteractor;                                // The grab interactor currently handling this gameObject
+        [HideInInspector] public StructureBase structureBase;
 
 
 
@@ -86,7 +88,7 @@ namespace Veridium_Interaction{
 
                 // Update scaling and location, then clamp the scale between the minimum and maximum
                 UpdateTargetBoth();
-                ClampScale();
+                //ClampScale();
 
             } else {
                 
@@ -94,7 +96,21 @@ namespace Veridium_Interaction{
 
                 scaleGrabber.transform.position = gameObject.transform.position;
 
-                SmoothClampScale();
+                //SmoothClampScale();
+            }
+
+            if (gameObject.transform.localScale.x >= 2 && structureBase.currentState != CrystalState.INFINITE){
+
+                structureBase.InfiniteView();
+
+            } else if (gameObject.transform.localScale.x >= 1.2 && structureBase.currentState != CrystalState.MULTICELL){
+
+                structureBase.MultiCellView();
+
+            } else if (gameObject.transform.localScale.x <= 1 && structureBase.currentState != CrystalState.SINGLECELL){
+
+                structureBase.SingleCellView();
+
             }
         }
 

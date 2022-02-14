@@ -24,7 +24,11 @@ namespace Veridium_Interaction{
         public bool locked {get; private set;}          // Locked means no interaction
         public ElementLoader elementLoader;             // Element loader associated with this structure
         public StructureController structureController; // Structure controller associated with this 
+        public CrystalState currentState;
 
+        void Awake(){
+            structureController.structureBase = this;
+        }
 
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
@@ -36,8 +40,6 @@ namespace Veridium_Interaction{
             planeIndex = 0;
 
             if (spinUpAnimation != null) spinUpAnimation.PlayFromStart();
-
-            MultiCellView();
         }
 
         // Prompts the structureBuilder to destroy the cell
@@ -50,6 +52,8 @@ namespace Veridium_Interaction{
         // Enables infinite view for the crystal lattice
         public void InfiniteView(){
 
+            currentState = CrystalState.INFINITE;
+
             structureBuilder.Redraw(CrystalState.INFINITE);
 
         }
@@ -57,12 +61,27 @@ namespace Veridium_Interaction{
         // Enables multi-cell view for the crystal
         public void MultiCellView(){
 
+            currentState = CrystalState.MULTICELL;
+
             structureBuilder.Redraw(CrystalState.MULTICELL);
+
+            Anim_MoveTo anim = gameObject.transform.Find("StructureBuilder").gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+            anim.updateLocation = false;
+            anim.updateRotation = false;
+            anim.updateScale = true;
+            anim.easingType = EasingType.Elastic;
+            gameObject.transform.Find("StructureBuilder").localScale = new Vector3(2,2,2);
+            anim.target = gameObject.transform.Find("StructureBuilder").gameObject;
+            //anim.selfDestruct = true;
+            anim.easeOutOnly = true;
+            anim.Play();
             
         }
 
         // Enables single cell view for the crystal
         public void SingleCellView(){
+
+            currentState = CrystalState.SINGLECELL;
 
             structureBuilder.Redraw(CrystalState.SINGLECELL);
 

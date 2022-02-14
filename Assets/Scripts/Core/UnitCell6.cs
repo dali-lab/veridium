@@ -425,7 +425,7 @@ namespace Veridium_Core{
                 if (this.vertices[i] != null) {
                     this.vertices[i].Draw(atomPrefab, builder);
                 }
-            }          
+            }
 
             // Draws the bonds
             foreach ( Bond bond in this.bonds ) {

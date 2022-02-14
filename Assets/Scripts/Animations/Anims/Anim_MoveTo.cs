@@ -51,6 +51,8 @@ namespace Veridium_Animation{
                 alpha = (Easing.EaseOut(elapsedTimePercent, easingType));
             }
 
+            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = (Easing.EaseOut(elapsedTimePercent, easingType)).ToString();
+
             if(updateLocation) target.transform.position = (goal - startingPlace) * alpha + startingPlace;
             if(updateRotation) target.transform.rotation = Quaternion.Slerp(startingRotation, goalRotation, alpha);
             if(updateScale) target.transform.localScale = (goalScale - startingScale) * alpha + startingScale;

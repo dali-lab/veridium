@@ -125,7 +125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3657761366408896749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bf296fc962d7184ab14ad1841598d5f, type: 3}
   m_Name: 
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3657761366408896749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 919e39492806b334982b6b84c90dd927, type: 3}
   m_Name: 
@@ -1800,7 +1800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8680226481879548447, guid: 2473d085c448845a9aa619d218021827, type: 3}
       propertyPath: m_text
-      value: Halten, um zu greifen
+      value: Hold to grab
       objectReference: {fileID: 0}
     - target: {fileID: 8803033570911168669, guid: 2473d085c448845a9aa619d218021827, type: 3}
       propertyPath: m_RootOrder
@@ -1917,7 +1917,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8680226481879548447, guid: 2473d085c448845a9aa619d218021827, type: 3}
       propertyPath: m_text
-      value: Halten, um zu greifen
+      value: 'Hold to grab
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8803033570911168669, guid: 2473d085c448845a9aa619d218021827, type: 3}
       propertyPath: m_RootOrder

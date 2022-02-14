@@ -231,14 +231,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3657761366408896750, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657761366408896751, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3657761366441445147, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_InteractionLayerMask.m_Bits
       value: 136
@@ -908,10 +900,6 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: playOnStart
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
-      propertyPath: segments.Array.size
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[19].audio
@@ -1681,7 +1669,7 @@ MonoBehaviour:
   m_HandMoveAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Hand Move
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: d7a00522-3f98-497b-ae3d-ebffb7447c6f
@@ -2359,7 +2347,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066186235}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
