@@ -173,7 +173,7 @@ namespace Veridium_Core{
         public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
             // Loops through each vertex in the unit cell
             for ( int startIndex = 0; startIndex < this.numVertices; startIndex ++ ) {
-                if ( startIndex >= Constants.cell6BondMap.Length ) {
+                if ( startIndex >= Constants.cell8BondMap.Length ) {
                     continue;
                 }
 
@@ -255,7 +255,7 @@ namespace Veridium_Core{
          * Draws the UnitCell's Atoms and bonds to the scene.
          */
         public override void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
-
+            
             // Draw the atoms
             for ( int i = 0; i < this.numVertices; i ++ ) {
                 if (this.vertices[i] != null) {
