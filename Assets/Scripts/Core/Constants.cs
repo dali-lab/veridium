@@ -75,7 +75,7 @@ namespace Veridium_Core{
 
         // The array of 14 generic cell positions for an 8 sided unit cell
         public static Vector3[] cell8BasicPositions = new Vector3[] {
-            // front half (top and bottom)
+            // bottom of cell
             new Vector3(0, -0.5f, 0),                              // 0
             new Vector3(0, -0.5f, 0.7f),                              // 1
             new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), -0.5f, 0.35f),      // 2
@@ -83,7 +83,7 @@ namespace Veridium_Core{
             new Vector3(0,  -0.5f, -0.7f),                               // 4
             new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), -0.5f, -0.35f),     // 5
             new Vector3(0.7f*(-(Mathf.Sqrt(3.0f)/2.0f)), -0.5f, -0.35f),     // 6
-            // back half (top and bottom)
+            // top of cell
             new Vector3(0.0f, 0.5f, 0.0f),                               // 7
             new Vector3(0.0f, 0.5f, 0.7f),                               // 8
             new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), 0.5f, 0.35f),       // 9
