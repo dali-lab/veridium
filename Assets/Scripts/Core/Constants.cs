@@ -75,22 +75,22 @@ namespace Veridium_Core{
 
         // The array of 14 generic cell positions for an 8 sided unit cell
         public static Vector3[] cell8BasicPositions = new Vector3[] {
-            // bottom half
-            new Vector3(0, 0, -0.5f),                              // 0
-            new Vector3(0, 1, -0.5f),                              // 1
-            new Vector3((Mathf.Sqrt(3.0f)/2.0f), 0.5f, -0.5f),      // 2
-            new Vector3(-(Mathf.Sqrt(3.0f)/2.0f), 0.5f, -0.5f),     // 3
-            new Vector3(0, -1, -0.5f),                               // 4
-            new Vector3((Mathf.Sqrt(3.0f)/2.0f), -0.5f, -0.5f),     // 5
-            new Vector3(-(Mathf.Sqrt(3.0f)/2.0f), -0.5f, -0.5f),     // 6
-            // top half
-            new Vector3(0.0f, 0.0f, 0.5f),                               // 7
-            new Vector3(0.0f, 1.0f, 0.5f),                               // 8
-            new Vector3((Mathf.Sqrt(3.0f)/2.0f), 0.5f, 0.5f),       // 9
-            new Vector3(-(Mathf.Sqrt(3)/2.0f), 0.5f, 0.5f),      // 10
-            new Vector3(0.0f, -1.0f, 0.5f),                               // 11
-            new Vector3((Mathf.Sqrt(3.0f)/2.0f), -0.5f, 0.5f),      // 12
-            new Vector3(-(Mathf.Sqrt(3.0f)/2.0f), -0.5f, 0.5f)     // 13
+            // front half (top and bottom)
+            new Vector3(0, -0.5f, 0),                              // 0
+            new Vector3(0, -0.5f, 0.7f),                              // 1
+            new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), -0.5f, 0.35f),      // 2
+            new Vector3(0.7f*(-(Mathf.Sqrt(3.0f)/2.0f)), -0.5f, 0.35f),     // 3
+            new Vector3(0,  -0.5f, -0.7f),                               // 4
+            new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), -0.5f, -0.35f),     // 5
+            new Vector3(0.7f*(-(Mathf.Sqrt(3.0f)/2.0f)), -0.5f, -0.35f),     // 6
+            // back half (top and bottom)
+            new Vector3(0.0f, 0.5f, 0.0f),                               // 7
+            new Vector3(0.0f, 0.5f, 0.7f),                               // 8
+            new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), 0.5f, 0.35f),       // 9
+            new Vector3(0.7f*(-(Mathf.Sqrt(3)/2.0f)), 0.5f, 0.35f),      // 10
+            new Vector3(0.0f, 0.5f, -0.7f),                               // 11
+            new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), 0.5f, -0.35f),      // 12
+            new Vector3(0.7f*(-(Mathf.Sqrt(3.0f)/2.0f)), 0.5f, -0.35f)     // 13
         };
 
         // The hashmap relating UnitCell6 variations to the indices of the 
