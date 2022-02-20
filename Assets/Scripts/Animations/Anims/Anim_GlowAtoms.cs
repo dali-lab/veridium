@@ -24,7 +24,7 @@ namespace Veridium_Animation{
 
             foreach (Atom atom in structure.structureBuilder.crystal.atoms.Values)
             {
-                Anim_GlowPulse anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_GlowPulse>() as Anim_GlowPulse;
+                Anim_GlowPulse anim = atom.drawnObject.AddComponent<Anim_GlowPulse>() as Anim_GlowPulse;
                 anim.emissionColor = new Color(1,1,0);
                 anim.maxIntensity = 0.4f;
                 anim.Play();

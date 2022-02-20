@@ -99,17 +99,17 @@ namespace Veridium_Interaction{
                 //SmoothClampScale();
             }
 
-            if (gameObject.transform.localScale.x >= 2 && structureBase.currentState != CrystalState.INFINITE){
+            if (gameObject.transform.localScale.x >= 2){
 
-                structureBase.InfiniteView();
+                if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
 
-            } else if (gameObject.transform.localScale.x >= 1.2 && structureBase.currentState != CrystalState.MULTICELL){
+            } else if (gameObject.transform.localScale.x >= 1.25){
 
-                structureBase.MultiCellView();
+                if (structureBase.currentState != CrystalState.MULTICELL) structureBase.MultiCellView();
 
-            } else if (gameObject.transform.localScale.x <= 1 && structureBase.currentState != CrystalState.SINGLECELL){
+            } else if (gameObject.transform.localScale.x <= 1){
 
-                structureBase.SingleCellView();
+                if (structureBase.currentState != CrystalState.SINGLECELL) structureBase.SingleCellView();
 
             }
         }
@@ -128,7 +128,7 @@ namespace Veridium_Interaction{
             }
         }
 
-        // Keeps the gameObject from growing to big or too smalle over time
+        // Keeps the gameObject from growing to big or too small over time
         private void SmoothClampScale() {
             
             if (gameObject.transform.lossyScale.magnitude < minScale) {

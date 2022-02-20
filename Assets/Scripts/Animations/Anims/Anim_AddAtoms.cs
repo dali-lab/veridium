@@ -73,7 +73,7 @@ namespace Veridium_Animation{
                     (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += atom.drawnObject.ToString();
 
                     // Play a fade in animation 
-                    Anim_Fade anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Fade>() as Anim_Fade;
+                    Anim_Fade anim = atom.drawnObject.AddComponent<Anim_Fade>() as Anim_Fade;
                     anim.easingType = EasingType.Exponential;
                     anim.Play();
                     anim.selfDestruct = true;

@@ -114,7 +114,7 @@ namespace Veridium_Core{
                     break;
                 case CrystalState.MULTICELL:
 
-                // TODO for Sid: what i did here is messy. If you make accessing unit cells easier and 
+                // TODO for someone someday: what I did here is messy. If you make accessing unit cells easier and 
                 // make structures heirarchical in the scene it should be easy to make it look nicer.
 
                 (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "";
@@ -158,9 +158,10 @@ namespace Veridium_Core{
                         atom.Draw(atomPrefab, builder);
                     }
 
+                    /*
                     foreach ( Bond bond in bonds.Values ) {
                         bond.Draw(linePrefab, builder);
-                    }
+                    }*/
                     
                     break;
             }
