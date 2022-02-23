@@ -327,7 +327,7 @@ namespace Veridium_Animation{
 
             UpdateAnimations();
 
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
+            //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
 
         }
 

@@ -42,7 +42,7 @@ public abstract void AddVertices(Dictionary<Vector3, Atom> crystalAtoms);
 public abstract void AddBonds(Dictionary<Vector3, Bond> crystalBonds);
 public abstract Atom[] GetVertices();
 public abstract List<Bond> GetBonds();
-public abstract void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder);
+public abstract void Draw();
 public abstract void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell> crystalCells);
 public abstract List<Atom> GetMillerAtoms(int h, int k, int l);
 public abstract string Debug();
@@ -77,7 +77,7 @@ The overarching structure used to create and render complete Bravais lattices is
 
 ```c#
 public void Construct(CellType type, CellVariation variation, float a, float b, float c, float alpha, float beta, float gamma, int atomicNumber, int constructionDepth);
-public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder);
+public void Draw();
 public void ClearCrystal(GameObject builder);
 GetMillerAtoms(int h, int k , int l);
 public string Debug();

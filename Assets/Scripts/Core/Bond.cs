@@ -19,6 +19,7 @@ namespace Veridium_Core{
         private Atom start;
         private Atom end;
         public GameObject drawnObject {get; private set;}
+        public GameObject builder;
 
         /**
          * @constructor
@@ -76,26 +77,15 @@ namespace Veridium_Core{
         }
 
         /**
-         * @function Debug
-         * @return string Debug string
-         */
-        public string Debug() {
-            string output = "";
-            output += "Bond: ";
-            output += "Start : " + start.Debug() + "End : " + end.Debug();
-            return output;
-        }
-
-        /**
          * @function Draw
          * @input linePrefab the Unity prefab of the Bond
          * @input builder the Unity builder object
          */
-        public void Draw(GameObject linePrefab, GameObject builder) {
+        public void Draw() {
             Vector3 midpoint = (start.GetPosition() + end.GetPosition())/2;
             float distance = Vector3.Distance(start.GetPosition(), end.GetPosition());
 
-            drawnObject = MonoBehaviour.Instantiate(linePrefab, midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
+            drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Edge"), midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
                 
             drawnObject.transform.SetParent(builder.transform);
             drawnObject.transform.localScale = new Vector3(1f,1f,distance/0.5f);

@@ -6,13 +6,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Veridium_Interaction;
 
 namespace Veridium_Core{
     /**
     * @class Atom
     * Object class used to store positioning data and distinguishing characteristics for an atom
     */
-    public class Atom {
+    public class Atom{
         // The Atom's position in global-space
         private Vector3 position;
         
@@ -21,6 +22,7 @@ namespace Veridium_Core{
 
         public GameObject drawnObject {get; private set;}
         private bool metallic = true;
+        public GameObject builder;                         // The structure builder that created this
 
         /**
          * Constructor - creates a new Atom object
@@ -28,7 +30,6 @@ namespace Veridium_Core{
         public Atom(int number, Vector3 pos) {
             atomicNumber = number;
             position = pos;
-            drawnObject = null;
         }
 
         /**
@@ -63,28 +64,17 @@ namespace Veridium_Core{
         public Vector3 GetPosition() {
             return position;
         }
-
-        /**
-         * @function Debug
-         * @return debugging string
-         */
-        public string Debug() {
-            string output = "";
-            output += "Atom w atomic Number: " + atomicNumber.ToString() + " Position: (" + position.x.ToString() + ", " + position.y.ToString() + ", " + position.z.ToString() + ")\n";
-            return output;
-        }
         
-
         /**
          * @function Draw
          * @input atomPrefab GameObject containing the prefab for the atom
          * @input builder GameObject reference to the StructureBuilder MonoBehavior
          * Draws the atom by instantiating a prefab at the correct position and attatching it to the builder
          */
-        public void Draw(GameObject atomPrefab, GameObject builder) {
+        public void Draw() {
 
-            if(position.magnitude < 1.2){
-                drawnObject = MonoBehaviour.Instantiate(atomPrefab, Vector3.zero, Quaternion.identity);
+            if(position.magnitude < 1.3){
+                drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Atom_Prefab"), Vector3.zero, Quaternion.identity);
                 drawnObject.transform.SetParent(builder.transform);
                 drawnObject.transform.localPosition = position;
                 drawnObject.transform.localScale = Vector3.one * 0.15f;
@@ -103,6 +93,7 @@ namespace Veridium_Core{
                 drawnObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
                 drawnObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
             }
+
         }
 
         public void Highlight(){

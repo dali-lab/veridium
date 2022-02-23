@@ -123,6 +123,7 @@ namespace Veridium_Core{
                 Vector3 relPosition = Constants.cell8BasicPositions[i];
                 Vector3 atomPosition = GenerateVertexPosition(relPosition);
                 Atom newAtom = new Atom(this.atomicNumber, atomPosition);
+                newAtom.builder = builder;
 
                 // Makes sure that the atom hasn't already been rendered in 
                 // another cell in the crystal
@@ -189,7 +190,10 @@ namespace Veridium_Core{
                     // Ensure no duplicate bonds are created within the unit cell
                     bool duplicate = false;
                     Atom endVertex = vertices[endIndex];
-                    Bond newBond = new Bond(startVertex, endVertex);foreach (Bond bond in bonds) {
+                    Bond newBond = new Bond(startVertex, endVertex);
+                    newBond.builder = builder;
+                    
+                    foreach (Bond bond in bonds) {
                         if (bond.Equals(newBond)) {
                             duplicate = true;
                         }
@@ -198,7 +202,7 @@ namespace Veridium_Core{
                     if (!duplicate) {
                         Vector3 midpoint = (newBond.GetStartPos() + newBond.GetEndPos())/2;
                         // If an equivalent bond already exists within the Crystal structure, use it instead
-                        Bond crystalDuplicate;;
+                        Bond crystalDuplicate;
                         if (crystalBonds.TryGetValue(midpoint, out crystalDuplicate)) {
                             if (crystalDuplicate.Equals(newBond)) {
                                 bonds.Add(crystalDuplicate);
@@ -225,26 +229,6 @@ namespace Veridium_Core{
             return this.bonds;
         }
 
-        // Debugging function - prints the unit cell to console
-        public override string Debug() {
-            string debuginfo = "";
-
-            debuginfo += "WorldPosition : " + this.worldPosition.ToString() + "\n";
-
-            debuginfo += "Bonds : \n";
-            for ( int i = 0; i < this.bonds.Count; i ++ ) {
-                debuginfo += "b " + this.bonds[i].Debug();
-            }
-            
-            debuginfo += "Vertices : \n";
-            
-            for ( int i = 0; i < numVertices; i ++ ) {
-                debuginfo += "v" + i.ToString() + " (" + this.vertices[i].GetPosition().x.ToString() + ", " + this.vertices[i].GetPosition().y.ToString() + ", " + this.vertices[i].GetPosition().z.ToString() + ")\n";
-            }
-
-            return debuginfo;
-        }
-
         /**
          * @function Draw
          * @input atomPrefab    GameObject reference to the prefab describing 
@@ -254,18 +238,18 @@ namespace Veridium_Core{
          * @input builder       Reference to StructureBuilder's instance
          * Draws the UnitCell's Atoms and bonds to the scene.
          */
-        public override void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+        public override void Draw() {
 
             // Draw the atoms
             for ( int i = 0; i < this.numVertices; i ++ ) {
                 if (this.vertices[i] != null) {
-                    this.vertices[i].Draw(atomPrefab, builder);
+                    this.vertices[i].Draw();
                 }
             }
 
             // Draws the bonds
             foreach (Bond bond in this.bonds) {
-                bond.Draw(linePrefab, builder);
+                bond.Draw();
             }
         }
 
@@ -334,6 +318,7 @@ namespace Veridium_Core{
                 return;
             } else {
                 UnitCell8 newCell = new UnitCell8(this.atomicNumber, newCellPos, this.baseLength, this.height, invert);
+                newCell.builder = builder;
                 newCell.AddVertices(crystalAtoms);
                 newCell.AddBonds(crystalBonds);
                 crystalCells[newCellPos] = newCell;

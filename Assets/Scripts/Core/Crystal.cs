@@ -39,6 +39,9 @@ namespace Veridium_Core{
      */
     public class Crystal {
 
+        public CellType cellType {get; private set;}
+        public CellVariation cellVariation {get; private set;}
+
         // The coordinates of the center of the crystal in world space
         private Vector3 centerPoint;
 
@@ -55,18 +58,20 @@ namespace Veridium_Core{
 
         // The current drawing context for the crystal
         public CrystalState drawMode;
+        public GameObject builder;
 
         /**
          * @constructor
          * @input centerPoint   The location of the crystal in space
          * Default constructor for Crystal. Creates an empty crystal.
          */
-        public Crystal(Vector3 centerPoint) {
+        public Crystal(Vector3 centerPoint, GameObject builder) {
             atoms = new Dictionary<Vector3, Atom>();
             bonds = new Dictionary<Vector3, Bond>();
             unitCells = new Dictionary<Vector3, UnitCell>();
             centerPoint = Vector3.zero;//centerPoint;
             drawMode = CrystalState.SINGLECELL;
+            this.builder = builder;
         }
 
         /**
@@ -94,7 +99,7 @@ namespace Veridium_Core{
          * @input builder       GameObject parenting the crystal
          * Draws the crystal in the Unity scene
          */
-        public void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+        public void Draw() {
 
             foreach (Bond bond in bonds.Values)
             {
@@ -109,15 +114,13 @@ namespace Veridium_Core{
             switch (drawMode) {
                 case CrystalState.SINGLECELL:
                     if (unitCells.ContainsKey(centerPoint)) {
-                        unitCells[centerPoint].Draw(atomPrefab, linePrefab, builder);
+                        unitCells[centerPoint].Draw();
                     }
                     break;
                 case CrystalState.MULTICELL:
 
                 // TODO for someone someday: what I did here is messy. If you make accessing unit cells easier and 
                 // make structures heirarchical in the scene it should be easy to make it look nicer.
-
-                (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "";
 
                     foreach (Atom atom in atoms.Values){
                         if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
@@ -127,17 +130,27 @@ namespace Veridium_Core{
                         if(bond.drawnObject != null) MonoBehaviour.Destroy(bond.drawnObject);
                     }
                     
-                    for ( float i = 0; i < 2; i++){
-                        for ( float j = 0; j < 2; j++){
-                            for ( float k = 0; k < 2; k++){
-                                Vector3 coord = new Vector3(i,j,k);
-                                UnitCell unitCell = GetUnitCellAtCoordinate(coord);
-                                if (unitCell != null){
-                                    unitCell.Draw(atomPrefab, linePrefab, builder);
+                    switch (cellType){
+                        case CellType.CUBIC:
+                            for ( float i = 0; i < 2; i++){
+                                for ( float j = 0; j < 2; j++){
+                                    for ( float k = 0; k < 2; k++){
+                                        Vector3 coord = new Vector3(i,j,k);
+                                        UnitCell unitCell = GetUnitCellAtCoordinate(coord);
+                                        if (unitCell != null){
+                                            unitCell.builder = builder;
+                                            unitCell.Draw();
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
+                        break;
+                        case CellType.HEX:
+                        break;
+                        default:
+                        break;
+                    } 
+
                     foreach (Atom atom in atoms.Values){
                         if(atom.drawnObject != null){
                             atom.drawnObject.transform.localPosition -= new Vector3(0.25f,0.25f,0.25f);
@@ -154,14 +167,12 @@ namespace Veridium_Core{
                     }
                     break;
                 case CrystalState.INFINITE:
-                    foreach ( Atom atom in atoms.Values ) {
-                        atom.Draw(atomPrefab, builder);
-                    }
 
-                    /*
-                    foreach ( Bond bond in bonds.Values ) {
-                        bond.Draw(linePrefab, builder);
-                    }*/
+                    int l = 0;
+                    foreach ( Atom atom in atoms.Values ) {
+                        atom.Draw();
+                        l++;
+                    }
                     
                     break;
             }
@@ -217,6 +228,7 @@ namespace Veridium_Core{
                 originCell = new UnitCell6(atomicNumber, type, variation, 
                     centerPoint, a, b, c, alpha, beta, gamma);
             }
+            originCell.builder = builder;
             unitCells[centerPoint] = originCell;
 
             originCell.AddVertices(atoms);

@@ -9,11 +9,6 @@ using System.Linq;
 
 public class StructureBuilder : MonoBehaviour
 {
-    // Prefab used to draw Atoms
-    public GameObject atomPrefab;
-
-    // Prefab used to draw lines
-    public GameObject linePrefab;
 
     /// Crystal object being drawn to scene
     public Crystal crystal {get; private set;}
@@ -51,7 +46,7 @@ public class StructureBuilder : MonoBehaviour
 
     public void Redraw(CrystalState state){
         crystal.drawMode = state;
-        crystal.Draw(atomPrefab, linePrefab, gameObject);
+        crystal.Draw();
     }
 
     /**
@@ -110,9 +105,9 @@ public class StructureBuilder : MonoBehaviour
         numPlanes = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count;
         initialized = true;
 
-        crystal = new Crystal(gameObject.transform.position);
+        crystal = new Crystal(gameObject.transform.position, gameObject);
         crystal.SetState(state);
-        crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 5);
-        crystal.Draw(atomPrefab, linePrefab, gameObject);
+        crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 6);
+        crystal.Draw();
     }
 }

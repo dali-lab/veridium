@@ -30,6 +30,36 @@ namespace Veridium_Interaction{
             structureController.structureBase = this;
         }
 
+        void Update(){
+
+            // Fade out spheres near the camera
+            if (currentState == CrystalState.INFINITE){
+
+                foreach (Atom atom in structureBuilder.crystal.atoms.Values)
+                {
+                    if ((FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude - atom.drawnObject.transform.lossyScale.x < .5){
+                        atom.drawnObject.GetComponent<Renderer>().materials[0].EnableKeyword("_ALPHABLEND_ON");
+                        Color color = gameObject.GetComponent<Renderer>().materials[0].color;
+                        float distance = (FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude;
+                        float distancePercent = (distance - atom.drawnObject.transform.lossyScale.x * 0.5f) / 0.5f;
+                        color.a = distancePercent;
+                        gameObject.GetComponent<Renderer>().materials[0].color = color;
+                    } else {
+                        atom.drawnObject.GetComponent<Renderer>().materials[0].DisableKeyword("_ALPHABLEND_ON");
+                    }
+                }
+
+                if(!structureController.structureSelected){
+                    structureController.gameObject.transform.position = (structureController.hand1.transform.position + structureController.hand2.transform.position) / 2;
+                    structureController.gameObject.transform.rotation = Quaternion.identity;
+                    structureController.gameObject.transform.localScale = Vector3.one * 100f;
+                } else if (!structureController.scaleGrabberSelected){
+                    structureController.gameObject.transform.localScale = Vector3.one * 2f;
+                }
+            }
+
+        }
+
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
 
@@ -56,7 +86,7 @@ namespace Veridium_Interaction{
 
             structureBuilder.Redraw(CrystalState.INFINITE);
 
-            structureBuilder.transform.parent = gameObject.transform;
+            structureBuilder.transform.parent = gameObject.transform.Find("InfiniteViewLocation");
 
             if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
             Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
@@ -73,7 +103,7 @@ namespace Veridium_Interaction{
 
             anim.Play();
 
-            FindObjectsOfType<Camera>()[0].cullingMask = 1 << LayerMask.NameToLayer("Atoms");
+            FindObjectsOfType<Camera>()[0].cullingMask = 1 << LayerMask.NameToLayer("Atoms") | 1 << LayerMask.NameToLayer("InfiniteOnly");
 
         }
 
@@ -85,7 +115,7 @@ namespace Veridium_Interaction{
                 structureBuilder.transform.localPosition = Vector3.zero;
                 structureBuilder.transform.localRotation = Quaternion.identity;
                 structureBuilder.transform.localScale = Vector3.one;
-                FindObjectsOfType<Camera>()[0].cullingMask = ~0;
+                FindObjectsOfType<Camera>()[0].cullingMask = ~0 & ~1 << LayerMask.NameToLayer("InfiniteOnly");
             }
 
             currentState = CrystalState.MULTICELL;
@@ -117,7 +147,7 @@ namespace Veridium_Interaction{
                 structureBuilder.transform.localPosition = Vector3.zero;
                 structureBuilder.transform.localRotation = Quaternion.identity;
                 structureBuilder.transform.localScale = Vector3.one;
-                FindObjectsOfType<Camera>()[0].cullingMask = ~0;
+                FindObjectsOfType<Camera>()[0].cullingMask = ~0 & ~1 << LayerMask.NameToLayer("InfiniteOnly");
             }
 
             currentState = CrystalState.SINGLECELL;
