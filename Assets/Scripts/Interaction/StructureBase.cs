@@ -115,7 +115,7 @@ namespace Veridium_Interaction{
                 structureBuilder.transform.localPosition = Vector3.zero;
                 structureBuilder.transform.localRotation = Quaternion.identity;
                 structureBuilder.transform.localScale = Vector3.one;
-                FindObjectsOfType<Camera>()[0].cullingMask = ~0 & ~1 << LayerMask.NameToLayer("InfiniteOnly");
+                FindObjectsOfType<Camera>()[0].cullingMask = ~0 ^ 1 << LayerMask.NameToLayer("InfiniteOnly");
             }
 
             currentState = CrystalState.MULTICELL;
@@ -147,7 +147,7 @@ namespace Veridium_Interaction{
                 structureBuilder.transform.localPosition = Vector3.zero;
                 structureBuilder.transform.localRotation = Quaternion.identity;
                 structureBuilder.transform.localScale = Vector3.one;
-                FindObjectsOfType<Camera>()[0].cullingMask = ~0 & ~1 << LayerMask.NameToLayer("InfiniteOnly");
+                FindObjectsOfType<Camera>()[0].cullingMask = ~0 ^ 1 << LayerMask.NameToLayer("InfiniteOnly");
             }
 
             currentState = CrystalState.SINGLECELL;
