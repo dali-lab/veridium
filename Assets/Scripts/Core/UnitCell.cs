@@ -16,6 +16,8 @@ namespace Veridium_Core{
      */
     public abstract class UnitCell
     {
+        public GameObject builder;
+
         // Retreive a list of atoms falling on a miller plane for the cell
         public abstract List<Atom> GetMillerAtoms(int h, int k, int l);
 
@@ -32,12 +34,10 @@ namespace Veridium_Core{
         public abstract List<Bond> GetBonds();
 
         // Draws the cell
-        public abstract void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder);
+        public abstract void Draw();
 
         // Generates the cells neighbors
         public abstract void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell> crystalCells);
 
-        // Returns a debugging string
-        public abstract string Debug();
     }
 }

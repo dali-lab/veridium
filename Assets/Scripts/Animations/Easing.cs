@@ -108,8 +108,9 @@ namespace Veridium_Animation{
             float c4 = (2 * Mathf.PI) / 3;
 
             // 2^(-10x) * sin(20pi*x/3 - pi/2) + 1
-            return Mathf.Pow(2f, -10f * x) * Mathf.Sin((x * 10f - 0.75f) * c4) + 1;
-
+            float basicElastic = Mathf.Pow(2f, -10f * x) * Mathf.Sin((x * 10f - 0.75f) * c4) + 1;
+            float logisticCorrection = 1/(1f + Mathf.Exp(-70f * (x-0.05f)));
+            return basicElastic * logisticCorrection;
         }
 
         // Elastic easing in
@@ -119,10 +120,7 @@ namespace Veridium_Animation{
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
 
-            // 2pi/3
-            float c4 = (2 * Mathf.PI) / 3;
-
-            return -1 * Mathf.Pow(2f, 10 * x - 10f) * Mathf.Sin((x*10-10.75f) * c4);
+            return 1f - EaseOutElastic(1-x);
 
         }
 

@@ -50,14 +50,14 @@ namespace Veridium_Animation{
                     Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
                     if(atom.drawnObject != null){
                         if(!steps[currentStep].unglow){
-                            Anim_Glow anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Glow>() as Anim_Glow;
+                            Anim_Glow anim = atom.drawnObject.AddComponent<Anim_Glow>() as Anim_Glow;
                             anim.easingType = EasingType.Exponential;
                             anim.selfDestruct = true;
                             anim.emissionColor = steps[currentStep].glowColor;
                             anim.fadeTime = 1f;
                             anim.Play();
                         } else {
-                            Anim_Glow anim = atom.drawnObject.transform.Find("Sphere").gameObject.GetComponent<Anim_Glow>();
+                            Anim_Glow anim = atom.drawnObject.GetComponent<Anim_Glow>();
                             if(anim != null) anim.Pause();
                         }
                     }

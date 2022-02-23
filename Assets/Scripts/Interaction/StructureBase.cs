@@ -24,7 +24,41 @@ namespace Veridium_Interaction{
         public bool locked {get; private set;}          // Locked means no interaction
         public ElementLoader elementLoader;             // Element loader associated with this structure
         public StructureController structureController; // Structure controller associated with this 
+        public CrystalState currentState;
 
+        void Awake(){
+            structureController.structureBase = this;
+        }
+
+        void Update(){
+
+            // Fade out spheres near the camera
+            if (currentState == CrystalState.INFINITE){
+
+                foreach (Atom atom in structureBuilder.crystal.atoms.Values)
+                {
+                    if ((FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude - atom.drawnObject.transform.lossyScale.x < .5){
+                        atom.drawnObject.GetComponent<Renderer>().materials[0].EnableKeyword("_ALPHABLEND_ON");
+                        Color color = gameObject.GetComponent<Renderer>().materials[0].color;
+                        float distance = (FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude;
+                        float distancePercent = (distance - atom.drawnObject.transform.lossyScale.x * 0.5f) / 0.5f;
+                        color.a = distancePercent;
+                        gameObject.GetComponent<Renderer>().materials[0].color = color;
+                    } else {
+                        atom.drawnObject.GetComponent<Renderer>().materials[0].DisableKeyword("_ALPHABLEND_ON");
+                    }
+                }
+
+                if(!structureController.structureSelected){
+                    structureController.gameObject.transform.position = (structureController.hand1.transform.position + structureController.hand2.transform.position) / 2;
+                    structureController.gameObject.transform.rotation = Quaternion.identity;
+                    structureController.gameObject.transform.localScale = Vector3.one * 100f;
+                } else if (!structureController.scaleGrabberSelected){
+                    structureController.gameObject.transform.localScale = Vector3.one * 2f;
+                }
+            }
+
+        }
 
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
@@ -36,7 +70,6 @@ namespace Veridium_Interaction{
             planeIndex = 0;
 
             if (spinUpAnimation != null) spinUpAnimation.PlayFromStart();
-
         }
 
         // Prompts the structureBuilder to destroy the cell
@@ -49,21 +82,92 @@ namespace Veridium_Interaction{
         // Enables infinite view for the crystal lattice
         public void InfiniteView(){
 
+            currentState = CrystalState.INFINITE;
 
+            structureBuilder.Redraw(CrystalState.INFINITE);
+
+            structureBuilder.transform.parent = gameObject.transform.Find("InfiniteViewLocation");
+
+            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+
+            anim.updateLocation = true;
+            anim.updateRotation = true;
+            anim.updateScale = true;
+            anim.useTransform = true;
+            anim.endTransform = gameObject.transform;
+
+            anim.duration = .75f;
+            anim.easingType = EasingType.Quadratic;
+            anim.selfDestruct = true;
+
+            anim.Play();
+
+            FindObjectsOfType<Camera>()[0].cullingMask = 1 << LayerMask.NameToLayer("Atoms") | 1 << LayerMask.NameToLayer("InfiniteOnly");
 
         }
 
         // Enables multi-cell view for the crystal
         public void MultiCellView(){
 
+            if(currentState == CrystalState.INFINITE){
+                structureBuilder.transform.parent = structureController.gameObject.transform;
+                structureBuilder.transform.localPosition = Vector3.zero;
+                structureBuilder.transform.localRotation = Quaternion.identity;
+                structureBuilder.transform.localScale = Vector3.one;
+                FindObjectsOfType<Camera>()[0].cullingMask = ~0 ^ 1 << LayerMask.NameToLayer("InfiniteOnly");
+            }
 
+            currentState = CrystalState.MULTICELL;
+
+            structureBuilder.Redraw(CrystalState.MULTICELL);
+
+            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+
+            anim.updateLocation = false;
+            anim.updateRotation = false;
+            anim.updateScale = true;
+
+            anim.duration = 1f;
+            anim.easingType = EasingType.Elastic;
+            structureBuilder.gameObject.transform.localScale = new Vector3(.8f,.8f,.8f);
+            anim.selfDestruct = true;
+            anim.easeOutOnly = true;
+
+            anim.Play();
             
         }
 
         // Enables single cell view for the crystal
         public void SingleCellView(){
 
+            if(currentState == CrystalState.INFINITE){
+                structureBuilder.transform.parent = structureController.gameObject.transform;
+                structureBuilder.transform.localPosition = Vector3.zero;
+                structureBuilder.transform.localRotation = Quaternion.identity;
+                structureBuilder.transform.localScale = Vector3.one;
+                FindObjectsOfType<Camera>()[0].cullingMask = ~0 ^ 1 << LayerMask.NameToLayer("InfiniteOnly");
+            }
 
+            currentState = CrystalState.SINGLECELL;
+
+            structureBuilder.Redraw(CrystalState.SINGLECELL);
+
+            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+
+            anim.updateLocation = false;
+            anim.updateRotation = false;
+            anim.updateScale = true;
+
+            anim.duration = 1f;
+            anim.easingType = EasingType.Elastic;
+            structureBuilder.gameObject.transform.localScale = new Vector3(1.25f,1.25f,1.25f);
+            anim.selfDestruct = true;
+            anim.easeOutOnly = true;
+
+            anim.Play();
 
         }
 
@@ -76,7 +180,7 @@ namespace Veridium_Interaction{
             foreach (Atom atom in structureBuilder.crystal.atoms.Values)
             {
                 if(atom.drawnObject != null){
-                    Anim_MoveTo anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+                    Anim_MoveTo anim = atom.drawnObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
                     anim.updateLocation = false;
                     anim.updateRotation = false;
                     anim.easingType = EasingType.Elastic;

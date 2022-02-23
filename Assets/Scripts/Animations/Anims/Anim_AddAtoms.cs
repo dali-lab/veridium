@@ -16,7 +16,6 @@ namespace Veridium_Animation{
         public List<ListWrapper<Vector3>> steps;        // A list of steps. Each step contains a list of coordinates of atoms
         public StructureBuilder structureBuilder;       // The structureBuilder of the atoms to add
         private int currentStep = -1;                   // Current step of the animation. Steps will progress for the length of the steps list
-        public GameObject atomPrefab;                   // Prefab to use for drawing the atoms. This should always be the atom prefab
 
         // A list wrapper class that allows nested lists to be edited in the inspector
         [System.Serializable]
@@ -35,8 +34,6 @@ namespace Veridium_Animation{
         {
             base.Play();
             currentStep = -1;
-
-            (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = "";
         }
 
         // Called when restarted 
@@ -68,21 +65,15 @@ namespace Veridium_Animation{
                 {
                     // Draw the atom at the coordinates
                     Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
-                    atom.Draw(atomPrefab,structureBuilder.gameObject);
-
-                    (GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text += atom.drawnObject.ToString();
+                    atom.builder = structureBuilder.gameObject;
+                    atom.Draw();
 
                     // Play a fade in animation 
-                    Anim_Fade anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_Fade>() as Anim_Fade;
+                    Anim_Fade anim = atom.drawnObject.AddComponent<Anim_Fade>() as Anim_Fade;
                     anim.easingType = EasingType.Exponential;
                     anim.Play();
                     anim.selfDestruct = true;
                 }
-
-                /*
-                foreach (Atom atom in structureBuilder.crystal.atoms.Values){
-                    atom.Draw(atomPrefab,structureBuilder.gameObject);
-                }*/
             }
         }
     }

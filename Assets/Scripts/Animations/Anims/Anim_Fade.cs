@@ -23,6 +23,7 @@ namespace Veridium_Animation{
         // Called when started
         public override void Play(){
             base.Play();
+            gameObject.GetComponent<Renderer>().materials[materialIndex].EnableKeyword("_ALPHABLEND_ON");
             Color color = gameObject.GetComponent<Renderer>().materials[materialIndex].color;
             color.a = startingOpacity;
             gameObject.GetComponent<Renderer>().materials[materialIndex].color = color;
@@ -44,6 +45,10 @@ namespace Veridium_Animation{
             Color color = gameObject.GetComponent<Renderer>().materials[materialIndex].color;
             color.a = alpha;
             gameObject.GetComponent<Renderer>().materials[materialIndex].color = color;
+        }
+
+        public override void End(){
+            //gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_ALPHABLEND_ON");
         }
 
         // Called when restarted

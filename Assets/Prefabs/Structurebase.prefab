@@ -151,6 +151,7 @@ MonoBehaviour:
   structure: {fileID: 6576554569475386608}
   hand1: {fileID: 0}
   hand2: {fileID: 0}
+  structureBase: {fileID: 0}
 --- !u!65 &7525836906287132434
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -236,6 +237,7 @@ Transform:
   - {fileID: 6458486313505795307}
   - {fileID: 177232410486410686}
   - {fileID: 8328892565985048370}
+  - {fileID: 6803965476543928672}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -260,6 +262,7 @@ MonoBehaviour:
   spinUpAnimation: {fileID: 3400050630852772206}
   elementLoader: {fileID: 5738245579341317080}
   structureController: {fileID: 8599175688921419718}
+  currentState: 0
 --- !u!114 &3129836382147990586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,15 +298,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2652680249787089642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c2b38100649c49bfa0f89ad4ff28eab, type: 3}
+  m_Script: {fileID: 11500000, guid: f291e9b6f8ee244d5a9ec000a50df163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStart: 0
-  indefiniteDuration: 1
-  duration: 0
-  animSequence: {fileID: 0}
-  selfDestruct: 0
-  structureBase: {fileID: 8221016945136567124}
+  structure: {fileID: 1460324923880807827}
+  respawnDistance: 1
+  structureBuilder: {fileID: 3565902425673493353}
+  sideLength: 1
+  sphereRadius: 0.075
+  planeIndex: 0
+  spinUpAnimation: {fileID: 3400050630852772206}
+  elementLoader: {fileID: 5738245579341317080}
+  structureController: {fileID: 8599175688921419718}
+  currentState: 0
 --- !u!1 &4336108421094066982
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +504,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4460041831710369583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6803965476543928672}
+  m_Layer: 0
+  m_Name: InfiniteViewLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6803965476543928672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460041831710369583}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 921810360972710530}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6576554569475386608
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,8 +577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fa6baccaabe4f85a37d9405314c6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atomPrefab: {fileID: 1367041960781036951, guid: e89c0cad30a734d7fa592eb059da7c65, type: 3}
-  linePrefab: {fileID: 7311071784215312269, guid: 737e2f4d38c3c4adab3a760be8d4ee73, type: 3}
   cellType: 0
   cellVariation: 0
   numPlanes: 0

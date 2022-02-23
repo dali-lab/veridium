@@ -6,13 +6,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Veridium_Interaction;
 
 namespace Veridium_Core{
     /**
     * @class Atom
     * Object class used to store positioning data and distinguishing characteristics for an atom
     */
-    public class Atom {
+    public class Atom{
         // The Atom's position in global-space
         private Vector3 position;
         
@@ -21,14 +22,14 @@ namespace Veridium_Core{
 
         public GameObject drawnObject {get; private set;}
         private bool metallic = true;
+        public GameObject builder;                         // The structure builder that created this
 
         /**
          * Constructor - creates a new Atom object
          */
-        public Atom(int atomicNumber, Vector3 position) {
-            this.atomicNumber = atomicNumber;
-            this.position = position;
-            this.drawnObject = null;
+        public Atom(int number, Vector3 pos) {
+            atomicNumber = number;
+            position = pos;
         }
 
         /**
@@ -39,8 +40,8 @@ namespace Veridium_Core{
          * position and atomic number.
          */
         public bool Equals(Atom otherAtom) {
-            if (otherAtom.GetAtomicNumber() == this.atomicNumber && 
-                otherAtom.GetPosition() == this.position ) {
+            if (otherAtom.GetAtomicNumber() == atomicNumber && 
+                otherAtom.GetPosition() == position ) {
                     return true;
             }
             return false;
@@ -52,7 +53,7 @@ namespace Veridium_Core{
          * Returns the atomic number for the Atom
          */
         public int GetAtomicNumber() {
-            return this.atomicNumber;
+            return atomicNumber;
         }
 
         /**
@@ -61,57 +62,48 @@ namespace Veridium_Core{
          * Returns the position of the Atom
          */
         public Vector3 GetPosition() {
-            return this.position;
-        }
-
-        /**
-         * @function Debug
-         * @return debugging string
-         */
-        public string Debug() {
-            string output = "";
-            output += "Atom w atomic Number: " + this.atomicNumber.ToString() + " Position: (" + this.position.x.ToString() + ", " + this.position.y.ToString() + ", " + this.position.z.ToString() + ")\n";
-            return output;
+            return position;
         }
         
-
         /**
          * @function Draw
          * @input atomPrefab GameObject containing the prefab for the atom
          * @input builder GameObject reference to the StructureBuilder MonoBehavior
          * Draws the atom by instantiating a prefab at the correct position and attatching it to the builder
          */
-        public void Draw(GameObject atomPrefab, GameObject builder) {
-            Vector3 location = Vector3.Scale(builder.transform.rotation * (this.position - builder.transform.position), builder.transform.lossyScale) * (1/builder.transform.localScale.x) + builder.transform.position;
-            this.drawnObject = MonoBehaviour.Instantiate(atomPrefab, location, Quaternion.identity);
-            drawnObject.transform.SetParent(builder.transform);
-            drawnObject.transform.localScale = Vector3.one;
-            drawnObject.GetComponentInChildren<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
+        public void Draw() {
+
+            if(position.magnitude < 1.3){
+                drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Atom_Prefab"), Vector3.zero, Quaternion.identity);
+                drawnObject.transform.SetParent(builder.transform);
+                drawnObject.transform.localPosition = position;
+                drawnObject.transform.localScale = Vector3.one * 0.15f;
+            } else {
+                drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("MeshPrefab"), Vector3.zero, Quaternion.identity);
+                drawnObject.GetComponent<MeshFilter>().mesh = Resources.Load<Mesh>("simplifiedSphere");
+                drawnObject.GetComponent<Renderer>().material = Resources.Load<Material>("M_Atom");
+                drawnObject.transform.SetParent(builder.transform);
+                drawnObject.transform.localPosition = position;
+                drawnObject.transform.localScale = Vector3.one * 5f;
+                drawnObject.layer = LayerMask.NameToLayer("Atoms");
+            }
+            drawnObject.GetComponent<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
 
             if(metallic){
-                drawnObject.GetComponentInChildren<Renderer>().material.SetFloat("_Metallic", 1.0f);
-                drawnObject.GetComponentInChildren<Renderer>().material.SetFloat("_Glossiness", 0.65f);
+                drawnObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
+                drawnObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
             }
-        }
 
-        /**
-         * @function GetDrawnObject
-         * @return GameObject representing Atom in the scene. Null if Atom 
-         * hasn't been instantiated in current context.
-         * Returns the GameObject corresponding to the Atom.
-         */
-        public GameObject GetDrawnObject() {
-            return this.drawnObject;
         }
 
         public void Highlight(){
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(atomicNumber));
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
+            drawnObject.GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Coloration.GetColorByNumber(atomicNumber));
+            drawnObject.GetComponentInChildren<Renderer>().material.EnableKeyword("_EMISSION");
         }
 
         public void Unhighlight(){
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.black);
-            GetDrawnObject().GetComponentInChildren<Renderer>().material.DisableKeyword("_EMISSION");
+            drawnObject.GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", Color.black);
+            drawnObject.GetComponentInChildren<Renderer>().material.DisableKeyword("_EMISSION");
         }
     }
 }

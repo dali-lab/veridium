@@ -69,8 +69,8 @@ namespace Veridium_Animation{
                     Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
 
                     if(atom != null){
-                        if(atom.drawnObject.transform.Find("Sphere").gameObject.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.drawnObject.transform.Find("Sphere").gameObject.GetComponent<Anim_GlowPulse>());
-                        Anim_GlowPulse anim = atom.drawnObject.transform.Find("Sphere").gameObject.AddComponent<Anim_GlowPulse>() as Anim_GlowPulse;
+                        if(atom.drawnObject.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.drawnObject.GetComponent<Anim_GlowPulse>());
+                        Anim_GlowPulse anim = atom.drawnObject.AddComponent<Anim_GlowPulse>() as Anim_GlowPulse;
                         anim.emissionColor = new Color(1,1,0);
                         anim.blinksPerSecond = steps.Length / (2 * duration);
                         anim.maxIntensity = 0.4f;

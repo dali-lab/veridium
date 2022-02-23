@@ -19,14 +19,15 @@ namespace Veridium_Core{
         private Atom start;
         private Atom end;
         public GameObject drawnObject {get; private set;}
+        public GameObject builder;
 
         /**
          * @constructor
          * Instantiates bond with two atoms
          */
-        public Bond(Atom start, Atom end) {
-            this.start = start;
-            this.end = end;
+        public Bond(Atom startAtom, Atom endAtom) {
+            start = startAtom;
+            end = endAtom;
         }
 
         /**
@@ -34,7 +35,7 @@ namespace Veridium_Core{
          * @return Atom start atom
          */
         public Atom GetStart() {
-            return this.start;
+            return start;
         }
 
         /**
@@ -42,7 +43,7 @@ namespace Veridium_Core{
          * @return Atom end atom
          */
         public Atom GetEnd() {
-            return this.end;
+            return end;
         }
 
         /**
@@ -51,9 +52,9 @@ namespace Veridium_Core{
          * @return bool Whether the Bonds are equivalent
          */
         public bool Equals(Bond other) {
-            if (this.start.Equals(other.GetStart()) && this.end.Equals(other.GetEnd())) {
+            if (start.Equals(other.GetStart()) && end.Equals(other.GetEnd())) {
                 return true;
-            } else if (this.end.Equals(other.GetStart()) && this.start.Equals(other.GetEnd())) {
+            } else if (end.Equals(other.GetStart()) && start.Equals(other.GetEnd())) {
                 return true;
             }
             return false;
@@ -64,7 +65,7 @@ namespace Veridium_Core{
          * @return Vector3 position of start atom
          */
         public Vector3 GetStartPos() {
-            return this.start.GetPosition();
+            return start.GetPosition();
         }
 
         /**
@@ -72,18 +73,7 @@ namespace Veridium_Core{
          * @return Vector3 position of end atom
          */
         public Vector3 GetEndPos() {
-            return this.end.GetPosition();
-        }
-
-        /**
-         * @function Debug
-         * @return string Debug string
-         */
-        public string Debug() {
-            string output = "";
-            output += "Bond: ";
-            output += "Start : " + start.Debug() + "End : " + end.Debug();
-            return output;
+            return end.GetPosition();
         }
 
         /**
@@ -91,14 +81,16 @@ namespace Veridium_Core{
          * @input linePrefab the Unity prefab of the Bond
          * @input builder the Unity builder object
          */
-        public void Draw(GameObject linePrefab, GameObject builder) {
-            Vector3 midpoint = (this.start.GetPosition() + this.end.GetPosition())/2;
-            float distance = Vector3.Distance(this.start.GetPosition(), this.end.GetPosition());
+        public void Draw() {
+            Vector3 midpoint = (start.GetPosition() + end.GetPosition())/2;
+            float distance = Vector3.Distance(start.GetPosition(), end.GetPosition());
 
-            drawnObject = MonoBehaviour.Instantiate(linePrefab, midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
+            drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Edge"), midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
                 
             drawnObject.transform.SetParent(builder.transform);
             drawnObject.transform.localScale = new Vector3(1f,1f,distance/0.5f);
+            drawnObject.transform.localPosition = midpoint;
+            drawnObject.transform.localRotation = Quaternion.LookRotation(end.GetPosition()-start.GetPosition());
         }
     }
 }

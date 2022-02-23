@@ -64,7 +64,7 @@ namespace Veridium_Core{
 
         // Default constructor
         public UnitCell6() {
-            this.worldPosition = new Vector3(0, 0, 0);
+            worldPosition = new Vector3(0, 0, 0);
 
             alpha = 90;
             beta = 90;
@@ -86,16 +86,16 @@ namespace Veridium_Core{
          * Builds a unit cell with a given type, structure, worldPosition, side 
          * lengths, and angles.
          */
-        public UnitCell6(int atomicNumber, CellType type, CellVariation structure, Vector3 worldPosition,
+        public UnitCell6(int number, CellType cellType, CellVariation structureVariation, Vector3 pos,
             float a, float b, float c, float alpha, float beta, float gamma) {
 
             bool valid = false;
-            this.worldPosition = worldPosition;
-            this.type = type;
-            this.structure = structure;
-            this.vertices = new Atom[Constants.cell6Vertices];
-            this.bonds = new List<Bond>();
-            this.atomicNumber = atomicNumber;
+            worldPosition = pos;
+            type = cellType;
+            structure = structureVariation;
+            vertices = new Atom[Constants.cell6Vertices];
+            bonds = new List<Bond>();
+            atomicNumber = number;
 
             // Checks that the variation + cell type combination is valid
             foreach (CellVariation allowedVar in Constants.validCells[type]) {
@@ -259,6 +259,7 @@ namespace Veridium_Core{
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
 
                 Atom newAtom = new Atom(this.atomicNumber, atomPosition);
+                newAtom.builder = builder;
 
                 // Makes sure that the atom hasn't already been rendered in 
                 // another cell in the crystal
@@ -349,7 +350,10 @@ namespace Veridium_Core{
                     // Ensure no duplicate bonds are created locally
                     bool duplicate = false;
                     Atom endVertex = vertices[endIndex];
-                    Bond newBond = new Bond(startVertex, endVertex);foreach (Bond bond in bonds) {
+                    Bond newBond = new Bond(startVertex, endVertex);
+                    newBond.builder = builder;
+                    
+                    foreach (Bond bond in bonds) {
                         if (bond.Equals(newBond)) {
                             duplicate = true;
                         }
@@ -359,7 +363,7 @@ namespace Veridium_Core{
                         Vector3 midpoint = (newBond.GetStartPos() + newBond.GetEndPos())/2;
                         // If an equivalent bond already exists within the 
                         // Crystal structure, use it instead
-                        Bond crystalDuplicate;;
+                        Bond crystalDuplicate;
                         if (crystalBonds.TryGetValue(midpoint, out crystalDuplicate)) {
                             if (crystalDuplicate.Equals(newBond)) {
                                 bonds.Add(crystalDuplicate);
@@ -386,26 +390,6 @@ namespace Veridium_Core{
             return this.bonds;
         }
 
-        // Debugging function - prints the unit cell to console
-        public override string Debug() {
-            string debuginfo = "";
-
-            debuginfo += "WorldPosition : " + this.worldPosition.ToString() + "\n";
-
-            debuginfo += "Bonds : \n";
-            for ( int i = 0; i < this.bonds.Count; i ++ ) {
-                debuginfo += "b " + this.bonds[i].Debug();
-            }
-            
-            debuginfo += "Vertices : \n";
-            
-            for ( int i = 0; i < numVertices; i ++ ) {
-                debuginfo += "v" + i.ToString() + " (" + this.vertices[i].GetPosition().x.ToString() + ", " + this.vertices[i].GetPosition().y.ToString() + ", " + this.vertices[i].GetPosition().z.ToString() + ")\n";
-            }
-
-            return debuginfo;
-        }
-
         /**
          * @function Draw
          * @input atomPrefab    GameObject reference to the prefab describing 
@@ -415,18 +399,24 @@ namespace Veridium_Core{
          * @input builder       Reference to StructureBuilder's instance
          * Draws the UnitCell's Atoms and bonds to the scene.
          */
-        public override void Draw(GameObject atomPrefab, GameObject linePrefab, GameObject builder) {
+        public override void Draw() {
             
             // Draws the atoms
             for ( int i = 0; i < this.numVertices; i ++ ) {
-                if (this.vertices[i] != null) {
-                    this.vertices[i].Draw(atomPrefab, builder);
+                if (vertices[i].drawnObject != null){
+                    MonoBehaviour.Destroy(vertices[i].drawnObject);
                 }
-            }          
+                if (this.vertices[i] != null) {
+                    this.vertices[i].Draw();
+                }
+            }
 
             // Draws the bonds
             foreach ( Bond bond in this.bonds ) {
-                bond.Draw(linePrefab, builder);
+                if (bond.drawnObject != null){
+                    MonoBehaviour.Destroy(bond.drawnObject);
+                }
+                bond.Draw();
             }
         }
 
@@ -442,8 +432,6 @@ namespace Veridium_Core{
          * in world space. Adds the duplicates to the crystalCells hashmap
          */
         public override void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell> crystalCells) {  
-
-            string debugString = "";
 
             // A list of the directions in which neighbors can be generated 
             // relative to the starting position/orientation of the cell
@@ -492,6 +480,7 @@ namespace Veridium_Core{
                     // Builds the unit cell and adds it to the crystal
                     UnitCell6 newCell = new UnitCell6(this.atomicNumber, this.type, this.structure, newCellPos, 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
+                    newCell.builder = builder;
                     newCell.AddVertices(crystalAtoms);
                     newCell.AddBonds(crystalBonds);
                     crystalCells[newCellPos] = newCell;
@@ -499,9 +488,6 @@ namespace Veridium_Core{
 
                 index ++;
             }
-
-            debugString += "Exited Successfuly";
-
         }
     }
 }

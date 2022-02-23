@@ -9,11 +9,6 @@ using System.Linq;
 
 public class StructureBuilder : MonoBehaviour
 {
-    // Prefab used to draw Atoms
-    public GameObject atomPrefab;
-
-    // Prefab used to draw lines
-    public GameObject linePrefab;
 
     /// Crystal object being drawn to scene
     public Crystal crystal {get; private set;}
@@ -28,15 +23,7 @@ public class StructureBuilder : MonoBehaviour
     {
 
         if(buildOnStart) BuildCell(cellType, cellVariation, CrystalState.SINGLECELL, 0.5f, 0.075f, 23);
-        
-        // TESTS: Uncomment a test to run it at start
 
-        // Tests.TestHex(this.atomPrefab, this.linePrefab, this.gameObject);
-        // Tests.TestHexCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        // Tests.TestUnit6Millers(this.atomPrefab, this.linePrefab, this.gameObject);
-        // Tests.TestUnit8Millers(this.atomPrefab, this.linePrefab, this.gameObject);
-        // Tests.TestMillerCrystal(this.atomPrefab, this.linePrefab, this.gameObject);
-        // Tests.TestMillerLists(this.atomPrefab, this.linePrefab, this.gameObject);
     }
 
     public void HighlightPlaneAtIndex(int index){
@@ -57,19 +44,24 @@ public class StructureBuilder : MonoBehaviour
 
     }
 
+    public void Redraw(CrystalState state){
+        crystal.drawMode = state;
+        crystal.Draw();
+    }
+
     /**
      * @function DestroyCell
      * Removes the crystal from the scene.
      */
     public void DestroyCell() {
-        this.crystal.ClearCrystal(this.gameObject);
+        crystal.ClearCrystal(gameObject);
 
         initialized = false;
     }
 
     public Atom GetAtomAtCoordinate(Vector3 pos){
 
-        Vector3 corrected = pos * 0.25f + transform.position;
+        Vector3 corrected = pos * 0.25f; //+ transform.position;
 
         foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms){
             
@@ -89,7 +81,7 @@ public class StructureBuilder : MonoBehaviour
      * Returns HashSet of atoms in the specified miller plane
      */
     public HashSet<Atom> GetMillerAtoms(int h, int k, int l) {
-        return this.crystal.GetMillerAtoms(h, k, l);
+        return crystal.GetMillerAtoms(h, k, l);
     }
 
     /**
@@ -113,52 +105,9 @@ public class StructureBuilder : MonoBehaviour
         numPlanes = Miller.GetMillerIndicesForCell(cellType, cellVariation).Count;
         initialized = true;
 
-        string debugString = "";
-
-        Stopwatch stopwatch = new Stopwatch();
-
-        // Instantiates the Crystal
-        stopwatch.Start();
-        this.crystal = new Crystal(gameObject.transform.position);
-        stopwatch.Stop();
-
-        TimeSpan ts = stopwatch.Elapsed;
-        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal initialization " + elapsedTime + "\n";
-
-        // Sets the crystal's draw state
-        stopwatch.Start();
-        this.crystal.SetState(state);
-        stopwatch.Stop();
-
-        ts = stopwatch.Elapsed;
-        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal state setting" + elapsedTime + "\n";
-
-        // Adds Atoms and bonds to the crystal
-        stopwatch.Start();
-        this.crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 3);
-        stopwatch.Stop();
-
-        ts = stopwatch.Elapsed;
-        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal construction" + elapsedTime + "\n";
-
-        // Draws the crystal
-        stopwatch.Start();
-        this.crystal.Draw(atomPrefab, linePrefab, gameObject);
-        stopwatch.Stop();
-
-        ts = stopwatch.Elapsed;
-        elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-        debugString += "Time elapsed in crystal drawing" + elapsedTime + "\n";
+        crystal = new Crystal(gameObject.transform.position, gameObject);
+        crystal.SetState(state);
+        crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 6);
+        crystal.Draw();
     }
 }
