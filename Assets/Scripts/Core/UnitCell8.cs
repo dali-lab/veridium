@@ -174,7 +174,7 @@ namespace Veridium_Core{
         public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
             // Loops through each vertex in the unit cell
             for ( int startIndex = 0; startIndex < this.numVertices; startIndex ++ ) {
-                if ( startIndex >= Constants.cell6BondMap.Length ) {
+                if ( startIndex >= Constants.cell8BondMap.Length ) {
                     continue;
                 }
 
