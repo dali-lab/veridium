@@ -6,7 +6,6 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 
 namespace Veridium_Core{
@@ -59,6 +58,8 @@ namespace Veridium_Core{
         // The current drawing context for the crystal
         public CrystalState drawMode;
         public GameObject builder;
+        public GameObject infiniteObject;
+        public int atomicNumber {get; private set;}
 
         /**
          * @constructor
@@ -90,6 +91,8 @@ namespace Veridium_Core{
             bonds = new Dictionary<Vector3, Bond>();
             unitCells = new Dictionary<Vector3, UnitCell>();
             drawMode = CrystalState.SINGLECELL;
+            MonoBehaviour.Destroy(infiniteObject);
+            infiniteObject = null;
         }
 
         /**
@@ -110,6 +113,8 @@ namespace Veridium_Core{
             {
                 if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
             }
+
+            MonoBehaviour.Destroy(infiniteObject);
 
             switch (drawMode) {
                 case CrystalState.SINGLECELL:
@@ -168,10 +173,39 @@ namespace Veridium_Core{
                     break;
                 case CrystalState.INFINITE:
 
-                    int l = 0;
-                    foreach ( Atom atom in atoms.Values ) {
-                        atom.Draw();
-                        l++;
+                    string fileName = "";
+
+                    switch (cellType){
+                        case CellType.CUBIC:
+                            switch (cellVariation){
+                                case CellVariation.FACE:
+                                    fileName = "InfiniteFCC";
+                                break;
+                                case CellVariation.BODY:
+                                    fileName = "InfiniteBCC";
+                                break;
+                            }
+                        break;
+                        case CellType.HEX:
+                            switch (cellVariation){
+                                case CellVariation.BODY:
+                                    fileName = "InfiniteBCH";
+                                break;
+                            }
+                        break;
+                    }
+
+                    infiniteObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("MeshPrefab"));
+                    infiniteObject.layer = LayerMask.NameToLayer("InfiniteOnly");
+                    infiniteObject.GetComponent<MeshFilter>().mesh = Resources.Load<Mesh>("InfiniteViews/" + fileName);
+                    infiniteObject.GetComponent<Renderer>().material = Resources.Load<Material>("M_Atom_Infinite");
+                    infiniteObject.transform.localScale = Vector3.one * 150f;
+                    infiniteObject.transform.position = Vector3.up * MonoBehaviour.FindObjectsOfType<Camera>()[0].transform.position.y;
+                    infiniteObject.GetComponent<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
+
+                    if(true){
+                        infiniteObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
+                        infiniteObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
                     }
                     
                     break;
@@ -220,6 +254,10 @@ namespace Veridium_Core{
         public void Construct(CellType type, CellVariation variation,
             float a, float b, float c, float alpha, float beta, float gamma, 
             int atomicNumber, int constructionDepth) {
+
+            this.atomicNumber = atomicNumber;
+            cellType = type;
+            cellVariation = variation;
 
             UnitCell originCell;
             if (type == CellType.HEX) {
