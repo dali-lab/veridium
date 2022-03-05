@@ -59,7 +59,7 @@ namespace Veridium_Interaction{
                     heldTimer += Time.deltaTime;
 
                     if(heldTimer > 0.2f) {
-                        countdownText.text = "Aussteig in " + (timeUntilExit - heldTimer).ToString("F0") + "...";
+                        countdownText.text = "Exit in " + (timeUntilExit - heldTimer).ToString("F0") + "...";
                         stationaryCountdown.text = (timeUntilExit - heldTimer).ToString("F0") + "...";
                     }
 

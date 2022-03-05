@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
 using Veridium_Core;
@@ -17,12 +16,24 @@ public class StructureBuilder : MonoBehaviour
     [HideInInspector] public int numPlanes;
     public bool initialized {get; private set;}
     public bool buildOnStart;
+    public Queue<Atom> atomsToDraw = new Queue<Atom>();
 
     // Start is called before the first frame update
     void Start()
     {
 
-        if(buildOnStart) BuildCell(cellType, cellVariation, CrystalState.SINGLECELL, 0.5f, 0.075f, 23);
+        if(buildOnStart) BuildCell(cellType, cellVariation, CrystalState.INFINITE, 0.5f, 0.075f, 23);
+
+    }
+
+    void Update()
+    {
+
+        if(atomsToDraw.Count > 0){
+            Atom atom = atomsToDraw.Dequeue();
+            Debug.Log(atom);
+            atom.Draw();
+        }
 
     }
 

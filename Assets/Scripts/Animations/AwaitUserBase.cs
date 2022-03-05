@@ -45,7 +45,6 @@ namespace Veridium_Animation{
             
             Invoke("OnComplete", onComplete.timing + Time.deltaTime);
 
-            //Pause();
         }
 
         private void OnComplete(){

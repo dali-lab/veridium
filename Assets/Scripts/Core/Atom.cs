@@ -73,20 +73,10 @@ namespace Veridium_Core{
          */
         public void Draw() {
 
-            if(position.magnitude < 1.3){
-                drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Atom_Prefab"), Vector3.zero, Quaternion.identity);
-                drawnObject.transform.SetParent(builder.transform);
-                drawnObject.transform.localPosition = position;
-                drawnObject.transform.localScale = Vector3.one * 0.15f;
-            } else {
-                drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("MeshPrefab"), Vector3.zero, Quaternion.identity);
-                drawnObject.GetComponent<MeshFilter>().mesh = Resources.Load<Mesh>("simplifiedSphere");
-                drawnObject.GetComponent<Renderer>().material = Resources.Load<Material>("M_Atom");
-                drawnObject.transform.SetParent(builder.transform);
-                drawnObject.transform.localPosition = position;
-                drawnObject.transform.localScale = Vector3.one * 5f;
-                drawnObject.layer = LayerMask.NameToLayer("Atoms");
-            }
+            drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Atom_Prefab"), Vector3.zero, Quaternion.identity);
+            drawnObject.transform.SetParent(builder.transform);
+            drawnObject.transform.localPosition = position;
+            drawnObject.transform.localScale = Vector3.one * 0.15f;
             drawnObject.GetComponent<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
 
             if(metallic){

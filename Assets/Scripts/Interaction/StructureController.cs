@@ -88,7 +88,7 @@ namespace Veridium_Interaction{
 
                 // Update scaling and location, then clamp the scale between the minimum and maximum
                 UpdateTargetBoth();
-                ClampScale();
+                //ClampScale();
 
             } else {
                 
@@ -96,7 +96,7 @@ namespace Veridium_Interaction{
 
                 scaleGrabber.transform.position = gameObject.transform.position;
 
-                SmoothClampScale();
+                //SmoothClampScale();
             }
 
             if (gameObject.transform.localScale.x >= 2){
@@ -137,6 +137,8 @@ namespace Veridium_Interaction{
         // Resets the two hand grab to original
         private void EndTwoHandGrab() {
 
+            if(grabInteractor == null) return;
+            
             // Store the attach transform of the interactor
             interactorPosition = grabInteractor.attachTransform.localPosition;
             interactorRotation = grabInteractor.attachTransform.localRotation;
