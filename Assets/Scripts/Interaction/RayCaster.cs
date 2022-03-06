@@ -61,6 +61,7 @@ namespace Veridium_Interaction{
                 drawline = false;
             } else if (hittedDistanceGrab && isSelectable) {    // if hit a distanceGrabbable object and it is selectable
                 drawline = true;
+                if(!hitDistanceGrab.collider.gameObject.GetComponent<HandDistanceGrabbable>().drawRay) drawline = false;
             } else if (hittedRayPoint) {    // if hit raypoint layer mask
                 drawline = true;
             }

@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Core;
 
 namespace Veridium_Interaction{
-    public class StructureController : XRGrabInteractable_Lockable
+    public class StructureController : HandDistanceGrabbable
     {
 
         /// <summary>
@@ -28,7 +28,9 @@ namespace Veridium_Interaction{
         private XRBaseInteractor grabInteractor;                                // The grab interactor currently handling this gameObject
         [HideInInspector] public StructureBase structureBase;
 
-
+        public StructureController(){
+            drawRay = false;
+        }
 
         // extends OnSelectEntering from XRGrabInteractable. Stores initial information from the interactors
         protected override void OnSelectEntering(XRBaseInteractor interactor){
@@ -41,7 +43,14 @@ namespace Veridium_Interaction{
             
             // offsets the interactor's attach transform to match the structure's
             bool hasAttach = attachTransform != null;
-            interactor.attachTransform.position = hasAttach ? attachTransform.position : transform.position;
+
+            HandDistanceGrabber distanceGrabber = interactor.gameObject.GetComponent<HandDistanceGrabber>();
+            if(distanceGrabber != null && distanceGrabber.hitDistance > 0.01f){
+
+                interactor.attachTransform.position = hasAttach ? transform.position - distanceGrabber.hitLocation + interactor.transform.position : transform.position;
+            } else {
+                interactor.attachTransform.position = hasAttach ? attachTransform.position : transform.position;
+            }
             interactor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
 
             grabInteractor = interactor;

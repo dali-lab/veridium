@@ -231,17 +231,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3657761366441445147, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
-      propertyPath: m_InteractionLayerMask.m_Bits
-      value: 136
-      objectReference: {fileID: 0}
     - target: {fileID: 3657761366712215366, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 2047
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657761366975003024, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
-      propertyPath: m_InteractionLayerMask.m_Bits
-      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 4342821949634214602, guid: 4e37943d2478ab74985da918e5ea52b5, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -1757,6 +1749,10 @@ PrefabInstance:
     - target: {fileID: 921810360972710530, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460324923880807827, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2652680249787089642, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
       propertyPath: m_Name
