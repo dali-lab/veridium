@@ -9,7 +9,6 @@ namespace Veridium_Interaction{
     public class SegmentPlay : HandDistanceGrabbable
     {
 
-        public GameObject home;                                 // GameObject for this one to snap back to when dropped
         public float maxHeldTime = 1f;                        // How long before we exit the scene
         private float heldTimer = 0f;
 
@@ -19,6 +18,7 @@ namespace Veridium_Interaction{
         public Image progressBar;
         public GameObject playButton;
         public GameObject grabbableSphere;
+        public Animator sphereAnim;
         public Transform resetPoint;
 
         // Start is called before the first frame update
@@ -38,6 +38,7 @@ namespace Veridium_Interaction{
                     grabbableSphere.transform.rotation = resetPoint.rotation;
                     isReset = true;
                     heldTimer = 0f;
+                    sphereAnim.SetBool("isPressed", false);
                 }
 
 
@@ -51,7 +52,8 @@ namespace Veridium_Interaction{
 
                     heldTimer += Time.deltaTime;
                     progressBar.enabled = true;
-                    progressBar.fillAmount = Mathf.Lerp(0, 100, heldTimer/maxHeldTime);
+                    progressBar.fillAmount = heldTimer/maxHeldTime;
+                    //progressBar.fillAmount = Mathf.Lerp(0, 100, heldTimer/maxHeldTime);
 
                 } 
                 else {
@@ -59,7 +61,7 @@ namespace Veridium_Interaction{
                     heldTimer = 0f;
                     progressBar.enabled = false;
                     // invoke event
-                    SceneManager.LoadScene(0);
+                    sphereAnim.SetBool("isPressed", true);
 
                 }
             }
@@ -85,7 +87,7 @@ namespace Veridium_Interaction{
         public override bool IsSelectableBy(XRBaseInteractor interactor){
             bool baseCase = base.IsSelectableBy(interactor);
 
-            if(!(interactor is XRDirectInteractor) && interactor.gameObject != home) return false;
+            if(!(interactor is XRDirectInteractor)) return false;
 
             return baseCase;
         }
