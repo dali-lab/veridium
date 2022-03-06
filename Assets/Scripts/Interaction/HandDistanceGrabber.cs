@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Veridium_Interaction{
 
-    public class HandDistanceGrabber : MonoBehaviour
+    public class HandDistanceGrabber : XRDirectInteractor
     {
         /// <summary>
         /// HandDistanceGrabber should be attached to a game object with a direct interactor
@@ -18,6 +19,9 @@ namespace Veridium_Interaction{
         private int layerMask;                      // Collision filter for sphere cast
         private bool grabbing;                      // Whether the direct interactor is grabbing
         private Vector3 colliderOriginalCenter;     // The original offset of the sphere collider to move back to
+        public Vector3 hitLocation;
+        public float hitDistance;
+        public bool distanceGrabbed;
 
 
         // Start is called before the first frame update
@@ -49,9 +53,17 @@ namespace Veridium_Interaction{
 
                     hovered = hit.collider.gameObject.GetComponent<HandDistanceGrabbable>();
 
+                    hitDistance = hit.distance;
+
+                    hitLocation = hit.point;
+
                 } else {
 
                     hovered = null;
+
+                    hitDistance = 0f;
+
+                    hitLocation = Vector3.zero;
 
                 }
 
@@ -75,16 +87,28 @@ namespace Veridium_Interaction{
             }
         }
 
-        // Updates whether the direct interactor is grabbing. Should be added to the direct interactor's callbacks
-        public void grabBegun(){
+        // Updates whether the direct interactor is grabbing.
+        protected override void OnSelectEntered(XRBaseInteractable interactable){
+
+            base.OnSelectEntered(interactable);
+
             grabbing = true;
 
+            if (hitDistance != 0) distanceGrabbed = true;
+
             GetComponent<AudioSource>().Play();
+
         }
 
-        // Updates whether the direct interactor is grabbing. Should be added to the direct interactor's callbacks
-        public void grabEnded(){
+        // Updates whether the direct interactor is grabbing.
+        protected override void OnSelectExited(XRBaseInteractable interactable){
+
+            base.OnSelectExited(interactable);
+
             grabbing = false;
+
+            distanceGrabbed = false;
+
         }
 
         // check if the controller is grabbing anything

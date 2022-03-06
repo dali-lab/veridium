@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7525836906287132434}
   - component: {fileID: 2923779026218670947}
   - component: {fileID: 3400050630852772206}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Structure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,8 +144,12 @@ MonoBehaviour:
   m_AttachPointCompatibilityMode: 0
   selectableBySocketWhenLocked: 1
   selectableByGrabWhenLocked: 0
+  hovered: 0
+  highlight: {fileID: 0}
+  drawRay: 0
+  scaleGrabberSelected: 0
+  structureSelected: 0
   minScale: 0.2
-  maxScale: 2
   softScaleBound: 1.2
   scaleGrabber: {fileID: 8443100902444958120}
   structure: {fileID: 6576554569475386608}
@@ -253,7 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f291e9b6f8ee244d5a9ec000a50df163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structure: {fileID: 1460324923880807827}
   respawnDistance: 2
   structureBuilder: {fileID: 3565902425673493353}
   sideLength: 0.5
@@ -263,6 +266,7 @@ MonoBehaviour:
   elementLoader: {fileID: 5738245579341317080}
   structureController: {fileID: 8599175688921419718}
   currentState: 0
+  desiredState: 0
 --- !u!114 &3129836382147990586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f291e9b6f8ee244d5a9ec000a50df163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structure: {fileID: 1460324923880807827}
   respawnDistance: 1
   structureBuilder: {fileID: 3565902425673493353}
   sideLength: 1
@@ -311,6 +314,7 @@ MonoBehaviour:
   elementLoader: {fileID: 5738245579341317080}
   structureController: {fileID: 8599175688921419718}
   currentState: 0
+  desiredState: 0
 --- !u!1 &4336108421094066982
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,7 +863,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2136751873081092688, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af7ba8d5aef6809449dca6dac9522a9b, type: 3}
 --- !u!4 &8328892565985048370 stripped
 Transform:
