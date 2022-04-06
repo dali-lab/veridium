@@ -45,7 +45,22 @@ namespace Veridium_Animation{
             public float timing;                            // Start time in seconds of the animation from the beginning of the segment
         }
 
-        public enum ActionType{ AnimationScript, UnityEvent, Animator }
+        /*
+        public enum AnimationScript{
+            Add_Atoms,
+            Fade,
+            Glow,
+            Glow_Atoms,
+            Glow_Atoms_Constant,
+            Glow_Pulse,
+            Highlight,
+            Highlight_Layers,
+            Move_To,
+            Spin_Up,
+            View_Mode
+        }*/
+
+        public enum ActionType{ AnimationScript, UnityEvent, Animator, AnimationClass }
 
         // Called before start
         void Awake(){
