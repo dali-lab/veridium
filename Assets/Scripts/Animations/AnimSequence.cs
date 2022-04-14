@@ -7,8 +7,38 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Veridium_Animation{
+    [System.Serializable]
+        public enum AnimationScript{
+            Add_Atoms,
+            Fade,
+            Glow,
+            Glow_Atoms,
+            Glow_Atoms_Constant,
+            Glow_Pulse,
+            Highlight,
+            Highlight_Layers,
+            Move_To,
+            Spin_Up,
+            View_Mode
+        }
     public class AnimSequence : MonoBehaviour
     {
+
+        // A list wrapper class that allows nested lists to be edited in the inspector
+        [System.Serializable]
+        public class ListWrapper<T>
+        {
+            public bool isPoop;
+
+            public void Play(){
+
+            }
+        }
+
+        public class ListWrapperChild<T> : ListWrapper<T>
+        {
+            public int integer = 0;
+        }
         
         /// <summary>
         /// Holds a list of audio clips and plays them in order with animations. 
@@ -25,6 +55,8 @@ namespace Veridium_Animation{
         private List<AnimationBase> playingAnims;                       // A list of currently playing animations
         public string sequenceState;                                    // For debug purposes
         private float segmentTime;                                      // Time since the beginning of the segment. Equal to audio time if audio has not finished
+        public AnimationBase thing;
+        public List<ListWrapper<bool>> animations;
 
 
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
@@ -44,21 +76,6 @@ namespace Veridium_Animation{
             public Animator animator;
             public float timing;                            // Start time in seconds of the animation from the beginning of the segment
         }
-
-        /*
-        public enum AnimationScript{
-            Add_Atoms,
-            Fade,
-            Glow,
-            Glow_Atoms,
-            Glow_Atoms_Constant,
-            Glow_Pulse,
-            Highlight,
-            Highlight_Layers,
-            Move_To,
-            Spin_Up,
-            View_Mode
-        }*/
 
         public enum ActionType{ AnimationScript, UnityEvent, Animator, AnimationClass }
 
@@ -361,9 +378,94 @@ namespace Veridium_Animation{
             return latestTime;
 
         }
+
+        public void CreateAnimScript(AnimationScript type){
+
+            AnimationBase newAnim;
+            switch(type){
+                case AnimationScript.Add_Atoms:
+                    newAnim = new Anim_AddAtoms();
+                    break;
+                default:
+                    break;
+            }
+            newAnim = new Anim_AddAtoms();
+            thing = newAnim;
+
+        }
     }
 
     #if UNITY_EDITOR
+
+    //Implement a custom editor for the AnimSequence class
+    [CustomEditor(typeof(AnimSequence))]
+    public class AnimSequenceEditor : Editor{
+
+        AnimSequence sequence;
+
+        private void OnEnable(){
+            sequence = (AnimSequence)target;
+        }
+
+        public override void OnInspectorGUI(){
+
+            // Draw the default inspector
+            DrawDefaultInspector();
+
+            // Add a button to play the sequence
+            if(GUILayout.Button("Play Sequence")){
+                sequence.PlaySequence();
+            }
+
+            // Add a button to play the sequence from the start
+            if(GUILayout.Button("Play Sequence From Start")){
+                sequence.PlaySequenceFromStart();
+            }
+
+            // Add a button to reset the sequence
+            if(GUILayout.Button("Reset Sequence")){
+                sequence.ResetSequence();
+            }
+
+            // Add a button to pause the sequence
+            if(GUILayout.Button("Pause Sequence")){
+                sequence.PauseSequence();
+            }
+
+            // Add a button to scrub the sequence
+            if(GUILayout.Button("Scrub Sequence")){
+                sequence.ScrubSequence(1f);
+            }
+
+            // Add a button to scrub the sequence
+            if(GUILayout.Button("Scrub Sequence Back")){
+                sequence.ScrubSequence(-1f);
+            }
+
+            // Add a button to scrub the sequence
+            if(GUILayout.Button("Instantiate Animation")){
+                sequence.CreateAnimScript(AnimationScript.Add_Atoms);
+            }
+
+        }
+
+    }
+    // Implement a custom property drawer for AnimSequence.ListWrapper
+    [CustomPropertyDrawer(typeof(AnimSequence.ListWrapper<bool>))]
+    public class ListWrapperDrawer : PropertyDrawer
+    {
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            EditorGUI.BeginProperty(position, label, property);
+            position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
+            var indent = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+            var rect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+            EditorGUI.PropertyField(rect, property.FindPropertyRelative("isPoop"), GUIContent.none);
+            EditorGUI.indentLevel = indent;
+            EditorGUI.EndProperty();
+        }
+    }
     /*
     [CustomPropertyDrawer(typeof(AnimSequence.AnimPlayer))]
     public class AnimPlayerDrawer : PropertyDrawer
