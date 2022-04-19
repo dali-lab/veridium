@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
 
 namespace Veridium_Interaction{
     public class SegmentPlay : HandDistanceGrabbable
@@ -20,6 +21,7 @@ namespace Veridium_Interaction{
         public GameObject grabbableSphere;
         public Animator sphereAnim;
         public Transform resetPoint;
+        public UnityEvent onInteractionStart;
 
         // Start is called before the first frame update
         void Start()
@@ -62,7 +64,7 @@ namespace Veridium_Interaction{
                     progressBar.enabled = false;
                     // invoke event
                     sphereAnim.SetBool("isPressed", true);
-
+                    onInteractionStart.Invoke();
                 }
             }
         }
