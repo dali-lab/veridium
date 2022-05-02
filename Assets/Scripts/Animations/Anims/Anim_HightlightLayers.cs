@@ -9,6 +9,7 @@ namespace Veridium_Animation{
 
         public StructureBuilder structureBuilder;
         private int currentStep = -1;
+        /*
         private Vector3[][] steps = new Vector3[][]{
             new Vector3[] {
                 new Vector3(-1,-1,-1)
@@ -31,6 +32,29 @@ namespace Veridium_Animation{
             },
             new Vector3[] {
                 new Vector3(1,1,1)
+            }
+        };
+        */
+        private Vector3[][] steps = new Vector3[][]{
+            new Vector3[] {
+                new Vector3(-0.5,-1,1),
+                new Vector3(0.5,-1,1),
+                new Vector3(-0.5,1,1),
+                new Vector3(0.5,1,1)
+            },
+            new Vector3[] {
+                new Vector3(-1,-1,0),
+                new Vector3(0,-1,0),
+                new Vector3(1,-1,0),
+                new Vector3(-1,1,0),
+                new Vector3(0,1,0),
+                new Vector3(1,1,0)
+            },
+            new Vector3[] {
+                new Vector3(-0.5,-1,-1),
+                new Vector3(0.5,-1,-1),
+                new Vector3(-0.5,1,-1),
+                new Vector3(0.5,1,-1)
             }
         };
 
