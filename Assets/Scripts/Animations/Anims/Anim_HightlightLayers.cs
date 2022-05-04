@@ -37,10 +37,11 @@ namespace Veridium_Animation{
         */
         private Vector3[][] steps = new Vector3[][]{
             new Vector3[] {
-                new Vector3(-0.5,-1,1),
-                new Vector3(0.5,-1,1),
-                new Vector3(-0.5,1,1),
-                new Vector3(0.5,1,1)
+                new Vector3(0,-1, 1),
+                new Vector3(-1,-1,0.5f),
+                new Vector3(0,1, 1),
+                new Vector3(-1,1,0.5f)
+                
             },
             new Vector3[] {
                 new Vector3(-1,-1,0),
@@ -51,10 +52,10 @@ namespace Veridium_Animation{
                 new Vector3(1,1,0)
             },
             new Vector3[] {
-                new Vector3(-0.5,-1,-1),
-                new Vector3(0.5,-1,-1),
-                new Vector3(-0.5,1,-1),
-                new Vector3(0.5,1,-1)
+                new Vector3(-0.5f,-1,-1),
+                new Vector3(0.5f,-1,-1),
+                new Vector3(-0.5f,1,-1),
+                new Vector3(0.5f,1,-1)
             }
         };
 
