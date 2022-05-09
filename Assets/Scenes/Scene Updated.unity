@@ -1026,6 +1026,98 @@ PrefabInstance:
       propertyPath: onComplete.onPlay.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 881861620}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: playOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: structureBuilder
+      value: 
+      objectReference: {fileID: 133654971}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[1].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[1].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[2].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[2].z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[3].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[3].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[4].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[4].z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[5].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[5].z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[6].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[6].z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[7].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[7].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[7].z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226781117701127424, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: steps.Array.data[0].list.Array.data[8].y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4413965187439920487, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1154,6 +1246,10 @@ PrefabInstance:
       propertyPath: animationToAbort
       value: 
       objectReference: {fileID: 936844117}
+    - target: {fileID: 6257611850395251285, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: duration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6257611850395251285, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: elementLoader
       value: 
@@ -2331,8 +2427,12 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8678882282445788558, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: duration
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678882282445788558, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: TimeDelay
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8678882282445788558, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: steps.Array.size
@@ -3988,7 +4088,6 @@ MonoBehaviour:
   duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
-  TimeDelay: 0
   steps:
   - list:
     - {x: 1, y: 1, z: 1}
@@ -4006,6 +4105,7 @@ MonoBehaviour:
     unglow: 0
     glowColor: {r: 1, g: 0.21773238, b: 0, a: 0}
   structureBuilder: {fileID: 133654971}
+  TimeDelay: 0
 --- !u!114 &881861620 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8599175688921419718, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
