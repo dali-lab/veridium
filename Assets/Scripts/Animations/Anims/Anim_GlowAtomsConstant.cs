@@ -6,10 +6,10 @@ using Veridium_Core;
 namespace Veridium_Animation{
     public class Anim_GlowAtomsConstant : AnimationBase
     {
-
         public List<ListWrapper<Vector3>> steps;
         public StructureBuilder structureBuilder;
         private int currentStep = -1;
+        public int TimeDelay;
 
         [System.Serializable]
         public class ListWrapper<T>
@@ -34,6 +34,11 @@ namespace Veridium_Animation{
         public override void Pause()
         {
             base.Pause();
+        }
+
+        IEnumerator waiter()
+        {
+            yield return new WaitForSeconds(TimeDelay);
         }
         
         protected override void UpdateAnim()
