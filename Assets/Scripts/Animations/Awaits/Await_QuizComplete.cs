@@ -24,6 +24,8 @@ namespace Veridium_Animation{
 
         public Color glowColor;
 
+        public GameObject pointer;
+
         //  listener added to selector tool
         public void CollisionWithAtom(GameObject atom)
         {
@@ -32,12 +34,18 @@ namespace Veridium_Animation{
             anim.easingType = EasingType.Exponential;
             anim.selfDestruct = true;
             anim.emissionColor = glowColor;
-            anim.fadeTime = 0f;
+            anim.fadeTime = 1f;
+            anim.Play();
         }
 
         public void OnAnswerSubmit()
         {
-            if(answer == solutionSet) CompleteAction();
+            if(answer == solutionSet)
+            {
+                pointer.SetActive(false);
+                pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
+                CompleteAction();
+            }
         }
 
 
@@ -49,6 +57,9 @@ namespace Veridium_Animation{
             {
                 solutionSet.Add(structureBuilder.GetAtomAtCoordinate(vec).drawnObject);
             }
+
+            pointer.SetActive(true);
+            pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.AddListener(CollisionWithAtom);
 
         }
 
