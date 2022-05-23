@@ -207,6 +207,13 @@ namespace Veridium_Animation{
 
         }
 
+        public void PlayAtSegment(int targetIndex)
+        {
+            ResetSequence();
+            currentIndex = targetIndex;
+            PlaySequence();
+        }
+
         private void PlaySegment(AnimSegment segment){
 
             if (audioSource == null) return;
