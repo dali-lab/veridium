@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
+using System.Linq;
 
 namespace Veridium_Animation{
     public class Await_QuizComplete : AwaitUserBase
@@ -25,6 +26,7 @@ namespace Veridium_Animation{
         public Color glowColor;
 
         public GameObject pointer;
+        public GameObject submitButton;
 
         //  listener added to selector tool
         public void CollisionWithAtom(GameObject atom)
@@ -40,10 +42,12 @@ namespace Veridium_Animation{
 
         public void OnAnswerSubmit()
         {
-            if(answer == solutionSet)
+            //if(answer == solutionSet)
+            if(answer.SetEquals(solutionSet))
             {
                 pointer.SetActive(false);
                 pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
+                submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnAnswerSubmit);
                 CompleteAction();
             }
         }
@@ -60,6 +64,9 @@ namespace Veridium_Animation{
 
             pointer.SetActive(true);
             pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.AddListener(CollisionWithAtom);
+
+            submitButton.SetActive(true);
+            submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnAnswerSubmit);
 
         }
 
