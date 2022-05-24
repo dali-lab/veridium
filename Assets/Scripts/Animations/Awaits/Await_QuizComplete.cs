@@ -27,6 +27,9 @@ namespace Veridium_Animation{
 
         public GameObject pointer;
         public GameObject submitButton;
+        public GameObject backdrop;
+
+        private float FADE_DURATION = 0.5f;
 
         //  listener added to selector tool
         public void CollisionWithAtom(GameObject atom)
@@ -46,9 +49,12 @@ namespace Veridium_Animation{
             if(answer.SetEquals(solutionSet))
             {
                 pointer.SetActive(false);
+                CompleteAction();
+                StartCoroutine(FadeOutBackdrop());
                 pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
                 submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnAnswerSubmit);
-                CompleteAction();
+                
+                
             }
         }
 
@@ -68,6 +74,50 @@ namespace Veridium_Animation{
             submitButton.SetActive(true);
             submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnAnswerSubmit);
 
+            StartCoroutine(FadeBackdrop());
+
+
+        }
+
+        private IEnumerator FadeBackdrop()
+        {
+            RenderSettings.fog = true;
+            backdrop.SetActive(true);
+            // to do
+            Material mat = backdrop.GetComponent<Renderer>().material;
+            Color initialColor = mat.color;
+            Color finalColor = new Color(initialColor.r, initialColor.g, initialColor.b, 1f);
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < FADE_DURATION)
+            {
+                elapsedTime += Time.deltaTime;
+                mat.color = Color.Lerp(initialColor, finalColor, elapsedTime / FADE_DURATION);
+                RenderSettings.fogDensity = Mathf.Lerp(0f, 0.18f, elapsedTime / FADE_DURATION); // fades fog from 0 to 0.18 (use exponential squared)
+                yield return null;
+            }
+        }
+
+        private IEnumerator FadeOutBackdrop()
+        {
+            // to do
+            Material mat = backdrop.GetComponent<Renderer>().material;
+            Color initialColor = mat.color;
+            Color finalColor = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < FADE_DURATION)
+            {
+                elapsedTime += Time.deltaTime;
+                mat.color = Color.Lerp(initialColor, finalColor, elapsedTime / FADE_DURATION);
+                RenderSettings.fogDensity = Mathf.Lerp(0.18f, 0f, elapsedTime / FADE_DURATION); // fades fog from 0 to 0.18 (use exponential squared)
+                yield return null;
+            }
+
+            RenderSettings.fog = false;
+            backdrop.SetActive(false);
         }
 
         protected override void UpdateAnim(){
