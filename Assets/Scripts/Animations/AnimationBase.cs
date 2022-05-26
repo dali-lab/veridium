@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
+using System;
 
 namespace Veridium_Animation{
-    public class AnimationBase : MonoBehaviour
-    {
+
+    // A list wrapper class that allows nested lists to be edited in the inspector
+    [System.Serializable]
+    public class AnimationBase{
 
         /// <summary>
         /// Animation base is the parent class of all animations for lecture animation
@@ -13,28 +19,27 @@ namespace Veridium_Animation{
         /// Pause(), PlayFromStart(), Reset()
         /// </summary>
 
-        public bool playOnStart, indefiniteDuration;            // Whether this animation should begin playing immediately, and whether it should ever stop
+
+        public bool indefiniteDuration;                         // Whether this animation should ever stop playing
         public float duration = 2;                              // Total length of the animation
         public float elapsedTime {get; private set;}            // Total time since the animation has started
         protected float elapsedTimePercent;                     // Time as a fraction of duration
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
         public bool awaitingAction {get; protected set;}        // Don't set this directly, should only be used in the AwaitUserBase class
-        [HideInInspector] public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
+        [HideInInspector] public AnimationManager manager;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
+        [HideInInspector] public GameObject gameObject {get; private set;}
         [HideInInspector] public bool selfDestruct;
 
-
-        // Start is called before the first frame update
-        protected virtual void Start()
-        {
-
-            // Begin playing immediately if playing on start
-            if (playOnStart) Play();
-            
+        public virtual void OnValidate(AnimationManager parent){
+            if(parent != null){
+                manager = parent;
+                gameObject = parent.gameObject;
+            }
         }
 
         // Update is called on each frame
-        protected virtual void Update()
+        public virtual void Update()
         {
 
             // Increment animation time and update the animation if it is playing
@@ -87,8 +92,9 @@ namespace Veridium_Animation{
 
         public virtual void End(){
 
-            if(selfDestruct) Destroy(this);
-
+            if(selfDestruct) {
+                MonoBehaviour.Destroy(manager);
+            }
         }
 
         // Resets the animation before playing
@@ -111,7 +117,7 @@ namespace Veridium_Animation{
 
         }
 
-        // Resets the animation. Overriden by individual animations
+        // Resets the animation. Not overriden by individual animations
         public void Reset(){
 
             elapsedTime = 0;
@@ -129,21 +135,10 @@ namespace Veridium_Animation{
 
         }
 
-        // Sets the time of the animation to the new time parameter
-        public void Scrub(float newTime){
-                
-            elapsedTime = newTime;
+        public AnimationBase Clone(){
 
-            elapsedTimePercent = elapsedTime/duration;
-
-            UpdateAnim();
-
-            // If the animation has run its course, stop it
-            if (!indefiniteDuration && (elapsedTime >= duration || elapsedTime < 0)) Pause();
-
-            if (elapsedTime <= 0) Reset();
+            return this.MemberwiseClone() as AnimationBase;
 
         }
-
     }
 }

@@ -1,31 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace Veridium_Animation{
-    public class AwaitAny : AwaitUserBase
-    {
-        
-        public List<AwaitUserBase> awaiters;
+    [System.Serializable]
+    public class AwaitAny : AwaitUserBase{
+        [SerializeReference] public List<AwaitUserType> awaiters;
 
-        public override void Play(){
+        public override void OnValidate(AnimationManager parent)
+        {
+            base.OnValidate(parent);
 
+            if(awaiters != null){
+                foreach(AwaitUserType awaitType in awaiters){
+                    if(awaitType == null) awaiters[awaiters.IndexOf(awaitType)] = new AwaitUserType();
+                    awaitType.OnValidate(manager);
+                }
+            }
+        }
+
+        public override void Play()
+        {
             base.Play();
 
-            foreach(AwaitUserBase awaiter in awaiters)
+            foreach(AwaitUserType awaiter in awaiters)
             {
-                awaiter.Play();
+                awaiter.await.Play();
             }
-
+            
         }
 
         protected override void ResetChild(){
 
             base.ResetChild();
 
-            foreach(AwaitUserBase awaiter in awaiters)
+            foreach(AwaitUserType awaiter in awaiters)
             {
-                awaiter.Reset();
+                awaiter.await.Reset();
             }
         }
 
@@ -33,9 +48,9 @@ namespace Veridium_Animation{
 
             base.Pause();
 
-            foreach (AwaitUserBase awaiter in awaiters)
+            foreach (AwaitUserType awaiter in awaiters)
             {
-                awaiter.Pause();
+                awaiter.await.Pause();
             }
 
         }
@@ -46,14 +61,13 @@ namespace Veridium_Animation{
 
             bool completed = false;
 
-            foreach (AwaitUserBase awaiter in awaiters)
+            foreach (AwaitUserType awaiter in awaiters)
             {
-                if(!awaiter.awaitingAction) completed = true;
+                if(!awaiter.await.awaitingAction) completed = true;
             }
 
             if(completed) CompleteAction();
 
         }
-
     }
 }

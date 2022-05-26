@@ -65,7 +65,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
-  animSequence: {fileID: 0}
+  AnimSequence_OLD: {fileID: 0}
   selfDestruct: 0
   highlightObject: {fileID: 6423510660037911470}
 --- !u!54 &6663001662520061918

@@ -19,35 +19,34 @@ namespace Veridium_Interaction{
         public float sideLength = 1f;                 // Standard side length of a unit cell
         public float sphereRadius = 0.075f;             // Radius of the spheres
         public int planeIndex = 0;                      // Index of the currently visualized plane
-        public Anim_SpinUp spinUpAnimation;             // The animation that spawns this structure in
+        public AnimScriptType spawnAnimation;             // The animation that spawns this structure in
         public bool locked {get; private set;}          // Locked means no interaction
         public ElementLoader elementLoader;             // Element loader associated with this structure
         public StructureController structureController; // Structure controller associated with this 
-        public CrystalState currentState, desiredState;
+        public CrystalState currentState, desiredState; // Current and desired state of the crystal
 
         void Awake(){
             structureController.structureBase = this;
+        }
+
+        void OnValidate(){
+            spawnAnimation.OnValidate(null);
+        }
+
+        public StructureBase(){
+            // The default animation for spawning the structure should be a spin up with quadratic easing.
+            spawnAnimation = new AnimScriptType();
+            spawnAnimation.animationType = AnimationScript.Spin_Up;
+            spawnAnimation.OnValidate(null);
+            SpinUp defaultAnim = spawnAnimation.animScript as SpinUp;
+            defaultAnim.duration = 1.5f;
+            defaultAnim.easingType = EasingType.Quadratic;
         }
 
         void Update(){
 
             // Fade out spheres near the camera
             if (currentState == CrystalState.INFINITE){
-
-                /*
-                foreach (Atom atom in structureBuilder.crystal.atoms.Values)
-                {
-                    if ((FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude - atom.drawnObject.transform.lossyScale.x < .5){
-                        atom.drawnObject.GetComponent<Renderer>().materials[0].EnableKeyword("_ALPHABLEND_ON");
-                        Color color = gameObject.GetComponent<Renderer>().materials[0].color;
-                        float distance = (FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude;
-                        float distancePercent = (distance - atom.drawnObject.transform.lossyScale.x * 0.5f) / 0.5f;
-                        color.a = distancePercent;
-                        gameObject.GetComponent<Renderer>().materials[0].color = color;
-                    } else {
-                        atom.drawnObject.GetComponent<Renderer>().materials[0].DisableKeyword("_ALPHABLEND_ON");
-                    }
-                }*/
 
                 if(!structureController.structureSelected){
                     structureController.gameObject.transform.position = (structureController.hand1.transform.position + structureController.hand2.transform.position) / 2;
@@ -69,7 +68,7 @@ namespace Veridium_Interaction{
 
             planeIndex = 0;
 
-            if (spinUpAnimation != null) spinUpAnimation.PlayFromStart();
+            if (spawnAnimation != null) spawnAnimation.animScript.PlayFromStart();
 
             currentState = CrystalState.SINGLECELL;
 
@@ -125,8 +124,11 @@ namespace Veridium_Interaction{
 
             structureBuilder.Redraw(CrystalState.MULTICELL);
 
-            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
-            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+            AnimPlayer animPlayer = structureBuilder.gameObject.AddComponent<AnimPlayer>() as AnimPlayer;
+            animPlayer.animationType = AnimationScript.Move_To;
+            animPlayer.OnValidate();
+
+            MoveTo anim = animPlayer.animScript as MoveTo;
 
             anim.updateLocation = false;
             anim.updateRotation = false;
@@ -157,8 +159,11 @@ namespace Veridium_Interaction{
 
             structureBuilder.Redraw(CrystalState.SINGLECELL);
 
-            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
-            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+            AnimPlayer animPlayer = structureBuilder.gameObject.AddComponent<AnimPlayer>() as AnimPlayer;
+            animPlayer.animationType = AnimationScript.Move_To;
+            animPlayer.OnValidate();
+
+            MoveTo anim = animPlayer.animScript as MoveTo;
 
             anim.updateLocation = false;
             anim.updateRotation = false;
@@ -183,7 +188,12 @@ namespace Veridium_Interaction{
             foreach (Atom atom in structureBuilder.crystal.atoms.Values)
             {
                 if(atom.drawnObject != null){
-                    Anim_MoveTo anim = atom.drawnObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+                    AnimPlayer animPlayer = structureBuilder.gameObject.AddComponent<AnimPlayer>() as AnimPlayer;
+                    animPlayer.animationType = AnimationScript.Move_To;
+                    animPlayer.OnValidate();
+
+                    MoveTo anim = animPlayer.animScript as MoveTo;
+
                     anim.updateLocation = false;
                     anim.updateRotation = false;
                     anim.easingType = EasingType.Elastic;
@@ -200,17 +210,6 @@ namespace Veridium_Interaction{
         public void BallAndStickView(){
 
 
-
-        }
-
-        // Called by joystick switch, switches the plane index up or down
-        public void Switch(bool right){
-
-            planeIndex += right ? 1 : -1;
-            if(planeIndex > structureBuilder.numPlanes - 1) planeIndex -= structureBuilder.numPlanes;
-            if(planeIndex < 0) planeIndex += structureBuilder.numPlanes;
-
-            structureBuilder.HighlightPlaneAtIndex(planeIndex);
 
         }
 

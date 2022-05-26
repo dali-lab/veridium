@@ -145,7 +145,7 @@ MonoBehaviour:
   selectableBySocketWhenLocked: 1
   selectableByGrabWhenLocked: 0
   hovered: 0
-  highlight: {fileID: 0}
+  highlightObject: {fileID: 0}
   drawRay: 0
   scaleGrabberSelected: 0
   structureSelected: 0
@@ -194,19 +194,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1460324923880807827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1529501910a4e95b2bf647e2c1941d, type: 3}
+  m_Script: {fileID: 11500000, guid: 773c7d0c60823436e92818ef8fb9fa11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStart: 0
-  indefiniteDuration: 0
-  duration: 1.5
-  animSequence: {fileID: 0}
-  selfDestruct: 0
-  targetScale: 1
-  maxHeight: 0
-  startHeight: -0.5
-  numRotations: 1
-  easingType: 0
+  animationType: 5
+  animScript:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: SpinUp, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 3400050630852772206}
+        selfDestruct: 0
+        targetScale: 1
+        maxHeight: 0
+        startHeight: -0.5
+        numRotations: 1
+        easingType: 0
 --- !u!1 &2652680249787089642
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,8 +225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 921810360972710530}
   - component: {fileID: 8221016945136567124}
-  - component: {fileID: 3129836382147990586}
-  - component: {fileID: 2633949834648244095}
   m_Layer: 0
   m_Name: Structurebase
   m_TagString: Untagged
@@ -262,59 +268,29 @@ MonoBehaviour:
   sideLength: 0.5
   sphereRadius: 0.05
   planeIndex: 0
-  spinUpAnimation: {fileID: 3400050630852772206}
+  spawnAnimation:
+    manager: {fileID: 0}
+    animationType: 5
+    animScript:
+      id: 0
   elementLoader: {fileID: 5738245579341317080}
   structureController: {fileID: 8599175688921419718}
   currentState: 0
   desiredState: 0
---- !u!114 &3129836382147990586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2652680249787089642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13186e61fdd044a88a1665435637374c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HandMoveAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Hand Move
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 039c8314-4cbc-4fda-a339-e44ec13a7c70
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  threshold: 0.8
-  resetThreshold: 0.2
-  structureBase: {fileID: 8221016945136567124}
---- !u!114 &2633949834648244095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2652680249787089642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f291e9b6f8ee244d5a9ec000a50df163, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnDistance: 1
-  structureBuilder: {fileID: 3565902425673493353}
-  sideLength: 1
-  sphereRadius: 0.075
-  planeIndex: 0
-  spinUpAnimation: {fileID: 3400050630852772206}
-  elementLoader: {fileID: 5738245579341317080}
-  structureController: {fileID: 8599175688921419718}
-  currentState: 0
-  desiredState: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: SpinUp, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1.5
+        manager: {fileID: 0}
+        selfDestruct: 0
+        targetScale: 1
+        maxHeight: 0
+        startHeight: -0.5
+        numRotations: 1
+        easingType: 2
 --- !u!1 &4336108421094066982
 GameObject:
   m_ObjectHideFlags: 0

@@ -97,8 +97,7 @@ GameObject:
   - component: {fileID: 7550559951849918020}
   - component: {fileID: 1287086107974112698}
   - component: {fileID: 6335639999640188066}
-  - component: {fileID: 2000175532178479950}
-  - component: {fileID: 575372321740565014}
+  - component: {fileID: 1032980021817811605}
   m_Layer: 7
   m_Name: Element Tile
   m_TagString: Untagged
@@ -336,7 +335,9 @@ MonoBehaviour:
   m_AttachPointCompatibilityMode: 0
   selectableBySocketWhenLocked: 1
   selectableByGrabWhenLocked: 0
-  highlight: {fileID: 575372321740565014}
+  hovered: 0
+  highlightObject: {fileID: 921125170992599556}
+  drawRay: 1
 --- !u!65 &1287086107974112698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -446,7 +447,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2000175532178479950
+--- !u!114 &1032980021817811605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -455,36 +456,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6506996978073560556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f8afd0fbab914d16af490ec0b4f7395, type: 3}
+  m_Script: {fileID: 11500000, guid: 773c7d0c60823436e92818ef8fb9fa11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStart: 0
-  indefiniteDuration: 1
-  duration: 2
-  animSequence: {fileID: 0}
-  emissionColor: {r: 1, g: 1, b: 0, a: 0}
-  blinksPerSecond: 0.5
-  minIntensity: 0
-  materialIndex: 1
-  maxIntensity: 0.6
-  selfDestruct: 0
---- !u!114 &575372321740565014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506996978073560556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26005852f8db43a3865761a230e19b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnStart: 0
-  indefiniteDuration: 1
-  duration: 0
-  animSequence: {fileID: 0}
-  highlightObject: {fileID: 921125170992599556}
+  currentAnimation: 3
+  animationType: 3
+  animScript:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: GlowPulse, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 0
+        manager: {fileID: 1032980021817811605}
+        selfDestruct: 0
+        emissionColor: {r: 1, g: 1, b: 0, a: 0}
+        blinksPerSecond: 0.5
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
 --- !u!1 &9130913863735385194
 GameObject:
   m_ObjectHideFlags: 0

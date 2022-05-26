@@ -1,23 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace Veridium_Animation{
-    public class AwaitSequence : AwaitUserBase
-    {
-        
+    [System.Serializable]
+    public class AwaitSequence : AwaitUserBase{
+
         public List<AwaitUserBase> awaiters;
         private int waitingIndex;
 
-        public override void Play(){
-
+        public override void Play()
+        {
             base.Play();
 
             waitingIndex = 0;
 
             awaiters[0].Reset();
             awaiters[0].Play();
-
+            
         }
 
         protected override void ResetChild(){

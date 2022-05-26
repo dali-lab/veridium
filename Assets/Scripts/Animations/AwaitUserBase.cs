@@ -1,19 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace Veridium_Animation{
-    public class AwaitUserBase : AnimationBase
-    {
+    [System.Serializable]
+    public class AwaitUserBase : AnimationBase{
 
         private bool permanentlyCompleted;                  // Does not reset when scrubbing; this is meant so that the user can scrub without repeating actions
         public bool skipSegment;
-        public AnimSequence.AnimPlayer onComplete;
+        public SegmentAnimPlayer onComplete;
 
         public AwaitUserBase(){
             indefiniteDuration = true;
             duration = 0;
             awaitingAction = true;
+        }
+
+        public override void OnValidate(AnimationManager parent)
+        {
+            base.OnValidate(parent);
+
+            if (onComplete != null)
+            {
+                onComplete.OnValidate(manager);
+            }
         }
 
         public override void Play(){
@@ -41,25 +55,22 @@ namespace Veridium_Animation{
 
             if (playing) awaitingAction = false;
 
-            if (skipSegment && animSequence.CanMoveOn()) animSequence.PlayNextSegment();
+            if (manager is AnimSequence) {
+
+                AnimSequence sequence = manager as AnimSequence;
+
+                if (skipSegment && sequence.CanMoveOn()) sequence.PlayNextSegment();
+
+            }
             
-            Invoke("OnComplete", onComplete.timing + Time.deltaTime);
+            //MonoBehaviour.Invoke("OnComplete", onComplete.timing + Time.deltaTime);
+            OnComplete();
 
         }
 
         private void OnComplete(){
 
-            switch (onComplete.actionType){
-                case AnimSequence.ActionType.AnimationScript:
-                    if(onComplete.animation != null) onComplete.animation.Play();
-                    break;
-                case AnimSequence.ActionType.UnityEvent:
-                    onComplete.onPlay.Invoke();
-                    break;
-                case AnimSequence.ActionType.Animator:
-                    break;
-            }
-
+            onComplete.Execute();
         }
     }
 }
