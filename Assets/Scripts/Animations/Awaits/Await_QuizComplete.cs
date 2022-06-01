@@ -34,13 +34,21 @@ namespace Veridium_Animation{
         //  listener added to selector tool
         public void CollisionWithAtom(GameObject atom)
         {
-            answer.Add(atom);
-            Anim_Glow anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
-            anim.easingType = EasingType.Exponential;
-            anim.selfDestruct = true;
-            anim.emissionColor = glowColor;
-            anim.fadeTime = 1f;
-            anim.Play();
+            if(atom.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.GetComponent<Anim_GlowPulse>());
+
+            if(answer.Contains(atom)) answer.Remove(atom);
+            else
+            {
+                answer.Add(atom);
+                Anim_Glow anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
+                anim.easingType = EasingType.Exponential;
+                anim.selfDestruct = true;
+                anim.emissionColor = glowColor;
+                anim.fadeTime = 0.5f;
+                anim.Play();
+                Debug.Log("Here");
+            }
+
         }
 
         public void OnAnswerSubmit()
@@ -51,10 +59,17 @@ namespace Veridium_Animation{
                 pointer.SetActive(false);
                 CompleteAction();
                 StartCoroutine(FadeOutBackdrop());
-                pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
-                submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnAnswerSubmit);
-                
-                
+                //pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
+                //submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnAnswerSubmit);
+
+            }
+            else
+            {
+                foreach(GameObject atomGameObj in answer)
+                {
+                    if(atomGameObj.GetComponent<Anim_GlowPulse>() != null) Destroy(atomGameObj.GetComponent<Anim_GlowPulse>());
+                }
+                answer.Clear();
             }
         }
 
@@ -63,6 +78,7 @@ namespace Veridium_Animation{
         {
             base.Play();
 
+            // gets the associated gameobjects for the atoms in solution
             foreach(Vector3 vec in solution)
             {
                 solutionSet.Add(structureBuilder.GetAtomAtCoordinate(vec).drawnObject);
@@ -75,7 +91,6 @@ namespace Veridium_Animation{
             submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnAnswerSubmit);
 
             StartCoroutine(FadeBackdrop());
-
 
         }
 
@@ -118,6 +133,7 @@ namespace Veridium_Animation{
 
             RenderSettings.fog = false;
             backdrop.SetActive(false);
+            submitButton.SetActive(false);
         }
 
         protected override void UpdateAnim(){

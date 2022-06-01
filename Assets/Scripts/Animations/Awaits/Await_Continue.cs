@@ -10,70 +10,64 @@ namespace Veridium_Animation{
 
         public GameObject continueButton;
         public GameObject resetButton;
+
+        public Transform buttonOneSpawnPoint;
+        public Transform buttonTwoSpawnPoint;
+
         public AnimSequence lectureAnimSequence;
         public int resetIndex;
+
+        private GameObject continueButtonInstance;
+        private GameObject resetButtonInstance;
 
         public override void Play()
         {
             base.Play();
 
-            //FindObjectOfType<SegmentPlay>().gameObject.SetActive(false);
+            // spawn button 1
+            // spawn button 2
+            continueButtonInstance = Instantiate(continueButton, buttonOneSpawnPoint.position, Quaternion.identity);
+            resetButtonInstance = Instantiate(resetButton, buttonTwoSpawnPoint.position, Quaternion.identity);
 
-            continueButton.SetActive(true);
-            resetButton.SetActive(true);
+            //continueButton.SetActive(true);
+            //resetButton.SetActive(true);
 
-            continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
-            resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStartReset);
-
-            //FindObjectOfType<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
-
+            continueButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
+            resetButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStartReset);
 
         }
 
 
         public void OnInteractionStart(){
             CompleteAction();
-            continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
-            resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
+            //continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
+            //resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
 
-           //FindObjectOfType<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
 
-           //FindObjectOfType<SegmentPlay>().gameObject.SetActive(false);
-
-           continueButton.SetActive(false);
-           resetButton.SetActive(false);
+            //continueButton.SetActive(false);
+            //resetButton.SetActive(false);
+            Destroy(continueButtonInstance);
+            Destroy(resetButtonInstance);
 
         }
 
         public void OnInteractionStartReset(){
-            lectureAnimSequence.PlayAtSegment(resetIndex);
             CompleteAction();
-            continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
-            resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
+            //continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
+            //resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
 
-           //FindObjectOfType<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
+            //continueButton.SetActive(false);
+            //resetButton.SetActive(false);
+            Destroy(continueButtonInstance);
+            Destroy(resetButtonInstance);
 
-           //FindObjectOfType<SegmentPlay>().gameObject.SetActive(false);
-
-           continueButton.SetActive(false);
-           resetButton.SetActive(false);
+            lectureAnimSequence.PlayAtSegment(resetIndex);
 
         }
 
         protected override void UpdateAnim(){
 
             base.UpdateAnim();
-
-            /*
-
-            if (continueButton.GetComponentInChildren<SegmentPlay>().isComplete == true) CompleteAction();
-
-            if (resetButton.GetComponentInChildren<SegmentPlay>().isComplete == true){
-                lectureAnimSequence.PlayAtSegment(resetIndex);
-                CompleteAction();
-            }
-
-            */
 
         }
     }
