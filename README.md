@@ -48,6 +48,52 @@ Veridium is designed for the Oculus Quest, and is best experienced with the Ocul
 ## Acknowledgments 🤝
 
 
+## New Member Onboarding instructions:
+
+ 1) create a new folder where your copy of veridium will live:
+
+```bash
+cd Desktop
+```
+*cd means change directory and Desktop navigates the terminal to your Desktop.
+
+2) clone the Veridium repository so a local copy lives on your machine:
+
+git clone https://github.com/dali-lab/veridium.git
+
+3) Change directories to the new veridium folder and checkout your own branch (so you don't accidentally edit the main code):
+
+```bash
+cd veridium
+git checkout -b FIRSTINITIAL_LASTINITIAL/short-description-of-intended-changes
+```
+example: git checkout -b "EK/Design-Mockups" 
+
+4)  Now you have a local copy of the project and can run the command git pull origin main in order to pull in the latest changes.
+
+5) If you don't already have it, download [Unity Hub](https://unity3d.com/get-unity/download) and open it. Make sure you have Unity 2021.3.26f. If you don't you can download it to unity hub [here](https://unity3d.com/get-unity/download/archive)
+
+6) In Unity hub, click `open project` and find the folder that you cloned veridium into.
+
+7) Unity should launch the veridium project.  In the objects heirarchy navigate to the veridium scene and double click it to open.  Congratulations, you now have access to the veridium projects.
+
+
+
+Additional Notes: 
+
+3D modelling and design for Veridium is best done in a program called Maya, which is worth downloading as well.
+
+To make changes to the veridium project, edit the scene in Unity as you would normally. When you're done.  Run
+
+```bash
+git add .
+git commit -m "description of changes made"
+git push 
+```
+
+Then go to the github repository and open a Pull request of your branch against the main branch. 
+
+
 
 ---
 Designed and developed by [@DALI Lab](https://github.com/dali-lab)
