@@ -1,4 +1,4 @@
-# veridium
+# Veridium
 
 Veridium is a VR experience that allows users to view and manipulate the crystal latices of metal structures in a virtual reality scene.
 
@@ -38,15 +38,17 @@ Veridium is designed for the Oculus Quest, and is best experienced with the Ocul
 
 
 ## Authors
-* Sayuri Magnabosco 2021 + MEM 2023, PM
-* Brendan Keane 2023, designer
-* Macy Toppan 2022, designer+modeler
-* Andy Kotz 2024, developer
-* Siddharth Hathi 2024, developer
-* Julian Wu 2022, mentor
+* Alyssa Anderson '23 | PM
+* Emma Kallman '22 | Designer
+* Daniel Lubliner '25 | Designer
+* Gia Kim '22 | Designer + Mentor
+* Alexander Huang-Mende '25 | Developer
+* Devon Starr '25 | Developer
+* Julian Wu '22 | Developer + Mentor
+
 
 ## Acknowledgments 🤝
-
+Thank you to our partners and the DALI Lab for their continuous support!
 
 ## New Member Onboarding instructions:
 
