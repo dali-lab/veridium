@@ -67,7 +67,7 @@ namespace Veridium_Interaction{
                     progressBar.enabled = false;
                     // invoke event
                     sphereAnim.SetBool("isPressed", true);
-                    //onInteractionStart.Invoke();
+                    onInteractionStart.Invoke();
                     isComplete = true;
                 }
             }

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4326794799405914277}
   - component: {fileID: 5345613865140809749}
   - component: {fileID: 6677031518603724006}
+  - component: {fileID: 3518636758347639793}
   m_Layer: 8
   m_Name: Atom_Prefab
-  m_TagString: Untagged
+  m_TagString: atom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3518636758347639793
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367041960781036951}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.49999997
+  m_Center: {x: 0, y: 0, z: 0}
