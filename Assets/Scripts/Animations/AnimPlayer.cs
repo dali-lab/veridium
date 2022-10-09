@@ -6,7 +6,8 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class AnimPlayer : AnimationManager
     {
         public bool playOnStart;
@@ -14,12 +15,17 @@ namespace Veridium_Animation{
         public AnimationScript animationType;
         [SerializeReference] public AnimationBase animScript;
 
+        void Awake()
+        {
+            if (animScript != null) animScript.OnValidate(this);
+        }
+
         // Start is called before the first frame update
         void Start()
         {
 
-            if(playOnStart) animScript.Play();
-            
+            if (playOnStart) animScript.Play();
+
         }
 
         // Update is called once per frame
@@ -31,39 +37,48 @@ namespace Veridium_Animation{
         }
 
         // Resets the animation before playing
-        public void PlayFromStart(){
+        public void PlayFromStart()
+        {
 
             animScript.PlayFromStart();
 
         }
 
-        public void Play(){
+        public void Play()
+        {
 
             animScript.Play();
 
         }
 
-        public void Pause(){
+        public void Pause()
+        {
 
             animScript.Pause();
 
         }
 
-        public void Reset(){
+        public void Reset()
+        {
 
             animScript.Reset();
 
         }
 
-        public void OnValidate(){
-            if(currentAnimation != animationType){
+        public void OnValidate()
+        {
+            if (currentAnimation != animationType)
+            {
                 SetAnimation();
                 currentAnimation = animationType;
             }
+
         }
 
-        public static AnimationBase CreateAnimation(AnimationScript type){
-            switch (type){
+        public static AnimationBase CreateAnimation(AnimationScript type)
+        {
+            switch (type)
+            {
                 case AnimationScript.Add_Atoms:
                     return new AddAtoms();
                     break;
@@ -94,8 +109,10 @@ namespace Veridium_Animation{
             }
         }
 
-        public static AwaitUserBase CreateAwait(AwaitType type){
-            switch (type){
+        public static AwaitUserBase CreateAwait(AwaitType type)
+        {
+            switch (type)
+            {
                 case AwaitType.Await_Continue:
                     return new AwaitContinue();
                     break;
@@ -120,13 +137,14 @@ namespace Veridium_Animation{
             }
         }
 
-        public void SetAnimation(){
+        public void SetAnimation()
+        {
             animScript = CreateAnimation(animationType);
             animScript.OnValidate(this);
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
         [CustomEditor(typeof(AnimPlayer))]
         public class AnimPlayerEditor : Editor{
 
@@ -148,5 +166,5 @@ namespace Veridium_Animation{
             }
         }
 
-    #endif
+#endif
 }

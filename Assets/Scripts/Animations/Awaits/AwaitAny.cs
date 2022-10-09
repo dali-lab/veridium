@@ -6,18 +6,22 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     [System.Serializable]
-    public class AwaitAny : AwaitUserBase{
+    public class AwaitAny : AwaitUserBase
+    {
         [SerializeReference] public List<AwaitUserType> awaiters;
 
         public override void OnValidate(AnimationManager parent)
         {
             base.OnValidate(parent);
 
-            if(awaiters != null){
-                foreach(AwaitUserType awaitType in awaiters){
-                    if(awaitType == null) awaiters[awaiters.IndexOf(awaitType)] = new AwaitUserType();
+            if (awaiters != null)
+            {
+                foreach (AwaitUserType awaitType in awaiters)
+                {
+                    if (awaitType == null) awaiters[awaiters.IndexOf(awaitType)] = new AwaitUserType();
                     awaitType.OnValidate(manager);
                 }
             }
@@ -25,37 +29,41 @@ namespace Veridium_Animation{
 
         public override void Play()
         {
+
             base.Play();
 
-            foreach(AwaitUserType awaiter in awaiters)
+            foreach (AwaitUserType awaiter in awaiters)
             {
-                awaiter.await.Play();
+                awaiter.awaitScript.Play();
             }
-            
+
         }
 
-        protected override void ResetChild(){
+        protected override void ResetChild()
+        {
 
             base.ResetChild();
 
-            foreach(AwaitUserType awaiter in awaiters)
+            foreach (AwaitUserType awaiter in awaiters)
             {
-                awaiter.await.Reset();
+                awaiter.awaitScript.Reset();
             }
         }
 
-        public override void Pause(){
+        public override void Pause()
+        {
 
             base.Pause();
 
             foreach (AwaitUserType awaiter in awaiters)
             {
-                awaiter.await.Pause();
+                awaiter.awaitScript.Pause();
             }
 
         }
 
-        protected override void UpdateAnim(){
+        protected override async void UpdateAnim()
+        {
 
             base.UpdateAnim();
 
@@ -63,10 +71,10 @@ namespace Veridium_Animation{
 
             foreach (AwaitUserType awaiter in awaiters)
             {
-                if(!awaiter.await.awaitingAction) completed = true;
+                if (!awaiter.awaitScript.awaitingAction) completed = true;
             }
 
-            if(completed) CompleteAction();
+            if (completed) CompleteAction();
 
         }
     }

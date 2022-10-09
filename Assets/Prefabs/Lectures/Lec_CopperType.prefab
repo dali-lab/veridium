@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5488d8fd5c1ad46b3b770482dfe9f2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStart: 0
+  playOnStart: 1
   segments:
   - audio: {fileID: 8300000, guid: 35f5ecf1333494fa98bb724a179f9d98, type: 3}
     animations:
@@ -732,61 +732,439 @@ MonoBehaviour:
       timing: 0
       animType:
         id: 9
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 28e446cf1b7634b00be2ebf8500e43ff, type: 3}
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 1
+      actionType: 1
+      timing: 6
+      animType:
+        id: 10
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 99c82bd264c934c399df9f06e2517e03, type: 3}
+    animations:
     - manager: {fileID: 8636669077205291291}
       executed: 0
       currentActionType: 0
       actionType: 0
       timing: 0
       animType:
-        id: 10
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 28e446cf1b7634b00be2ebf8500e43ff, type: 3}
-    animations: []
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 99c82bd264c934c399df9f06e2517e03, type: 3}
-    animations: []
+        id: 11
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 0
+      animType:
+        id: 12
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 0
+      animType:
+        id: 13
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 0
+      animType:
+        id: 14
     realDuration: 0
   - audio: {fileID: 8300000, guid: 905389413c5b54a90abba0a1e0d539c3, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 0
+      animType:
+        id: 15
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 11
+      animType:
+        id: 16
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 1
+      actionType: 1
+      timing: 11
+      animType:
+        id: 17
     realDuration: 0
   - audio: {fileID: 8300000, guid: 9ad6fc6ddbd3d4307b95715b92ed0948, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 1.05
+      animType:
+        id: 18
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 0
+      animType:
+        id: 19
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 0
+      animType:
+        id: 20
     realDuration: 0
   - audio: {fileID: 8300000, guid: ff21452f504464fef84fc886ac9498a1, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 2
+      animType:
+        id: 21
     realDuration: 0
   - audio: {fileID: 8300000, guid: 4cc70f780830446c885caecb963ea0f1, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 2
+      animType:
+        id: 22
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 4
+      animType:
+        id: 23
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 1
+      animType:
+        id: 24
     realDuration: 0
   - audio: {fileID: 8300000, guid: 31412e29183f347b7a23b5b052081c7a, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 2
+      animType:
+        id: 25
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 2
+      animType:
+        id: 26
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 2.5
+      animType:
+        id: 27
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 3
+      animType:
+        id: 28
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 3.5
+      animType:
+        id: 29
     realDuration: 0
   - audio: {fileID: 8300000, guid: ab5ee7f124bd748188bb0ce6f74eec94, type: 3}
     animations: []
     realDuration: 0
   - audio: {fileID: 8300000, guid: 444745c5f5cbc42c4bef7a50fc88f826, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 0
+      animType:
+        id: 30
     realDuration: 0
   - audio: {fileID: 8300000, guid: 7711f835b87b947fa816a46234183cf2, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 0
+      animType:
+        id: 31
     realDuration: 0
   - audio: {fileID: 8300000, guid: e813d476dc8b3480bab7b5610b545a83, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 0
+      animType:
+        id: 32
     realDuration: 0
   - audio: {fileID: 8300000, guid: 75e704142af264b1ba0c107fe4fdfddd, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 7.5
+      animType:
+        id: 33
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 1.4
+      animType:
+        id: 34
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 3.3
+      animType:
+        id: 35
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 4.5
+      animType:
+        id: 36
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 8
+      animType:
+        id: 37
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 8.7
+      animType:
+        id: 38
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 8.92
+      animType:
+        id: 39
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 9.13
+      animType:
+        id: 40
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 9.35
+      animType:
+        id: 41
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 9.57
+      animType:
+        id: 42
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 9.78
+      animType:
+        id: 43
     realDuration: 0
   - audio: {fileID: 8300000, guid: eb232990ac3dc495bb287756c8bf2dd4, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 1
+      actionType: 1
+      timing: 6
+      animType:
+        id: 44
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 4
+      animType:
+        id: 45
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 1
+      animType:
+        id: 46
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 14
+      animType:
+        id: 47
     realDuration: 0
   - audio: {fileID: 8300000, guid: b35d42bc461d54b3ca16c5bb4be54dea, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 3
+      animType:
+        id: 48
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 0
+      animType:
+        id: 49
     realDuration: 0
   - audio: {fileID: 8300000, guid: 7d1a77a1bfb9a4cdfa00a3d30dd9ad97, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 0
+      actionType: 0
+      timing: 0
+      animType:
+        id: 50
     realDuration: 0
   - audio: {fileID: 8300000, guid: d1924443774b743af8e387f8f34cdab6, type: 3}
-    animations: []
+    animations:
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 51
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 52
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 53
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 54
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 55
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 56
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 57
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 58
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 59
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 60
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 61
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 4
+      actionType: 4
+      timing: 0
+      animType:
+        id: 62
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 0
+      animType:
+        id: 63
+    - manager: {fileID: 8636669077205291291}
+      executed: 0
+      currentActionType: 2
+      actionType: 2
+      timing: 10
+      animType:
+        id: 64
     realDuration: 0
   audioSource: {fileID: 13450517986752251}
   playingAnims: []
@@ -805,7 +1183,7 @@ MonoBehaviour:
         awaitType: 4
         currentType: 4
         await:
-          id: 11
+          id: 65
     00000002:
       type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
@@ -813,7 +1191,7 @@ MonoBehaviour:
         onExecute:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 4883093806477683026}
               m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_MethodName: SetActive
               m_Mode: 6
@@ -828,7 +1206,7 @@ MonoBehaviour:
         onUndo:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 4883093806477683026}
               m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_MethodName: SetActive
               m_Mode: 6
@@ -915,7 +1293,7 @@ MonoBehaviour:
         awaitType: 2
         currentType: 2
         await:
-          id: 12
+          id: 66
     00000006:
       type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
@@ -993,7 +1371,7 @@ MonoBehaviour:
             m_Calls:
             - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_MethodName: 
+              m_MethodName: SetActive
               m_Mode: 6
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
@@ -1016,7 +1394,7 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: 
-                m_BoolArgument: 0
+                m_BoolArgument: 1
               m_CallState: 2
     00000009:
       type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
@@ -1024,19 +1402,1179 @@ MonoBehaviour:
         manager: {fileID: 8636669077205291291}
         onExecute:
           m_PersistentCalls:
-            m_Calls: []
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
         onUndo:
           m_PersistentCalls:
-            m_Calls: []
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     0000000A:
+      type: {class: AwaitUserType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        awaitType: 0
+        currentType: 0
+        await:
+          id: 67
+    0000000B:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 4
+        currentAnimation: 4
+        animScript:
+          id: 68
+    0000000C:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    0000000D:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    0000000E:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    0000000F:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 69
+    00000010:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000011:
+      type: {class: AwaitUserType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        awaitType: 0
+        currentType: 0
+        await:
+          id: 70
+    00000012:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 4
+        currentAnimation: 4
+        animScript:
+          id: 71
+    00000013:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 4
+        currentAnimation: 4
+        animScript:
+          id: 72
+    00000014:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000015:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 73
+    00000016:
       type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         manager: {fileID: 8636669077205291291}
         animationType: 0
         currentAnimation: 0
         animScript:
-          id: 13
-    0000000B:
+          id: 74
+    00000017:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
+              m_MethodName: ClosePackedView
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
+              m_MethodName: BallAndStickView
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000018:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 4
+        currentAnimation: 4
+        animScript:
+          id: 75
+    00000019:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 76
+    0000001A:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 77
+    0000001B:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 78
+    0000001C:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 79
+    0000001D:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 80
+    0000001E:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 81
+    0000001F:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 82
+    00000020:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 83
+    00000021:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 84
+    00000022:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000023:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000024:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000025:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    00000026:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000027:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000028:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000029:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 4413965187439920487}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 4413965187439920487}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    0000002A:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 5313885354454409426}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 5313885354454409426}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    0000002B:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 5474139978910673291}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 5474139978910673291}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    0000002C:
+      type: {class: AwaitUserType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        awaitType: 0
+        currentType: 0
+        await:
+          id: 85
+    0000002D:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    0000002E:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 4413965187439920487}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 5313885354454409426}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 5474139978910673291}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3111987020730070148}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 8540977485450961342}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 1034169571089065845}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 4413965187439920487}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 5313885354454409426}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 5474139978910673291}
+              m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    0000002F:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 86
+    00000030:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.ElementLoader, Assembly-CSharp
+              m_MethodName: ResetStructure
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls: []
+    00000031:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000032:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 6
+        currentAnimation: 6
+        animScript:
+          id: 87
+    00000033:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    00000034:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    00000035:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    00000036:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    00000037:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    00000038:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    00000039:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    0000003A:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    0000003B:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    0000003C:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    0000003D:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    0000003E:
+      type: {class: AnimPlayerReferenceType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animPlayer: {fileID: 0}
+    0000003F:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+                Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000040:
+      type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        onExecute:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
+              m_MethodName: Unlock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        onUndo:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
+              m_MethodName: Lock
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000041:
       type: {class: AwaitAny, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 1
@@ -1051,11 +2589,11 @@ MonoBehaviour:
           actionType: 2
           timing: 0
           animType:
-            id: 14
+            id: 88
         awaiters:
-        - id: 15
-        - id: 16
-    0000000C:
+        - id: 89
+        - id: 90
+    00000042:
       type: {class: AwaitInsert, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 1
@@ -1070,25 +2608,439 @@ MonoBehaviour:
           actionType: 0
           timing: 0
           animType:
-            id: 17
+            id: 91
         socketInteractor: {fileID: 0}
         elementName: Copper
-    0000000D:
+    00000043:
+      type: {class: AwaitContinue, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 0
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        skipSegment: 1
+        onComplete:
+          manager: {fileID: 8636669077205291291}
+          executed: 0
+          currentActionType: 0
+          actionType: 0
+          timing: 0
+          animType:
+            id: 92
+    00000044:
+      type: {class: MoveTo, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        endLocation: {x: 0, y: 0, z: 0}
+        updateLocation: 1
+        endRotation: {x: 0, y: 0, z: 0, w: 0}
+        updateRotation: 1
+        endScale: {x: 1, y: 1, z: 1}
+        updateScale: 1
+        endTransform: {fileID: 0}
+        useTransform: 1
+        target: {fileID: 0}
+        easingType: 2
+        easeOutOnly: 0
+    00000045:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 3
+        currentAnimation: 3
+        animScript:
+          id: 93
+        allAtoms: 1
+        steps: []
+        structureBuilder: {fileID: 0}
+    00000046:
+      type: {class: AwaitContinue, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 0
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        skipSegment: 1
+        onComplete:
+          manager: {fileID: 8636669077205291291}
+          executed: 0
+          currentActionType: 0
+          actionType: 0
+          timing: 0
+          animType:
+            id: 94
+    00000047:
+      type: {class: MoveTo, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1.5
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        endLocation: {x: 0, y: 1.32, z: 1.2}
+        updateLocation: 1
+        endRotation: {x: 0.3535534, y: -0.14644665, z: -0.3535534, w: -0.85355335}
+        updateRotation: 1
+        endScale: {x: 1, y: 1, z: 1}
+        updateScale: 1
+        endTransform: {fileID: 0}
+        useTransform: 0
+        target: {fileID: 0}
+        easingType: 2
+        easeOutOnly: 0
+    00000048:
+      type: {class: MoveTo, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        endLocation: {x: 0, y: 0, z: 0}
+        updateLocation: 1
+        endRotation: {x: 0, y: 0, z: 0, w: 0}
+        updateRotation: 1
+        endScale: {x: 1, y: 1, z: 1}
+        updateScale: 1
+        endTransform: {fileID: 0}
+        useTransform: 1
+        target: {fileID: 0}
+        easingType: 2
+        easeOutOnly: 0
+    00000049:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 4
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 3
+        currentAnimation: 3
+        animScript:
+          id: 95
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: -1, y: -1, z: -1}
+        - list:
+          - {x: -1, y: -1, z: 1}
+          - {x: -1, y: 1, z: -1}
+          - {x: 1, y: -1, z: -1}
+          - {x: -1, y: 0, z: 0}
+          - {x: 0, y: -1, z: 0}
+          - {x: 0, y: 0, z: -1}
+        - list:
+          - {x: -1, y: 1, z: 1}
+          - {x: 1, y: -1, z: 1}
+          - {x: 1, y: 1, z: -1}
+          - {x: 0, y: 0, z: 1}
+          - {x: 0, y: 1, z: 0}
+          - {x: 1, y: 0, z: 0}
+        - list:
+          - {x: 1, y: 1, z: 1}
+        structureBuilder: {fileID: 0}
+    0000004A:
       type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 0
         duration: 2
         manager: {fileID: 8636669077205291291}
         selfDestruct: 0
-        steps: []
+        steps:
+        - list:
+          - {x: -2, y: -1, z: 0}
+          - {x: -2, y: 0, z: -1}
+          - {x: -1, y: -2, z: 0}
+          - {x: 0, y: -2, z: -1}
+          - {x: -1, y: 0, z: -2}
+          - {x: 0, y: -1, z: -2}
+        - list:
+          - {x: 2, y: 1, z: 0}
+          - {x: 2, y: 0, z: 1}
+          - {x: 1, y: 2, z: 0}
+          - {x: 0, y: 2, z: 1}
+          - {x: 1, y: 0, z: 2}
+          - {x: 0, y: 1, z: 2}
         structureBuilder: {fileID: 0}
         spawnAnimation:
           manager: {fileID: 0}
           animationType: 1
           currentAnimation: 1
           animScript:
-            id: 18
-    0000000E:
+            id: 96
+    0000004B:
+      type: {class: MoveTo, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        endLocation: {x: 0, y: 0, z: 0}
+        updateLocation: 0
+        endRotation: {x: 0, y: 0, z: 0, w: 0}
+        updateRotation: 0
+        endScale: {x: 0.6, y: 0.6, z: 0.6}
+        updateScale: 1
+        endTransform: {fileID: 0}
+        useTransform: 0
+        target: {fileID: 0}
+        easingType: 2
+        easeOutOnly: 0
+    0000004C:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 1
+        currentAnimation: 1
+        animScript:
+          id: 97
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: 2, y: 1, z: 0}
+          - {x: 2, y: 0, z: 1}
+          - {x: 1, y: 2, z: 0}
+          - {x: 0, y: 2, z: 1}
+          - {x: 1, y: 0, z: 2}
+          - {x: 0, y: 1, z: 2}
+          - {x: -1, y: -1, z: 1}
+          - {x: 1, y: -1, z: -1}
+          - {x: -1, y: 1, z: -1}
+          - {x: 0, y: -1, z: 0}
+          - {x: 0, y: 0, z: -1}
+          - {x: -1, y: 0, z: 0}
+          - {x: -1, y: 1, z: 1}
+          - {x: 1, y: -1, z: 1}
+          - {x: 1, y: 1, z: -1}
+          - {x: 0, y: 0, z: 1}
+          - {x: 1, y: 0, z: 0}
+          - {x: 0, y: 1, z: 0}
+          - {x: 1, y: 1, z: 1}
+        structureBuilder: {fileID: 0}
+    0000004D:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 2
+        currentAnimation: 2
+        animScript:
+          id: 98
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: -2, y: -1, z: 0}
+          - {x: -2, y: 0, z: -1}
+          - {x: -1, y: -2, z: 0}
+          - {x: 0, y: -2, z: -1}
+          - {x: -1, y: 0, z: -2}
+          - {x: 0, y: -1, z: -2}
+          - {x: -1, y: -1, z: -1}
+        structureBuilder: {fileID: 0}
+    0000004E:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 2
+        currentAnimation: 2
+        animScript:
+          id: 99
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+        structureBuilder: {fileID: 0}
+    0000004F:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 2
+        currentAnimation: 2
+        animScript:
+          id: 100
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: -1, y: 1, z: 1}
+          - {x: 1, y: -1, z: 1}
+          - {x: 1, y: 1, z: -1}
+          - {x: 0, y: 0, z: 1}
+          - {x: 0, y: 1, z: 0}
+          - {x: 1, y: 0, z: 0}
+        structureBuilder: {fileID: 0}
+    00000050:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 2
+        currentAnimation: 2
+        animScript:
+          id: 101
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: 2, y: 1, z: 0}
+          - {x: 2, y: 0, z: 1}
+          - {x: 1, y: 2, z: 0}
+          - {x: 0, y: 2, z: 1}
+          - {x: 1, y: 0, z: 2}
+          - {x: 0, y: 1, z: 2}
+          - {x: 1, y: 1, z: 1}
+        structureBuilder: {fileID: 0}
+    00000051:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 1
+        currentAnimation: 1
+        animScript:
+          id: 102
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: -1, y: -1, z: 1}
+          - {x: 1, y: -1, z: -1}
+          - {x: -1, y: 1, z: -1}
+          - {x: -1, y: 0, z: 0}
+          - {x: 0, y: -1, z: 0}
+          - {x: 0, y: 0, z: -1}
+        structureBuilder: {fileID: 0}
+    00000052:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 1
+        currentAnimation: 1
+        animScript:
+          id: 103
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: -1, y: 1, z: 1}
+          - {x: 1, y: -1, z: 1}
+          - {x: 1, y: 1, z: -1}
+          - {x: 0, y: 0, z: 1}
+          - {x: 0, y: 1, z: 0}
+          - {x: 1, y: 0, z: 0}
+        structureBuilder: {fileID: 0}
+    00000053:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 1
+        currentAnimation: 1
+        animScript:
+          id: 104
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: 2, y: 1, z: 0}
+          - {x: 2, y: 0, z: 1}
+          - {x: 1, y: 2, z: 0}
+          - {x: 0, y: 2, z: 1}
+          - {x: 1, y: 0, z: 2}
+          - {x: 0, y: 1, z: 2}
+          - {x: 1, y: 1, z: 1}
+        structureBuilder: {fileID: 0}
+    00000054:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 1
+        currentAnimation: 1
+        animScript:
+          id: 105
+        allAtoms: 0
+        steps:
+        - list:
+          - {x: 2, y: 1, z: 0}
+          - {x: 2, y: 0, z: 1}
+          - {x: 1, y: 2, z: 0}
+          - {x: 0, y: 2, z: 1}
+          - {x: 1, y: 0, z: 2}
+          - {x: 0, y: 1, z: 2}
+          - {x: 1, y: 1, z: 1}
+        structureBuilder: {fileID: 0}
+    00000055:
+      type: {class: AwaitContinue, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 0
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        skipSegment: 0
+        onComplete:
+          manager: {fileID: 8636669077205291291}
+          executed: 0
+          currentActionType: 0
+          actionType: 0
+          timing: 0
+          animType:
+            id: 106
+    00000056:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 1
+        currentAnimation: 1
+        animScript:
+          id: 107
+        allAtoms: 1
+        steps: []
+        structureBuilder: {fileID: 0}
+    00000057:
+      type: {class: PlayOnAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        animationType: 3
+        currentAnimation: 3
+        animScript:
+          id: 108
+        allAtoms: 1
+        steps: []
+        structureBuilder: {fileID: 0}
+    00000058:
       type: {class: UnityEventType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         manager: {fileID: 8636669077205291291}
@@ -1098,31 +3050,71 @@ MonoBehaviour:
         onUndo:
           m_PersistentCalls:
             m_Calls: []
-    0000000F:
+    00000059:
       type: {class: AwaitUserType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         manager: {fileID: 8636669077205291291}
         awaitType: 1
         currentType: 1
         await:
-          id: 19
-    00000010:
+          id: 109
+    0000005A:
       type: {class: AwaitUserType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         manager: {fileID: 8636669077205291291}
         awaitType: 2
         currentType: 2
         await:
-          id: 20
-    00000011:
+          id: 110
+    0000005B:
       type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         manager: {fileID: 8636669077205291291}
         animationType: 0
         currentAnimation: 0
         animScript:
-          id: 21
-    00000012:
+          id: 111
+    0000005C:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 0
+        currentAnimation: 0
+        animScript:
+          id: 112
+    0000005D:
+      type: {class: GlowPulse, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 0
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        emissionColor: {r: 1, g: 1, b: 0, a: 0}
+        blinksPerSecond: 0.5
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
+    0000005E:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 0
+        currentAnimation: 0
+        animScript:
+          id: 113
+    0000005F:
+      type: {class: GlowPulse, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        emissionColor: {r: 1, g: 1, b: 0, a: 0}
+        blinksPerSecond: 1
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
+    00000060:
       type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 0
@@ -1133,7 +3125,145 @@ MonoBehaviour:
         endingOpacity: 1
         easingType: 0
         materialIndex: 0
-    00000013:
+    00000061:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        startingOpacity: 1
+        endingOpacity: 0
+        easingType: 0
+        materialIndex: 0
+    00000062:
+      type: {class: Glow, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        emissionColor: {r: 0, g: 0, b: 1, a: 0}
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
+        fadeTime: 0.5
+        easingType: 0
+    00000063:
+      type: {class: Glow, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        emissionColor: {r: 0, g: 1, b: 0, a: 0}
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
+        fadeTime: 0.5
+        easingType: 0
+    00000064:
+      type: {class: Glow, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        emissionColor: {r: 1, g: 0, b: 0, a: 0}
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
+        fadeTime: 0.5
+        easingType: 0
+    00000065:
+      type: {class: Glow, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        emissionColor: {r: 0, g: 0, b: 1, a: 0}
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
+        fadeTime: 0.5
+        easingType: 0
+    00000066:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        startingOpacity: 0
+        endingOpacity: 1
+        easingType: 0
+        materialIndex: 0
+    00000067:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        startingOpacity: 0
+        endingOpacity: 1
+        easingType: 0
+        materialIndex: 0
+    00000068:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        startingOpacity: 0
+        endingOpacity: 1
+        easingType: 0
+        materialIndex: 0
+    00000069:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        startingOpacity: 0
+        endingOpacity: 1
+        easingType: 0
+        materialIndex: 0
+    0000006A:
+      type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        manager: {fileID: 8636669077205291291}
+        animationType: 0
+        currentAnimation: 0
+        animScript:
+          id: 114
+    0000006B:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        startingOpacity: 1
+        endingOpacity: 0
+        easingType: 0
+        materialIndex: 0
+    0000006C:
+      type: {class: GlowPulse, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 1
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        emissionColor: {r: 1, g: 1, b: 0, a: 0}
+        blinksPerSecond: 0.5
+        minIntensity: 0
+        materialIndex: 0
+        maxIntensity: 0.6
+    0000006D:
       type: {class: AwaitGrab, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 1
@@ -1148,9 +3278,9 @@ MonoBehaviour:
           actionType: 0
           timing: 0
           animType:
-            id: 22
+            id: 115
         grabInteractable: {fileID: 0}
-    00000014:
+    0000006E:
       type: {class: AwaitInsert, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 1
@@ -1165,10 +3295,10 @@ MonoBehaviour:
           actionType: 0
           timing: 0
           animType:
-            id: 23
+            id: 116
         socketInteractor: {fileID: 0}
         elementName: Copper
-    00000015:
+    0000006F:
       type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 0
@@ -1182,24 +3312,69 @@ MonoBehaviour:
           animationType: 1
           currentAnimation: 1
           animScript:
-            id: 24
-    00000016:
+            id: 117
+    00000070:
+      type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        steps: []
+        structureBuilder: {fileID: 0}
+        spawnAnimation:
+          manager: {fileID: 0}
+          animationType: 1
+          currentAnimation: 1
+          animScript:
+            id: 118
+    00000071:
+      type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        steps: []
+        structureBuilder: {fileID: 0}
+        spawnAnimation:
+          manager: {fileID: 0}
+          animationType: 1
+          currentAnimation: 1
+          animScript:
+            id: 119
+    00000072:
+      type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        steps: []
+        structureBuilder: {fileID: 0}
+        spawnAnimation:
+          manager: {fileID: 0}
+          animationType: 1
+          currentAnimation: 1
+          animScript:
+            id: 120
+    00000073:
       type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         manager: {fileID: 8636669077205291291}
         animationType: 0
         currentAnimation: 0
         animScript:
-          id: 25
-    00000017:
+          id: 121
+    00000074:
       type: {class: AnimScriptType, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         manager: {fileID: 8636669077205291291}
         animationType: 0
         currentAnimation: 0
         animScript:
-          id: 26
-    00000018:
+          id: 122
+    00000075:
       type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 0
@@ -1210,37 +3385,7 @@ MonoBehaviour:
         endingOpacity: 1
         easingType: 0
         materialIndex: 0
-    00000019:
-      type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
-      data:
-        indefiniteDuration: 0
-        duration: 2
-        manager: {fileID: 8636669077205291291}
-        selfDestruct: 0
-        steps: []
-        structureBuilder: {fileID: 0}
-        spawnAnimation:
-          manager: {fileID: 0}
-          animationType: 1
-          currentAnimation: 1
-          animScript:
-            id: 27
-    0000001A:
-      type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
-      data:
-        indefiniteDuration: 0
-        duration: 2
-        manager: {fileID: 8636669077205291291}
-        selfDestruct: 0
-        steps: []
-        structureBuilder: {fileID: 0}
-        spawnAnimation:
-          manager: {fileID: 0}
-          animationType: 1
-          currentAnimation: 1
-          animScript:
-            id: 28
-    0000001B:
+    00000076:
       type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 0
@@ -1251,7 +3396,70 @@ MonoBehaviour:
         endingOpacity: 1
         easingType: 0
         materialIndex: 0
-    0000001C:
+    00000077:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 0}
+        selfDestruct: 0
+        startingOpacity: 0
+        endingOpacity: 1
+        easingType: 0
+        materialIndex: 0
+    00000078:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 0}
+        selfDestruct: 0
+        startingOpacity: 0
+        endingOpacity: 1
+        easingType: 0
+        materialIndex: 0
+    00000079:
+      type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        steps: []
+        structureBuilder: {fileID: 0}
+        spawnAnimation:
+          manager: {fileID: 0}
+          animationType: 1
+          currentAnimation: 1
+          animScript:
+            id: 123
+    0000007A:
+      type: {class: AddAtoms, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 2
+        manager: {fileID: 8636669077205291291}
+        selfDestruct: 0
+        steps: []
+        structureBuilder: {fileID: 0}
+        spawnAnimation:
+          manager: {fileID: 0}
+          animationType: 1
+          currentAnimation: 1
+          animScript:
+            id: 124
+    0000007B:
+      type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
+      data:
+        indefiniteDuration: 0
+        duration: 1
+        manager: {fileID: 0}
+        selfDestruct: 0
+        startingOpacity: 0
+        endingOpacity: 1
+        easingType: 0
+        materialIndex: 0
+    0000007C:
       type: {class: Fade, ns: Veridium_Animation, asm: Assembly-CSharp}
       data:
         indefiniteDuration: 0

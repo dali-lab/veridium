@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Interaction{
+namespace Veridium_Interaction
+{
     public class ElementLoader : XRSocketInteractor
     {
 
@@ -20,23 +21,28 @@ namespace Veridium_Interaction{
 
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
-        protected override void OnSelectEntered(XRBaseInteractable interactable){
+        protected override void OnSelectEntered(XRBaseInteractable interactable)
+        {
 
             base.OnSelectEntering(interactable);
 
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
-            if(heldElement != null){
+            if (heldElement != null)
+            {
+
+                Debug.Log("ElementLoader: Element inserted");
 
                 structureBase.ElementAdded(heldElement);
                 GetComponent<AudioSource>().Play();
-                if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", true);
+                if (insertedAnimation != null) insertedAnimation.SetBool("circuitActive", true);
 
             }
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
-        protected override void OnSelectExited(XRBaseInteractable interactable){
+        protected override void OnSelectExited(XRBaseInteractable interactable)
+        {
 
             base.OnSelectExiting(interactable);
 
@@ -44,22 +50,25 @@ namespace Veridium_Interaction{
 
             heldElement = null;
 
-            if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
+            if (insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
         }
 
-        public void Lock(){
-            if(heldElement != null) heldElement.Lock();
+        public void Lock()
+        {
+            if (heldElement != null) heldElement.Lock();
         }
 
-        public void Unlock(){
+        public void Unlock()
+        {
             heldElement.Unlock();
         }
 
-        public void ResetStructure(){
+        public void ResetStructure()
+        {
 
             structureBase.ElementRemoved();
 
-            if(heldElement != null) structureBase.ElementAdded(heldElement);
+            if (heldElement != null) structureBase.ElementAdded(heldElement);
         }
 
     }

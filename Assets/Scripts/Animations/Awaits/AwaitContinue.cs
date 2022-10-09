@@ -8,27 +8,30 @@ using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     [System.Serializable]
-    public class AwaitContinue : AwaitUserBase{
+    public class AwaitContinue : AwaitUserBase
+    {
 
         public override void Play()
         {
             base.Play();
 
-            MonoBehaviour.FindObjectOfType<SegmentPlay>().gameObject.SetActive(false);
+            MonoBehaviour.FindObjectOfType<SegmentPlay>().gameObject.SetActive(true);
 
             MonoBehaviour.FindObjectOfType<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
-            
+
         }
 
-        public void OnInteractionStart(){
+        public void OnInteractionStart()
+        {
 
-           CompleteAction();
+            CompleteAction();
 
-           MonoBehaviour.FindObjectOfType<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
+            MonoBehaviour.FindObjectOfType<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
 
-           MonoBehaviour.FindObjectOfType<SegmentPlay>().gameObject.SetActive(false);
+            MonoBehaviour.FindObjectOfType<SegmentPlay>().gameObject.SetActive(false);
 
         }
     }

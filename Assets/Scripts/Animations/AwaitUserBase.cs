@@ -6,15 +6,19 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     [System.Serializable]
-    public class AwaitUserBase : AnimationBase{
+    public class AwaitUserBase : AnimationBase
+    {
 
         private bool permanentlyCompleted;                  // Does not reset when scrubbing; this is meant so that the user can scrub without repeating actions
         public bool skipSegment;
+        public bool useOnComplete;
         public SegmentAnimPlayer onComplete;
 
-        public AwaitUserBase(){
+        public AwaitUserBase()
+        {
             indefiniteDuration = true;
             duration = 0;
             awaitingAction = true;
@@ -30,7 +34,8 @@ namespace Veridium_Animation{
             }
         }
 
-        public override void Play(){
+        public override void Play()
+        {
 
             Reset();
 
@@ -46,31 +51,33 @@ namespace Veridium_Animation{
         }
 
         // Performs the action automatically. This is to be done while scrubbing
-        protected virtual void DoAction(){
+        protected virtual void DoAction()
+        {
 
         }
 
         // Should be called when the desired action is completed
-        public virtual void CompleteAction(){
+        public virtual void CompleteAction()
+        {
 
             if (playing) awaitingAction = false;
 
-            if (manager is AnimSequence) {
-
+            if (manager is AnimSequence)
+            {
                 AnimSequence sequence = manager as AnimSequence;
-
-                if (skipSegment && sequence.CanMoveOn()) sequence.PlayNextSegment();
-
+                if (skipSegment && sequence.CanMoveOn())
+                {
+                    sequence.PlayNextSegment();
+                }
             }
-            
-            //MonoBehaviour.Invoke("OnComplete", onComplete.timing + Time.deltaTime);
+
             OnComplete();
 
         }
 
-        private void OnComplete(){
-
-            onComplete.Execute();
+        private void OnComplete()
+        {
+            if (useOnComplete) onComplete.Execute();
         }
     }
 }
