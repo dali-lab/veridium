@@ -23,10 +23,13 @@ namespace Veridium_Interaction{
         public Transform resetPoint;
         public UnityEvent onInteractionStart;
 
+        public bool isComplete;
+
         // Start is called before the first frame update
         void Start()
         {
             isReset = true;
+            isComplete = false;
         }
 
         // Update is called once per frame
@@ -40,6 +43,7 @@ namespace Veridium_Interaction{
                     grabbableSphere.transform.rotation = resetPoint.rotation;
                     isReset = true;
                     heldTimer = 0f;
+                    progressBar.enabled = false;
                     sphereAnim.SetBool("isPressed", false);
                 }
 
@@ -60,11 +64,11 @@ namespace Veridium_Interaction{
                 } 
                 else {
 
-                    heldTimer = 0f;
                     progressBar.enabled = false;
                     // invoke event
                     sphereAnim.SetBool("isPressed", true);
                     onInteractionStart.Invoke();
+                    isComplete = true;
                 }
             }
         }
