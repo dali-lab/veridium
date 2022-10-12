@@ -11,8 +11,7 @@ namespace Veridium_Animation
 
     public class AnimSequence : AnimationManager
     {
-
-        private int currentIndex = 0;                                   // The index in the list of the animation that is currently playing
+        public int currentIndex = 0;                                   // The index in the list of the animation that is currently playing
         public bool playOnStart;                                        // Whether the animation sequence should play immediately
         public bool playing { get; private set; }                         // Whether this animation sequence is currently playing or not
         private bool audioHasFinished;                                  // Used to record the end of audio for sequence progression
