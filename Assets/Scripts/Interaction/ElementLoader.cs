@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Veridium_Animation;
 
 namespace Veridium_Interaction{
     public class ElementLoader : XRSocketInteractor
@@ -18,6 +19,23 @@ namespace Veridium_Interaction{
         public Animator insertedAnimation;      // animator to enable when the element is inserted
         private int layerMask;
 
+        public GameObject lectures;
+        private GameObject currLecture;
+
+        private Dictionary<string, GameObject> lectureNameToGO;
+
+        protected override void Start() {
+            base.Start();
+
+            lectureNameToGO = new Dictionary<string, GameObject>();
+
+            foreach (Transform child in lectures.transform)
+            {
+                string lectureName = child.name;
+                lectureNameToGO.Add(lectureName, child.gameObject);
+            }
+        }
+
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
         protected override void OnSelectEntered(XRBaseInteractable interactable){
@@ -26,13 +44,19 @@ namespace Veridium_Interaction{
 
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
-            if(heldElement != null){
+            if (heldElement == null) return;
 
-                structureBase.ElementAdded(heldElement);
-                GetComponent<AudioSource>().Play();
-                if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", true);
+            structureBase.ElementAdded(heldElement);
 
+            if (lectureNameToGO.ContainsKey(heldElement.elementName))
+            {
+                currLecture = lectureNameToGO[heldElement.elementName];
+                currLecture.SetActive(true);
+                currLecture.GetComponent<AnimSequence>().PlaySequence();
             }
+
+            GetComponent<AudioSource>().Play(); // Plays the breaaaahahhaha sound
+            if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", true);
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
@@ -43,6 +67,13 @@ namespace Veridium_Interaction{
             structureBase.ElementRemoved();
 
             heldElement = null;
+
+            if (currLecture) 
+            {
+                currLecture.GetComponent<AnimSequence>().ResetSequence();
+                currLecture.SetActive(false);
+                currLecture = null;
+            }
 
             if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
         }
