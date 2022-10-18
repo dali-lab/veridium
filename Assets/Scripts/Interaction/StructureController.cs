@@ -19,6 +19,7 @@ namespace Veridium_Interaction{
         public float minScale = 1f, softScaleBound = 15f;     // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
         public GameObject scaleGrabber, structure, hand1, hand2;                // GameObject References
         private bool twoHandGrab;                                               // Whether in two hand scaling mode, one hand rotation/translation mode
+        private bool twoHandGrabbable = true;                                   // Whether in two hand scaling mode, one hand rotation/translation mode
         private float twoHandDistance;                                          // Initial distance between hands in scaling mode
         private Vector3 interactorPosition = Vector3.zero, beginningScale;      // offset interaction position
         private Quaternion interactorRotation = Quaternion.identity;            // offset interaction rotation
@@ -83,10 +84,11 @@ namespace Veridium_Interaction{
         {
 
             // Only allow two hand grabbing if one hand grabbing is active
-            scaleGrabber.SetActive(structureSelected);
+            scaleGrabber.SetActive(structureSelected && twoHandGrabbable );
             
             // When two hand grabbing is active, attach the gameObject to the hands
             if(scaleGrabberSelected && structureSelected) {
+                Debug.Log("something being printed!");
 
                 if(!twoHandGrab) {
 
@@ -190,6 +192,11 @@ namespace Veridium_Interaction{
             // set the position of the object to the center of both hands based on the original object direction relative to the new scale and rotation
             gameObject.transform.position = (0.5f * (currentHandPosition1 + currentHandPosition2)) + (handRot * (initialObjectDirection * p));
 
+        }
+
+        public void SetTwoHandGrab(bool state)
+        {
+            twoHandGrabbable = state;
         }
 
         // Called by XR grab interactable in the structure
