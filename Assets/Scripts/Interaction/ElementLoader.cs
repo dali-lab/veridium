@@ -39,6 +39,7 @@ namespace Veridium_Interaction{
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
         protected override void OnSelectEntered(XRBaseInteractable interactable){
+            Debug.Log("PUT A THING INTO THE THING!!!");
 
             base.OnSelectEntering(interactable);
 
@@ -51,8 +52,9 @@ namespace Veridium_Interaction{
             if (lectureNameToGO.ContainsKey(heldElement.elementName))
             {
                 currLecture = lectureNameToGO[heldElement.elementName];
+                Debug.Log("setting lecture " + heldElement.elementName + ": " + currLecture + " to active");
                 currLecture.SetActive(true);
-                currLecture.GetComponent<AnimSequence>().PlaySequence();
+                currLecture.GetComponent<AnimSequence>().PlaySequenceFromStart();
             }
 
             GetComponent<AudioSource>().Play(); // Plays the breaaaahahhaha sound
@@ -70,7 +72,7 @@ namespace Veridium_Interaction{
 
             if (currLecture) 
             {
-                currLecture.GetComponent<AnimSequence>().ResetSequence();
+                //currLecture.GetComponent<AnimSequence>().ResetSequence();
                 currLecture.SetActive(false);
                 currLecture = null;
             }

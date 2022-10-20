@@ -20,7 +20,7 @@ namespace Veridium_Animation{
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
         public bool awaitingAction {get; protected set;}        // Don't set this directly, should only be used in the AwaitUserBase class
-        [HideInInspector] public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
+        public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
         [HideInInspector] public bool selfDestruct;
 
 
