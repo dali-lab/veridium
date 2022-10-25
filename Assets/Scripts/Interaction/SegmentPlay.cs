@@ -37,7 +37,7 @@ namespace Veridium_Interaction{
         {
 
             // Increment the timer if not interacted
-            if(!interacted){
+            if(!interacted && grabbableSphere != null){
                 if(!isReset){
                     grabbableSphere.transform.position = resetPoint.position;
                     grabbableSphere.transform.rotation = resetPoint.rotation;
