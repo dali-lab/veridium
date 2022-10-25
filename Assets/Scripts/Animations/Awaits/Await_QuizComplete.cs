@@ -58,7 +58,7 @@ namespace Veridium_Animation{
             {
                 pointer.SetActive(false);
                 CompleteAction();
-                StartCoroutine(FadeOutBackdrop());
+                //*** StartCoroutine(FadeOutBackdrop());
                 //pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
                 //submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnAnswerSubmit);
 
@@ -90,7 +90,7 @@ namespace Veridium_Animation{
             submitButton.SetActive(true);
             submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnAnswerSubmit);
 
-            StartCoroutine(FadeBackdrop());
+            //*** StartCoroutine(FadeBackdrop());
 
         }
 
