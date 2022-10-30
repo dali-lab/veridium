@@ -66,6 +66,7 @@ namespace Veridium_Animation{
         void Awake(){
 
             if(audioSource == null) audioSource = GetComponent<AudioSource>();
+            Debug.Log("AUDIO SEQUENCE: " + audioSource);
 
             playingAnims = new List<AnimationBase>();
 
@@ -102,14 +103,14 @@ namespace Veridium_Animation{
                 segmentTime = audioSource.time;
             }
 
-            sequenceState += "playing: " + playing.ToString() + "\n";
-            sequenceState += "current audio: " + audioSource.clip.ToString() + "\n";
+            //sequenceState += "playing: " + playing.ToString() + "\n";
+            //sequenceState += "current audio: " + audioSource.clip.ToString() + "\n";
 
             if(playing) UpdateAnimations();
 
-            sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
+            //sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
-            sequenceState = "";
+            //sequenceState = "";
 
         }
 

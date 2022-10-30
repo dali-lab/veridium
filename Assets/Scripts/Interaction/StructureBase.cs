@@ -190,7 +190,7 @@ namespace Veridium_Interaction{
                     anim.easeOutOnly = true;
                     anim.duration = 3f;
                     anim.selfDestruct = true;
-                    anim.endScale = new Vector3(.32f,.32f,.32f);
+                    anim.endScale = Vector3.one * .25f;
                     anim.Play();
                 }
             }

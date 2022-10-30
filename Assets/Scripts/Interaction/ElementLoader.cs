@@ -33,12 +33,13 @@ namespace Veridium_Interaction{
             {
                 string lectureName = child.name;
                 lectureNameToGO.Add(lectureName, child.gameObject);
+                child.gameObject.SetActive(false);
             }
         }
 
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
-        protected override void OnSelectEntered(XRBaseInteractable interactable){
+        protected override void OnSelectEntering(XRBaseInteractable interactable){
             Debug.Log("PUT A THING INTO THE THING!!!");
 
             base.OnSelectEntering(interactable);
@@ -62,7 +63,7 @@ namespace Veridium_Interaction{
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
-        protected override void OnSelectExited(XRBaseInteractable interactable){
+        protected override void OnSelectExiting(XRBaseInteractable interactable){
 
             base.OnSelectExiting(interactable);
 

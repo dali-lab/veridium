@@ -114,7 +114,7 @@ namespace Veridium_Interaction{
 
                 if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
 
-            } else if (gameObject.transform.localScale.x >= 1.2){
+            } else if (gameObject.transform.localScale.x >= 1.2 && structureBase.elementLoader.heldElement.type != CellType.HEX){
 
                 if (structureBase.currentState != CrystalState.MULTICELL) structureBase.MultiCellView();
 
