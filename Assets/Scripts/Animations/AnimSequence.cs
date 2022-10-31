@@ -108,6 +108,11 @@ namespace Veridium_Animation{
 
             if(playing) UpdateAnimations();
 
+            if (Input.GetKeyDown("n"))
+            {
+                PlayNextSegment();
+            }
+
             //sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
             //sequenceState = "";

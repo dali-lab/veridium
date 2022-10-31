@@ -78,7 +78,7 @@ namespace Veridium_Interaction{
 
         // Prompts the structureBuilder to destroy the cell
         public void ElementRemoved(){
-
+            structureController.Unlock(); // unlock structure when removed in case it was locked during lecture and removed mid lecture
             structureBuilder.DestroyCell();
 
         }

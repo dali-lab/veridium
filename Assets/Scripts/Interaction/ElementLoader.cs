@@ -24,6 +24,10 @@ namespace Veridium_Interaction{
 
         private Dictionary<string, GameObject> lectureNameToGO;
 
+        private ExitSceneTile exitTileScript;
+
+
+
         protected override void Start() {
             base.Start();
 
@@ -43,6 +47,11 @@ namespace Veridium_Interaction{
             // Debug.Log("PUT A THING INTO THE THING!!!");
 
             base.OnSelectEntering(interactable);
+            if (interactable.TryGetComponent<ExitSceneTile>(out exitTileScript))
+            {
+                exitTileScript.ExitToMenu();
+            }
+
 
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
@@ -68,7 +77,6 @@ namespace Veridium_Interaction{
             base.OnSelectExiting(interactable);
 
             structureBase.ElementRemoved();
-
             heldElement = null;
 
             if (currLecture) 
@@ -79,6 +87,7 @@ namespace Veridium_Interaction{
             }
 
             if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
+
         }
 
         public void Lock(){
@@ -95,6 +104,6 @@ namespace Veridium_Interaction{
 
             if(heldElement != null) structureBase.ElementAdded(heldElement);
         }
-
+        
     }
 }
