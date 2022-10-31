@@ -480,6 +480,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5848836388231010663}
     m_Modifications:
+    - target: {fileID: 2474844944129244520, guid: 4a5cbfec1904c6d40ad6cb25965f018c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b5af12b65f68800418078f7cfae5b9a4, type: 2}
     - target: {fileID: 7247684092874659883, guid: 4a5cbfec1904c6d40ad6cb25965f018c, type: 3}
       propertyPath: m_Name
       value: forward_sphere2

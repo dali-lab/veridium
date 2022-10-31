@@ -35,7 +35,6 @@ namespace Veridium_Interaction{
         public void Interacted()
         {
             StopAllCoroutines();
-            Debug.Log("Little log");
         }
 
         // Called by the grab interactable

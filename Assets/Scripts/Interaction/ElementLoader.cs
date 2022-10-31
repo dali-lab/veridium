@@ -40,7 +40,7 @@ namespace Veridium_Interaction{
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
         protected override void OnSelectEntering(XRBaseInteractable interactable){
-            Debug.Log("PUT A THING INTO THE THING!!!");
+            // Debug.Log("PUT A THING INTO THE THING!!!");
 
             base.OnSelectEntering(interactable);
 
