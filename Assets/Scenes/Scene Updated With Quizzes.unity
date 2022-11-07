@@ -3732,6 +3732,54 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f7e78ebda8c964541894013f83c5e36d, type: 3}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[0].audioDE
+      value: 
+      objectReference: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[0].audioEN
+      value: 
+      objectReference: {fileID: 8300000, guid: 190386cf8f185bf4eaa984d4eceb1bc1, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[1].audioDE
+      value: 
+      objectReference: {fileID: 8300000, guid: 75c63c126eb567e40a9ced1083a7bcdd, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[1].audioEN
+      value: 
+      objectReference: {fileID: 8300000, guid: 6524a997d41c5ff469ab31f785b05303, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[2].audioDE
+      value: 
+      objectReference: {fileID: 8300000, guid: 80be66440b079c548a87662b76606126, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[2].audioEN
+      value: 
+      objectReference: {fileID: 8300000, guid: e4159573774d6b2418f642a60655cbc9, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[3].audioDE
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a9ec834b824f594db63276adb85c489, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[3].audioEN
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ef644f1330780644963ab0ad93e7ed3, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[4].audioDE
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b6c5fec2d9519545b87bf0b580a2509, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[4].audioEN
+      value: 
+      objectReference: {fileID: 8300000, guid: 971b36895c3e41644a150914bfccd2da, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[5].audioDE
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a644d5942dc0174980bd42986edc09f, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[5].audioEN
+      value: 
+      objectReference: {fileID: 8300000, guid: a8839ad57af98034d809756fc7cabbbd, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[0].animations.Array.size
       value: 1
       objectReference: {fileID: 0}
