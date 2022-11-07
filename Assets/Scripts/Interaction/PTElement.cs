@@ -15,9 +15,7 @@ namespace Veridium_Interaction{
 
         public string elementName;                              // Name of the element
         public GameObject home;                                 // GameObject for this one to snap back to when dropped
-        private float unHeldTimer = 0f;                         // How long this has not been interacted
         public float maxUnHeldTime = 1f;                        // How long before this snaps back home
-        private bool interacted = true;                         // Whether this element is held or in a socket
         public CellType type = CellType.CUBIC;                  // The greater cell structure of the element
         public CellVariation variation = CellVariation.SIMPLE;  // The variation on the cell structure of the element
 
@@ -31,49 +29,43 @@ namespace Veridium_Interaction{
         void Update()
         {
 
-            // Increment the timer if not interacted
-            if(!interacted){
+        }
 
-                if(unHeldTimer < maxUnHeldTime){
+        // Called by the grab interactable
+        public void Interacted()
+        {
+            StopAllCoroutines();
+        }
 
-                    unHeldTimer += Time.deltaTime;
+        // Called by the grab interactable
+        public void UnInteracted()
+        {
+            StartCoroutine(WaitThenGoHome());
+        }
 
-                } else {
-
-                    // Teleport home when not interacted for long enough
-                    unHeldTimer = 0f;
-                    gameObject.transform.position = home.transform.position;
-                    gameObject.transform.rotation = home.transform.rotation;
-                    if(GetComponent<Rigidbody>() != null){
-                        GetComponent<Rigidbody>().velocity = Vector3.zero;
-                        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-                    }
-
-
-                    GetComponent<AudioSource>().Play();
-
-                }
-
+        IEnumerator WaitThenGoHome()
+        {
+            // Teleport home when not interacted for long enough
+            yield return new WaitForSeconds(1f);
+            gameObject.transform.position = home.transform.position;
+            gameObject.transform.rotation = home.transform.rotation;
+            if (GetComponent<Rigidbody>() != null)
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             }
-            
+            GetComponent<AudioSource>().Play();
+
         }
 
-        // Called by the grab interactable
-        public void Interacted(){
-            interacted = true;
-            unHeldTimer = 0;
-        }
 
-        // Called by the grab interactable
-        public void UnInteracted(){
-            interacted = false;
-        }
-
-        public void Lock(){
+        public void Lock()
+        {
             GetComponent<XRGrabInteractable_Lockable>().Lock();
         }
 
-        public void Unlock(){
+        public void Unlock()
+        {
             GetComponent<XRGrabInteractable_Lockable>().Unlock();
         }
     }

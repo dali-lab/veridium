@@ -64,6 +64,15 @@ namespace Veridium_Animation{
             }
         }
 
+        public void Revert()
+        {
+            base.Play();
+            if (gameObject.GetComponent<Renderer>() != null)
+            {
+                gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
+            }
+        }
+
         public override void End()
         {
             

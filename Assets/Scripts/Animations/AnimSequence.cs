@@ -30,7 +30,9 @@ namespace Veridium_Animation{
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
         [System.Serializable]
         public struct AnimSegment {
-            public AudioClip audio;                         // Each segment has one audio clip. This should be used for lecture audio
+            [HideInInspector] public AudioClip audio;       // This should be used for lecture audio
+            public AudioClip audioEN;                       // Each segment has an ENGLISH audio clip
+            public AudioClip audioDE;                         // Each segment has a GERMAN audio clip.
             public List<AnimPlayer> animations;             // List of animations set in the inspector.
             [HideInInspector] public float realDuration;    // The real duration of the segment. Longer than audio clip length if animations run over time
         }
@@ -66,6 +68,7 @@ namespace Veridium_Animation{
         void Awake(){
 
             if(audioSource == null) audioSource = GetComponent<AudioSource>();
+            Debug.Log("AUDIO SEQUENCE: " + audioSource);
 
             playingAnims = new List<AnimationBase>();
 
@@ -74,6 +77,7 @@ namespace Veridium_Animation{
             for(int i = 0; i < segments.Count; i++)
             {
                 AnimSegment segment = segments[i];
+                segment.audio = segment.audioEN;
                 segment.realDuration = GetSegmentRealDuration(segment);
                 segments[i] = segment;
 
@@ -102,14 +106,19 @@ namespace Veridium_Animation{
                 segmentTime = audioSource.time;
             }
 
-            sequenceState += "playing: " + playing.ToString() + "\n";
-            sequenceState += "current audio: " + audioSource.clip.ToString() + "\n";
+            //sequenceState += "playing: " + playing.ToString() + "\n";
+            //sequenceState += "current audio: " + audioSource.clip.ToString() + "\n";
 
             if(playing) UpdateAnimations();
 
-            sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
+            if (Input.GetKeyDown("n"))
+            {
+                PlayNextSegment();
+            }
+
+            //sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
-            sequenceState = "";
+            //sequenceState = "";
 
         }
 
