@@ -22,7 +22,7 @@ namespace Veridium_Interaction{
         public GameObject lectures;
         private GameObject currLecture;
 
-        private Dictionary<string, GameObject> lectureNameToGO;
+        public Dictionary<string, GameObject> lectureNameToGO;
 
         private ExitSceneTile exitTileScript;
 
