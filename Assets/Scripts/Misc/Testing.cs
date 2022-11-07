@@ -18,6 +18,8 @@ public class Testing : MonoBehaviour
     private bool lastButtonState = false;
     private List<InputDevice> devicesWithPrimaryButton;
 
+    private bool buttonState = false;
+
     [SerializeField] ElementLoader elementLoader;
 
     private void Awake()
@@ -83,6 +85,12 @@ public class Testing : MonoBehaviour
 
     public void nextThing()
     {
+        if (buttonState)
+        {
+            buttonState = !buttonState;
+            return;
+        }
+
         Debug.Log("Primary button press event");
 
         if (elementLoader.heldElement == null) return;
@@ -92,5 +100,6 @@ public class Testing : MonoBehaviour
             // play 
             elementLoader.lectureNameToGO[elementLoader.heldElement.name].GetComponent<AnimSequence>().PlayNextSegment();
         }
+        buttonState = !buttonState;
     }
 }
