@@ -6118,6 +6118,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f7e78ebda8c964541894013f83c5e36d, type: 3}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[0].audioDE
+      value: 
+      objectReference: {fileID: 8300000, guid: 90fedb4913d51d34c8152c1c913fcc04, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
+      propertyPath: segments.Array.data[0].audioEN
+      value: 
+      objectReference: {fileID: 8300000, guid: 32963aeb1f45172479ab21744c88c61c, type: 3}
+    - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[3].realDuration
       value: 4
       objectReference: {fileID: 0}
