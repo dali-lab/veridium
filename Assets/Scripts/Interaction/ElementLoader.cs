@@ -22,7 +22,11 @@ namespace Veridium_Interaction{
         public GameObject lectures;
         private GameObject currLecture;
 
-        private Dictionary<string, GameObject> lectureNameToGO;
+        public Dictionary<string, GameObject> lectureNameToGO;
+
+        private ExitSceneTile exitTileScript;
+
+
 
         protected override void Start() {
             base.Start();
@@ -33,15 +37,21 @@ namespace Veridium_Interaction{
             {
                 string lectureName = child.name;
                 lectureNameToGO.Add(lectureName, child.gameObject);
+                child.gameObject.SetActive(false);
             }
         }
 
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
-        protected override void OnSelectEntered(XRBaseInteractable interactable){
-            Debug.Log("PUT A THING INTO THE THING!!!");
+        protected override void OnSelectEntering(XRBaseInteractable interactable){
+            // Debug.Log("PUT A THING INTO THE THING!!!");
 
             base.OnSelectEntering(interactable);
+            if (interactable.TryGetComponent<ExitSceneTile>(out exitTileScript))
+            {
+                exitTileScript.ExitToMenu();
+            }
+
 
             heldElement = interactable.gameObject.GetComponent<PTElement>();
 
@@ -62,12 +72,11 @@ namespace Veridium_Interaction{
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
-        protected override void OnSelectExited(XRBaseInteractable interactable){
+        protected override void OnSelectExiting(XRBaseInteractable interactable){
 
             base.OnSelectExiting(interactable);
 
             structureBase.ElementRemoved();
-
             heldElement = null;
 
             if (currLecture) 
@@ -78,6 +87,7 @@ namespace Veridium_Interaction{
             }
 
             if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
+
         }
 
         public void Lock(){
@@ -94,6 +104,6 @@ namespace Veridium_Interaction{
 
             if(heldElement != null) structureBase.ElementAdded(heldElement);
         }
-
+        
     }
 }

@@ -93,7 +93,7 @@ namespace Veridium_Animation{
                 {
                     Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
 
-                    if(atom != null){
+                    if(atom != null && atom.drawnObject != null){
                         if(atom.drawnObject.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.drawnObject.GetComponent<Anim_GlowPulse>());
                         Anim_GlowPulse anim = atom.drawnObject.AddComponent<Anim_GlowPulse>() as Anim_GlowPulse;
                         anim.emissionColor = new Color(1,1,0);

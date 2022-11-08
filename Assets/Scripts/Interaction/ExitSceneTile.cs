@@ -66,7 +66,7 @@ namespace Veridium_Interaction{
                 } else {
 
                     heldTimer = 0f;
-                    SceneManager.LoadScene(0);
+                    ExitToMenu();
 
                 }
             }
@@ -90,12 +90,24 @@ namespace Veridium_Interaction{
             heldTimer = 0f;
         }
 
-        public override bool IsSelectableBy(XRBaseInteractor interactor){
-            bool baseCase = base.IsSelectableBy(interactor);
-
-            if(!(interactor is XRDirectInteractor) && interactor.gameObject != home) return false;
-
-            return baseCase;
+        public void ExitToMenu()
+        {
+            StartCoroutine(WaitThenExitToMenu());
         }
-    } 
+
+        IEnumerator WaitThenExitToMenu()
+        {
+            yield return new WaitForSeconds(.3f);
+            SceneManager.LoadScene(0);
+        }
+
+
+        //public override bool IsSelectableBy(XRBaseInteractor interactor){
+        //    bool baseCase = base.IsSelectableBy(interactor);
+
+        //    if(!(interactor is XRDirectInteractor) && interactor.gameObject != home) return false;
+
+        //    return baseCase;
+        //}
+    }
 }

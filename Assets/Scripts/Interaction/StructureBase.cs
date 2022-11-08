@@ -78,7 +78,7 @@ namespace Veridium_Interaction{
 
         // Prompts the structureBuilder to destroy the cell
         public void ElementRemoved(){
-
+            structureController.Unlock(); // unlock structure when removed in case it was locked during lecture and removed mid lecture
             structureBuilder.DestroyCell();
 
         }
@@ -190,7 +190,7 @@ namespace Veridium_Interaction{
                     anim.easeOutOnly = true;
                     anim.duration = 3f;
                     anim.selfDestruct = true;
-                    anim.endScale = new Vector3(.32f,.32f,.32f);
+                    anim.endScale = Vector3.one * .25f;
                     anim.Play();
                 }
             }

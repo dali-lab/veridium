@@ -23,6 +23,7 @@ namespace Veridium_Animation{
         private HashSet<GameObject> solutionSet = new HashSet<GameObject>();
         private HashSet<GameObject> answer = new HashSet<GameObject>();
 
+        private Color initialColor;
         public Color glowColor;
 
         public GameObject pointer;
@@ -36,17 +37,30 @@ namespace Veridium_Animation{
         {
             if(atom.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.GetComponent<Anim_GlowPulse>());
 
-            if(answer.Contains(atom)) answer.Remove(atom);
+            atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
+
+            if(answer.Contains(atom))
+            {
+                answer.Remove(atom);
+                if (anim != null)
+                {
+                    anim.emissionColor = initialColor;
+                    anim.Play();
+                }
+                Debug.Log("Unhighlighted atom");
+            }
             else
             {
                 answer.Add(atom);
-                Anim_Glow anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
+                Debug.Log("Selected atom at position: " + atom.transform.position);
+                initialColor = atom.GetComponent<Renderer>().materials[0].GetColor("_EmissionColor");
+                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
                 anim.easingType = EasingType.Exponential;
                 anim.selfDestruct = true;
                 anim.emissionColor = glowColor;
                 anim.fadeTime = 0.5f;
                 anim.Play();
-                Debug.Log("Here");
+                Debug.Log("Highlighted atom");
             }
 
         }
