@@ -88,7 +88,7 @@ namespace Veridium_Interaction{
             
             // When two hand grabbing is active, attach the gameObject to the hands
             if(scaleGrabberSelected && structureSelected) {
-                Debug.Log("something being printed!");
+                //Debug.Log("something being printed!");
 
                 if(!twoHandGrab) {
 
