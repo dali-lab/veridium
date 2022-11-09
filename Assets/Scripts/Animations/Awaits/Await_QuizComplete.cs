@@ -10,7 +10,9 @@ namespace Veridium_Animation{
     {
 
         public StructureBuilder structureBuilder;
-        private Vector3[] solution = 
+
+        // 6 atoms of the same layer
+        public Vector3[] solution = 
             new Vector3[] {
             new Vector3(-1,-1,1),
             new Vector3(-1,1,-1),
@@ -19,6 +21,25 @@ namespace Veridium_Animation{
             new Vector3(0,-1,0),
             new Vector3(0,0,-1)
         };
+
+        // // 14 atoms that form the cubic face centered unit cell
+        // private Vector3[] solution2 =
+        //     new Vector3[] {
+        //     new Vector3(-1, 0, 0), // left
+        //     new Vector3(1, 0, 0), // right
+        //     new Vector3(0, 0, -1), // front
+        //     new Vector3(0, 0, 1), // back
+        //     new Vector3(0, -1, 0), // bottom
+        //     new Vector3(0, 1, 0), // top
+        //     new Vector3(-1, 1, -1), // front top left
+        //     new Vector3(1, 1, -1), // front top right
+        //     new Vector3(-1, 1, 1), // back top left
+        //     new Vector3(1, 1, 1), // back top right
+        //     new Vector3(-1, -1, -1), // front bottom left
+        //     new Vector3(1, -1, -1), // front bottom right
+        //     new Vector3(-1, -1, 1), // back bottom left
+        //     new Vector3(1, -1, 1), // back bottom right
+        // };
 
         private HashSet<GameObject> solutionSet = new HashSet<GameObject>();
         private HashSet<GameObject> answer = new HashSet<GameObject>();
@@ -36,17 +57,20 @@ namespace Veridium_Animation{
         public void CollisionWithAtom(GameObject atom)
         {
             if(atom.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.GetComponent<Anim_GlowPulse>());
-
+            
             atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
+            if (anim == null)
+            {
+                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
+                anim.easingType = EasingType.Exponential;
+                anim.fadeTime = 0.5f;
+            }
 
             if(answer.Contains(atom))
             {
                 answer.Remove(atom);
-                if (anim != null)
-                {
-                    anim.emissionColor = initialColor;
-                    anim.Play();
-                }
+                anim.emissionColor = initialColor;
+                anim.Play();
                 Debug.Log("Unhighlighted atom");
             }
             else
@@ -54,11 +78,8 @@ namespace Veridium_Animation{
                 answer.Add(atom);
                 Debug.Log("Selected atom at position: " + atom.transform.position);
                 initialColor = atom.GetComponent<Renderer>().materials[0].GetColor("_EmissionColor");
-                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
-                anim.easingType = EasingType.Exponential;
-                anim.selfDestruct = true;
+                // anim.selfDestruct = true;
                 anim.emissionColor = glowColor;
-                anim.fadeTime = 0.5f;
                 anim.Play();
                 Debug.Log("Highlighted atom");
             }
@@ -70,7 +91,21 @@ namespace Veridium_Animation{
             //if(answer == solutionSet)
             if(answer.SetEquals(solutionSet))
             {
-                pointer.SetActive(false);
+                foreach (GameObject atom in answer)
+                {
+                    atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
+
+                    if (anim != null)
+                    {
+                        anim.emissionColor = initialColor;
+                        anim.selfDestruct = true;
+                        anim.Play();
+
+                        // Making sure animation gets destroyed
+                        if (anim != null) Destroy(anim);
+                    }
+                }
+                // pointer.SetActive(false);
                 CompleteAction();
                 //*** StartCoroutine(FadeOutBackdrop());
                 //pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
@@ -79,11 +114,19 @@ namespace Veridium_Animation{
             }
             else
             {
-                foreach(GameObject atomGameObj in answer)
+                foreach(GameObject atom in answer)
                 {
-                    if(atomGameObj.GetComponent<Anim_GlowPulse>() != null) Destroy(atomGameObj.GetComponent<Anim_GlowPulse>());
+                    atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
+                    if (anim != null)
+                    {
+                        anim.emissionColor = initialColor;
+                        anim.Play();
+                    }
+
+                    // if(atomGameObj.GetComponent<Anim_GlowPulse>() != null) Destroy(atomGameObj.GetComponent<Anim_GlowPulse>());
                 }
                 answer.Clear();
+                Debug.Log("WRONG WRONG WRONG WRONG WRONG!!!");
             }
         }
 
@@ -93,10 +136,7 @@ namespace Veridium_Animation{
             base.Play();
 
             // gets the associated gameobjects for the atoms in solution
-            foreach(Vector3 vec in solution)
-            {
-                solutionSet.Add(structureBuilder.GetAtomAtCoordinate(vec).drawnObject);
-            }
+            FillSolutionSet(solutionSet, solution);
 
             pointer.SetActive(true);
             pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.AddListener(CollisionWithAtom);
@@ -106,6 +146,20 @@ namespace Veridium_Animation{
 
             //*** StartCoroutine(FadeBackdrop());
 
+        }
+
+        // Fill the solution set with the right solutions
+        public void FillSolutionSet(HashSet<GameObject> solutionSet, Vector3[] solution)
+        {
+            solutionSet.Clear();
+
+            // Debug.Log("ATOMS IN CRYSTAL STRUCTURE: " + structureBuilder.crystal.atoms.Count);
+
+            foreach (Vector3 vec in solution)
+            {
+                solutionSet.Add(structureBuilder.GetAtomAtCoordinate(vec).drawnObject);
+                Debug.Log("added vector: " + vec);
+            }
         }
 
         private IEnumerator FadeBackdrop()

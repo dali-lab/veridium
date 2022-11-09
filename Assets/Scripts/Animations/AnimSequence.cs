@@ -30,7 +30,7 @@ namespace Veridium_Animation{
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
         [System.Serializable]
         public struct AnimSegment {
-            [HideInInspector] public AudioClip audio;       // This should be used for lecture audio
+            public AudioClip audio;                         // This should be used for lecture audio
             public AudioClip audioEN;                       // Each segment has an ENGLISH audio clip
             public AudioClip audioDE;                         // Each segment has a GERMAN audio clip.
             public List<AnimPlayer> animations;             // List of animations set in the inspector.
