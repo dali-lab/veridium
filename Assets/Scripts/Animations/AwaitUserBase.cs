@@ -24,6 +24,11 @@ namespace Veridium_Animation{
 
         }
 
+        public override void End()
+        {
+            base.End();
+        }
+
         protected override void ResetChild()
         {
             base.ResetChild();

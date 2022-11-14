@@ -47,9 +47,14 @@ namespace Veridium_Animation{
         private Color initialColor;
         public Color glowColor;
 
+        public GameObject feedbackManagerGO;
         public GameObject pointer;
         public GameObject submitButton;
         public GameObject backdrop;
+
+        private SegmentPlay segmentPlay;
+        private PointerSelector pointerSelector;
+        private AudioFeedbackManager feedbackManager;
 
         private float FADE_DURATION = 0.5f;
 
@@ -59,16 +64,14 @@ namespace Veridium_Animation{
             if(atom.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.GetComponent<Anim_GlowPulse>());
             
             atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
-            if (anim == null)
-            {
-                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
-                anim.easingType = EasingType.Exponential;
-                anim.fadeTime = 0.5f;
-            }
 
             if(answer.Contains(atom))
             {
                 answer.Remove(atom);
+                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
+                anim.easingType = EasingType.Exponential;
+                anim.fadeTime = 0.5f;
+                anim.selfDestruct = true;
                 anim.emissionColor = initialColor;
                 anim.Play();
                 Debug.Log("Unhighlighted atom");
@@ -77,8 +80,11 @@ namespace Veridium_Animation{
             {
                 answer.Add(atom);
                 Debug.Log("Selected atom at position: " + atom.transform.position);
+                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
+                anim.easingType = EasingType.Exponential;
+                anim.fadeTime = 0.5f;
                 initialColor = atom.GetComponent<Renderer>().materials[0].GetColor("_EmissionColor");
-                // anim.selfDestruct = true;
+                anim.selfDestruct = true;
                 anim.emissionColor = glowColor;
                 anim.Play();
                 Debug.Log("Highlighted atom");
@@ -88,7 +94,10 @@ namespace Veridium_Animation{
 
         public void OnAnswerSubmit()
         {
-            //if(answer == solutionSet)
+            Debug.Log("answer count:" + answer.Count);
+            Debug.Log("solution count: " + solutionSet.Count);
+
+            // Correct answer
             if(answer.SetEquals(solutionSet))
             {
                 foreach (GameObject atom in answer)
@@ -105,14 +114,18 @@ namespace Veridium_Animation{
                         if (anim != null) Destroy(anim);
                     }
                 }
+                
+                pointerSelector.onAtomSelect.RemoveListener(CollisionWithAtom);
+                segmentPlay.onInteractionStart.RemoveListener(OnAnswerSubmit);
+
                 // pointer.SetActive(false);
-                CompleteAction();
+                feedbackManager.PlayCorrectAudio();
+                StartCoroutine(WaitToCompleteAction());
                 //*** StartCoroutine(FadeOutBackdrop());
-                //pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.RemoveListener(CollisionWithAtom);
-                //submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnAnswerSubmit);
+                
 
             }
-            else
+            else // Wrong answer
             {
                 foreach(GameObject atom in answer)
                 {
@@ -127,7 +140,17 @@ namespace Veridium_Animation{
                 }
                 answer.Clear();
                 Debug.Log("WRONG WRONG WRONG WRONG WRONG!!!");
+                feedbackManager.PlayWrongAudio();
+                segmentPlay.sphereAnim.SetBool("respawnSphere", true);
             }
+        }
+
+        IEnumerator WaitToCompleteAction()
+        {
+            yield return new WaitForSeconds(1f);
+            yield return new WaitUntil(() => feedbackManager.finishedAudio == true);
+            yield return new WaitForSeconds(0.2f);
+            CompleteAction();
         }
 
 
@@ -138,14 +161,27 @@ namespace Veridium_Animation{
             // gets the associated gameobjects for the atoms in solution
             FillSolutionSet(solutionSet, solution);
 
+            feedbackManagerGO.SetActive(true);
+            feedbackManager = feedbackManagerGO.GetComponent<AudioFeedbackManager>();
             pointer.SetActive(true);
-            pointer.GetComponentInChildren<PointerSelector>().onAtomSelect.AddListener(CollisionWithAtom);
-
-            submitButton.SetActive(true);
-            submitButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnAnswerSubmit);
+            pointerSelector = pointer.GetComponentInChildren<PointerSelector>();
+            pointerSelector.onAtomSelect.AddListener(CollisionWithAtom);
+            StartCoroutine(EnableSubmitButton());
+            Debug.Log("added listeners");
 
             //*** StartCoroutine(FadeBackdrop());
 
+        }
+
+        IEnumerator EnableSubmitButton()
+        {
+            yield return new WaitForSeconds(1f);
+            submitButton.SetActive(true);
+            segmentPlay = submitButton.GetComponentInChildren<SegmentPlay>();
+            Debug.Log("segment play: " + segmentPlay);
+            segmentPlay.onInteractionStart.AddListener(OnAnswerSubmit);
+            segmentPlay.sphereAnim.Rebind();
+            segmentPlay.sphereAnim.Update(0f);
         }
 
         // Fill the solution set with the right solutions
