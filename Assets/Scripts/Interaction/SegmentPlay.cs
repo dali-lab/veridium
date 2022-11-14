@@ -30,6 +30,17 @@ namespace Veridium_Interaction{
         {
             isReset = true;
             isComplete = false;
+            // sphereAnim.SetBool("spawnSphere", true);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            Debug.Log("Enabling segment play");
+
+            isReset = true;
+            isComplete = false;
         }
 
         // Update is called once per frame
@@ -37,36 +48,39 @@ namespace Veridium_Interaction{
         {
 
             // Increment the timer if not interacted
-            if(!interacted && grabbableSphere != null){
-                if(!isReset){
+            if(!interacted && grabbableSphere != null)
+            {
+                if(!isReset)
+                {
                     grabbableSphere.transform.position = resetPoint.position;
                     grabbableSphere.transform.rotation = resetPoint.rotation;
                     isReset = true;
                     heldTimer = 0f;
                     progressBar.enabled = false;
-                    sphereAnim.SetBool("isPressed", false);
                 }
-
-
-            } else if(GetComponent<XRGrabInteractable>().selectingInteractor is XRDirectInteractor) {
-
-                if(isReset){
+            } 
+            else if(GetComponent<XRGrabInteractable>().selectingInteractor is XRDirectInteractor) 
+            {
+                if(isReset)
+                {
                     isReset = false;
                 }
 
-                if(heldTimer < maxHeldTime){
-
+                if(heldTimer < maxHeldTime)
+                {
                     heldTimer += Time.deltaTime;
                     progressBar.enabled = true;
                     progressBar.fillAmount = heldTimer/maxHeldTime;
+                    isComplete = false;
                     //progressBar.fillAmount = Mathf.Lerp(0, 100, heldTimer/maxHeldTime);
 
                 } 
-                else {
+                else if (!isComplete)
+                {
 
                     progressBar.enabled = false;
                     // invoke event
-                    sphereAnim.SetBool("isPressed", true);
+                    sphereAnim.SetBool("despawnSphere", true); // this shrinks the button and destroys it
                     onInteractionStart.Invoke();
                     isComplete = true;
                 }
