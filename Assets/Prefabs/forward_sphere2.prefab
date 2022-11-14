@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8061200223931417233}
   - component: {fileID: 2474844944129244520}
   - component: {fileID: 7518086237551732084}
+  - component: {fileID: 6051830710011244436}
   m_Layer: 0
   m_Name: forward_sphere2
   m_TagString: Untagged
@@ -104,3 +105,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6051830710011244436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247684092874659883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943dddf86bc08e14181b2171f4ce8004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereAnim: {fileID: 7518086237551732084}

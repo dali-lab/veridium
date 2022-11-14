@@ -26,7 +26,6 @@ public class PointerSelector : MonoBehaviour
 
     /* whenever an atom is selected */
     public void OnTriggerEnter(Collider other) {
-        Debug.Log("here");
         if (other.gameObject.CompareTag("atom"))
         {
             Debug.Log("collided");
