@@ -12,7 +12,7 @@ public class FadeScreen : MonoBehaviour
     public float fadeDuration;
     public Color fadeColor;
 
-    public IEnumerator fadeRoutine(int scene)
+    public IEnumerator fadeRoutine(string scene)
     {
         float timer = 0;
 
@@ -30,7 +30,7 @@ public class FadeScreen : MonoBehaviour
 
     }
 
-    public void fadeThenLoadScene(int scene)
+    public void fadeThenLoadScene(string scene)
     {
         StartCoroutine(fadeRoutine(scene));
     }
