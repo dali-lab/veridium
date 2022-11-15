@@ -21,6 +21,7 @@ public class BeginningAudio : MonoBehaviour
 
     public void StopAudio()
     {
+        StopAllCoroutines();
         audio.Stop();
     }
 }
