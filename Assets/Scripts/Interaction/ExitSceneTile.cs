@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
 
 namespace Veridium_Interaction{
     public class ExitSceneTile : HandDistanceGrabbable
@@ -16,6 +17,7 @@ namespace Veridium_Interaction{
         private float heldTimer = 0f;
         public TMPro.TextMeshPro countdownText;
         public TMPro.TextMeshPro stationaryCountdown;
+        public UnityEvent exitEvent;
 
         // Start is called before the first frame update
         void Start()
@@ -92,14 +94,9 @@ namespace Veridium_Interaction{
 
         public void ExitToMenu()
         {
-            StartCoroutine(WaitThenExitToMenu());
+            exitEvent.Invoke();
         }
 
-        IEnumerator WaitThenExitToMenu()
-        {
-            yield return new WaitForSeconds(.3f);
-            SceneManager.LoadScene(0);
-        }
 
 
         //public override bool IsSelectableBy(XRBaseInteractor interactor){

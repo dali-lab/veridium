@@ -675,15 +675,14 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       animator: {fileID: 0}
-      timing: 6
+      timing: 3
     - actionType: 1
       animation: {fileID: 0}
       onPlay:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 881861620}
-            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
-              Assembly-CSharp
+          - m_Target: {fileID: 936844115}
+            m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
             m_MethodName: Unlock
             m_Mode: 1
             m_Arguments:
@@ -695,7 +694,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 3
+      timing: 0
     - actionType: 1
       animation: {fileID: 0}
       onPlay:
@@ -714,7 +713,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 3
+      timing: 0
     realDuration: 0
   - audio: {fileID: 8300000, guid: 1f350d12a1bbdf745a848cb7c592414a, type: 3}
     audioEN: {fileID: 8300000, guid: 1d59c5dc31ccb604089e8ea7e6573c7d, type: 3}
@@ -2966,7 +2965,15 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   structureBuilder: {fileID: 133654971}
+  solution:
+  - {x: -1, y: -1, z: 1}
+  - {x: -1, y: 1, z: -1}
+  - {x: 1, y: -1, z: -1}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 0, z: -1}
   glowColor: {r: 0.10849059, g: 1, b: 0.12078844, a: 0}
+  feedbackManagerGO: {fileID: 0}
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
@@ -4631,7 +4638,15 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   structureBuilder: {fileID: 133654971}
+  solution:
+  - {x: -1, y: -1, z: 1}
+  - {x: -1, y: 1, z: -1}
+  - {x: 1, y: -1, z: -1}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 0, z: -1}
   glowColor: {r: 0.10849059, g: 1, b: 0.12078844, a: 0}
+  feedbackManagerGO: {fileID: 0}
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}

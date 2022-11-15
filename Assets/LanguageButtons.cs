@@ -12,7 +12,8 @@ public class LanguageButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        englishButton.transform.position -= englishButton.transform.up * offset;
+        if (Language.language == "English") englishButton.transform.position -= englishButton.transform.up * offset;
+        else if (Language.language == "German") germanButton.transform.position -= germanButton.transform.up * offset;
     }
 
     public void SelectEnglish()

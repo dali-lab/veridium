@@ -22,6 +22,11 @@ public class Testing : MonoBehaviour
 
     [SerializeField] ElementLoader elementLoader;
 
+    private void Start()
+    {
+        Debug.Log("CURRENT LANGUAGE OR TAG: " + Language.language);
+    }
+
     private void Awake()
     {
         if (primaryButtonPress == null)

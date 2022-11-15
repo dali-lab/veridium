@@ -27,13 +27,13 @@ namespace Veridium_Animation{
             // spawn button 1
             // spawn button 2
             continueButtonInstance = Instantiate(continueButton, buttonOneSpawnPoint.position, Quaternion.identity);
-            resetButtonInstance = Instantiate(resetButton, buttonTwoSpawnPoint.position, Quaternion.identity);
+            //resetButtonInstance = Instantiate(resetButton, buttonTwoSpawnPoint.position, Quaternion.identity);
 
             //continueButton.SetActive(true);
             //resetButton.SetActive(true);
 
             continueButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
-            resetButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStartReset);
+            //resetButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStartReset);
 
         }
 
@@ -47,7 +47,7 @@ namespace Veridium_Animation{
             //continueButton.SetActive(false);
             //resetButton.SetActive(false);
             Destroy(continueButtonInstance);
-            Destroy(resetButtonInstance);
+            //Destroy(resetButtonInstance);
 
         }
 
@@ -59,7 +59,7 @@ namespace Veridium_Animation{
             //continueButton.SetActive(false);
             //resetButton.SetActive(false);
             Destroy(continueButtonInstance);
-            Destroy(resetButtonInstance);
+            //Destroy(resetButtonInstance);
 
             lectureAnimSequence.PlayAtSegment(resetIndex);
 
