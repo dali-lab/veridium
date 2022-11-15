@@ -77,7 +77,14 @@ namespace Veridium_Animation{
             for(int i = 0; i < segments.Count; i++)
             {
                 AnimSegment segment = segments[i];
-                segment.audio = segment.audioEN;
+                if (Language.language == "English")
+                {
+                    segment.audio = segment.audioEN;
+                } 
+                else if (Language.language == "German")
+                {
+                    if (segment.audioDE != null) segment.audio = segment.audioDE;
+                }
                 segment.realDuration = GetSegmentRealDuration(segment);
                 segments[i] = segment;
 

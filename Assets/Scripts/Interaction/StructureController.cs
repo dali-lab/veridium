@@ -62,7 +62,8 @@ namespace Veridium_Interaction{
 
         // extends OnSelectExiting from XRGrabInteractabe. Resets the structure to its state before grabbing
         protected override void OnSelectExiting(XRBaseInteractor interactor) {
-            
+
+
             base.OnSelectExiting(interactor); // Run this method in parent
 
             // Reset the attach transform to its original position
@@ -76,6 +77,14 @@ namespace Veridium_Interaction{
             grabInteractor = null;
 
             structureSelected = false;
+
+            if (structureBase.currentState == CrystalState.INFINITE) 
+            {
+                //structureBase.elementLoader.ResetStructure();
+                structureBase.SingleCellView();
+                gameObject.transform.localScale = Vector3.one;
+            } 
+
 
         }
 
