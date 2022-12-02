@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Animation;
 
-namespace Veridium_Interaction{
+namespace Veridium_Interaction
+{
     public class ElementLoader : XRSocketInteractor
     {
 
@@ -28,7 +29,8 @@ namespace Veridium_Interaction{
 
 
 
-        protected override void Start() {
+        protected override void Start()
+        {
             base.Start();
 
             lectureNameToGO = new Dictionary<string, GameObject>();
@@ -72,38 +74,42 @@ namespace Veridium_Interaction{
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
-        protected override void OnSelectExiting(XRBaseInteractable interactable){
+        protected override void OnSelectExiting(XRBaseInteractable interactable)
+        {
 
             base.OnSelectExiting(interactable);
 
             structureBase.ElementRemoved();
+
             heldElement = null;
 
-            if (currLecture) 
+            if (currLecture)
             {
                 //currLecture.GetComponent<AnimSequence>().ResetSequence();
                 currLecture.SetActive(false);
                 currLecture = null;
             }
 
-            if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
-
+            if (insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
         }
 
-        public void Lock(){
-            if(heldElement != null) heldElement.Lock();
+        public void Lock()
+        {
+            if (heldElement != null) heldElement.Lock();
         }
 
-        public void Unlock(){
+        public void Unlock()
+        {
             heldElement.Unlock();
         }
 
-        public void ResetStructure(){
+        public void ResetStructure()
+        {
 
             structureBase.ElementRemoved();
 
-            if(heldElement != null) structureBase.ElementAdded(heldElement);
+            if (heldElement != null) structureBase.ElementAdded(heldElement);
         }
-        
+
     }
 }

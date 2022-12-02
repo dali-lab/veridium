@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class AwaitUserBase : AnimationBase
     {
 
@@ -10,13 +11,15 @@ namespace Veridium_Animation{
         public bool skipSegment;
         public AnimSequence.AnimPlayer onComplete;
 
-        public AwaitUserBase(){
+        public AwaitUserBase()
+        {
             indefiniteDuration = true;
             duration = 0;
             awaitingAction = true;
         }
 
-        public override void Play(){
+        public override void Play()
+        {
 
             Reset();
 
@@ -37,24 +40,29 @@ namespace Veridium_Animation{
         }
 
         // Performs the action automatically. This is to be done while scrubbing
-        protected virtual void DoAction(){
+        protected virtual void DoAction()
+        {
 
         }
 
         // Should be called when the desired action is completed
-        public virtual void CompleteAction(){
+        public virtual void CompleteAction()
+        {
 
             if (playing) awaitingAction = false;
             Debug.Log(animSequence);
 
-            if (skipSegment && animSequence.CanMoveOn()) animSequence.PlayNextSegment();
-            
+            if (skipSegment && animSequence.CanMoveOn())
+            {
+                animSequence.PlayNextSegment();
+            }
+
             Invoke("OnComplete", onComplete.timing + Time.deltaTime);
 
         }
 
-        private void OnComplete(){
-
+        private void OnComplete()
+        {
             switch (onComplete.actionType){
                 case AnimSequence.ActionType.AnimationScript:
                     if(onComplete.animation != null) onComplete.animation.Play();
@@ -65,7 +73,6 @@ namespace Veridium_Animation{
                 case AnimSequence.ActionType.Animator:
                     break;
             }
-
         }
     }
 }
