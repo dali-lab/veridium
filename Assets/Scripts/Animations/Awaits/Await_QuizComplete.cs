@@ -58,10 +58,29 @@ namespace Veridium_Animation{
 
         private float FADE_DURATION = 0.5f;
 
+        public override void Play()
+        {
+            base.Play();
+
+            // gets the associated gameobjects for the atoms in solution
+            FillSolutionSet(solutionSet, solution);
+
+            feedbackManagerGO.SetActive(true);
+            feedbackManager = feedbackManagerGO.GetComponent<AudioFeedbackManager>();
+            pointer.SetActive(true);
+            pointerSelector = pointer.GetComponentInChildren<PointerSelector>();
+            pointerSelector.onAtomSelect.AddListener(CollisionWithAtom);
+            StartCoroutine(EnableSubmitButton());
+            Debug.Log("added listeners");
+
+            //*** StartCoroutine(FadeBackdrop());
+
+        }
+        
         //  listener added to selector tool
         public void CollisionWithAtom(GameObject atom)
         {
-            if(atom.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.GetComponent<Anim_GlowPulse>());
+            if(atom.GetComponent<Anim_GlowPulse>() != null) MonoBehaviour.Destroy(manager);
             
             atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
 
@@ -92,6 +111,7 @@ namespace Veridium_Animation{
 
         }
 
+
         public void OnAnswerSubmit()
         {
             Debug.Log("answer count:" + answer.Count);
@@ -111,7 +131,7 @@ namespace Veridium_Animation{
                         anim.Play();
 
                         // Making sure animation gets destroyed
-                        if (anim != null) Destroy(anim);
+                        if (anim != null) MonoBehaviour.Destroy(manager);
                     }
                 }
                 
@@ -151,26 +171,6 @@ namespace Veridium_Animation{
             yield return new WaitUntil(() => feedbackManager.finishedAudio == true);
             yield return new WaitForSeconds(0.2f);
             CompleteAction();
-        }
-
-
-        public override void Play()
-        {
-            base.Play();
-
-            // gets the associated gameobjects for the atoms in solution
-            FillSolutionSet(solutionSet, solution);
-
-            feedbackManagerGO.SetActive(true);
-            feedbackManager = feedbackManagerGO.GetComponent<AudioFeedbackManager>();
-            pointer.SetActive(true);
-            pointerSelector = pointer.GetComponentInChildren<PointerSelector>();
-            pointerSelector.onAtomSelect.AddListener(CollisionWithAtom);
-            StartCoroutine(EnableSubmitButton());
-            Debug.Log("added listeners");
-
-            //*** StartCoroutine(FadeBackdrop());
-
         }
 
         IEnumerator EnableSubmitButton()

@@ -4,7 +4,9 @@ using UnityEngine;
 using Veridium_Interaction;
 using Veridium_Core;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
+    [System.Serializable]
     public class Anim_ViewMode : AnimationBase
     {
 

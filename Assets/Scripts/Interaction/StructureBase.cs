@@ -20,7 +20,7 @@ namespace Veridium_Interaction
         public float sideLength = 1f;                 // Standard side length of a unit cell
         public float sphereRadius = 0.075f;             // Radius of the spheres
         public int planeIndex = 0;                      // Index of the currently visualized plane
-        public Anim_SpinUp spinUpAnimation;             // The animation that spawns this structure in
+        public AnimScriptType spawnAnimation;             // The animation that spawns this structure in
         public bool locked { get; private set; }          // Locked means no interaction
         public ElementLoader elementLoader;             // Element loader associated with this structure
         public StructureController structureController; // Structure controller associated with this 
@@ -29,6 +29,22 @@ namespace Veridium_Interaction
         void Awake()
         {
             structureController.structureBase = this;
+        }
+
+        void OnValidate()
+        {
+            spawnAnimation.OnValidate(null);
+        }
+
+        public StructureBase()
+        {
+            // The default animation for spawning the structure should be a spin up with quadratic easing.
+            spawnAnimation = new AnimScriptType();
+            spawnAnimation.animationType = AnimationScript.Anim_SpinUp;
+            spawnAnimation.OnValidate(null);
+            Anim_SpinUp defaultAnim = spawnAnimation.animScript as Anim_SpinUp;
+            defaultAnim.duration = 1.5f;
+            defaultAnim.easingType = EasingType.Quadratic;
         }
 
         void Update()
@@ -77,9 +93,9 @@ namespace Veridium_Interaction
 
             planeIndex = 0;
 
-            if (spinUpAnimation != null)
+            if (structureController.gameObject.GetComponent<AnimPlayer>() != null) 
             {
-                spinUpAnimation.PlayFromStart();
+                structureController.gameObject.GetComponent<AnimPlayer>().Play();
             }
 
             currentState = CrystalState.SINGLECELL;
@@ -141,11 +157,11 @@ namespace Veridium_Interaction
 
             structureBuilder.Redraw(CrystalState.MULTICELL);
 
-            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null)
-            {
-                Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
-            }
-            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+            AnimPlayer animPlayer = structureBuilder.gameObject.AddComponent<AnimPlayer>() as AnimPlayer;
+            animPlayer.animationType = AnimationScript.Anim_MoveTo;
+            animPlayer.OnValidate();
+
+            Anim_MoveTo anim = animPlayer.animScript as Anim_MoveTo;
 
             anim.updateLocation = false;
             anim.updateRotation = false;
@@ -178,11 +194,11 @@ namespace Veridium_Interaction
 
             structureBuilder.Redraw(CrystalState.SINGLECELL);
 
-            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null)
-            {
-                Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
-            }
-            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+            AnimPlayer animPlayer = structureBuilder.gameObject.AddComponent<AnimPlayer>() as AnimPlayer;
+            animPlayer.animationType = AnimationScript.Anim_MoveTo;
+            animPlayer.OnValidate();
+
+            Anim_MoveTo anim = animPlayer.animScript as Anim_MoveTo;
 
             anim.updateLocation = false;
             anim.updateRotation = false;
@@ -201,7 +217,7 @@ namespace Veridium_Interaction
         public void ClosePackedView()
         {
 
-            foreach(Bond bond in structureBuilder.crystal.bonds.Values)
+            foreach (Bond bond in structureBuilder.crystal.bonds.Values)
             {
                 Destroy(bond.drawnObject);
             }
@@ -210,7 +226,11 @@ namespace Veridium_Interaction
             {
                 if (atom.drawnObject != null)
                 {
-                    Anim_MoveTo anim = atom.drawnObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+                    AnimPlayer animPlayer = structureBuilder.gameObject.AddComponent<AnimPlayer>() as AnimPlayer;
+                    animPlayer.animationType = AnimationScript.Anim_MoveTo;
+                    animPlayer.OnValidate();
+
+                    Anim_MoveTo anim = animPlayer.animScript as Anim_MoveTo;
                     anim.updateLocation = false;
                     anim.updateRotation = false;
                     anim.easingType = EasingType.Elastic;

@@ -14,7 +14,7 @@ namespace Veridium_Interaction{
         /// </summary>
 
         public bool hovered;               // Whether this distance grabbable is currently hovered
-        public Anim_Highlight highlight;     // The Animation to highlight the grabbable
+        public GameObject highlightObject;   // The object to highlight
         public bool drawRay = true;
 
         protected override void OnHoverEntered(HoverEnterEventArgs args){
@@ -23,7 +23,7 @@ namespace Veridium_Interaction{
 
             if(args.interactor is XRDirectInteractor){
                 hovered = true;
-                if (highlight != null) highlight.Highlight();
+                if (highlightObject != null) highlightObject.SetActive(true);
             }
         }
 
@@ -33,7 +33,7 @@ namespace Veridium_Interaction{
 
             if(args.interactor is XRDirectInteractor){
                 hovered = false;
-                if (highlight != null) highlight.Unhighlight();
+                if (highlightObject != null) highlightObject.SetActive(false);
             }
         }
 

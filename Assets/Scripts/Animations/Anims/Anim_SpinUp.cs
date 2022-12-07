@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
+    [System.Serializable]
     public class Anim_SpinUp : AnimationBase
     {
 
@@ -25,6 +27,7 @@ namespace Veridium_Animation{
         // Update is called once per frame
         protected override void UpdateAnim()
         {
+            base.UpdateAnim();
 
             // Update the transform of the gameObject
             gameObject.transform.localPosition = originalPosition + new Vector3(0, Height(elapsedTimePercent), 0);
@@ -43,18 +46,21 @@ namespace Veridium_Animation{
             originalRotation = gameObject.transform.localRotation;
 
             // If the object is interactable, it shouldn't be during the animation
-            if (GetComponent<XRGrabInteractable>() != null) GetComponent<XRGrabInteractable>().enabled = false;
+            if (gameObject.GetComponent<XRGrabInteractable>() != null) gameObject.GetComponent<XRGrabInteractable>().enabled = false;	
+        }	
 
+        // Called when animation ends	
+        public override void End()	
+        {	
+            base.End();
+
+             // If the animation stops, it should be interactable again.	
+            if (gameObject.GetComponent<XRGrabInteractable>() != null) gameObject.GetComponent<XRGrabInteractable>().enabled = true;	
         }
 
         public override void Pause()
         {
-
             base.Pause();
-
-            // If the animation stops, it should be interactable again.
-            if (GetComponent<XRGrabInteractable>() != null) GetComponent<XRGrabInteractable>().enabled = true;
-
         }
 
         protected override void ResetChild()

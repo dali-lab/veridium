@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 using Veridium_Core;
+using Veridium_Interaction;
 
-namespace Veridium_Animation{
-    public class Anim_AddAtoms : AnimationBase
-    {
+namespace Veridium_Animation
+{
+    [System.Serializable]
+    public class Anim_AddAtoms : AnimationBase{
 
         ///<summary>
         /// Draws existing atoms at all of the existing coordinates
@@ -16,6 +22,7 @@ namespace Veridium_Animation{
         public List<ListWrapper<Vector3>> steps;        // A list of steps. Each step contains a list of coordinates of atoms
         public StructureBuilder structureBuilder;       // The structureBuilder of the atoms to add
         private int currentStep = -1;                   // Current step of the animation. Steps will progress for the length of the steps list
+        public AnimScriptType spawnAnimation;
 
         // A list wrapper class that allows nested lists to be edited in the inspector
         [System.Serializable]
@@ -27,29 +34,42 @@ namespace Veridium_Animation{
         // Constructor
         public Anim_AddAtoms(){
             duration = 2f;
+            spawnAnimation = new AnimScriptType();
+
+            // The default animation for adding atoms should be a fade in with exponential easing.
+            spawnAnimation.animationType = AnimationScript.Anim_Fade;
+            spawnAnimation.OnValidate(manager);
+            Anim_Fade defaultAnim = spawnAnimation.animScript as Anim_Fade;
+            defaultAnim.easingType = EasingType.Exponential;
         }
-        
-        // Called when started
+    
+        // Called when animation is started
         public override void Play()
         {
             base.Play();
             currentStep = -1;
         }
 
-        // Called when restarted 
+        // Called when animation ends
+        public override void End()
+        {
+            base.End();
+        }
+
+        // Called when animation is paused
+        public override void Pause()
+        {
+            base.Pause();
+        }
+
+        // Called when animation restarts
         protected override void ResetChild()
         {
             base.ResetChild();
             currentStep = -1;
         }
 
-        // Called when paused or ended
-        public override void Pause()
-        {
-            base.Pause();
-        }
-        
-        // Called each frame the animation is playing
+        // Called every frame while animation is playing
         protected override void UpdateAnim()
         {
             base.UpdateAnim();
@@ -68,11 +88,11 @@ namespace Veridium_Animation{
                     atom.builder = structureBuilder.gameObject;
                     atom.Draw();
 
-                    // Play a fade in animation 
-                    Anim_Fade anim = atom.drawnObject.AddComponent<Anim_Fade>() as Anim_Fade;
-                    anim.easingType = EasingType.Exponential;
-                    anim.Play();
-                    anim.selfDestruct = true;
+                    AnimPlayer animPlayer = atom.drawnObject.AddComponent<AnimPlayer>() as AnimPlayer;
+                    animPlayer.animScript = spawnAnimation.animScript.Clone();
+                    animPlayer.animScript.OnValidate(animPlayer);
+                    animPlayer.animScript.selfDestruct = true;
+                    animPlayer.animScript.Play();
                 }
             }
         }

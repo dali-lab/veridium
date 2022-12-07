@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
-namespace Veridium_Animation{
-    public class Anim_GlowPulse : AnimationBase
-    {
+namespace Veridium_Animation
+{
+    [System.Serializable]
+    public class Anim_GlowPulse : AnimationBase{
 
         /// <summary>
         /// Glow pulse implements a sinusoidal glow pulse animation on the material of
@@ -20,21 +25,11 @@ namespace Veridium_Animation{
         private bool finishCycle;               // For trailing off glow
         public float maxIntensity = 0.6f;       // Maximum brightness that the glow effect will have
 
-
         public Anim_GlowPulse(){
             indefiniteDuration = true;
         }
 
-        protected override void UpdateAnim()
-        {
-            base.UpdateAnim();
-
-            // If the renderer exists, pulse the emission
-            if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(elapsedTime));
-        }
-
-        
-        protected override void Update(){
+        public override void Update(){
 
             base.Update();
 
@@ -49,11 +44,13 @@ namespace Veridium_Animation{
 
                     // Turn off the emission if the animation is paused
                     if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
-                    if(selfDestruct) Destroy(this);
+                    base.End(); 
+                    if(selfDestruct) MonoBehaviour.Destroy(manager);
                 }
             }
         }
-
+    
+        // Called when animation is started
         public override void Play()
         {
             base.Play();
@@ -67,17 +64,34 @@ namespace Veridium_Animation{
             }
         }
 
+        // Called when animation ends
         public override void End()
         {
             
         }
 
+        // Called when animation is paused
         public override void Pause()
         {
             base.Pause();
 
             timeAfterEnd = elapsedTime;
             finishCycle = true;
+        }
+
+        // Called when animation restarts
+        protected override void ResetChild()
+        {
+            base.ResetChild();
+        }
+
+        // Called every frame while animation is playing
+        protected override void UpdateAnim()
+        {
+            base.UpdateAnim();
+
+            // If the renderer exists, pulse the emission
+            if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(elapsedTime));
         }
 
         // Finds the intensity of the emission at a given time

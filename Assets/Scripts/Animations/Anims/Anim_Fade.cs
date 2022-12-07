@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
+    [System.Serializable]
     public class Anim_Fade : AnimationBase
     {
         /// <summary>

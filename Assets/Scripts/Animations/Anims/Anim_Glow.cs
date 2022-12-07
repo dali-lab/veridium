@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
+    [System.Serializable]
     public class Anim_Glow : AnimationBase
     {
 
@@ -31,7 +33,8 @@ namespace Veridium_Animation{
         }
 
         
-        protected override void Update(){
+        public override void Update()
+        {
 
             base.Update();
 
@@ -46,7 +49,8 @@ namespace Veridium_Animation{
 
                     // Turn off the emission if the animation is paused
                     if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
-                    if(selfDestruct) Destroy(this);
+                    base.End(); 
+                    if (selfDestruct) MonoBehaviour.Destroy(manager);
                 }
             }
         }
@@ -71,6 +75,12 @@ namespace Veridium_Animation{
             {
                 gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
             }
+        }
+
+        // Called when animation restarts	
+        protected override void ResetChild()	
+        {	
+            base.ResetChild();	
         }
 
         public override void End()

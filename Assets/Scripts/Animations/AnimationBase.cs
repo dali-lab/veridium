@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
+using System;
 
 namespace Veridium_Animation
 {
+    // A list wrapper class that allows nested lists to be edited in the inspector
+    [System.Serializable]
     public class AnimationBase : MonoBehaviour
     {
 
@@ -21,6 +27,8 @@ namespace Veridium_Animation
         public bool playing { get; private set; }                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
         public bool awaitingAction { get; protected set; }        // Don't set this directly, should only be used in the AwaitUserBase class
+        [HideInInspector] public AnimationManager manager;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
+        [HideInInspector] public GameObject gameObject;
         public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
         [HideInInspector] public bool selfDestruct;
 
@@ -34,8 +42,17 @@ namespace Veridium_Animation
             
         }
 
+        public virtual void OnValidate(AnimationManager parent)
+        {
+            if (parent != null)
+            {
+                manager = parent;
+                gameObject = parent.gameObject;
+            }
+        }
+
         // Update is called on each frame
-        protected virtual void Update()
+        public virtual void Update()
         {
 
             // Increment animation time and update the animation if it is playing
@@ -93,7 +110,7 @@ namespace Veridium_Animation
 
             if (selfDestruct)
             {
-                Destroy(this);
+                MonoBehaviour.Destroy(manager);
             }
         }
 
@@ -119,7 +136,7 @@ namespace Veridium_Animation
 
         }
 
-        // Resets the animation. Overriden by individual animations
+        // Resets the animation. Not overriden by individual animations
         public void Reset()
         {
 
@@ -137,6 +154,11 @@ namespace Veridium_Animation
         protected virtual void ResetChild()
         {
 
+        }
+
+        public AnimationBase Clone()
+        {
+            return this.MemberwiseClone() as AnimationBase;
         }
 
         // Sets the time of the animation to the new time parameter

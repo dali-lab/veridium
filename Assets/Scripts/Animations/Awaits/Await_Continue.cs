@@ -24,51 +24,61 @@ namespace Veridium_Animation{
         {
             base.Play();
 
+            MonoBehaviour.FindObjectOfType<SegmentPlay>().gameObject.SetActive(true);
+
+            MonoBehaviour.FindObjectOfType<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
+
             // spawn button 1
             // spawn button 2
-            continueButtonInstance = Instantiate(continueButton, buttonOneSpawnPoint.position, Quaternion.identity);
+            //**continueButtonInstance = Instantiate(continueButton, buttonOneSpawnPoint.position, Quaternion.identity);
             //resetButtonInstance = Instantiate(resetButton, buttonTwoSpawnPoint.position, Quaternion.identity);
 
             //continueButton.SetActive(true);
             //resetButton.SetActive(true);
 
-            continueButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
+            //**continueButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStart);
             //resetButtonInstance.GetComponentInChildren<SegmentPlay>().onInteractionStart.AddListener(OnInteractionStartReset);
 
         }
 
 
         public void OnInteractionStart(){
-            CompleteAction();
+            //**CompleteAction();
             //continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
             //resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
 
 
             //continueButton.SetActive(false);
             //resetButton.SetActive(false);
-            Destroy(continueButtonInstance);
+            //**Destroy(continueButtonInstance);
             //Destroy(resetButtonInstance);
 
-        }
-
-        public void OnInteractionStartReset(){
             CompleteAction();
-            //continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
-            //resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
 
-            //continueButton.SetActive(false);
-            //resetButton.SetActive(false);
-            Destroy(continueButtonInstance);
-            //Destroy(resetButtonInstance);
+            MonoBehaviour.FindObjectOfType<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
 
-            lectureAnimSequence.PlayAtSegment(resetIndex);
+            MonoBehaviour.FindObjectOfType<SegmentPlay>().gameObject.SetActive(false);
 
         }
 
-        protected override void UpdateAnim(){
+        // public void OnInteractionStartReset(){
+        //     CompleteAction();
+        //     //continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
+        //     //resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
 
-            base.UpdateAnim();
+        //     //continueButton.SetActive(false);
+        //     //resetButton.SetActive(false);
+        //     Destroy(continueButtonInstance);
+        //     //Destroy(resetButtonInstance);
 
-        }
+        //     lectureAnimSequence.PlayAtSegment(resetIndex);
+
+        // }
+
+        // protected override void UpdateAnim(){
+
+        //     base.UpdateAnim();
+
+        // }
     }
 }
