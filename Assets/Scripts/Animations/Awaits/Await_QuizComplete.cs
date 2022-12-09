@@ -109,9 +109,9 @@ namespace Veridium_Animation{
                 Debug.Log("Highlighted atom");
             }
 
-        }
+        }  
 
-
+        
         public void OnAnswerSubmit()
         {
             Debug.Log("answer count:" + answer.Count);

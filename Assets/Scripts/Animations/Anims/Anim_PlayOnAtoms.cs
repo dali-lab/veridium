@@ -11,7 +11,8 @@ namespace Veridium_Animation
 {
 
     [System.Serializable]
-    public class Anim_PlayOnAtoms : AnimationBase{
+    public class Anim_PlayOnAtoms : AnimationBase
+    {
 
         public AnimationScript animationType;
         [HideInInspector] public AnimationScript currentAnimation;

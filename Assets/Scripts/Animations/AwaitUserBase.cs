@@ -65,6 +65,8 @@ namespace Veridium_Animation
         public virtual void CompleteAction()
         {
 
+            if (playing) awaitingAction = false;
+
             if (manager is AnimSequence)
             {
                 AnimSequence sequence = manager as AnimSequence;

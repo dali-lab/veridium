@@ -76,6 +76,7 @@ namespace Veridium_Animation
     [System.Serializable]
     public class AnimType
     {
+        public virtual void Play() { }
         public virtual void Execute() { }
         public virtual void Undo() { }
         [HideInInspector] public AnimationManager manager;
@@ -154,7 +155,13 @@ namespace Veridium_Animation
     public class UnityEventType : AnimType
     {
         public UnityEvent onExecute;
+        public UnityEvent onPlay;
         public UnityEvent onUndo;
+        public override void Play()
+        {
+            base.Execute();
+            onPlay.Invoke();
+        }
         public override void Execute()
         {
             base.Execute();

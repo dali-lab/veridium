@@ -11,7 +11,7 @@ namespace Veridium_Animation
 {
     // A list wrapper class that allows nested lists to be edited in the inspector
     [System.Serializable]
-    public class AnimationBase : MonoBehaviour
+    public class AnimationBase : AnimationManager
     {
 
         /// <summary>
