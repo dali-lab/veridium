@@ -5,7 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
 using System.Linq;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Await_QuizComplete : AwaitUserBase
     {
 
@@ -70,7 +71,9 @@ namespace Veridium_Animation{
             pointer.SetActive(true);
             pointerSelector = pointer.GetComponentInChildren<PointerSelector>();
             pointerSelector.onAtomSelect.AddListener(CollisionWithAtom);
-            StartCoroutine(EnableSubmitButton());
+
+            // need to use a monobehaviour to call startcoroutine on a non monobehaviour structure
+            pointerSelector.StartCoroutine(EnableSubmitButton());
             Debug.Log("added listeners");
 
             //*** StartCoroutine(FadeBackdrop());
@@ -80,7 +83,9 @@ namespace Veridium_Animation{
         //  listener added to selector tool
         public void CollisionWithAtom(GameObject atom)
         {
-            if(atom.GetComponent<Anim_GlowPulse>() != null) MonoBehaviour.Destroy(manager);
+            if(atom.GetComponent<Anim_GlowPulse>() != null) {
+                MonoBehaviour.Destroy(gameObject);
+            }
             
             atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
 
@@ -131,7 +136,7 @@ namespace Veridium_Animation{
                         anim.Play();
 
                         // Making sure animation gets destroyed
-                        if (anim != null) MonoBehaviour.Destroy(manager);
+                        if (anim != null) MonoBehaviour.Destroy(gameObject);
                     }
                 }
                 
@@ -140,7 +145,9 @@ namespace Veridium_Animation{
 
                 // pointer.SetActive(false);
                 feedbackManager.PlayCorrectAudio();
-                StartCoroutine(WaitToCompleteAction());
+
+                // need to use a monobehaviour to call startcoroutine on a non monobehaviour structure
+                feedbackManager.StartCoroutine(WaitToCompleteAction()); 
                 //*** StartCoroutine(FadeOutBackdrop());
                 
 

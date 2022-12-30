@@ -18,9 +18,9 @@ namespace Veridium_Animation
             duration = 0;
         }
 
-        public override void OnValidate(AnimationManager manager){
+        public override void OnValidate(AnimationManager parent){
 
-            base.OnValidate(manager);
+            base.OnValidate(parent);
 
             if(animType != null){
                 animType.OnValidate(null);

@@ -100,7 +100,7 @@ namespace Veridium_Animation
             if(currentAnimation != animationType){
                 if(animationType != AnimationScript.Anim_PlayOnAtoms){
                     animScript = AnimPlayer.CreateAnimation(animationType);
-                    animScript.OnValidate(manager);
+                    animScript.OnValidate(parent);
                     currentAnimation = animationType;
                 } else {
                     animScript = null;

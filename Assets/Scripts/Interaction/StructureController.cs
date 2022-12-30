@@ -62,7 +62,6 @@ namespace Veridium_Interaction{
 
         // extends OnSelectExiting from XRGrabInteractabe. Resets the structure to its state before grabbing
         protected override void OnSelectExiting(XRBaseInteractor interactor) {
-
             base.OnSelectExiting(interactor); // Run this method in parent
 
             // Reset the attach transform to its original position

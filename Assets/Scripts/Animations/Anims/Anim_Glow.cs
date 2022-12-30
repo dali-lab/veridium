@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Veridium_Animation
 {
-    [System.Serializable]
     public class Anim_Glow : AnimationBase
     {
 
@@ -18,7 +17,8 @@ namespace Veridium_Animation
         public EasingType easingType;    // Easing function to use while fading
 
 
-        public Anim_Glow(){
+        public Anim_Glow()
+        {
             indefiniteDuration = true;
         }
 

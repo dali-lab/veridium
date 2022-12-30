@@ -23,7 +23,7 @@ namespace Veridium_Animation
                 foreach (AwaitUserType awaitType in awaiters)
                 {
                     if (awaitType == null) awaiters[awaiters.IndexOf(awaitType)] = new AwaitUserType();
-                    awaitType.OnValidate(manager);
+                    awaitType.OnValidate(parent);
                 }
             }
         }

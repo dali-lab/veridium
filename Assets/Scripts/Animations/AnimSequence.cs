@@ -109,7 +109,6 @@ namespace Veridium_Animation
                 segment.realDuration = GetSegmentRealDuration(segment);
                 segments[i] = segment;
             }
-
         }
 
         void Start()

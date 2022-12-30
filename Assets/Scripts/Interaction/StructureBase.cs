@@ -97,7 +97,7 @@ namespace Veridium_Interaction
             {
                 structureController.gameObject.GetComponent<AnimPlayer>().Play();
             }
-
+            
             currentState = CrystalState.SINGLECELL;
             desiredState = CrystalState.SINGLECELL;
         }
@@ -162,7 +162,6 @@ namespace Veridium_Interaction
             animPlayer.OnValidate();
 
             Anim_MoveTo anim = animPlayer.animScript as Anim_MoveTo;
-
             anim.updateLocation = false;
             anim.updateRotation = false;
             anim.updateScale = true;
@@ -231,6 +230,7 @@ namespace Veridium_Interaction
                     animPlayer.OnValidate();
 
                     Anim_MoveTo anim = animPlayer.animScript as Anim_MoveTo;
+
                     anim.updateLocation = false;
                     anim.updateRotation = false;
                     anim.easingType = EasingType.Elastic;

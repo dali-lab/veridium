@@ -11,7 +11,7 @@ namespace Veridium_Animation
 {
     // A list wrapper class that allows nested lists to be edited in the inspector
     [System.Serializable]
-    public class AnimationBase : AnimationManager
+    public class AnimationBase : MonoBehaviour
     {
 
         /// <summary>
@@ -36,10 +36,8 @@ namespace Veridium_Animation
         // Start is called before the first frame update
         protected virtual void Start()
         {
-
             // Begin playing immediately if playing on start
             if (playOnStart) Play();
-            
         }
 
         public virtual void OnValidate(AnimationManager parent)
