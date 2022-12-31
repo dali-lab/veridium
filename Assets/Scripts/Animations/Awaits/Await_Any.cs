@@ -14,16 +14,16 @@ namespace Veridium_Animation
         
         [SerializeReference] public List<AwaitUserType> awaiters;
 
-        public override void OnValidate(AnimationManager parent)
+        public override void OnValidate()
         {
-            base.OnValidate(parent);
+            base.OnValidate();
 
             if (awaiters != null)
             {
                 foreach (AwaitUserType awaitType in awaiters)
                 {
                     if (awaitType == null) awaiters[awaiters.IndexOf(awaitType)] = new AwaitUserType();
-                    awaitType.OnValidate(parent);
+                    awaitType.OnValidate();
                 }
             }
         }

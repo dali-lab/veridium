@@ -27,8 +27,6 @@ namespace Veridium_Animation
         public bool playing { get; private set; }                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
         public bool awaitingAction { get; protected set; }        // Don't set this directly, should only be used in the AwaitUserBase class
-        [HideInInspector] public AnimationManager manager;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
-        [HideInInspector] public GameObject gameObject;
         public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
         [HideInInspector] public bool selfDestruct;
 
@@ -40,13 +38,8 @@ namespace Veridium_Animation
             if (playOnStart) Play();
         }
 
-        public virtual void OnValidate(AnimationManager parent)
+        public virtual void OnValidate()
         {
-            if (parent != null)
-            {
-                manager = parent;
-                gameObject = parent.gameObject;
-            }
         }
 
         // Update is called on each frame
@@ -108,7 +101,7 @@ namespace Veridium_Animation
 
             if (selfDestruct)
             {
-                MonoBehaviour.Destroy(manager);
+                MonoBehaviour.Destroy(animSequence);
             }
         }
 

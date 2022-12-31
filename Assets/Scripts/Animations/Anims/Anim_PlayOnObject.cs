@@ -18,12 +18,12 @@ namespace Veridium_Animation
             duration = 0;
         }
 
-        public override void OnValidate(AnimationManager parent){
+        public override void OnValidate(){
 
-            base.OnValidate(parent);
+            base.OnValidate();
 
             if(animType != null){
-                animType.OnValidate(null);
+                animType.OnValidate();
             }
         }
     
@@ -34,7 +34,7 @@ namespace Veridium_Animation
 
             AnimPlayer animPlayer = gameObject.AddComponent<AnimPlayer>() as AnimPlayer;
             animPlayer.animScript = animType.animScript.Clone();
-            animPlayer.animScript.OnValidate(animPlayer);
+            animPlayer.animScript.OnValidate();
             animPlayer.animScript.selfDestruct = true;
             animPlayer.animScript.Play();
 

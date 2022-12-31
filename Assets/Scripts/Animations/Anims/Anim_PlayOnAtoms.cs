@@ -39,7 +39,7 @@ namespace Veridium_Animation
                 {
                     AnimPlayer animPlayer = atom.drawnObject.AddComponent<AnimPlayer>() as AnimPlayer;
                     animPlayer.animScript = animScript.Clone();
-                    animPlayer.animScript.OnValidate(animPlayer);
+                    animPlayer.animScript.OnValidate();
                     animPlayer.animScript.selfDestruct = true;
                     animPlayer.animScript.Play();
                 }
@@ -83,7 +83,7 @@ namespace Veridium_Animation
 
                             AnimPlayer animPlayer = atom.drawnObject.AddComponent<AnimPlayer>() as AnimPlayer;
                             animPlayer.animScript = animScript.Clone();
-                            animPlayer.animScript.OnValidate(animPlayer);
+                            animPlayer.animScript.OnValidate();
                             animPlayer.animScript.selfDestruct = true;
                             animPlayer.animScript.Play();
 
@@ -93,14 +93,14 @@ namespace Veridium_Animation
             }
         }
 
-        public override void OnValidate(AnimationManager parent){
+        public override void OnValidate(){
 
-            base.OnValidate(parent);
+            base.OnValidate();
 
             if(currentAnimation != animationType){
                 if(animationType != AnimationScript.Anim_PlayOnAtoms){
                     animScript = AnimPlayer.CreateAnimation(animationType);
-                    animScript.OnValidate(parent);
+                    animScript.OnValidate();
                     currentAnimation = animationType;
                 } else {
                     animScript = null;

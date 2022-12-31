@@ -17,7 +17,7 @@ namespace Veridium_Animation
 
         void Awake()
         {
-            if (animScript != null) animScript.OnValidate(this);
+            if (animScript != null) animScript.OnValidate();
         }
 
         // Start is called before the first frame update
@@ -140,7 +140,7 @@ namespace Veridium_Animation
         public void SetAnimation()
         {
             animScript = CreateAnimation(animationType);
-            animScript.OnValidate(this);
+            animScript.OnValidate();
         }
     }
 

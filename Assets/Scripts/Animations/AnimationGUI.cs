@@ -26,6 +26,7 @@ namespace Veridium_Animation
         Anim_GlowPulse,
         Anim_MoveTo,
         Anim_SpinUp,
+        Anim_ViewMode,
         Anim_PlayOnAtoms,
         Anim_PlayOnObject
     }
@@ -79,9 +80,8 @@ namespace Veridium_Animation
         public virtual void Execute() { }
         public virtual void Undo() { }
         [HideInInspector] public AnimationManager manager;
-        public virtual void OnValidate(AnimationManager parent) 
+        public virtual void OnValidate() 
         { 
-            manager = parent;
         }
     }
 
@@ -92,18 +92,17 @@ namespace Veridium_Animation
         public AwaitType awaitType;
         [HideInInspector] public AwaitType currentType;
         [SerializeReference] public AwaitUserBase awaitScript;
-        public override void OnValidate(AnimationManager parent)
+        public override void OnValidate()
         {
-            base.OnValidate(parent);
             if (currentType != awaitType || awaitScript == null)
             {
                 awaitScript = AnimPlayer.CreateAwait(awaitType);
-                awaitScript.OnValidate(manager);
+                awaitScript.OnValidate();
                 currentType = awaitType;
             }
             else
             {
-                if (awaitScript != null) awaitScript.OnValidate(manager);
+                if (awaitScript != null) awaitScript.OnValidate();
             }
         }
         public override void Execute()
@@ -125,18 +124,18 @@ namespace Veridium_Animation
         public AnimationScript animationType;
         [HideInInspector] public AnimationScript currentAnimation;
         [SerializeReference] public AnimationBase animScript;
-        public override void OnValidate(AnimationManager parent)
+        public override void OnValidate()
         {
-            base.OnValidate(parent);
+            base.OnValidate();
             if (currentAnimation != animationType || animScript == null)
             {
                 animScript = AnimPlayer.CreateAnimation(animationType);
-                animScript.OnValidate(manager);
+                animScript.OnValidate();
                 currentAnimation = animationType;
             }
             else
             {
-                if (animScript != null) animScript.OnValidate(manager);
+                if (animScript != null) animScript.OnValidate();
             }
         }
         public override void Execute()
@@ -204,9 +203,9 @@ namespace Veridium_Animation
         public string undoParameterName;
         [SerializeReference]
         public AnimatorParameterType undo;
-        public override void OnValidate(AnimationManager parent)
+        public override void OnValidate()
         {
-            base.OnValidate(parent);
+            base.OnValidate();
             if (currentParameter != parameterType || parameter == null)
             {
                 switch (parameterType)
@@ -262,17 +261,15 @@ namespace Veridium_Animation
     [System.Serializable]
     public class SegmentAnimPlayer
     {
-        [HideInInspector] public AnimationManager manager;
+        public AnimationManager manager;
         [HideInInspector] public bool executed;
         [HideInInspector] public ActionType currentActionType;
         public ActionType actionType;
         public float timing;
         [SerializeReference] public AnimType animType;
 
-        public void OnValidate(AnimationManager parent)
+        public void OnValidate()
         {
-            manager = parent;
-
             if (currentActionType != actionType || animType == null)
             {
                 switch (actionType)
@@ -294,11 +291,11 @@ namespace Veridium_Animation
                         break;
                 }
                 currentActionType = actionType;
-                animType.OnValidate(manager);
+                animType.OnValidate();
             }
             else
             {
-                if (animType != null) animType.OnValidate(manager);
+                if (animType != null) animType.OnValidate();
             }
         }
         public bool ShouldExecute()

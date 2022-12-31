@@ -33,7 +33,7 @@ namespace Veridium_Interaction
 
         void OnValidate()
         {
-            spawnAnimation.OnValidate(null);
+            spawnAnimation.OnValidate();
         }
 
         public StructureBase()
@@ -41,7 +41,7 @@ namespace Veridium_Interaction
             // The default animation for spawning the structure should be a spin up with quadratic easing.
             spawnAnimation = new AnimScriptType();
             spawnAnimation.animationType = AnimationScript.Anim_SpinUp;
-            spawnAnimation.OnValidate(null);
+            spawnAnimation.OnValidate();
             Anim_SpinUp defaultAnim = spawnAnimation.animScript as Anim_SpinUp;
             defaultAnim.duration = 1.5f;
             defaultAnim.easingType = EasingType.Quadratic;

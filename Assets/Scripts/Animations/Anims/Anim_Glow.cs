@@ -50,7 +50,7 @@ namespace Veridium_Animation
                     // Turn off the emission if the animation is paused
                     if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
                     base.End(); 
-                    if (selfDestruct) MonoBehaviour.Destroy(manager);
+                    if (selfDestruct) MonoBehaviour.Destroy(animSequence);
                 }
             }
         }

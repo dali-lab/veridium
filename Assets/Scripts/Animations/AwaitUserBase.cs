@@ -24,13 +24,12 @@ namespace Veridium_Animation
             awaitingAction = true;
         }
 
-        public override void OnValidate(AnimationManager parent)
+        public override void OnValidate()
         {
-            base.OnValidate(parent);
 
             if (onComplete != null)
             {
-                onComplete.OnValidate(manager);
+                onComplete.OnValidate();
             }
         }
 
@@ -67,9 +66,9 @@ namespace Veridium_Animation
 
             if (playing) awaitingAction = false;
 
-            if (manager is AnimSequence)
+            if (animSequence is AnimSequence)
             {
-                AnimSequence sequence = manager as AnimSequence;
+                AnimSequence sequence = animSequence as AnimSequence;
                 if (skipSegment && sequence.CanMoveOn())
                 {
                     sequence.PlayNextSegment();

@@ -38,7 +38,7 @@ namespace Veridium_Animation
 
             // The default animation for adding atoms should be a fade in with exponential easing.
             spawnAnimation.animationType = AnimationScript.Anim_Fade;
-            spawnAnimation.OnValidate(manager);
+            spawnAnimation.OnValidate();
             Anim_Fade defaultAnim = spawnAnimation.animScript as Anim_Fade;
             defaultAnim.easingType = EasingType.Exponential;
         }
@@ -90,7 +90,7 @@ namespace Veridium_Animation
 
                     AnimPlayer animPlayer = atom.drawnObject.AddComponent<AnimPlayer>() as AnimPlayer;
                     animPlayer.animScript = spawnAnimation.animScript.Clone();
-                    animPlayer.animScript.OnValidate(animPlayer);
+                    animPlayer.animScript.OnValidate();
                     animPlayer.animScript.selfDestruct = true;
                     animPlayer.animScript.Play();
                 }

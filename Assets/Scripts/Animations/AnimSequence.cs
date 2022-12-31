@@ -79,7 +79,7 @@ namespace Veridium_Animation
                         segment.animations[i] = new SegmentAnimPlayer();
                         segments[j] = segment;
                     }
-                    if (player != null) player.OnValidate(this);
+                    if (player != null) player.OnValidate();
                 }
             }
         }
