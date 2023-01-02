@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Await_Insert : AwaitUserBase
     {
 
@@ -21,15 +22,20 @@ namespace Veridium_Animation{
         {
             base.Play();
 
-            if(socketInteractor.selectTarget != null){
-                if(socketInteractor.selectTarget.GetComponent<PTElement>() != null && (elementName == "" || socketInteractor.selectTarget.GetComponent<PTElement>().elementName == elementName)) CompleteAction();
+            if (socketInteractor.selectTarget != null) {
+                if (socketInteractor.selectTarget.GetComponent<PTElement>() != null && (elementName == "" || socketInteractor.selectTarget.GetComponent<PTElement>().elementName == elementName)) 
+                {
+                    CompleteAction();
+                }
             }
         }
 
-        void Inserted(SelectEnterEventArgs args){
-
-            if(args.interactable.GetComponent<PTElement>() != null && (elementName == "" || args.interactable.GetComponent<PTElement>().elementName == elementName)) CompleteAction();
+        void Inserted(SelectEnterEventArgs args)
+        {
+            if (args.interactable.GetComponent<PTElement>() != null && (elementName == "" || args.interactable.GetComponent<PTElement>().elementName == elementName)) 
+            {
+                CompleteAction();
+            }
         }
-
     }
 }

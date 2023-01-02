@@ -85,29 +85,23 @@ namespace Veridium_Animation
         // Pauses the animation. Use this, never set playing to false any other way
         public virtual void Pause()
         {
-
             playing = false;
-
         }
 
         public virtual void End()
         {
-
-            if(selfDestruct) Destroy(this);
+            if (selfDestruct) Destroy(this);
         }
 
         // Resets the animation before playing
         public virtual void PlayFromStart()
         {
-
             Reset();
             Play();
-
         }
 
         public virtual void PlayFromEnd()
         {
-
             Play();
             Pause();
 

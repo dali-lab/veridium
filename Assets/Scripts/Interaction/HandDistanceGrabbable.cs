@@ -20,7 +20,6 @@ namespace Veridium_Interaction
 
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
-
             base.OnHoverEntered(args);
 
             if(args.interactor is XRDirectInteractor){

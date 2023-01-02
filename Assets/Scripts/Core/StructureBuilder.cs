@@ -29,7 +29,8 @@ public class StructureBuilder : MonoBehaviour
     void Update()
     {
 
-        if(atomsToDraw.Count > 0){
+        if (atomsToDraw.Count > 0)
+        {
             Atom atom = atomsToDraw.Dequeue();
             Debug.Log(atom);
             atom.Draw();
@@ -37,25 +38,27 @@ public class StructureBuilder : MonoBehaviour
 
     }
 
-    public void HighlightPlaneAtIndex(int index){
+    public void HighlightPlaneAtIndex(int index)
+    {
         
-        if(!initialized) return;
+        if (!initialized) return;
 
-        foreach(KeyValuePair<Vector3, Atom> atom in crystal.atoms){
+        foreach (KeyValuePair<Vector3, Atom> atom in crystal.atoms)
+        {
             atom.Value.Unhighlight();
         }
 
         Vector3 millerIndices = Miller.GetMillerIndicesForCell(cellType, cellVariation)[index];
         
-        foreach (Atom atom in GetMillerAtoms((int) millerIndices.x, (int) millerIndices.y, (int) millerIndices.z)){
-
+        foreach (Atom atom in GetMillerAtoms((int) millerIndices.x, (int) millerIndices.y, (int) millerIndices.z))
+        {
             atom.Highlight();
-
         }
 
     }
 
-    public void Redraw(CrystalState state){
+    public void Redraw(CrystalState state)
+    {
         crystal.drawMode = state;
         crystal.Draw();
     }
@@ -64,19 +67,22 @@ public class StructureBuilder : MonoBehaviour
      * @function DestroyCell
      * Removes the crystal from the scene.
      */
-    public void DestroyCell() {
+    public void DestroyCell()
+    {
         crystal.ClearCrystal(gameObject);
 
         initialized = false;
     }
 
-    public Atom GetAtomAtCoordinate(Vector3 pos){
+    public Atom GetAtomAtCoordinate(Vector3 pos)
+    {
 
         Vector3 corrected = pos * 0.25f; //+ transform.position;
 
-        foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms){
-            
-            if((a.Key - corrected).magnitude < 0.1){
+        foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms)
+        {
+            if ((a.Key - corrected).magnitude < 0.1)
+            {
                 return a.Value;
             }
         }

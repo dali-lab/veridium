@@ -56,7 +56,10 @@ namespace Veridium_Animation
             base.Pause();
 
             // If the animation stops, it should be interactable again.
-            if (GetComponent<XRGrabInteractable>() != null) GetComponent<XRGrabInteractable>().enabled = true;
+            if (GetComponent<XRGrabInteractable>() != null) 
+            {
+                GetComponent<XRGrabInteractable>().enabled = true;
+            }
 
         }
 

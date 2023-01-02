@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
-
+namespace Veridium_Animation
+{
     // Easing types
-    public enum EasingType {
+    public enum EasingType 
+    {
         Exponential, 
         Elastic,
         Quadratic,
@@ -17,11 +18,11 @@ namespace Veridium_Animation{
 
     public class Easing
     {
-
         // Main function
-        public static float EaseOut(float x, EasingType easingType){
+        public static float EaseOut(float x, EasingType easingType)
+        {
 
-            switch (easingType){
+            switch (easingType) {
                 case EasingType.Exponential:
                     return EaseOutExponential(x);
                 case EasingType.Elastic:
@@ -35,14 +36,14 @@ namespace Veridium_Animation{
                 case EasingType.Bounce:
                     return EaseOutBounce(x);
             }
-
             return x;
         }
 
         // Main function
-        public static float EaseIn(float x, EasingType easingType){
+        public static float EaseIn(float x, EasingType easingType)
+        {
 
-            switch (easingType){
+            switch (easingType) {
                 case EasingType.Exponential:
                     return EaseInExponential(x);
                 case EasingType.Elastic:
@@ -60,23 +61,27 @@ namespace Veridium_Animation{
             return x;
         }
 
-        public static float EaseFull(float x, EasingType easingType){
+        public static float EaseFull(float x, EasingType easingType)
+        {
 
-            switch (easingType){
+            switch (easingType) {
                 case EasingType.Pointer:
                     return EasePointer(x);
                 default:
-                    if(x < 0.5){
+                    if (x < 0.5)
+                    {
                         return EaseIn(2 * x, easingType) / 2;
-                    } else {
+                    } 
+                    else 
+                    {
                         return EaseOut(2 * (x - 0.5f), easingType) / 2 + 0.5f;
                     }
             }
         }
 
         // Exponential easing out
-        private static float EaseOutExponential(float x){
-
+        private static float EaseOutExponential(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -86,8 +91,8 @@ namespace Veridium_Animation{
 
         }
 
-        private static float EaseInExponential(float x){
-
+        private static float EaseInExponential(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -98,8 +103,8 @@ namespace Veridium_Animation{
         }
 
         // Elastic easing out
-        private static float EaseOutElastic(float x){
-
+        private static float EaseOutElastic(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -114,8 +119,8 @@ namespace Veridium_Animation{
         }
 
         // Elastic easing in
-        private static float EaseInElastic(float x){
-
+        private static float EaseInElastic(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -125,8 +130,8 @@ namespace Veridium_Animation{
         }
 
         // Quadratic easing out
-        private static float EaseOutQuadratic(float x){
-
+        private static float EaseOutQuadratic(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -137,8 +142,8 @@ namespace Veridium_Animation{
         }
 
         // Quadratic easing in
-        private static float EaseInQuadratic(float x){
-
+        private static float EaseInQuadratic(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -147,8 +152,8 @@ namespace Veridium_Animation{
         }
 
         // Back easing out
-        private static float EaseOutBack(float x){
-            
+        private static float EaseOutBack(float x)
+        {    
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -156,12 +161,12 @@ namespace Veridium_Animation{
             float c1 = 1.70158f;
             float c3 = 1 + c1;
 
-            return 1 + c3 * (x-1)*(x-1)*(x-1) + c1 * (x-1)*(x-1);
+            return 1 + c3 * (x-1) * (x-1) * (x-1) + c1 * (x-1) * (x-1);
         }
 
         // Back easing in
-        private static float EaseInBack(float x){
-
+        private static float EaseInBack(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -173,8 +178,8 @@ namespace Veridium_Animation{
         }
 
         // Bounce easing out
-        private static float EaseOutBounce(float x){
-
+        private static float EaseOutBounce(float x)
+        {
             // Function is only valid between 0 and 1
             if (x >= 0.99) return 1f;
             if (x < 0) return 0f;
@@ -182,23 +187,31 @@ namespace Veridium_Animation{
             float n1 = 7.5625f;
             float d1 = 2.75f;
 
-            if (x < 1f/d1){
+            if (x < 1f/d1)
+            {
                 return n1 *x*x;
-            } else if (x < 2f/d1){
+            } 
+            else if (x < 2f/d1)
+            {
                 return n1 * (x -= 1.5f/d1) * x + 0.75f;
-            } else if (x < 2.5f/d1){
+            } else if (x < 2.5f/d1)
+            {
                 return n1 * (x -= 2.25f/d1) * x + 0.9375f;
-            } else {
+            } 
+            else 
+            {
                 return n1 * (x -= 2.625f/d1) * x + 0.984375f;
             }
         }
 
         // Bounce easing in
-        private static float EaseInBounce(float x){
+        private static float EaseInBounce(float x)
+        {
             return 1 - EaseOutBounce(1-x);
         }
 
-        private static float EasePointer(float x){
+        private static float EasePointer(float x)
+        {
 
             // Function is only valid between 0 and 1
             if (x >= 0.995) return 1f;

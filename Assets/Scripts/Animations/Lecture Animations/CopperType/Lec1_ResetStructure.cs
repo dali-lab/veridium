@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Veridium_Interaction;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Lec1_ResetStructure : AnimationBase
     {
 

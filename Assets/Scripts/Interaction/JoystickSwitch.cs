@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
-namespace Veridium_Interaction{
-
+namespace Veridium_Interaction
+{
     public class JoystickSwitch : MonoBehaviour
     {
 
@@ -23,27 +23,25 @@ namespace Veridium_Interaction{
             return HandValue;
         }
 
-        void Update(){
-
+        void Update()
+        {
             CheckSwitch(ReadInput().x);
-
         }
 
-        private void CheckSwitch(float input){
+        private void CheckSwitch(float input)
+        {
 
-            if(!triggered){
-
-                if (Mathf.Abs(input) > threshold){
-
+            if (!triggered)
+            {
+                if (Mathf.Abs(input) > threshold)
+                {
                     triggered = true;
                     structureBase.Switch(input > 0);
-
                 }
-
-            } else if (Mathf.Abs(input) < resetThreshold){
-
+            } 
+            else if (Mathf.Abs(input) < resetThreshold)
+            {
                 triggered = false;
-
             }
         }
     }

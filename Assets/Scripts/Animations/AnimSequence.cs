@@ -19,7 +19,7 @@ namespace Veridium_Animation
 
         private int currentIndex = 0;                                   // The index in the list of the animation that is currently playing
         public bool playOnStart;                                        // Whether the animation sequence should play immediately
-        public bool playing {get; private set;}                         // Whether this animation sequence is currently playing or not
+        public bool playing { get; private set; }                         // Whether this animation sequence is currently playing or not
         private bool audioHasFinished;                                  // Used to record the end of audio for sequence progression
         public List<AnimSegment> segments;                              // A list of segments that contain an audio clip and a set of animations
         public AudioSource audioSource;                                 // The audio source for this animation's audio
@@ -174,11 +174,9 @@ namespace Veridium_Animation
 
                 if (!anim.playing || anim.elapsedTime < 0)
                 {
-
                     anim.Pause();
                     anim.End();
                     playingAnims.Remove(anim);
-
                 }
 
             }
@@ -233,7 +231,6 @@ namespace Veridium_Animation
             if (currentIndex >= segments.Count - 1) currentIndex = 0;
 
             PlaySegment(segments[currentIndex]);
-
         }
 
         public void PlayAtSegment(int targetIndex)

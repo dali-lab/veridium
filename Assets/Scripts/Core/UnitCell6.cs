@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Core{
+namespace Veridium_Core
+{
     // Enum used to enumerate unit cell types
-    public enum CellType {
+    public enum CellType
+    {
         CUBIC,
         ORTHO,
         TETRA,
@@ -20,7 +22,8 @@ namespace Veridium_Core{
     };
 
     // Enum used to enumerate cell variations
-    public enum CellVariation {
+    public enum CellVariation
+    {
         SIMPLE,
         FACE,
         BODY,
@@ -34,7 +37,8 @@ namespace Veridium_Core{
     * creating bonds, and generating duplicate neighbor vertices. Designed to be
     * used within the Crystal object superstructure.
     */
-    public class UnitCell6 : UnitCell {
+    public class UnitCell6 : UnitCell
+    {
         // Number of vertices in the cell
         private int numVertices;
 
@@ -216,8 +220,10 @@ namespace Veridium_Core{
          * a cartesian plane. Returns all the atoms in the cell that lie on the 
          * plane.
          */
-        public override List<Atom> GetMillerAtoms(int h, int k , int l) {
-            if (this.numVertices < 4 || this.vertices[0] == null || this.vertices[1] == null|| this.vertices[2] == null || this.vertices[3] == null) {
+        public override List<Atom> GetMillerAtoms(int h, int k , int l)
+        {
+            if (this.numVertices < 4 || this.vertices[0] == null || this.vertices[1] == null|| this.vertices[2] == null || this.vertices[3] == null)
+            {
                 return null;
             }
 
@@ -248,13 +254,15 @@ namespace Veridium_Core{
          *                      atoms.
          * Adds vertices to the unit cell.
          */
-        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms) {
+        public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms)
+        {
             if (this.numVertices < 0) {
                 return;
             }
             int[] vertexIndices = Constants.cell6VariationMap[this.structure];
             int cellIndex = 0;
-            foreach ( int index in vertexIndices ) {
+            foreach ( int index in vertexIndices )
+            {
                 Vector3 atomPosition = GenerateVertexPosition(this.worldPosition, Constants.cell6BasicPositions[index], 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
 
@@ -265,13 +273,17 @@ namespace Veridium_Core{
                 // another cell in the crystal
                 bool overlaps = false;
                 Atom duplicate;
-                if (crystalAtoms.TryGetValue(atomPosition, out duplicate)) {
+                if (crystalAtoms.TryGetValue(atomPosition, out duplicate))
+                {
                     overlaps = true;
                     this.vertices[cellIndex] = duplicate;
-                } else {
+                } 
+                else
+                {
                     crystalAtoms[atomPosition] = newAtom;
                 }
-                if (!overlaps) {
+                if (!overlaps)
+                {
                     this.vertices[cellIndex] = newAtom;
                 }
                 cellIndex ++;
@@ -323,10 +335,13 @@ namespace Veridium_Core{
          * Adds bonds to the unit cell taking special care not to add the same 
          * bonds twice
          */
-        public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds) {
+        public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds)
+        {
             // Loops through each vertex in the unit cell
-            for ( int startIndex = 0; startIndex < this.numVertices; startIndex ++ ) {
-                if ( startIndex >= Constants.cell6BondMap.Length ) {
+            for (int startIndex = 0; startIndex < this.numVertices; startIndex ++)
+            {
+                if ( startIndex >= Constants.cell6BondMap.Length )
+                {
                     continue;
                 }
 
@@ -335,15 +350,20 @@ namespace Veridium_Core{
 
                 // The possible indices of the end point of the bond
                 int[] endIndices;
-                if ( this.structure == CellVariation.BODY && startIndex == 8) {
+                if ( this.structure == CellVariation.BODY && startIndex == 8)
+                {
                     endIndices = Constants.cell6BondMap[startIndex + 6];
-                } else {
+                }
+                else
+                {
                     endIndices = Constants.cell6BondMap[startIndex];
                 }
 
                 // Loops through indices of all vertices that should be bound to the startVertex
-                foreach (int endIndex in endIndices) {
-                    if (endIndex >= this.numVertices) {
+                foreach (int endIndex in endIndices)
+                {
+                    if (endIndex >= this.numVertices)
+                    {
                         continue;
                     }
 
@@ -353,8 +373,10 @@ namespace Veridium_Core{
                     Bond newBond = new Bond(startVertex, endVertex);
                     newBond.builder = builder;
                     
-                    foreach (Bond bond in bonds) {
-                        if (bond.Equals(newBond)) {
+                    foreach (Bond bond in bonds)
+                    {
+                        if (bond.Equals(newBond))
+                        {
                             duplicate = true;
                         }
                     }
@@ -364,14 +386,20 @@ namespace Veridium_Core{
                         // If an equivalent bond already exists within the 
                         // Crystal structure, use it instead
                         Bond crystalDuplicate;
-                        if (crystalBonds.TryGetValue(midpoint, out crystalDuplicate)) {
-                            if (crystalDuplicate.Equals(newBond)) {
+                        if (crystalBonds.TryGetValue(midpoint, out crystalDuplicate))
+                        {
+                            if (crystalDuplicate.Equals(newBond))
+                            {
                                 bonds.Add(crystalDuplicate);
-                            } else {
+                            } 
+                            else
+                            {
                                 bonds.Add(newBond);
                                 crystalBonds[midpoint] = newBond;
                             }
-                        } else {
+                        }
+                        else
+                        {
                             bonds.Add(newBond);
                             crystalBonds[midpoint] = newBond;
                         }
@@ -399,21 +427,27 @@ namespace Veridium_Core{
          * @input builder       Reference to StructureBuilder's instance
          * Draws the UnitCell's Atoms and bonds to the scene.
          */
-        public override void Draw() {
+        public override void Draw()
+        {
             
             // Draws the atoms
-            for ( int i = 0; i < this.numVertices; i ++ ) {
-                if (vertices[i].drawnObject != null){
+            for ( int i = 0; i < this.numVertices; i ++ )
+            {
+                if (vertices[i].drawnObject != null)
+                {
                     MonoBehaviour.Destroy(vertices[i].drawnObject);
                 }
-                if (this.vertices[i] != null) {
+                if (this.vertices[i] != null)
+                {
                     this.vertices[i].Draw();
                 }
             }
 
             // Draws the bonds
-            foreach ( Bond bond in this.bonds ) {
-                if (bond.drawnObject != null){
+            foreach ( Bond bond in this.bonds )
+            {
+                if (bond.drawnObject != null)
+                {
                     MonoBehaviour.Destroy(bond.drawnObject);
                 }
                 bond.Draw();
@@ -458,15 +492,21 @@ namespace Veridium_Core{
             // possible adjacent position
             int index = 0;
 
-            foreach (Vector3 direction in possibleDirections) {
+            foreach (Vector3 direction in possibleDirections)
+            {
                 // Determines position of new Unit Cell
                 Vector3 translation = new Vector3(0, 0, 0);
 
-                if (direction == Vector3.right || direction == Vector3.left) {
+                if (direction == Vector3.right || direction == Vector3.left)
+                {
                     translation = a1*direction.x;
-                } else if (direction == Vector3.up || direction == Vector3.down) {
+                }
+                else if (direction == Vector3.up || direction == Vector3.down)
+                {
                     translation = -a2*direction.y;
-                } else if (direction == Vector3.forward || direction == Vector3.back) {
+                }
+                else if (direction == Vector3.forward || direction == Vector3.back)
+                {
                     translation = a3*direction.z;
                 }
 
@@ -474,9 +514,11 @@ namespace Veridium_Core{
 
                 // Verifies that the unit cell is not a duplicate
                 UnitCell possibleDuplicate;
-                if (crystalCells.TryGetValue(newCellPos, out possibleDuplicate)) {
+                if (crystalCells.TryGetValue(newCellPos, out possibleDuplicate))
+                {
                     continue;
-                } else {
+                }
+                else {
                     // Builds the unit cell and adds it to the crystal
                     UnitCell6 newCell = new UnitCell6(this.atomicNumber, this.type, this.structure, newCellPos, 
                         this.a, this.b, this.c, this.alpha, this.beta, this.gamma);

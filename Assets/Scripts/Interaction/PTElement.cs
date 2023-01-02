@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Veridium_Core;
 
-namespace Veridium_Interaction{
-    
+namespace Veridium_Interaction
+{
     public class PTElement : MonoBehaviour
     {
 

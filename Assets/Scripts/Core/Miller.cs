@@ -11,7 +11,8 @@ using System.Threading;
 using UnityEngine;
 using Veridium_Core;
 
-namespace Veridium_Core{
+namespace Veridium_Core
+{
     /**
      * @class Miller
      * Static class containing a set of helper functions used for miller index
@@ -19,8 +20,10 @@ namespace Veridium_Core{
      */
     public static class Miller
     {
-        public static List<Vector3> GetMillerIndicesForCell(CellType type, CellVariation variation) {
-            if (type == CellType.HEX) {
+        public static List<Vector3> GetMillerIndicesForCell(CellType type, CellVariation variation)
+        {
+            if (type == CellType.HEX)
+            {
                 return GetMillerIndicesForHexagonal();
             }
             List<Vector3> millerIndices = new List<Vector3>();
@@ -69,7 +72,8 @@ namespace Veridium_Core{
         }
 
         // HELPER: Gets possible miller indices for a hexagonal structure
-        public static List<Vector3> GetMillerIndicesForHexagonal() {
+        public static List<Vector3> GetMillerIndicesForHexagonal()
+        {
             UnitCell8 hex = new UnitCell8(0, new Vector3(0, 0, 0), 0.2f, 0.4f, false);
             hex.AddVertices(new Dictionary<Vector3, Atom>());
             hex.AddBonds(new Dictionary<Vector3, Bond>());

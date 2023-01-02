@@ -27,8 +27,12 @@ namespace Veridium_Animation
             base.UpdateAnim();
 
             // If the renderer exists, pulse the emission
-            if(elapsedTime < fadeTime){
-                if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(elapsedTime/fadeTime));
+            if (elapsedTime < fadeTime)
+            {
+                if (gameObject.GetComponent<Renderer>() != null) 
+                {
+                    gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(elapsedTime/fadeTime));
+                }
             }
         }
 
@@ -52,7 +56,10 @@ namespace Veridium_Animation
                     timeAfterEnd = 0;
 
                     // Turn off the emission if the animation is paused
-                    if (gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
+                    if (gameObject.GetComponent<Renderer>() != null) 
+                    {
+                        gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
+                    }
                     if (selfDestruct) Destroy(this);
                 }
             }
@@ -62,7 +69,8 @@ namespace Veridium_Animation
         {
             base.Play();
 
-            if (emissionColor == null) {
+            if (emissionColor == null) 
+            {
                 emissionColor = Color.white;
             }
 
@@ -100,7 +108,6 @@ namespace Veridium_Animation
         private float Alpha(float time)
         {
             return (maxIntensity - minIntensity) * Easing.EaseFull(time, easingType) + minIntensity;
-
         }
     }
 }

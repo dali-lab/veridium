@@ -27,7 +27,7 @@ namespace Veridium_Animation
 
             base.Play();
 
-            if(target == null) target = gameObject;
+            if (target == null) target = gameObject;
 
             startingPlace = target.transform.position;
             startingRotation = target.transform.rotation;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Interaction{
-
+namespace Veridium_Interaction
+{
     public class RayCaster : MonoBehaviour
     {
         /// <summary>

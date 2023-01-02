@@ -27,7 +27,6 @@ namespace Veridium_Interaction{
         // Start is called before the first frame update
         void Start()
         {
-
             // Prepare the layer mask for the sphere trace collision filter
             layerMask = 1 << LayerMask.NameToLayer("DistanceGrab");
 
@@ -41,55 +40,50 @@ namespace Veridium_Interaction{
         {
 
             // Only grab if not grabbing and distance grab is activated
-            if(distanceGrabActive && !grabbing){
-            
+            if (distanceGrabActive && !grabbing)
+            {
                 // Perform the sphere cast
                 RaycastHit hit;
                 bool hitted = Physics.SphereCast(transform.position, 0.05f, transform.forward, out hit, Mathf.Infinity, layerMask);
 
                 // Set hovered if the sphere cast hit a DistanceGrabbable
                 HandDistanceGrabbable hovered = null;
-                if (hitted && hit.collider.gameObject.GetComponent<HandDistanceGrabbable>() != null){
-
+                if (hitted && hit.collider.gameObject.GetComponent<HandDistanceGrabbable>() != null)
+                {
                     hovered = hit.collider.gameObject.GetComponent<HandDistanceGrabbable>();
 
                     hitDistance = hit.distance;
 
                     hitLocation = hit.point;
 
-                } else {
-
+                } else
+                {
                     hovered = null;
 
                     hitDistance = 0f;
 
                     hitLocation = Vector3.zero;
-
                 }
 
                 // Move the direct interactor's collider to the DistanceGrabbable's location
-                if (hovered != null){
-
+                if (hovered != null)
+                {
                     GetComponent<SphereCollider>().center = transform.InverseTransformPoint(hovered.transform.position);
-
-                } else {
-
+                }
+                else {
                     // Move the collider back if not hovering
-                    GetComponent<SphereCollider>().center = colliderOriginalCenter;
-                    
+                    GetComponent<SphereCollider>().center = colliderOriginalCenter;  
                 }
 
             } else {
-
                 // Make sure the collider moves back when distance grabbing is not active
                 GetComponent<SphereCollider>().center = colliderOriginalCenter;
-
             }
         }
 
         // Updates whether the direct interactor is grabbing.
-        protected override void OnSelectEntered(XRBaseInteractable interactable){
-
+        protected override void OnSelectEntered(XRBaseInteractable interactable)
+        {
             base.OnSelectEntered(interactable);
 
             grabbing = true;
@@ -97,22 +91,21 @@ namespace Veridium_Interaction{
             if (hitDistance != 0) distanceGrabbed = true;
 
             GetComponent<AudioSource>().Play();
-
         }
 
         // Updates whether the direct interactor is grabbing.
-        protected override void OnSelectExited(XRBaseInteractable interactable){
-
+        protected override void OnSelectExited(XRBaseInteractable interactable)
+        {
             base.OnSelectExited(interactable);
 
             grabbing = false;
 
             distanceGrabbed = false;
-
         }
 
         // check if the controller is grabbing anything
-        public bool grabbed() {
+        public bool grabbed()
+        {
             return grabbing;
         }
     }

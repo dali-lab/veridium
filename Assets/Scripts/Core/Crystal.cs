@@ -8,11 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Veridium_Core{
-
+namespace Veridium_Core
+{
     // Enum used to describe how the crystal is being rendered in the current 
     // display context
-    public enum CrystalState {
+    public enum CrystalState
+    {
         // SINGLECELL describes the state where only the central unit cell gets 
         // rendered
         SINGLECELL,
@@ -22,7 +23,8 @@ namespace Veridium_Core{
         MULTICELL
     };
 
-    public enum CrystalView {
+    public enum CrystalView
+    {
         // SINGLECELL describes the state where only the central unit cell gets 
         // rendered
         BallAndStick,
@@ -36,8 +38,8 @@ namespace Veridium_Core{
      * Object class that generates, stores and renders full Bravais crystaline 
      * latices using the Atom, Bond, and UnitCell6 subclasses.
      */
-    public class Crystal {
-
+    public class Crystal
+    {
         public CellType cellType {get; private set;}
         public CellVariation cellVariation {get; private set;}
 
@@ -66,7 +68,8 @@ namespace Veridium_Core{
          * @input centerPoint   The location of the crystal in space
          * Default constructor for Crystal. Creates an empty crystal.
          */
-        public Crystal(Vector3 centerPoint, GameObject builder) {
+        public Crystal(Vector3 centerPoint, GameObject builder)
+        {
             atoms = new Dictionary<Vector3, Atom>();
             bonds = new Dictionary<Vector3, Bond>();
             unitCells = new Dictionary<Vector3, UnitCell>();
@@ -82,8 +85,10 @@ namespace Veridium_Core{
          * Removes every child of the crystal gameobject from the scene and 
          * clears the atoms, bonds, and unit cells from the object's hashmaps
          */
-        public void ClearCrystal(GameObject builder) {
-            foreach (Transform child in builder.transform) {
+        public void ClearCrystal(GameObject builder)
+        {
+            foreach (Transform child in builder.transform)
+            {
                 MonoBehaviour.Destroy(child.gameObject);
             }
 
@@ -102,16 +107,16 @@ namespace Veridium_Core{
          * @input builder       GameObject parenting the crystal
          * Draws the crystal in the Unity scene
          */
-        public void Draw() {
-
+        public void Draw()
+        {
             foreach (Bond bond in bonds.Values)
             {
-                if(bond.drawnObject != null) MonoBehaviour.Destroy(bond.drawnObject);
+                if (bond.drawnObject != null) MonoBehaviour.Destroy(bond.drawnObject);
             }
 
             foreach (Atom atom in atoms.Values)
             {
-                if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
+                if (atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
             }
 
             MonoBehaviour.Destroy(infiniteObject);
@@ -127,22 +132,24 @@ namespace Veridium_Core{
                 // TODO for someone someday: what I did here is messy. If you make accessing unit cells easier and 
                 // make structures heirarchical in the scene it should be easy to make it look nicer.
 
-                    foreach (Atom atom in atoms.Values){
+                    foreach (Atom atom in atoms.Values)
+                    {
                         if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
                     }
 
-                    foreach (Bond bond in bonds.Values){
+                    foreach (Bond bond in bonds.Values)
+                    {
                         if(bond.drawnObject != null) MonoBehaviour.Destroy(bond.drawnObject);
                     }
                     
-                    switch (cellType){
+                    switch (cellType) {
                         case CellType.CUBIC:
                             for ( float i = 0; i < 2; i++){
-                                for ( float j = 0; j < 2; j++){
-                                    for ( float k = 0; k < 2; k++){
+                                for ( float j = 0; j < 2; j++) {
+                                    for ( float k = 0; k < 2; k++) {
                                         Vector3 coord = new Vector3(i,j,k);
                                         UnitCell unitCell = GetUnitCellAtCoordinate(coord);
-                                        if (unitCell != null){
+                                        if (unitCell != null) {
                                             unitCell.builder = builder;
                                             unitCell.Draw();
                                         }
@@ -156,15 +163,19 @@ namespace Veridium_Core{
                         break;
                     } 
 
-                    foreach (Atom atom in atoms.Values){
-                        if(atom.drawnObject != null){
+                    foreach (Atom atom in atoms.Values)
+                    {
+                        if (atom.drawnObject != null)
+                        {
                             atom.drawnObject.transform.localPosition -= new Vector3(0.25f,0.25f,0.25f);
                             atom.drawnObject.transform.localPosition /= 2f;
                             atom.drawnObject.transform.localScale /= 2f;
                         }
                     }
-                    foreach (Bond bond in bonds.Values){
-                        if(bond.drawnObject != null){
+                    foreach (Bond bond in bonds.Values)
+                    {
+                        if (bond.drawnObject != null)
+                        {
                             bond.drawnObject.transform.localPosition -= new Vector3(0.25f,0.25f,0.25f);
                             bond.drawnObject.transform.localPosition /= 2f;
                             bond.drawnObject.transform.localScale /= 2f;
@@ -175,9 +186,9 @@ namespace Veridium_Core{
 
                     string fileName = "";
 
-                    switch (cellType){
+                    switch (cellType) {
                         case CellType.CUBIC:
-                            switch (cellVariation){
+                            switch (cellVariation) {
                                 case CellVariation.FACE:
                                     fileName = "InfiniteFCC";
                                 break;
@@ -187,7 +198,7 @@ namespace Veridium_Core{
                             }
                         break;
                         case CellType.HEX:
-                            switch (cellVariation){
+                            switch (cellVariation) {
                                 case CellVariation.BODY:
                                     fileName = "InfiniteBCH";
                                 break;
@@ -203,7 +214,8 @@ namespace Veridium_Core{
                     infiniteObject.transform.position = Vector3.up * MonoBehaviour.FindObjectsOfType<Camera>()[0].transform.position.y;
                     infiniteObject.GetComponent<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
 
-                    if(true){
+                    if (true)
+                    {
                         infiniteObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
                         infiniteObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
                     }
@@ -212,17 +224,18 @@ namespace Veridium_Core{
             }
         }
 
-        public UnitCell GetUnitCellAtCoordinate(Vector3 pos){
+        public UnitCell GetUnitCellAtCoordinate(Vector3 pos)
+        {
+            Vector3 corrected = pos * 0.5f;
 
-        Vector3 corrected = pos * 0.5f;
-
-        foreach (KeyValuePair<Vector3, UnitCell> a in unitCells){
-            
-            if((a.Key - corrected).magnitude < 0.1){
-                return a.Value;
+            foreach (KeyValuePair<Vector3, UnitCell> a in unitCells)
+            {
+                if((a.Key - corrected).magnitude < 0.1)
+                {
+                    return a.Value;
+                }
             }
-        }
-        return null;
+            return null;
         }
 
         /**
@@ -260,9 +273,12 @@ namespace Veridium_Core{
             cellVariation = variation;
 
             UnitCell originCell;
-            if (type == CellType.HEX) {
+            if (type == CellType.HEX) 
+            {
                 originCell = new UnitCell8(atomicNumber, centerPoint, a, b, false);
-            } else {
+            }
+            else
+            {
                 originCell = new UnitCell6(atomicNumber, type, variation, 
                     centerPoint, a, b, c, alpha, beta, gamma);
             }
@@ -274,19 +290,22 @@ namespace Veridium_Core{
 
             HashSet<Vector3> constructedPositions = new HashSet<Vector3>();
 
-            for ( int i = 0; i < constructionDepth; i ++ ) {
-
+            for (int i = 0; i < constructionDepth; i ++)
+            {
                 UnitCell[] cells = new UnitCell[unitCells.Count];
                 Vector3[] positions = new Vector3[unitCells.Count];
                 unitCells.Values.CopyTo(cells, 0);
                 unitCells.Keys.CopyTo(positions, 0);
 
-                for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
+                for (int cellIndex = 0; cellIndex < cells.Length; cellIndex ++)
+                {
                     UnitCell cell = cells[cellIndex];
                     Vector3 position = positions[cellIndex];
-                    if (!constructedPositions.Contains(position)) {
+                    if (!constructedPositions.Contains(position))
+                    {
                         constructedPositions.Add(position);
-                        if (cell != null) {
+                        if (cell != null)
+                        {
                             cell.GenerateNeighbors(atoms, bonds, unitCells);
                         }
                     }
@@ -294,14 +313,18 @@ namespace Veridium_Core{
             }
         }
 
-        public HashSet<Atom> GetMillerAtoms(int h, int k , int l) {
+        public HashSet<Atom> GetMillerAtoms(int h, int k , int l)
+        {
             HashSet<Atom> atomList = new HashSet<Atom>();
             UnitCell[] cells = new UnitCell[unitCells.Count];
             unitCells.Values.CopyTo(cells, 0);
-            for ( int cellIndex = 0; cellIndex < cells.Length; cellIndex ++ ) {
-                if (cells[cellIndex] != null) {
+            for (int cellIndex = 0; cellIndex < cells.Length; cellIndex ++)
+            {
+                if (cells[cellIndex] != null)
+                {
                     List<Atom> planeAtoms = cells[cellIndex].GetMillerAtoms(h, k, l);
-                    foreach ( Atom atom in planeAtoms ) {
+                    foreach (Atom atom in planeAtoms)
+                    {
                         if (atom != null) {
                             atomList.Add(atom);
                         } 

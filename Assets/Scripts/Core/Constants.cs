@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Core{
+namespace Veridium_Core
+{
     // Static class the wraps global constants pertinent to the unit cell classes
-    public static class Constants {
+    public static class Constants 
+    {
         // The maximum number of vertices in a 6-sided unit cell
         public static int cell6Vertices = 15;
 
@@ -52,7 +54,8 @@ namespace Veridium_Core{
         * 13: (1, 0, 0),
         * 14: (0, 0, 0)
         **************************************/
-        public static Vector3[] cell6BasicPositions = new Vector3[] {
+        public static Vector3[] cell6BasicPositions = new Vector3[] 
+        {
             // Basic Vertices
             new Vector3(-1, -1, -1),    // 0
             new Vector3(-1, -1, 1),     // 1
@@ -74,7 +77,8 @@ namespace Veridium_Core{
         };
 
         // The array of 14 generic cell positions for an 8 sided unit cell
-        public static Vector3[] cell8BasicPositions = new Vector3[] {
+        public static Vector3[] cell8BasicPositions = new Vector3[]
+        {
             // bottom of cell
             new Vector3(0, -0.5f, 0),                              // 0
             new Vector3(0, -0.5f, 0.7f),                              // 1
@@ -95,7 +99,8 @@ namespace Veridium_Core{
 
         // The hashmap relating UnitCell6 variations to the indices of the 
         // vertices in cell6BasicPositions that they contain
-        public static Dictionary<CellVariation, int[]> cell6VariationMap = new Dictionary<CellVariation, int[]> {
+        public static Dictionary<CellVariation, int[]> cell6VariationMap = new Dictionary<CellVariation, int[]>
+        {
             { CellVariation.SIMPLE, new int[] { 0, 1, 2, 3, 4, 5, 6, 7 } },
             { CellVariation.BASE, new int[] { 0, 1 , 2, 3, 4, 5, 6, 7, 8, 9 } },
             { CellVariation.FACE, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 } },
@@ -103,7 +108,8 @@ namespace Veridium_Core{
         };
 
         // A static dictionary reference that maps each unit cell type to the valid variations associated with it.
-        public static Dictionary<CellType, CellVariation[]> validCells = new Dictionary<CellType, CellVariation[]> {
+        public static Dictionary<CellType, CellVariation[]> validCells = new Dictionary<CellType, CellVariation[]>
+        {
             { CellType.CUBIC, new CellVariation[] { CellVariation.SIMPLE, CellVariation.FACE, CellVariation.BODY } },
             { CellType.ORTHO, new CellVariation[] { CellVariation.SIMPLE, CellVariation.FACE, CellVariation.BODY, CellVariation.BASE } },
             { CellType.TETRA, new CellVariation[] { CellVariation.SIMPLE, CellVariation.BODY } },
@@ -117,7 +123,8 @@ namespace Veridium_Core{
         // The array at each index represents the list of atoms connected to 
         // the atom of that index in cell6BasicPositions. The integer values
         // represent other indices in cell6BasicPositions
-        public static int[][] cell6BondMap = new int[][] {
+        public static int[][] cell6BondMap = new int[][]
+        {
             new int[] { 1, 2, 3 },
             new int[] { 0, 5, 6 },
             new int[] { 0, 4, 6 },
@@ -140,7 +147,8 @@ namespace Veridium_Core{
         // The array at each index represents the list of atoms connected to 
         // the atom of that index in cell8BasicPositions. The integer values
         // represent other indices in cell8BasicPositions
-        public static int[][] cell8BondMap = new int[][] {
+        public static int[][] cell8BondMap = new int[][]
+        {
             new int[] { 1, 2, 3, 4, 5, 6 , 7 },     // 0
             new int[] { 0, 2, 3, 8 },              // 1
             new int[] { 0, 1, 5, 9 },              // 2

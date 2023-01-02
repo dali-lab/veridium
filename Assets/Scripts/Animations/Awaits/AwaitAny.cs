@@ -2,24 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class AwaitAny : AwaitUserBase
     {
         
         public List<AwaitUserBase> awaiters;
 
-        public override void Play(){
+        public override void Play()
+        {
 
             base.Play();
 
-            foreach(AwaitUserBase awaiter in awaiters)
+            foreach (AwaitUserBase awaiter in awaiters)
             {
                 awaiter.Play();
             }
 
         }
 
-        protected override void ResetChild(){
+        protected override void ResetChild()
+        {
 
             base.ResetChild();
 
@@ -29,7 +32,8 @@ namespace Veridium_Animation{
             }
         }
 
-        public override void Pause(){
+        public override void Pause()
+        {
 
             base.Pause();
 
@@ -40,7 +44,8 @@ namespace Veridium_Animation{
 
         }
 
-        protected override void UpdateAnim(){
+        protected override void UpdateAnim()
+        {
 
             base.UpdateAnim();
 
@@ -48,10 +53,10 @@ namespace Veridium_Animation{
 
             foreach (AwaitUserBase awaiter in awaiters)
             {
-                if(!awaiter.awaitingAction) completed = true;
+                if (!awaiter.awaitingAction) completed = true;
             }
 
-            if(completed) CompleteAction();
+            if (completed) CompleteAction();
 
         }
 

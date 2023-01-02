@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Await_GripButtonsPress : AwaitUserBase
     {
 
         [SerializeField] GripButtonWatcher gripButtonWatcher;
 
-        void Awake(){
+        void Awake()
+        {
 
             // Add listeners to the proper events
             gripButtonWatcher.gripButtonPress.AddListener(BothButtonsPressed);

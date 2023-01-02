@@ -64,7 +64,8 @@ namespace Veridium_Animation
                 {
                     CompleteAction();
                 } 
-                else {
+                else 
+                {
                     awaiters[waitingIndex].Reset();
                     awaiters[waitingIndex].Play();
                 }

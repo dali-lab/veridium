@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Await_Grab : AwaitUserBase
     {
         
         public XRGrabInteractable grabInteractable;
 
-        void Awake(){
-
+        void Awake()
+        {
             grabInteractable.selectEntered.AddListener(Grabbed);
-
         }
 
         public override void Play()
@@ -21,12 +21,13 @@ namespace Veridium_Animation{
 
             grabInteractable.selectEntered.AddListener(Grabbed);
 
-            if(grabInteractable.isSelected && grabInteractable.selectingInteractor is XRDirectInteractor) CompleteAction();
+            if (grabInteractable.isSelected && grabInteractable.selectingInteractor is XRDirectInteractor) CompleteAction();
         }
 
-        void Grabbed(SelectEnterEventArgs args){
-
-            if(args.interactor is XRDirectInteractor) {
+        void Grabbed(SelectEnterEventArgs args)
+        {
+            if (args.interactor is XRDirectInteractor)
+            {
                 CompleteAction();
                 grabInteractable.selectEntered.RemoveListener(Grabbed);
             }

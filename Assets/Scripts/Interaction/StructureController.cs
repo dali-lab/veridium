@@ -98,10 +98,10 @@ namespace Veridium_Interaction
             scaleGrabber.SetActive(structureSelected && twoHandGrabbable );
             
             // When two hand grabbing is active, attach the gameObject to the hands
-            if(scaleGrabberSelected && structureSelected) {
+            if (scaleGrabberSelected && structureSelected) {
                 //Debug.Log("something being printed!");
 
-                if(!twoHandGrab) {
+                if (!twoHandGrab) {
 
                     AttachTargetBoth();
 
@@ -160,7 +160,7 @@ namespace Veridium_Interaction
         private void EndTwoHandGrab()
         {
 
-            if(grabInteractor == null) return;
+            if (grabInteractor == null) return;
             
             // Store the attach transform of the interactor
             interactorPosition = grabInteractor.attachTransform.localPosition;

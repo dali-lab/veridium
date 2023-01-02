@@ -28,7 +28,7 @@ namespace Veridium_Animation
 
             if (Mathf.Abs(input) > 0.1)
             {
-                if(!scrubbing) 
+                if (!scrubbing) 
                 {
                     currentSequence.PauseSequence();
                     scrubbing = true;

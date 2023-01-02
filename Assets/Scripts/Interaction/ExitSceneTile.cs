@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Events;
 
-namespace Veridium_Interaction{
+namespace Veridium_Interaction
+{
     public class ExitSceneTile : HandDistanceGrabbable
     {
 
@@ -36,10 +37,10 @@ namespace Veridium_Interaction{
             stationaryCountdown.text = "";
 
             // Increment the timer if not interacted
-            if(!interacted){
-
-                if(unHeldTimer < maxUnHeldTime){
-
+            if (!interacted)
+            {
+                if (unHeldTimer < maxUnHeldTime)
+                {
                     unHeldTimer += Time.deltaTime;
 
                 } else {
@@ -54,10 +55,11 @@ namespace Veridium_Interaction{
                     }
 
                 }
-            } else if(GetComponent<XRGrabInteractable>().selectingInteractor is XRDirectInteractor) {
-
-                if(heldTimer < timeUntilExit){
-
+            }
+            else if(GetComponent<XRGrabInteractable>().selectingInteractor is XRDirectInteractor)
+            {
+                if (heldTimer < timeUntilExit)
+                {
                     heldTimer += Time.deltaTime;
 
                     if(heldTimer > 0.2f) {
@@ -75,8 +77,8 @@ namespace Veridium_Interaction{
         }
 
         // Called by the grab interactable
-        protected override void OnSelectEntering(XRBaseInteractor interactor){
-
+        protected override void OnSelectEntering(XRBaseInteractor interactor)
+        {
             base.OnSelectEntering(interactor); // Run this method in parent
 
             interacted = true;
@@ -84,8 +86,8 @@ namespace Veridium_Interaction{
         }
 
         // Called by the grab interactable
-        protected override void OnSelectExiting(XRBaseInteractor interactor) {
-            
+        protected override void OnSelectExiting(XRBaseInteractor interactor)
+        {
             base.OnSelectExiting(interactor); // Run this method in parent
 
             interacted = false;

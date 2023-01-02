@@ -43,17 +43,23 @@ namespace Veridium_Animation
 
             base.Update();
 
-            if(!playing && finishCycle){
+            if (!playing && finishCycle)
+            {
                 timeAfterEnd += Time.deltaTime;
 
-                if (gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(timeAfterEnd));
+                if (gameObject.GetComponent<Renderer>() != null) 
+                {
+                    gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(timeAfterEnd));
+                }
 
-                if (timeAfterEnd % (1/blinksPerSecond) > (1/blinksPerSecond) - 1.1 * Time.deltaTime){
+                if (timeAfterEnd % (1/blinksPerSecond) > (1/blinksPerSecond) - 1.1 * Time.deltaTime)
+                {
                     finishCycle = false;
                     timeAfterEnd = 0;
 
                     // Turn off the emission if the animation is paused
-                    if (gameObject.GetComponent<Renderer>() != null) {
+                    if (gameObject.GetComponent<Renderer>() != null)
+                    {
                         gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
                     }
                     if (selfDestruct) Destroy(this);
@@ -70,7 +76,7 @@ namespace Veridium_Animation
             }
 
             // If the renderer exists, enable emission
-            if (gameObject.GetComponent<Renderer>() != null){
+            if (gameObject.GetComponent<Renderer>() != null) {
                 gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(0f));
                 gameObject.GetComponent<Renderer>().materials[materialIndex].EnableKeyword("_EMISSION");
             }

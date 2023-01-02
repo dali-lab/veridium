@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Core{
+namespace Veridium_Core
+{
     public class Coloration
     {
         private static readonly Dictionary<string, string> Colors
@@ -127,23 +128,27 @@ namespace Veridium_Core{
                 {"Oganesson", "ffffff"},
             };
 
-        public static Color GetColor(string element){
+        public static Color GetColor(string element)
+        {
 
             Color color = new Color();
 
             string hex = "#" + Colors[element];
 
-            if (ColorUtility.TryParseHtmlString(hex, out color)){
+            if (ColorUtility.TryParseHtmlString(hex, out color))
+            {
                 return color;
-            } else {
+            } 
+            else {
                 return Color.white;
             }
 
         }
 
-        public static Color GetColorByNumber(int atomicNumber){
+        public static Color GetColorByNumber(int atomicNumber)
+        {
 
-            if(atomicNumber <= 0) atomicNumber = 1;
+            if (atomicNumber <= 0) atomicNumber = 1;
 
             List<string> keyList = new List<string>(Colors.Keys);
 
@@ -151,7 +156,8 @@ namespace Veridium_Core{
 
         }
 
-        public static int GetNumberByName(string name){
+        public static int GetNumberByName(string name)
+        {
 
             List<string> keyList = new List<string>(Colors.Keys);
 

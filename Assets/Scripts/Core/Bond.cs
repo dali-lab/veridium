@@ -7,25 +7,28 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Core{
+namespace Veridium_Core
+{
     /**
      * @class Bond
      * Class that describes a linear bond between two Atom objects. Contains
      * functionality for comparing and drawing bonds
      */
-    public class Bond {
+    public class Bond 
+    {
         // "start" and "end" atoms are inherently arbitrary since direction doesn't really matter
         // in this case start and end are simply used to denote the two Atoms at either ends of the Bonds
         private Atom start;
         private Atom end;
-        public GameObject drawnObject {get; private set;}
+        public GameObject drawnObject { get; private set; }
         public GameObject builder;
 
         /**
          * @constructor
          * Instantiates bond with two atoms
          */
-        public Bond(Atom startAtom, Atom endAtom) {
+        public Bond(Atom startAtom, Atom endAtom)
+        {
             start = startAtom;
             end = endAtom;
         }
@@ -34,7 +37,8 @@ namespace Veridium_Core{
          * @function GetStart
          * @return Atom start atom
          */
-        public Atom GetStart() {
+        public Atom GetStart()
+        {
             return start;
         }
 
@@ -42,7 +46,8 @@ namespace Veridium_Core{
          * @function GetEnd
          * @return Atom end atom
          */
-        public Atom GetEnd() {
+        public Atom GetEnd()
+        {
             return end;
         }
 
@@ -51,10 +56,14 @@ namespace Veridium_Core{
          * @input other another bond
          * @return bool Whether the Bonds are equivalent
          */
-        public bool Equals(Bond other) {
-            if (start.Equals(other.GetStart()) && end.Equals(other.GetEnd())) {
+        public bool Equals(Bond other) 
+        {
+            if (start.Equals(other.GetStart()) && end.Equals(other.GetEnd())) 
+            {
                 return true;
-            } else if (end.Equals(other.GetStart()) && start.Equals(other.GetEnd())) {
+            } 
+            else if (end.Equals(other.GetStart()) && start.Equals(other.GetEnd()))
+            {
                 return true;
             }
             return false;
@@ -64,7 +73,8 @@ namespace Veridium_Core{
          * @function GetStartPosition
          * @return Vector3 position of start atom
          */
-        public Vector3 GetStartPos() {
+        public Vector3 GetStartPos()
+        {
             return start.GetPosition();
         }
 
@@ -72,7 +82,8 @@ namespace Veridium_Core{
          * @function GetEndpos
          * @return Vector3 position of end atom
          */
-        public Vector3 GetEndPos() {
+        public Vector3 GetEndPos()
+        {
             return end.GetPosition();
         }
 
@@ -81,7 +92,8 @@ namespace Veridium_Core{
          * @input linePrefab the Unity prefab of the Bond
          * @input builder the Unity builder object
          */
-        public void Draw() {
+        public void Draw()
+        {
             Vector3 midpoint = (start.GetPosition() + end.GetPosition())/2;
             float distance = Vector3.Distance(start.GetPosition(), end.GetPosition());
 

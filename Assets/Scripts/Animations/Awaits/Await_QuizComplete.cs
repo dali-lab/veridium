@@ -15,12 +15,12 @@ namespace Veridium_Animation
         // 6 atoms of the same layer
         public Vector3[] solution = 
             new Vector3[] {
-            new Vector3(-1,-1,1),
-            new Vector3(-1,1,-1),
-            new Vector3(1,-1,-1),
-            new Vector3(-1,0,0),
-            new Vector3(0,-1,0),
-            new Vector3(0,0,-1)
+            new Vector3(-1, -1, 1),
+            new Vector3(-1, 1 -1),
+            new Vector3(1, -1, -1),
+            new Vector3(-1, 0, 0),
+            new Vector3(0, -1, 0),
+            new Vector3(0, 0, -1)
         };
 
         // // 14 atoms that form the cubic face centered unit cell
@@ -243,10 +243,9 @@ namespace Veridium_Animation
             submitButton.SetActive(false);
         }
 
-        protected override void UpdateAnim(){
-
+        protected override void UpdateAnim()
+        {
             base.UpdateAnim();
-
         }
     }
 }
