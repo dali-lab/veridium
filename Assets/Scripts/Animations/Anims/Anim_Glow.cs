@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_Glow : AnimationBase
     {
 
@@ -13,10 +14,11 @@ namespace Veridium_Animation{
         private bool finishCycle;               // For trailing off glow
         public float maxIntensity = 0.6f;       // Maximum brightness that the glow effect will have
         public float fadeTime = 0.5f;           // Time to fade in or out
-        public EasingType easingType;    // Easing function to use while fading
+        public EasingType easingType;           // Easing function to use while fading
 
 
-        public Anim_Glow(){
+        public Anim_Glow()
+        {
             indefiniteDuration = true;
         }
 
@@ -31,22 +33,27 @@ namespace Veridium_Animation{
         }
 
         
-        protected override void Update(){
+        protected override void Update()
+        {
 
             base.Update();
 
-            if(!playing && finishCycle){
+            if (!playing && finishCycle) 
+            {
                 timeAfterEnd += Time.deltaTime;
 
-                if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(1f-(timeAfterEnd/fadeTime)));
+                if (gameObject.GetComponent<Renderer>() != null) {
+                    gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(1f-(timeAfterEnd/fadeTime)));
+                }
 
-                if(timeAfterEnd > fadeTime){
+                if (timeAfterEnd > fadeTime)
+                {
                     finishCycle = false;
                     timeAfterEnd = 0;
 
                     // Turn off the emission if the animation is paused
-                    if(gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
-                    if(selfDestruct) Destroy(this);
+                    if (gameObject.GetComponent<Renderer>() != null) gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_EMISSION");
+                    if (selfDestruct) Destroy(this);
                 }
             }
         }
@@ -55,10 +62,13 @@ namespace Veridium_Animation{
         {
             base.Play();
 
-            if(emissionColor == null) emissionColor = Color.white;
+            if (emissionColor == null) {
+                emissionColor = Color.white;
+            }
 
             // If the renderer exists, enable emission
-            if(gameObject.GetComponent<Renderer>() != null){
+            if (gameObject.GetComponent<Renderer>() != null)
+            {
                 gameObject.GetComponent<Renderer>().materials[materialIndex].SetColor("_EmissionColor", emissionColor * Alpha(0f));
                 gameObject.GetComponent<Renderer>().materials[materialIndex].EnableKeyword("_EMISSION");
             }
@@ -87,8 +97,8 @@ namespace Veridium_Animation{
         }
 
         // Finds the intensity of the emission at a given time
-        private float Alpha(float time){
-
+        private float Alpha(float time)
+        {
             return (maxIntensity - minIntensity) * Easing.EaseFull(time, easingType) + minIntensity;
 
         }

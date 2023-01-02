@@ -5,14 +5,16 @@ using Veridium_Interaction;
 using Veridium_Core;
 using System.Linq;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_GlowAtoms : AnimationBase
     {
 
         public StructureBase structure;
         private List<Anim_GlowPulse> anims;
 
-        public Anim_GlowAtoms(){
+        public Anim_GlowAtoms()
+        {
             indefiniteDuration = true;
             duration = 0;
             anims = new List<Anim_GlowPulse>();

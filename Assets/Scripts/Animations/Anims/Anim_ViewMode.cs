@@ -4,7 +4,8 @@ using UnityEngine;
 using Veridium_Interaction;
 using Veridium_Core;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_ViewMode : AnimationBase
     {
 
@@ -15,11 +16,12 @@ namespace Veridium_Animation{
 
         public StructureBase structureBase;
         
-        public override void Play(){
+        public override void Play()
+        {
             base.Play();
 
-            if(updateCrystalState){
-                switch (crystalState){
+            if (updateCrystalState) {
+                switch (crystalState) {
                     case CrystalState.SINGLECELL:
                         structureBase.SingleCellView();
                         break;
@@ -32,8 +34,8 @@ namespace Veridium_Animation{
                 }
             }
 
-            if(updateViewMode){
-                switch (crystalView){
+            if (updateViewMode) {
+                switch (crystalView) {
                     case CrystalView.BallAndStick:
                         structureBase.BallAndStickView();
                         break;
@@ -44,7 +46,8 @@ namespace Veridium_Animation{
             }
         }
 
-        public override void Pause(){
+        public override void Pause()
+        {
             base.Pause();
         }
 

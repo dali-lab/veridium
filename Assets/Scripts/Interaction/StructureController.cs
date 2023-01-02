@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Core;
 
-namespace Veridium_Interaction{
+namespace Veridium_Interaction
+{
     public class StructureController : HandDistanceGrabbable
     {
 
@@ -15,8 +16,8 @@ namespace Veridium_Interaction{
         /// latter for scaling. 
         /// </summary>
 
-        public bool scaleGrabberSelected, structureSelected;                   // Keeps track of the grabbed state of the handle
-        public float minScale = 1f, softScaleBound = 15f;     // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
+        public bool scaleGrabberSelected, structureSelected;                    // Keeps track of the grabbed state of the handle
+        public float minScale = 1f, softScaleBound = 15f;                       // Minimum and maximum scale of the structure. SoftScaleBound is a multiplier for max and min that gives the bounds during scaling
         public GameObject scaleGrabber, structure, hand1, hand2;                // GameObject References
         private bool twoHandGrab;                                               // Whether in two hand scaling mode, one hand rotation/translation mode
         private bool twoHandGrabbable = true;                                   // Whether in two hand scaling mode, one hand rotation/translation mode
@@ -29,12 +30,14 @@ namespace Veridium_Interaction{
         private XRBaseInteractor grabInteractor;                                // The grab interactor currently handling this gameObject
         [HideInInspector] public StructureBase structureBase;
 
-        public StructureController(){
+        public StructureController()
+        {
             drawRay = false;
         }
 
         // extends OnSelectEntering from XRGrabInteractable. Stores initial information from the interactors
-        protected override void OnSelectEntering(XRBaseInteractor interactor){
+        protected override void OnSelectEntering(XRBaseInteractor interactor)
+        {
 
             base.OnSelectEntering(interactor); // Run this method in parent
 
@@ -46,10 +49,11 @@ namespace Veridium_Interaction{
             bool hasAttach = attachTransform != null;
 
             HandDistanceGrabber distanceGrabber = interactor.gameObject.GetComponent<HandDistanceGrabber>();
-            if(distanceGrabber != null && distanceGrabber.hitDistance > 0.01f){
-
+            if (distanceGrabber != null && distanceGrabber.hitDistance > 0.01f)
+            {
                 interactor.attachTransform.position = hasAttach ? transform.position - distanceGrabber.hitLocation + interactor.transform.position : transform.position;
-            } else {
+            } 
+            else {
                 interactor.attachTransform.position = hasAttach ? attachTransform.position : transform.position;
             }
             interactor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
@@ -61,9 +65,8 @@ namespace Veridium_Interaction{
         }
 
         // extends OnSelectExiting from XRGrabInteractabe. Resets the structure to its state before grabbing
-        protected override void OnSelectExiting(XRBaseInteractor interactor) {
-
-
+        protected override void OnSelectExiting(XRBaseInteractor interactor)
+        {
             base.OnSelectExiting(interactor); // Run this method in parent
 
             // Reset the attach transform to its original position
@@ -91,7 +94,6 @@ namespace Veridium_Interaction{
         // Update is called once per frame
         void Update()
         {
-
             // Only allow two hand grabbing if one hand grabbing is active
             scaleGrabber.SetActive(structureSelected && twoHandGrabbable );
             
@@ -110,7 +112,8 @@ namespace Veridium_Interaction{
                 UpdateTargetBoth();
                 //ClampScale();
 
-            } else {
+            }
+            else {
                 
                 twoHandGrab = false;
 
@@ -119,23 +122,23 @@ namespace Veridium_Interaction{
                 //SmoothClampScale();
             }
 
-            if (gameObject.transform.localScale.x >= 2){
-
+            if (gameObject.transform.localScale.x >= 2)
+            {
                 if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
-
-            } else if (gameObject.transform.localScale.x >= 1.2 && structureBase.elementLoader.heldElement.type != CellType.HEX){
-
+            } 
+            else if (gameObject.transform.localScale.x >= 1.2 && structureBase.elementLoader.heldElement.type != CellType.HEX)
+            {
                 if (structureBase.currentState != CrystalState.MULTICELL) structureBase.MultiCellView();
-
-            } else if (gameObject.transform.localScale.x <= 0.9){
-
+            } 
+            else if (gameObject.transform.localScale.x <= 0.9)
+            {
                 if (structureBase.currentState != CrystalState.SINGLECELL) structureBase.SingleCellView();
-
             }
         }
 
         // Keeps the gameObject from growing too big or too small instantaneously
-        private void ClampScale() {
+        private void ClampScale()
+        {
 
             if (gameObject.transform.lossyScale.magnitude < minScale / softScaleBound) {
 
@@ -145,17 +148,17 @@ namespace Veridium_Interaction{
         }
 
         // Keeps the gameObject from growing to big or too small over time
-        private void SmoothClampScale() {
-            
-            if (gameObject.transform.lossyScale.magnitude < minScale) {
-
+        private void SmoothClampScale()
+        {
+            if (gameObject.transform.lossyScale.magnitude < minScale)
+            {
                 gameObject.transform.localScale = (1 / ((gameObject.transform.localScale.magnitude / minScale - 1) * Time.deltaTime * 5 + 1)) * gameObject.transform.localScale;
-
             }
         }
 
         // Resets the two hand grab to original
-        private void EndTwoHandGrab() {
+        private void EndTwoHandGrab()
+        {
 
             if(grabInteractor == null) return;
             
@@ -167,11 +170,11 @@ namespace Veridium_Interaction{
             bool hasAttach = attachTransform != null;
             grabInteractor.attachTransform.position = hasAttach ? attachTransform.position : transform.position;
             grabInteractor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
-
         }
 
         // Store information and attach the gameObject to the hands
-        private void AttachTargetBoth() {
+        private void AttachTargetBoth()
+        {
             initialHandPosition1 = hand1.transform.position;
             initialHandPosition2 = hand2.transform.position;
             initialObjectRotation = gameObject.transform.rotation;
@@ -180,7 +183,8 @@ namespace Veridium_Interaction{
         }
 
         // Update the position, rotation, and scale for the gameObject every frame for two hand grab
-        private void UpdateTargetBoth() {
+        private void UpdateTargetBoth()
+        {
             Vector3 currentHandPosition1 = hand1.transform.position; // current first hand position
             Vector3 currentHandPosition2 = hand2.transform.position; // current second hand position
 
@@ -200,7 +204,6 @@ namespace Veridium_Interaction{
             
             // set the position of the object to the center of both hands based on the original object direction relative to the new scale and rotation
             gameObject.transform.position = (0.5f * (currentHandPosition1 + currentHandPosition2)) + (handRot * (initialObjectDirection * p));
-
         }
 
         public void SetTwoHandGrab(bool state)
@@ -209,15 +212,17 @@ namespace Veridium_Interaction{
         }
 
         // Called by XR grab interactable in the structure
-        public void ScaleGrabberSelected() {
+        public void ScaleGrabberSelected()
+        {
             scaleGrabberSelected = true;
         }
 
         // Called by XR grab interactable in the structure
-        public void ScaleGrabberDeselected() {
+        public void ScaleGrabberDeselected()
+        {
             scaleGrabberSelected = false;
 
-            if(twoHandGrab) EndTwoHandGrab();
+            if (twoHandGrab) EndTwoHandGrab();
         }
     }
 }

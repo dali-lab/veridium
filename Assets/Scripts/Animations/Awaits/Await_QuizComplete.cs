@@ -5,7 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
 using System.Linq;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Await_QuizComplete : AwaitUserBase
     {
 
@@ -61,11 +62,14 @@ namespace Veridium_Animation{
         //  listener added to selector tool
         public void CollisionWithAtom(GameObject atom)
         {
-            if(atom.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.GetComponent<Anim_GlowPulse>());
+            if (atom.GetComponent<Anim_GlowPulse>() != null)
+            {
+                Destroy(atom.GetComponent<Anim_GlowPulse>());
+            }
             
             atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
 
-            if(answer.Contains(atom))
+            if answer.Contains(atom))
             {
                 answer.Remove(atom);
                 anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
@@ -89,7 +93,6 @@ namespace Veridium_Animation{
                 anim.Play();
                 Debug.Log("Highlighted atom");
             }
-
         }
 
         public void OnAnswerSubmit()
@@ -98,7 +101,7 @@ namespace Veridium_Animation{
             Debug.Log("solution count: " + solutionSet.Count);
 
             // Correct answer
-            if(answer.SetEquals(solutionSet))
+            if (answer.SetEquals(solutionSet))
             {
                 foreach (GameObject atom in answer)
                 {
@@ -127,7 +130,7 @@ namespace Veridium_Animation{
             }
             else // Wrong answer
             {
-                foreach(GameObject atom in answer)
+                foreach (GameObject atom in answer)
                 {
                     atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
                     if (anim != null)

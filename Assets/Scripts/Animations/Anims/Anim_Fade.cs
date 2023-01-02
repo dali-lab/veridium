@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_Fade : AnimationBase
     {
         /// <summary>
@@ -12,16 +13,18 @@ namespace Veridium_Animation{
 
         public float startingOpacity = 0f;                                  // Opacity to start from
         public float endingOpacity = 1f;                                    // Opacity to end at
-        public EasingType easingType = EasingType.Linear;     // Easing type for the curve between start and end
+        public EasingType easingType = EasingType.Linear;                   // Easing type for the curve between start and end
         public int materialIndex = 0;                                       // The index of the material to apply the fading effect to
 
         // Constructor
-        public Anim_Fade(){
+        public Anim_Fade()
+        {
             duration = 1f;
         }
 
         // Called when started
-        public override void Play(){
+        public override void Play()
+        {
             base.Play();
             gameObject.GetComponent<Renderer>().materials[materialIndex].EnableKeyword("_ALPHABLEND_ON");
             Color color = gameObject.GetComponent<Renderer>().materials[materialIndex].color;
@@ -30,12 +33,14 @@ namespace Veridium_Animation{
         }
 
         // Called when paused
-        public override void Pause(){
+        public override void Pause()
+        {
             base.Pause();
         }
 
         // Called every frame while playing
-        protected override void UpdateAnim(){
+        protected override void UpdateAnim()
+        {
             base.UpdateAnim();
 
             // Alpha value is opacity. Updated each frame
@@ -47,12 +52,14 @@ namespace Veridium_Animation{
             gameObject.GetComponent<Renderer>().materials[materialIndex].color = color;
         }
 
-        public override void End(){
+        public override void End()
+        {
             //gameObject.GetComponent<Renderer>().materials[materialIndex].DisableKeyword("_ALPHABLEND_ON");
         }
 
         // Called when restarted
-        protected override void ResetChild(){
+        protected override void ResetChild()
+        {
             base.ResetChild();
         }
 

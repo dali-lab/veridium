@@ -10,13 +10,14 @@ using Veridium_Animation;
 /// Supports interaction of user and structure
 /// </summary>
 
-namespace Veridium_Interaction{
+namespace Veridium_Interaction
+{
     public class StructureBase : MonoBehaviour
     {
         private bool grabbed;                           // Whether the structure has been grabbed by the user
         public float respawnDistance = 1;               // Distance from the podium at which the structure should teleport home
         public StructureBuilder structureBuilder;       // Reference to the structureBuilder which implements the construction of the structure
-        public float sideLength = 1f;                 // Standard side length of a unit cell
+        public float sideLength = 1f;                   // Standard side length of a unit cell
         public float sphereRadius = 0.075f;             // Radius of the spheres
         public int planeIndex = 0;                      // Index of the currently visualized plane
         public Anim_SpinUp spinUpAnimation;             // The animation that spawns this structure in
@@ -25,14 +26,17 @@ namespace Veridium_Interaction{
         public StructureController structureController; // Structure controller associated with this 
         public CrystalState currentState, desiredState;
 
-        void Awake(){
+        void Awake()
+        {
             structureController.structureBase = this;
         }
 
-        void Update(){
+        void Update()
+        {
 
             // Fade out spheres near the camera
-            if (currentState == CrystalState.INFINITE){
+            if (currentState == CrystalState.INFINITE)
+            {
 
                 /*
                 foreach (Atom atom in structureBuilder.crystal.atoms.Values)
@@ -49,11 +53,14 @@ namespace Veridium_Interaction{
                     }
                 }*/
 
-                if(!structureController.structureSelected){
+                if (!structureController.structureSelected)
+                {
                     structureController.gameObject.transform.position = (structureController.hand1.transform.position + structureController.hand2.transform.position) / 2;
                     structureController.gameObject.transform.rotation = Quaternion.identity;
                     structureController.gameObject.transform.localScale = Vector3.one * 100f;
-                } else if (!structureController.scaleGrabberSelected){
+                } 
+                else if (!structureController.scaleGrabberSelected)
+                {
                     structureController.gameObject.transform.localScale = Vector3.one * 2f;
                 }
             }
@@ -61,7 +68,8 @@ namespace Veridium_Interaction{
         }
 
         // Prompts the structureBuilder to construct a structure base on an element
-        public void ElementAdded(PTElement element){
+        public void ElementAdded(PTElement element)
+        {
 
             int atomicNumber = Coloration.GetNumberByName(element.name);
 
@@ -77,14 +85,16 @@ namespace Veridium_Interaction{
         }
 
         // Prompts the structureBuilder to destroy the cell
-        public void ElementRemoved(){
+        public void ElementRemoved()
+        {
             structureController.Unlock(); // unlock structure when removed in case it was locked during lecture and removed mid lecture
             structureBuilder.DestroyCell();
 
         }
 
-        public void SetView(CrystalState state){
-            switch (state){
+        public void SetView(CrystalState state)
+        {
+            switch (state) {
                 case CrystalState.INFINITE:
                     InfiniteView();
                 break;
@@ -98,7 +108,8 @@ namespace Veridium_Interaction{
         }
 
         // Enables infinite view for the crystal lattice
-        public void InfiniteView(){
+        public void InfiniteView()
+        {
 
             currentState = CrystalState.INFINITE;
 
@@ -111,9 +122,11 @@ namespace Veridium_Interaction{
         }
 
         // Enables multi-cell view for the crystal
-        public void MultiCellView(){
+        public void MultiCellView()
+        {
 
-            if(currentState == CrystalState.INFINITE){
+            if (currentState == CrystalState.INFINITE)
+            {
                 structureBuilder.transform.parent = structureController.gameObject.transform;
                 structureBuilder.transform.localPosition = Vector3.zero;
                 structureBuilder.transform.localRotation = Quaternion.identity;
@@ -125,7 +138,10 @@ namespace Veridium_Interaction{
 
             structureBuilder.Redraw(CrystalState.MULTICELL);
 
-            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) 
+            {
+                Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            }
             Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
 
             anim.updateLocation = false;
@@ -134,18 +150,19 @@ namespace Veridium_Interaction{
 
             anim.duration = 1f;
             anim.easingType = EasingType.Elastic;
-            structureBuilder.gameObject.transform.localScale = new Vector3(.8f,.8f,.8f);
+            structureBuilder.gameObject.transform.localScale = new Vector3(.8f, .8f, .8f);
             anim.selfDestruct = true;
             anim.easeOutOnly = true;
 
             anim.Play();
-            
         }
 
         // Enables single cell view for the crystal
-        public void SingleCellView(){
+        public void SingleCellView()
+        {
 
-            if(currentState == CrystalState.INFINITE){
+            if (currentState == CrystalState.INFINITE)
+            {
                 structureBuilder.transform.parent = structureController.gameObject.transform;
                 structureBuilder.transform.localPosition = Vector3.zero;
                 structureBuilder.transform.localRotation = Quaternion.identity;
@@ -157,7 +174,10 @@ namespace Veridium_Interaction{
 
             structureBuilder.Redraw(CrystalState.SINGLECELL);
 
-            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null)
+            {
+                Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            }
             Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
 
             anim.updateLocation = false;
@@ -166,7 +186,7 @@ namespace Veridium_Interaction{
 
             anim.duration = 1f;
             anim.easingType = EasingType.Elastic;
-            structureBuilder.gameObject.transform.localScale = new Vector3(1.25f,1.25f,1.25f);
+            structureBuilder.gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
             anim.selfDestruct = true;
             anim.easeOutOnly = true;
 
@@ -174,15 +194,18 @@ namespace Veridium_Interaction{
 
         }
 
-        public void ClosePackedView(){
+        public void ClosePackedView()
+        {
 
-            foreach(Bond bond in structureBuilder.crystal.bonds.Values){
+            foreach (Bond bond in structureBuilder.crystal.bonds.Values)
+            {
                 Destroy(bond.drawnObject);
             }
 
             foreach (Atom atom in structureBuilder.crystal.atoms.Values)
             {
-                if(atom.drawnObject != null){
+                if (atom.drawnObject != null)
+                {
                     Anim_MoveTo anim = atom.drawnObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
                     anim.updateLocation = false;
                     anim.updateRotation = false;
@@ -197,24 +220,23 @@ namespace Veridium_Interaction{
 
         }
 
-        public void BallAndStickView(){
-
-
+        public void BallAndStickView()
+        {
 
         }
 
         // Called by joystick switch, switches the plane index up or down
-        public void Switch(bool right){
-
+        public void Switch(bool right)
+        {
             planeIndex += right ? 1 : -1;
             if(planeIndex > structureBuilder.numPlanes - 1) planeIndex -= structureBuilder.numPlanes;
             if(planeIndex < 0) planeIndex += structureBuilder.numPlanes;
 
             structureBuilder.HighlightPlaneAtIndex(planeIndex);
-
         }
 
-        public void Lock(){
+        public void Lock()
+        {
             locked = true;
 
             elementLoader.Lock();
@@ -222,7 +244,8 @@ namespace Veridium_Interaction{
             if (desiredState != currentState) SetView(desiredState);
         }
 
-        public void Unlock(){
+        public void Unlock()
+        {
             locked = false;
 
             elementLoader.Unlock();

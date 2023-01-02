@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Await_Continue : AwaitUserBase
     {
 
@@ -38,7 +39,8 @@ namespace Veridium_Animation{
         }
 
 
-        public void OnInteractionStart(){
+        public void OnInteractionStart()
+        {
             CompleteAction();
             //continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
             //resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
@@ -51,7 +53,8 @@ namespace Veridium_Animation{
 
         }
 
-        public void OnInteractionStartReset(){
+        public void OnInteractionStartReset()
+        {
             CompleteAction();
             //continueButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStart);
             //resetButton.GetComponentInChildren<SegmentPlay>().onInteractionStart.RemoveListener(OnInteractionStartReset);
@@ -65,7 +68,8 @@ namespace Veridium_Animation{
 
         }
 
-        protected override void UpdateAnim(){
+        protected override void UpdateAnim()
+        {
 
             base.UpdateAnim();
 

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_MoveTo : AnimationBase
     {
 
@@ -45,23 +46,27 @@ namespace Veridium_Animation{
 
             float alpha;
 
-            if(!easeOutOnly){
+            if (!easeOutOnly) {
                 alpha = (Easing.EaseFull(elapsedTimePercent, easingType));
-            } else {
+            }
+            else {
                 alpha = (Easing.EaseOut(elapsedTimePercent, easingType));
             }
 
-            if(updateLocation) target.transform.position = (goal - startingPlace) * alpha + startingPlace;
-            if(updateRotation) target.transform.rotation = Quaternion.Slerp(startingRotation, goalRotation, alpha);
-            if(updateScale) target.transform.localScale = (goalScale - startingScale) * alpha + startingScale;
-
+            if (updateLocation) {
+                target.transform.position = (goal - startingPlace) * alpha + startingPlace;
+            }
+            if (updateRotation) {
+                target.transform.rotation = Quaternion.Slerp(startingRotation, goalRotation, alpha);
+            }
+            if (updateScale) {
+                target.transform.localScale = (goalScale - startingScale) * alpha + startingScale;
+            }
         }
 
         public override void Pause()
-
         {
             base.Pause();
         }
-
     }
 }

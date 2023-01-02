@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class AwaitSequence : AwaitUserBase
     {
         
         public List<AwaitUserBase> awaiters;
         private int waitingIndex;
 
-        public override void Play(){
+        public override void Play()
+        {
 
             base.Play();
 
@@ -20,45 +22,49 @@ namespace Veridium_Animation{
 
         }
 
-        protected override void ResetChild(){
+        protected override void ResetChild()
+        {
 
             base.ResetChild();
 
             waitingIndex = 0;
 
-            foreach (AwaitUserBase awaiter in awaiters) {
-
+            foreach (AwaitUserBase awaiter in awaiters) 
+            {
                 if(awaiter != null) awaiter.Reset();
 
             }
 
         }
 
-        public override void Pause(){
+        public override void Pause()
+        {
 
             base.Pause();
 
-            foreach (AwaitUserBase awaiter in awaiters) {
-
+            foreach (AwaitUserBase awaiter in awaiters) 
+            {
                 //if(awaiter != null) awaiter.Pause();
 
             }
 
         }
 
-        protected override void UpdateAnim(){
-
+        protected override void UpdateAnim()
+        {
             base.UpdateAnim();
 
-            if(!awaiters[waitingIndex].awaitingAction){
-
+            if (!awaiters[waitingIndex].awaitingAction)
+            {
                 awaiters[waitingIndex].Pause();
 
                 waitingIndex ++;
 
-                if(waitingIndex >= awaiters.Count){
+                if (waitingIndex >= awaiters.Count)
+                {
                     CompleteAction();
-                } else {
+                } 
+                else {
                     awaiters[waitingIndex].Reset();
                     awaiters[waitingIndex].Play();
                 }

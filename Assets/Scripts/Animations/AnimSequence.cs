@@ -6,7 +6,8 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class AnimSequence : MonoBehaviour
     {
         
@@ -32,7 +33,7 @@ namespace Veridium_Animation{
         public struct AnimSegment {
             public AudioClip audio;                         // This should be used for lecture audio
             public AudioClip audioEN;                       // Each segment has an ENGLISH audio clip
-            public AudioClip audioDE;                         // Each segment has a GERMAN audio clip.
+            public AudioClip audioDE;                       // Each segment has a GERMAN audio clip.
             public List<AnimPlayer> animations;             // List of animations set in the inspector.
             [HideInInspector] public float realDuration;    // The real duration of the segment. Longer than audio clip length if animations run over time
         }
@@ -62,19 +63,25 @@ namespace Veridium_Animation{
             View_Mode
         }*/
 
-        public enum ActionType{ AnimationScript, UnityEvent, Animator, AnimationClass }
+        public enum ActionType { 
+            AnimationScript, 
+            UnityEvent, 
+            Animator, 
+            AnimationClass
+        }
 
         // Called before start
-        void Awake(){
+        void Awake()
+        {
 
-            if(audioSource == null) audioSource = GetComponent<AudioSource>();
+            if (audioSource == null) audioSource = GetComponent<AudioSource>();
             Debug.Log("AUDIO SEQUENCE: " + audioSource);
 
             playingAnims = new List<AnimationBase>();
 
             // Find the real ending durations of all segments. These will be longer than audio
             // clip length when animations run longer than it.
-            for(int i = 0; i < segments.Count; i++)
+            for (int i = 0; i < segments.Count; i++)
             {
                 AnimSegment segment = segments[i];
                 if (Language.language == "English")
@@ -91,32 +98,36 @@ namespace Veridium_Animation{
                 // Give each animation a reference to the anim sequence
                 foreach (AnimPlayer anim in segment.animations)
                 {
-                    if(anim.animation != null) anim.animation.animSequence = this;
+                    if (anim.animation != null) anim.animation.animSequence = this;
                 }
             }
 
         }
 
-        void Start(){
-
-            if(playOnStart) PlaySequence();
+        void Start()
+        {
+            if (playOnStart) PlaySequence();
 
         }
 
         // Called every frame
-        void Update(){
+        void Update()
+        {
 
             // Record the time since the beginning of the audio, even if it has finished
-            if (audioHasFinished){
-                if(playing) segmentTime += Time.deltaTime;
-            } else {
+            if (audioHasFinished)
+            {
+                if (playing) segmentTime += Time.deltaTime;
+            }
+            else
+            {
                 segmentTime = audioSource.time;
             }
 
             //sequenceState += "playing: " + playing.ToString() + "\n";
             //sequenceState += "current audio: " + audioSource.clip.ToString() + "\n";
 
-            if(playing) UpdateAnimations();
+            if (playing) UpdateAnimations();
 
             //sequenceState += "audioHasFinished: " + audioHasFinished.ToString() + "\n";
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
@@ -124,31 +135,31 @@ namespace Veridium_Animation{
 
         }
 
-        private void UpdateAnimations(){
+        private void UpdateAnimations()
+        {
 
             // Find animations that should be playing
-            foreach (AnimPlayer anim in segments[currentIndex].animations){
-
-                switch (anim.actionType){
+            foreach (AnimPlayer anim in segments[currentIndex].animations)
+            {
+                switch (anim.actionType) {
                     case ActionType.AnimationScript:
 
-                        if(anim.animation != null){
-
+                        if(anim.animation != null) 
+                        {
                             bool afterStart = anim.timing < segmentTime;
                             bool beforeEnd = anim.animation.duration + anim.timing > segmentTime;
                             bool endless = anim.animation.indefiniteDuration;
 
-                            if(!playingAnims.Contains(anim.animation) && (afterStart && (beforeEnd || endless))){
-
+                            if (!playingAnims.Contains(anim.animation) && (afterStart && (beforeEnd || endless)))
+                            {
                                 playingAnims.Add(anim.animation);
                                 anim.animation.Play();
-
                             }
                         }
 
                         break;
                     case ActionType.UnityEvent:
-                        if(anim.timing < segmentTime) {
+                        if (anim.timing < segmentTime) {
                             anim.onPlay.Invoke();
                         }
                         break;
@@ -158,9 +169,11 @@ namespace Veridium_Animation{
             }
 
             // Find animations that are done playing
-            foreach (AnimationBase anim in playingAnims){
+            foreach (AnimationBase anim in playingAnims)
+            {
 
-                if(!anim.playing || anim.elapsedTime < 0){
+                if (!anim.playing || anim.elapsedTime < 0)
+                {
 
                     anim.Pause();
                     anim.End();
@@ -183,23 +196,27 @@ namespace Veridium_Animation{
             if (audioHasFinished && CanMoveOn()) PlayNextSegment();
 
             string animsString = "";
-            foreach (AnimationBase anim in playingAnims){
+            foreach (AnimationBase anim in playingAnims)
+            {
                 animsString += anim.ToString() + ", ";
             }
             // sequenceState += "animations playing: " + animsString + "\n";
 
         }
 
-        public bool CanMoveOn(){
+        public bool CanMoveOn()
+        {
             bool animsBlockingMove = false;
 
             // Find animations playing or waiting for input
-            foreach (AnimationBase anim in playingAnims){
+            foreach (AnimationBase anim in playingAnims)
+            {
                 if (!anim.indefiniteDuration || anim.awaitingAction || anim.elapsedTime < anim.duration) animsBlockingMove = true;
             }
 
             // Find if there are animations that have not yet played
-            foreach (AnimPlayer anim in segments[currentIndex].animations){
+            foreach (AnimPlayer anim in segments[currentIndex].animations)
+            {
                 if (anim.actionType == ActionType.AnimationScript && anim.animation != null && anim.timing + 2f >= segmentTime) animsBlockingMove = true;
             }
 
@@ -207,12 +224,13 @@ namespace Veridium_Animation{
         }
 
         // Play the sequence. This will start from where it last left off if paused
-        public void PlaySequence(){
+        public void PlaySequence()
+        {
 
             playing = true;
 
             // If the sequence has already ended, start it over
-            if(currentIndex >= segments.Count - 1) currentIndex = 0;
+            if (currentIndex >= segments.Count - 1) currentIndex = 0;
 
             PlaySegment(segments[currentIndex]);
 
@@ -225,7 +243,8 @@ namespace Veridium_Animation{
             PlaySequence();
         }
 
-        private void PlaySegment(AnimSegment segment){
+        private void PlaySegment(AnimSegment segment)
+        {
 
             // if (audioSource == null) return;
             if (audioSource != null)
@@ -240,27 +259,31 @@ namespace Veridium_Animation{
         }
 
         // Pauses the current animation
-        public void PauseSequence(){
+        public void PauseSequence()
+        {
 
             playing = false;
 
             audioSource.Pause();
 
-            foreach (AnimationBase anim in playingAnims){
+            foreach (AnimationBase anim in playingAnims)
+            {
                 anim.Pause();
             }
 
         }
 
         // Resets the entire sequence, and prompts each animation that has already begun playing to reset
-        public void ResetSequence(){
+        public void ResetSequence()
+        {
 
             PauseSequence();
 
             // Reset all animations
             for (int i = 0; i < segments.Count; i++)
             {
-                foreach (AnimPlayer anim in segments[i].animations){
+                foreach (AnimPlayer anim in segments[i].animations)
+                {
                     if(anim.animation != null && anim.actionType == ActionType.AnimationScript) anim.animation.Reset();
                 }
             }
@@ -271,7 +294,8 @@ namespace Veridium_Animation{
         }
 
         // Resets the sequence and plays from the start
-        public void PlaySequenceFromStart(){
+        public void PlaySequenceFromStart()
+        {
 
             ResetSequence();
             PlaySequence();
@@ -279,11 +303,13 @@ namespace Veridium_Animation{
         }
 
         // Plays the next animation in the list and adds the listener to it
-        public void PlayNextSegment(){
+        public void PlayNextSegment()
+        {
 
             audioSource.Stop();
 
-            foreach (AnimationBase anim in playingAnims){
+            foreach (AnimationBase anim in playingAnims)
+            {
                 anim.Pause();
                 anim.End();
             }
@@ -295,16 +321,18 @@ namespace Veridium_Animation{
 
         }
 
-        public void ScrubSequence(float timeDelta){
+        public void ScrubSequence(float timeDelta)
+        {
 
             float newTime = audioSource.time + timeDelta;
 
             // Skip backward if reaching the beginning of the segment
-            if(newTime < 0){
-
+            if (newTime < 0) 
+            {
                 audioSource.Stop();
 
-                foreach (AnimationBase anim in playingAnims){
+                foreach (AnimationBase anim in playingAnims)
+                {
                     anim.Pause();
                     anim.Reset();
                 }
@@ -314,29 +342,31 @@ namespace Veridium_Animation{
                 PlaySegment(segments[currentIndex]);
 
                 newTime += segments[currentIndex].realDuration;
-
             }
 
             audioSource.time = newTime;
 
             // Record the time since the beginning of the audio, even if it has finished
-            if (audioHasFinished){
+            if (audioHasFinished)
+            {
                 if(playing) segmentTime += timeDelta;
-            } else {
+            } 
+            else 
+            {
                 segmentTime = audioSource.time;
             }
 
             // Find animations that should be playing
-            foreach (AnimPlayer anim in segments[currentIndex].animations){
-
-                switch (anim.actionType){
+            foreach (AnimPlayer anim in segments[currentIndex].animations)
+            {
+                switch (anim.actionType) {
                     case ActionType.AnimationScript:
-                        if(anim.animation != null){
-                            if(!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time){
-
+                        if (anim.animation != null)
+                        {
+                            if (!playingAnims.Contains(anim.animation) && anim.timing < audioSource.time && anim.animation.duration + anim.timing > audioSource.time)
+                            {
                                 playingAnims.Add(anim.animation);
                                 anim.animation.Play();
-
                             }
                         }
                         break;
@@ -349,12 +379,16 @@ namespace Veridium_Animation{
             }
 
             // Scrub animations
-            foreach(AnimationBase anim in playingAnims){
-
+            foreach(AnimationBase anim in playingAnims)
+            {
                 float startTime = 0;
 
-                foreach(AnimPlayer timing in segments[currentIndex].animations){
-                    if(timing.actionType == ActionType.AnimationScript && timing.animation == anim) startTime = timing.timing;
+                foreac (AnimPlayer timing in segments[currentIndex].animations)
+                {
+                    if (timing.actionType == ActionType.AnimationScript && timing.animation == anim) 
+                    {
+                        startTime = timing.timing;
+                    }
                 }
 
                 anim.Scrub(newTime - startTime);
@@ -363,7 +397,6 @@ namespace Veridium_Animation{
             UpdateAnimations();
 
             //(GameObject.FindWithTag("DebugText").GetComponent<TMPro.TextMeshPro>()).text = sequenceState;
-
         }
 
         private float GetSegmentRealDuration(AnimSegment segment)
@@ -374,7 +407,8 @@ namespace Veridium_Animation{
 
             foreach (AnimPlayer anim in segment.animations)
             {
-                if(anim.animation != null && anim.actionType == ActionType.AnimationScript){
+                if (anim.animation != null && anim.actionType == ActionType.AnimationScript)
+                {
                     float end = anim.timing + anim.animation.duration;
                     if (end > latestTime) latestTime = end;
                 }

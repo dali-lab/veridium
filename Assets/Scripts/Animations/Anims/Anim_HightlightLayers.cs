@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Veridium_Core;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_HightlightLayers : AnimationBase
     {
 
@@ -35,7 +36,8 @@ namespace Veridium_Animation{
             }
         };
         */
-        private Vector3[][] steps = new Vector3[][]{
+        private Vector3[][] steps = new Vector3[][]
+        {
             new Vector3[] {
                 new Vector3(0,-1, 1),
                 new Vector3(-1,-1,0.5f),
@@ -59,7 +61,8 @@ namespace Veridium_Animation{
             }
         };
 
-        public Anim_HightlightLayers(){
+        public Anim_HightlightLayers()
+        {
             duration = 4f;
         }
         
@@ -86,15 +89,20 @@ namespace Veridium_Animation{
 
             int step = (int) Mathf.Floor(elapsedTimePercent * steps.Length);
             
-            if(step != currentStep){
+            if (step != currentStep)
+            {
                 currentStep = step;
 
                 foreach (Vector3 pos in steps[currentStep])
                 {
                     Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
 
-                    if(atom != null && atom.drawnObject != null){
-                        if(atom.drawnObject.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.drawnObject.GetComponent<Anim_GlowPulse>());
+                    if (atom != null && atom.drawnObject != null)
+                    {
+                        if (atom.drawnObject.GetComponent<Anim_GlowPulse>() != null)
+                        {
+                            Destroy(atom.drawnObject.GetComponent<Anim_GlowPulse>());
+                        }
                         Anim_GlowPulse anim = atom.drawnObject.AddComponent<Anim_GlowPulse>() as Anim_GlowPulse;
                         anim.emissionColor = new Color(1,1,0);
                         anim.blinksPerSecond = steps.Length / (2 * duration);

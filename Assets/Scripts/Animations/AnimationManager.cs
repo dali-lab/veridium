@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class AnimationManager : MonoBehaviour
     {
 
@@ -25,22 +26,20 @@ namespace Veridium_Animation{
         {
             float input = ReadInput().x;
 
-            if(Mathf.Abs(input) > 0.1){
-
-                if(!scrubbing) {
-
+            if (Mathf.Abs(input) > 0.1)
+            {
+                if(!scrubbing) 
+                {
                     currentSequence.PauseSequence();
                     scrubbing = true;
-
                 }
 
                 currentSequence.ScrubSequence(input * scrubRate * Time.deltaTime);
-
-            } else if (scrubbing){
-
+            }
+            else if (scrubbing)
+            {
                 currentSequence.PlaySequence();
                 scrubbing = false;
-
             }
             
         }

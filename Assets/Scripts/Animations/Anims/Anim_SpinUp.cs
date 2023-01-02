@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_SpinUp : AnimationBase
     {
 
@@ -43,7 +44,9 @@ namespace Veridium_Animation{
             originalRotation = gameObject.transform.localRotation;
 
             // If the object is interactable, it shouldn't be during the animation
-            if (GetComponent<XRGrabInteractable>() != null) GetComponent<XRGrabInteractable>().enabled = false;
+            if (GetComponent<XRGrabInteractable>() != null) {
+                GetComponent<XRGrabInteractable>().enabled = false;
+            }
 
         }
 

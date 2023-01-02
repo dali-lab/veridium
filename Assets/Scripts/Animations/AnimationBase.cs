@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class AnimationBase : MonoBehaviour
     {
 
@@ -20,7 +21,7 @@ namespace Veridium_Animation{
         public bool playing {get; private set;}                 // Whether this animation is actively playing
         private bool begunPlaying;                              // Used to determine whether the animation should reset before playing
         public bool awaitingAction {get; protected set;}        // Don't set this directly, should only be used in the AwaitUserBase class
-        public AnimSequence animSequence;     // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
+        public AnimSequence animSequence;                       // A reference to the anim sequence that controls this animation. Should be null if the animation is independent
         [HideInInspector] public bool selfDestruct;
 
 
@@ -38,18 +39,18 @@ namespace Veridium_Animation{
         {
 
             // Increment animation time and update the animation if it is playing
-            if (playing){
-
+            if (playing)
+            {
                 UpdateAnim();
                 
                 elapsedTime += Time.deltaTime;
 
                 if (duration != 0) elapsedTimePercent = elapsedTime/duration;
-
             }
 
             // If the animation has run its course, stop it
-            if (!indefiniteDuration && elapsedTime >= duration) {
+            if (!indefiniteDuration && elapsedTime >= duration)
+            {
                 Pause();
                 End();
             }
@@ -57,10 +58,12 @@ namespace Veridium_Animation{
         }
 
         // Call this function to play the animation. Will play from start if the animation is already completed
-        public virtual void Play(){
+        public virtual void Play()
+        {
 
             // Start the animation over if it is already at its end
-            if(!indefiniteDuration && elapsedTime >= duration) {
+            if (!indefiniteDuration && elapsedTime >= duration)
+            {
 
                 elapsedTime = 0;
                 elapsedTimePercent = 0;
@@ -74,32 +77,36 @@ namespace Veridium_Animation{
         }
 
         // Update function for the animation, will only be called if playing is true or scrubbing
-        protected virtual void UpdateAnim(){
+        protected virtual void UpdateAnim()
+        {
 
         }
 
         // Pauses the animation. Use this, never set playing to false any other way
-        public virtual void Pause(){
+        public virtual void Pause()
+        {
 
             playing = false;
 
         }
 
-        public virtual void End(){
+        public virtual void End()
+        {
 
             if(selfDestruct) Destroy(this);
-
         }
 
         // Resets the animation before playing
-        public virtual void PlayFromStart(){
+        public virtual void PlayFromStart()
+        {
 
             Reset();
             Play();
 
         }
 
-        public virtual void PlayFromEnd(){
+        public virtual void PlayFromEnd()
+        {
 
             Play();
             Pause();
@@ -108,11 +115,11 @@ namespace Veridium_Animation{
             elapsedTimePercent = 1;
 
             UpdateAnim();
-
         }
 
         // Resets the animation. Overriden by individual animations
-        public void Reset(){
+        public void Reset()
+        {
 
             elapsedTime = 0;
             elapsedTimePercent = 0;
@@ -125,12 +132,14 @@ namespace Veridium_Animation{
         }
 
         // This is a separate function so that it can be canceled in the child by Reset
-        protected virtual void ResetChild(){
+        protected virtual void ResetChild()
+        {
 
         }
 
         // Sets the time of the animation to the new time parameter
-        public void Scrub(float newTime){
+        public void Scrub(float newTime)
+        {
                 
             elapsedTime = newTime;
 
@@ -144,6 +153,5 @@ namespace Veridium_Animation{
             if (elapsedTime <= 0) Reset();
 
         }
-
     }
 }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Veridium_Core;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Anim_AddAtoms : AnimationBase
     {
 
@@ -25,7 +26,8 @@ namespace Veridium_Animation{
         }
 
         // Constructor
-        public Anim_AddAtoms(){
+        public Anim_AddAtoms()
+        {
             duration = 2f;
         }
         
@@ -58,7 +60,8 @@ namespace Veridium_Animation{
             int step = (int) Mathf.Floor(elapsedTimePercent * steps.Count);
 
             // Spawn new atoms when the step increases
-            if(step != currentStep){
+            if (step != currentStep)
+            {
                 currentStep = step;
 
                 foreach (Vector3 pos in steps[currentStep].list)

@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Events;
 
-namespace Veridium_Interaction{
+namespace Veridium_Interaction
+{
     public class SegmentPlay : HandDistanceGrabbable
     {
 
         public float maxHeldTime = 1f;                        // How long before we exit the scene
         private float heldTimer = 0f;
 
-        private bool interacted = true;                         // Whether this element is held or in a socket
+        private bool interacted = true;                       // Whether this element is held or in a socket
         private bool isReset;
 
         public Image progressBar;
@@ -48,9 +49,9 @@ namespace Veridium_Interaction{
         {
 
             // Increment the timer if not interacted
-            if(!interacted && grabbableSphere != null)
+            if (!interacted && grabbableSphere != null)
             {
-                if(!isReset)
+                if (!isReset)
                 {
                     grabbableSphere.transform.position = resetPoint.position;
                     grabbableSphere.transform.rotation = resetPoint.rotation;
@@ -59,22 +60,21 @@ namespace Veridium_Interaction{
                     progressBar.enabled = false;
                 }
             } 
-            else if(GetComponent<XRGrabInteractable>().selectingInteractor is XRDirectInteractor) 
+            else if (GetComponent<XRGrabInteractable>().selectingInteractor is XRDirectInteractor) 
             {
-                if(isReset)
+                if (isReset)
                 {
                     isReset = false;
                 }
 
-                if(heldTimer < maxHeldTime)
+                if (heldTimer < maxHeldTime)
                 {
                     heldTimer += Time.deltaTime;
                     progressBar.enabled = true;
                     progressBar.fillAmount = heldTimer/maxHeldTime;
                     isComplete = false;
                     //progressBar.fillAmount = Mathf.Lerp(0, 100, heldTimer/maxHeldTime);
-
-                } 
+                }
                 else if (!isComplete)
                 {
 
@@ -88,7 +88,8 @@ namespace Veridium_Interaction{
         }
 
         // Called by the grab interactable
-        protected override void OnSelectEntering(XRBaseInteractor interactor){
+        protected override void OnSelectEntering(XRBaseInteractor interactor)
+        {
 
             base.OnSelectEntering(interactor); // Run this method in parent
 
@@ -96,20 +97,21 @@ namespace Veridium_Interaction{
         }
 
         // Called by the grab interactable
-        protected override void OnSelectExiting(XRBaseInteractor interactor) {
-            
+        protected override void OnSelectExiting(XRBaseInteractor interactor)
+        {
             base.OnSelectExiting(interactor); // Run this method in parent
 
             interacted = false;
             heldTimer = 0f;
         }
 
-        public override bool IsSelectableBy(XRBaseInteractor interactor){
+        public override bool IsSelectableBy(XRBaseInteractor interactor)
+        {
             bool baseCase = base.IsSelectableBy(interactor);
 
-            if(!(interactor is XRDirectInteractor)) return false;
+            if (!(interactor is XRDirectInteractor)) return false;
 
             return baseCase;
         }
-    } 
+    }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Animation;
 
-namespace Veridium_Interaction{
+namespace Veridium_Interaction
+{
     public class HandDistanceGrabbable : XRGrabInteractable_Lockable
     {
         /// <summary>
@@ -13,11 +14,12 @@ namespace Veridium_Interaction{
         /// be modified to highlight and unhighlight the game object.
         /// </summary>
 
-        public bool hovered;               // Whether this distance grabbable is currently hovered
+        public bool hovered;                 // Whether this distance grabbable is currently hovered
         public Anim_Highlight highlight;     // The Animation to highlight the grabbable
         public bool drawRay = true;
 
-        protected override void OnHoverEntered(HoverEnterEventArgs args){
+        protected override void OnHoverEntered(HoverEnterEventArgs args)
+        {
 
             base.OnHoverEntered(args);
 
@@ -27,17 +29,19 @@ namespace Veridium_Interaction{
             }
         }
 
-        protected override void OnHoverExited(HoverExitEventArgs args){
-
+        protected override void OnHoverExited(HoverExitEventArgs args)
+        {
             base.OnHoverExited(args);
 
-            if(args.interactor is XRDirectInteractor){
+            if (args.interactor is XRDirectInteractor)
+            {
                 hovered = false;
                 if (highlight != null) highlight.Unhighlight();
             }
         }
 
-        public bool isHovered(){
+        public bool isHovered()
+        {
             return hovered;
         }
     }
