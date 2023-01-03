@@ -69,7 +69,7 @@ namespace Veridium_Animation
             
             atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
 
-            if answer.Contains(atom))
+            if (answer.Contains(atom))
             {
                 answer.Remove(atom);
                 anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;

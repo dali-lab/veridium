@@ -380,7 +380,7 @@ namespace Veridium_Animation
             {
                 float startTime = 0;
 
-                foreac (AnimPlayer timing in segments[currentIndex].animations)
+                foreach (AnimPlayer timing in segments[currentIndex].animations)
                 {
                     if (timing.actionType == ActionType.AnimationScript && timing.animation == anim) 
                     {
