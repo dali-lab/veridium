@@ -52,7 +52,7 @@ namespace Veridium_Animation{
         public GameObject submitButton;
         public GameObject backdrop;
 
-        private SegmentPlay segmentPlay;
+        // private SegmentPlay segmentPlay;
         private PointerSelector pointerSelector;
         private AudioFeedbackManager feedbackManager;
 
@@ -100,6 +100,7 @@ namespace Veridium_Animation{
             // Correct answer
             if(answer.SetEquals(solutionSet))
             {
+                VeridiumButton.Instance.Disable();
                 foreach (GameObject atom in answer)
                 {
                     atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
@@ -116,7 +117,7 @@ namespace Veridium_Animation{
                 }
                 
                 pointerSelector.onAtomSelect.RemoveListener(CollisionWithAtom);
-                segmentPlay.onInteractionStart.RemoveListener(OnAnswerSubmit);
+                // segmentPlay.onInteractionStart.RemoveListener(OnAnswerSubmit);
 
                 // pointer.SetActive(false);
                 feedbackManager.PlayCorrectAudio();
@@ -141,7 +142,8 @@ namespace Veridium_Animation{
                 answer.Clear();
                 Debug.Log("WRONG WRONG WRONG WRONG WRONG!!!");
                 feedbackManager.PlayWrongAudio();
-                segmentPlay.sphereAnim.SetBool("respawnSphere", true);
+                VeridiumButton.Instance.Enable();
+                // segmentPlay.sphereAnim.SetBool("respawnSphere", true);
             }
         }
 
@@ -166,23 +168,26 @@ namespace Veridium_Animation{
             pointer.SetActive(true);
             pointerSelector = pointer.GetComponentInChildren<PointerSelector>();
             pointerSelector.onAtomSelect.AddListener(CollisionWithAtom);
-            StartCoroutine(EnableSubmitButton());
+            // StartCoroutine(EnableSubmitButton());
+            VeridiumButton.Instance.SwitchType(VeridiumButton.ButtonType.SUBMIT);
+            VeridiumButton.Instance.Enable();
+            VeridiumButton.Instance.onInteracted.AddListener(OnAnswerSubmit);
             Debug.Log("added listeners");
 
             //*** StartCoroutine(FadeBackdrop());
 
         }
 
-        IEnumerator EnableSubmitButton()
-        {
-            yield return new WaitForSeconds(1f);
-            submitButton.SetActive(true);
-            segmentPlay = submitButton.GetComponentInChildren<SegmentPlay>();
-            Debug.Log("segment play: " + segmentPlay);
-            segmentPlay.onInteractionStart.AddListener(OnAnswerSubmit);
-            segmentPlay.sphereAnim.Rebind();
-            segmentPlay.sphereAnim.Update(0f);
-        }
+        // IEnumerator EnableSubmitButton()
+        // {
+        //     yield return new WaitForSeconds(1f);
+        //     submitButton.SetActive(true);
+        //     segmentPlay = submitButton.GetComponentInChildren<SegmentPlay>();
+        //     Debug.Log("segment play: " + segmentPlay);
+        //     segmentPlay.onInteractionStart.AddListener(OnAnswerSubmit);
+        //     segmentPlay.sphereAnim.Rebind();
+        //     segmentPlay.sphereAnim.Update(0f);
+        // }
 
         // Fill the solution set with the right solutions
         public void FillSolutionSet(HashSet<GameObject> solutionSet, Vector3[] solution)
