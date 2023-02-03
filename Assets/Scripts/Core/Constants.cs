@@ -73,7 +73,29 @@ namespace Veridium_Core{
             new Vector3(0, 0, 0)        // 14
         };
 
+        private static Vector3 topLayerOffset = new Vector3(1/2,3/4, Mathf.Sqrt(3.0f) / 6.0f);
         // The array of 14 generic cell positions for an 8 sided unit cell
+        public static Vector3[] cell8BasicPositions = new Vector3[] {
+            // bottom of cell
+            new Vector3(0, 0, 0),                              // 0
+            new Vector3(1, 0, 0),                              // 1
+            new Vector3(-1, 0, 0),                              // 1
+            new Vector3(1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)),                              // 1
+            new Vector3(1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)),                              // 1
+            new Vector3(-1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)),                              // 1
+            new Vector3(-1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)),                              // 1
+            
+            // top of cell
+            new Vector3(0, 0, 0) + topLayerOffset,                              // 0
+            new Vector3(1, 0, 0) + topLayerOffset,                              // 1
+            new Vector3(-1, 0, 0) + topLayerOffset,                              // 1
+            new Vector3(1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 1
+            new Vector3(1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 1
+            new Vector3(-1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 1
+            new Vector3(-1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 1
+        };
+
+/*        // The array of 14 generic cell positions for an 8 sided unit cell
         public static Vector3[] cell8BasicPositions = new Vector3[] {
             // bottom of cell
             new Vector3(0, -0.5f, 0),                              // 0
@@ -92,7 +114,7 @@ namespace Veridium_Core{
             new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), 0.5f, -0.35f),      // 12
             new Vector3(0.7f*(-(Mathf.Sqrt(3.0f)/2.0f)), 0.5f, -0.35f)     // 13
         };
-
+*/
         // The hashmap relating UnitCell6 variations to the indices of the 
         // vertices in cell6BasicPositions that they contain
         public static Dictionary<CellVariation, int[]> cell6VariationMap = new Dictionary<CellVariation, int[]> {
