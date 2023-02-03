@@ -80,7 +80,7 @@ namespace Veridium_Interaction{
         public void ElementRemoved(){
             structureController.Unlock(); // unlock structure when removed in case it was locked during lecture and removed mid lecture
             structureBuilder.DestroyCell();
-
+            VeridiumButton.Instance.Disable();
         }
 
         public void SetView(CrystalState state){
