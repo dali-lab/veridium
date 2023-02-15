@@ -261,7 +261,7 @@ namespace Veridium_Core{
 
             UnitCell originCell;
             if (type == CellType.HEX) {
-                originCell = new UnitCell8(atomicNumber, centerPoint, a, b, false);
+                originCell = new UnitCell2(atomicNumber, centerPoint, a, b, false);
             } else {
                 originCell = new UnitCell6(atomicNumber, type, variation, 
                     centerPoint, a, b, c, alpha, beta, gamma);

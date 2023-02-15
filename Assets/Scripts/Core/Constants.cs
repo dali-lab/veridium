@@ -73,6 +73,13 @@ namespace Veridium_Core{
             new Vector3(0, 0, 0)        // 14
         };
 
+        private static float height = 2;
+        public static Vector3[] cell2BasicPositions = new Vector3[]
+        {
+            new Vector3(-0.25f,-0.25f * height,-Mathf.Sqrt(3)/12.0f),
+            new Vector3(0.25f,0.25f * height,Mathf.Sqrt(3)/12.0f)
+        };
+
         private static Vector3 topLayerOffset = new Vector3(1f/2f,3f/4f, Mathf.Sqrt(3.0f) / 6.0f);
         // The array of 14 generic cell positions for an 8 sided unit cell
         public static Vector3[] cell8BasicPositions = new Vector3[] {
