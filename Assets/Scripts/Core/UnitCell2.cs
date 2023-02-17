@@ -192,6 +192,7 @@ namespace Veridium_Core
          */
         public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds)
         {
+            return;
             // Loops through each vertex in the unit cell
             for (int startIndex = 0; startIndex < this.numVertices; startIndex++)
             {
@@ -290,6 +291,40 @@ namespace Veridium_Core
             {
                 bond.Draw();
             }
+
+            // Draw CAGE
+
+            Vector3[] positions = new Vector3[] 
+            { 
+                Constants.cell2CagePositions[0],
+                Constants.cell2CagePositions[1],
+                Constants.cell2CagePositions[5],
+                Constants.cell2CagePositions[4],
+                Constants.cell2CagePositions[0],
+                Constants.cell2CagePositions[3],
+                Constants.cell2CagePositions[7],
+                Constants.cell2CagePositions[6],
+                Constants.cell2CagePositions[2],
+                Constants.cell2CagePositions[1],
+                Constants.cell2CagePositions[5],
+                Constants.cell2CagePositions[6],
+                Constants.cell2CagePositions[2],
+                Constants.cell2CagePositions[3],
+                Constants.cell2CagePositions[7],
+                Constants.cell2CagePositions[4]
+            };
+
+            // SCALE CAGE POSITIONS BASED ON BASELENGTH
+            for (int i = 0; i < positions.Length; i++)
+            {
+                positions[i] *= baseLength;
+            }
+
+
+            LineRenderer lr = builder.GetComponent<LineRenderer>();
+            lr.positionCount = positions.Length;
+            lr.SetPositions(positions);
+
         }
 
         /**
@@ -364,11 +399,12 @@ namespace Veridium_Core
             }
             else
             {
-                UnitCell8 newCell = new UnitCell8(this.atomicNumber, newCellPos, this.baseLength, this.height, invert);
+                UnitCell2 newCell = new UnitCell2(this.atomicNumber, newCellPos, this.baseLength, this.height, invert);
                 newCell.builder = builder;
                 newCell.AddVertices(crystalAtoms);
-                newCell.AddBonds(crystalBonds);
+                //newCell.AddBonds(crystalBonds);
                 crystalCells[newCellPos] = newCell;
+                
             }
         }
     }

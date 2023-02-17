@@ -23,6 +23,9 @@ public class StructureBuilder : MonoBehaviour
     {
 
         if(buildOnStart) BuildCell(cellType, cellVariation, CrystalState.INFINITE, 0.5f, 0.075f, 23);
+        LineRenderer lr = GetComponent<LineRenderer>();
+        lr.startWidth = Constants.cageLineWidth;
+        lr.endWidth = Constants.cageLineWidth;
 
     }
 
@@ -66,6 +69,10 @@ public class StructureBuilder : MonoBehaviour
      */
     public void DestroyCell() {
         crystal.ClearCrystal(gameObject);
+        LineRenderer lr = GetComponent<LineRenderer>();
+        lr.positionCount = 0;
+        lr.startWidth = Constants.cageLineWidth;
+        lr.endWidth = Constants.cageLineWidth;
 
         initialized = false;
     }

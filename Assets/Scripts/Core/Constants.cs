@@ -73,11 +73,28 @@ namespace Veridium_Core{
             new Vector3(0, 0, 0)        // 14
         };
 
-        private static float height = 2;
+        private static float cageHeight = 1.5f;
         public static Vector3[] cell2BasicPositions = new Vector3[]
         {
-            new Vector3(-0.25f,-0.25f * height,-Mathf.Sqrt(3)/12.0f),
-            new Vector3(0.25f,0.25f * height,Mathf.Sqrt(3)/12.0f)
+            new Vector3(-0.25f, -0.25f * cageHeight,-Mathf.Sqrt(3)/12.0f),
+            new Vector3(0.25f, 0.25f * cageHeight,Mathf.Sqrt(3)/12.0f)
+        };
+        
+        public static float cageLineWidth = 0.005f;
+
+        public static Vector3[] cell2CagePositions = new Vector3[]
+        {
+            // top
+            new Vector3(-0.75f, 0.75f, -Mathf.Sqrt(3)/4f),
+            new Vector3(-0.25f, 0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.75f, 0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.25f, 0.75f, -Mathf.Sqrt(3)/4f),
+
+            // bottom
+            new Vector3(-0.75f, -0.75f, -Mathf.Sqrt(3)/4f),
+            new Vector3(-0.25f, -0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.75f, -0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.25f, -0.75f, -Mathf.Sqrt(3)/4f),
         };
 
         private static Vector3 topLayerOffset = new Vector3(1f/2f,3f/4f, Mathf.Sqrt(3.0f) / 6.0f);

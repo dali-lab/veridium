@@ -26,6 +26,7 @@ namespace Veridium_Interaction{
         private Vector3 initialHandPosition1, initialHandPosition2;             // controller starting locations
         private Quaternion initialObjectRotation;                               // gameObject rotation
         private Vector3 initialObjectScale, initialObjectDirection;             // gameObject scale, direction of gameObject to midpoint of both controllers
+        private float initialLineWidth;              // gameObject scale, direction of gameObject to midpoint of both controllers
         private XRBaseInteractor grabInteractor;                                // The grab interactor currently handling this gameObject
         [HideInInspector] public StructureBase structureBase;
 
@@ -176,6 +177,7 @@ namespace Veridium_Interaction{
             initialHandPosition2 = hand2.transform.position;
             initialObjectRotation = gameObject.transform.rotation;
             initialObjectScale = gameObject.transform.localScale;
+            initialLineWidth = structure.GetComponent<LineRenderer>().startWidth;
             initialObjectDirection = gameObject.transform.position - (initialHandPosition1 + initialHandPosition2) * 0.5f; 
         }
 
@@ -200,6 +202,12 @@ namespace Veridium_Interaction{
             
             // set the position of the object to the center of both hands based on the original object direction relative to the new scale and rotation
             gameObject.transform.position = (0.5f * (currentHandPosition1 + currentHandPosition2)) + (handRot * (initialObjectDirection * p));
+
+            if (structure.TryGetComponent<LineRenderer>(out LineRenderer lr))
+            {
+                lr.startWidth = p * initialLineWidth;
+                lr.endWidth = p * initialLineWidth;
+            }
 
         }
 

@@ -74,7 +74,7 @@ namespace Veridium_Core{
         public void Draw() {
 
             drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Atom_Prefab"), Vector3.zero, Quaternion.identity);
-            drawnObject.transform.SetParent(builder.transform);
+            drawnObject.transform.SetParent(builder.transform); 
             drawnObject.transform.localPosition = position;
             drawnObject.transform.localScale = Vector3.one * 0.15f;
             drawnObject.GetComponent<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
