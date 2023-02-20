@@ -106,7 +106,7 @@ namespace Veridium_Animation{
             // Compute planar equation
             if (i < 3)
             {
-              ABC[i] = structureBuilder.GetCoordinateAtAtom(atom.GetComponent<Atom>());
+              // ABC[i] = structureBuilder.GetCoordinateAtAtom(atom.GetComponent<Atom>());
             }
             else // Check the rest of the atoms lie on the plane
             {
