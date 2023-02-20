@@ -91,6 +91,12 @@ namespace Veridium_Interaction{
                 case CrystalState.MULTICELL:
                     MultiCellView();
                 break;
+                case CrystalState.MULTICELLHEX1:
+                    MultiCellView(CellType.HEX, 1);
+                break;
+                case CrystalState.MULTICELLHEX2:
+                    MultiCellView(CellType.HEX, 2);
+                break;
                 case CrystalState.SINGLECELL:
                     SingleCellView();
                 break;
@@ -140,6 +146,37 @@ namespace Veridium_Interaction{
 
             anim.Play();
             
+        }
+
+        public void MultiCellView(CellType type, int version)
+        {
+            if(currentState == CrystalState.INFINITE){
+                structureBuilder.transform.parent = structureController.gameObject.transform;
+                structureBuilder.transform.localPosition = Vector3.zero;
+                structureBuilder.transform.localRotation = Quaternion.identity;
+                structureBuilder.transform.localScale = Vector3.one;
+                FindObjectsOfType<Camera>()[0].cullingMask = ~0 ^ 1 << LayerMask.NameToLayer("InfiniteOnly");
+            }
+            
+            if (version == 1) currentState = CrystalState.MULTICELLHEX1;
+            else if (version == 2) currentState = CrystalState.MULTICELLHEX2;
+
+            structureBuilder.Redraw(currentState);
+
+            if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
+            Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+
+            anim.updateLocation = false;
+            anim.updateRotation = false;
+            anim.updateScale = true;
+
+            anim.duration = 1f;
+            anim.easingType = EasingType.Elastic;
+            structureBuilder.gameObject.transform.localScale = new Vector3(.8f,.8f,.8f);
+            anim.selfDestruct = true;
+            anim.easeOutOnly = true;
+
+            anim.Play();
         }
 
         // Enables single cell view for the crystal

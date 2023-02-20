@@ -120,18 +120,40 @@ namespace Veridium_Interaction{
                 //SmoothClampScale();
             }
 
-            if (gameObject.transform.localScale.x >= 2){
+            // Cell Type HEX is different than other cell views
+            if (structureBase?.elementLoader?.heldElement?.type == CellType.HEX)
+            {
+                if (gameObject.transform.localScale.x >= 2)
+                {
+                    if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
+                }
+                else if (gameObject.transform.localScale.x >= 1.6)
+                {
+                    if (structureBase.currentState != CrystalState.MULTICELLHEX2) structureBase.MultiCellView(CellType.HEX, 2);
+                }
+                else if (gameObject.transform.localScale.x >= 1.1)
+                {
+                    if (structureBase.currentState != CrystalState.MULTICELLHEX1) structureBase.MultiCellView(CellType.HEX, 1);
+                } 
+                else if (gameObject.transform.localScale.x <= 0.8)
+                {
+                    if (structureBase.currentState != CrystalState.SINGLECELL) structureBase.SingleCellView();
+                }
+            }
+            else
+            {
+                if (gameObject.transform.localScale.x >= 2){
 
-                if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
+                    if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
 
-            } else if (gameObject.transform.localScale.x >= 1.2 && structureBase.elementLoader.heldElement.type != CellType.HEX){
+                } else if (gameObject.transform.localScale.x >= 1.2 && structureBase.elementLoader.heldElement.type != CellType.HEX){
 
-                if (structureBase.currentState != CrystalState.MULTICELL) structureBase.MultiCellView();
+                    if (structureBase.currentState != CrystalState.MULTICELL) structureBase.MultiCellView();
 
-            } else if (gameObject.transform.localScale.x <= 0.9){
+                } else if (gameObject.transform.localScale.x <= 0.9){
 
-                if (structureBase.currentState != CrystalState.SINGLECELL) structureBase.SingleCellView();
-
+                    if (structureBase.currentState != CrystalState.SINGLECELL) structureBase.SingleCellView();
+                }
             }
         }
 

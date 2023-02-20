@@ -19,7 +19,10 @@ namespace Veridium_Core{
         // INFINITE describes the state where the crystal structure is 
         // generated recursively to a user-specificed recursion depth
         INFINITE,
-        MULTICELL
+        MULTICELL,
+        // Need 2 different multicell views for hexagonal structures specifically
+        MULTICELLHEX1,
+        MULTICELLHEX2
     };
 
     public enum CrystalView {
@@ -171,6 +174,30 @@ namespace Veridium_Core{
                         }
                     }
                     break;
+
+                case CrystalState.MULTICELLHEX1:
+                    for (int i=0; i < 2; i++)
+                    {
+                        for (int j=0; j < 2; j++)
+                        {
+                            for (int k=0; k < 2; k++)
+                            {
+                                Vector3 coord = new Vector3(i,j,k);
+                                Matrix4x4 m = new Matrix4x4(new Vector4(1, 0, 0, 0), new Vector4(0, 1.5f, 0, 0), new Vector4(0.5f, 0, Mathf.Sqrt(3)/2, 0), new Vector4(0, 0, 0, 1)); //Shear
+                                coord = m.MultiplyPoint(coord);
+                                Debug.Log("Coord: " + coord);
+                                UnitCell unitCell = GetUnitCellAtCoordinate(coord);
+                                if (unitCell != null){
+                                    unitCell.builder = builder;
+                                    unitCell.Draw();
+                                }  
+                            }
+                        }
+                    }
+                    break;
+                case CrystalState.MULTICELLHEX2:
+                    break;
+
                 case CrystalState.INFINITE:
 
                     string fileName = "";
@@ -212,17 +239,17 @@ namespace Veridium_Core{
             }
         }
 
-        public UnitCell GetUnitCellAtCoordinate(Vector3 pos){
+        public UnitCell GetUnitCellAtCoordinate(Vector3 pos)
+        {
+            Vector3 corrected = pos * 0.5f;
 
-        Vector3 corrected = pos * 0.5f;
-
-        foreach (KeyValuePair<Vector3, UnitCell> a in unitCells){
-            
-            if((a.Key - corrected).magnitude < 0.1){
-                return a.Value;
+            foreach (KeyValuePair<Vector3, UnitCell> a in unitCells){
+                
+                if((a.Key - corrected).magnitude < 0.1){
+                    return a.Value;
+                }
             }
-        }
-        return null;
+            return null;
         }
 
         /**

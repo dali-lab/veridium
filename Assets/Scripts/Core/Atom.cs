@@ -83,7 +83,21 @@ namespace Veridium_Core{
                 drawnObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
                 drawnObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
             }
+        }
 
+        // Draws atoms at a different scale
+        public void Draw(float scale)
+        {
+            drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Atom_Prefab"), Vector3.zero, Quaternion.identity);
+            drawnObject.transform.SetParent(builder.transform); 
+            drawnObject.transform.localPosition = position;
+            drawnObject.transform.localScale = Vector3.one * scale * 0.15f;
+            drawnObject.GetComponent<Renderer>().material.color = Coloration.GetColorByNumber(atomicNumber);
+
+            if(metallic){
+                drawnObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
+                drawnObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
+            }
         }
 
         public void Highlight(){

@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Veridium_Core
 {
     /**
-     * @class UnitCell8
+     * @class UnitCell2
      * Object class used to store all associated information for an 8 sided unit
      * cell. Implements functionality for building the hexagonal cell, adding
      * vertices, creating bonds, and generating duplicate neighbor vertices.
@@ -282,7 +282,7 @@ namespace Veridium_Core
             {
                 if (this.vertices[i] != null)
                 {
-                    this.vertices[i].Draw();
+                    this.vertices[i].Draw(0.25f);
                 }
             }
 
@@ -341,14 +341,12 @@ namespace Veridium_Core
         public override void GenerateNeighbors(Dictionary<Vector3, Atom> crystalAtoms, Dictionary<Vector3, Bond> crystalBonds, Dictionary<Vector3, UnitCell> crystalCells)
         {
             Vector3[] neighborRelativeLocations = new Vector3[] {
-                Vector3.forward,
-                Vector3.back,
-                new Vector3((float)(Math.Sqrt(3)/2), 1.5f, 0),
-                new Vector3(-(float)(Math.Sqrt(3)/2), 1.5f, 0),
-                new Vector3(-(float)(Math.Sqrt(3)/2), -1.5f, 0),
-                new Vector3((float)(Math.Sqrt(3)/2), -1.5f, 0),
-                new Vector3((float)(-(Math.Sqrt(3))), 0, 0),
-                new Vector3((float)(Math.Sqrt(3)), 0, 0)
+                Vector3.left,
+                Vector3.right,
+                new Vector3(0.5f, 0, Mathf.Sqrt(3)/2f), // forwards
+                new Vector3(-0.5f, 0, -Mathf.Sqrt(3)/2f), // backwards
+                new Vector3(0f, 1.5f, 0f), // up
+                new Vector3(0f, -1.5f, 0f) // down
             };
 
             foreach (Vector3 direction in neighborRelativeLocations)
