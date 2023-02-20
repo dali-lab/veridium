@@ -90,6 +90,15 @@ public class StructureBuilder : MonoBehaviour
         return null;
     }
 
+     public Vector3 GetCoordinateAtAtom(Atom a){
+          foreach (KeyValuePair<Vector3, Atom> pair in crystal.atoms){
+              if(GameObject.ReferenceEquals(a, pair.Value)){
+                  return pair.Key / 0.25f;   // Revert vector from corrected value from GetUnitCellAtCoordinate
+              }
+          }
+          return Vector3.zero;
+      }
+
     /**
      * @function GetMillerAtoms
      * @input h         Miller index corresponding to x value of normal vector

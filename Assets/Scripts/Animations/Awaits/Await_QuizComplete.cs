@@ -92,13 +92,39 @@ namespace Veridium_Animation{
 
         }
 
+        // Confirm answer set lies on the same plane/layer
+        private bool onSamePlane(HashSet<GameObject> answer)
+        {
+          // Planar Equation: ax + by + cz = d
+          // where the normal vector N = (a, b, c)
+          Vector3 NormalVector = Vector3.zero;
+          int d = 0;
+          int i = 0;
+          Vector3[] ABC = new Vector3[3];
+          foreach (GameObject atom in answer)
+          {
+            // Compute planar equation
+            if (i < 3)
+            {
+              ABC[i] = structureBuilder.GetCoordinateAtAtom(atom.GetComponent<Atom>());
+            }
+            else // Check the rest of the atoms lie on the plane
+            {
+
+            }
+
+            i++;
+          }
+          return true;
+        }
+        
         public void OnAnswerSubmit()
         {
             Debug.Log("answer count:" + answer.Count);
             Debug.Log("solution count: " + solutionSet.Count);
 
-            // Correct answer
-            if(answer.SetEquals(solutionSet))
+            // Correct answer: at least 6 atoms on the same layer (plane)
+            if(onSamePlane(answer) && answer.Count >= 6   /*answer.SetEquals(solutionSet)*/)
             {
                 VeridiumButton.Instance.Disable();
                 foreach (GameObject atom in answer)
