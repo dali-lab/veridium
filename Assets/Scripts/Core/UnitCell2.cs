@@ -42,6 +42,9 @@ namespace Veridium_Core
         // Is the hexagon rotated 60 degrees
         private bool inverted;
 
+        // LineRenderer for the cage
+        private LineRenderer lr;
+
         /**
          * Default Constructor
          */
@@ -132,7 +135,7 @@ namespace Veridium_Core
             {
                 Vector3 relPosition = Constants.cell2BasicPositions[i];
                 Vector3 atomPosition = GenerateVertexPosition(relPosition);
-                Debug.Log("relative: " + relPosition + " atomPos: " + atomPosition);
+                // Debug.Log("relative: " + relPosition + " atomPos: " + atomPosition);
                 Atom newAtom = new Atom(this.atomicNumber, atomPosition);
                 newAtom.builder = builder;
 
@@ -264,7 +267,7 @@ namespace Veridium_Core
         {
             return this.bonds;
         }
-
+        
         /**
          * @function Draw
          * @input atomPrefab    GameObject reference to the prefab describing 
@@ -282,7 +285,7 @@ namespace Veridium_Core
             {
                 if (this.vertices[i] != null)
                 {
-                    this.vertices[i].Draw(0.25f);
+                    this.vertices[i].Draw(baseLength * 2);
                 }
             }
 
@@ -292,8 +295,7 @@ namespace Veridium_Core
                 bond.Draw();
             }
 
-            // Draw CAGE
-
+            // Draw the cage
             Vector3[] positions = new Vector3[] 
             { 
                 Constants.cell2CagePositions[0],
@@ -318,13 +320,36 @@ namespace Veridium_Core
             for (int i = 0; i < positions.Length; i++)
             {
                 positions[i] *= baseLength;
+                positions[i] += worldPosition;
             }
 
+            GameObject cage = MonoBehaviour.Instantiate(new GameObject(), builder.transform, false);
+            cage.tag = "cage";
+            lr = cage.AddComponent<LineRenderer>();
 
-            LineRenderer lr = builder.GetComponent<LineRenderer>();
+            // Copy over LinerRenderer info from builder
+            LineRenderer original = builder.GetComponent<LineRenderer>();
+            // System.Type type = original.GetType();
+            // System.Reflection.FieldInfo[] fields = type.GetFields();
+            // foreach (System.Reflection.FieldInfo field in fields) field.SetValue(lr, field.GetValue(original));
+            lr.useWorldSpace = original.useWorldSpace;
+            lr.material = original.material;
             lr.positionCount = positions.Length;
-            lr.SetPositions(positions);
+            lr.startWidth = original.startWidth;
+            lr.endWidth = original.endWidth;
 
+            lr.SetPositions(positions);
+        }
+
+        public void RescaleCage(Vector3 offset, Vector3 scale) {
+            Vector3[] lrPositions = new Vector3[lr.positionCount];
+            lr.GetPositions(lrPositions);
+            for (int i=0; i < lr.positionCount; i++) 
+            {
+                lrPositions[i] += offset;
+                lrPositions[i] = Vector3.Scale(lrPositions[i], scale);
+            }
+            lr.SetPositions(lrPositions);
         }
 
         /**

@@ -74,6 +74,7 @@ namespace Veridium_Core{
         };
 
         private static float cageHeight = 1.5f;
+        public static float hexBaseLength = 0.2f;
         public static Vector3[] cell2BasicPositions = new Vector3[]
         {
             new Vector3(-0.25f, -0.25f * cageHeight,-Mathf.Sqrt(3)/12.0f),
