@@ -83,6 +83,9 @@ namespace Veridium_Interaction{
             if (structureBase.currentState == CrystalState.INFINITE) 
             {
                 //structureBase.elementLoader.ResetStructure();
+                LineRenderer lr = structure.GetComponent<LineRenderer>();
+                lr.startWidth = initialLineWidth;
+                lr.endWidth = initialLineWidth;
                 structureBase.SingleCellView();
                 gameObject.transform.localScale = Vector3.one;
             } 
