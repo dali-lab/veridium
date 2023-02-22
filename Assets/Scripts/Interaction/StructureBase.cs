@@ -203,7 +203,7 @@ namespace Veridium_Interaction{
 
             anim.duration = 1f;
             anim.easingType = EasingType.Elastic;
-            structureBuilder.gameObject.transform.localScale = new Vector3(1.25f,1.25f,1.25f);
+            structureBuilder.gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
             anim.selfDestruct = true;
             anim.easeOutOnly = true;
 
@@ -219,7 +219,8 @@ namespace Veridium_Interaction{
 
             foreach (Atom atom in structureBuilder.crystal.atoms.Values)
             {
-                if(atom.drawnObject != null){
+                if (atom.drawnObject != null)
+                {
                     Anim_MoveTo anim = atom.drawnObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
                     anim.updateLocation = false;
                     anim.updateRotation = false;

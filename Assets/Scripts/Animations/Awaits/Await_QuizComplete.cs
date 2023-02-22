@@ -233,7 +233,7 @@ namespace Veridium_Animation{
 
             foreach (Vector3 vec in solution)
             {
-                solutionSet.Add(structureBuilder.GetAtomAtCoordinate(vec).drawnObject);
+                solutionSet.Add(structureBuilder.GetAtomAtCoordinate(vec, structureBuilder.cellType).drawnObject);
                 Debug.Log("added vector: " + vec);
             }
         }

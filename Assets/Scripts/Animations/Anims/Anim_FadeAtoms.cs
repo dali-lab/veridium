@@ -46,7 +46,7 @@ namespace Veridium_Animation{
 
                 foreach (Vector3 pos in steps[currentStep].list)
                 {
-                    Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
+                    Atom atom = structureBuilder.GetAtomAtCoordinate(pos, structureBuilder.cellType);
                     if(atom.drawnObject != null){
                         Anim_Fade anim = atom.drawnObject.AddComponent<Anim_Fade>() as Anim_Fade;
                         anim.easingType = EasingType.Exponential;

@@ -81,7 +81,7 @@ namespace Veridium_Interaction{
 
             if (currLecture) 
             {
-                //currLecture.GetComponent<AnimSequence>().ResetSequence();
+                currLecture.GetComponent<AnimSequence>().ResetSequence();
                 currLecture.SetActive(false);
                 currLecture = null;
             }

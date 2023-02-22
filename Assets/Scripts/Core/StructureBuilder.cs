@@ -77,13 +77,18 @@ public class StructureBuilder : MonoBehaviour
         initialized = false;
     }
 
-    public Atom GetAtomAtCoordinate(Vector3 pos){
-
-        Vector3 corrected = pos * 0.25f; //+ transform.position;
+    public Atom GetAtomAtCoordinate(Vector3 pos, CellType type){
+        Vector3 corrected = Vector3.one;
+        if (type == CellType.HEX) corrected = pos * Constants.hexBaseLength; //hexagonals
+        else corrected = pos * 0.25f; //cubics
 
         foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms){
-            
-            if((a.Key - corrected).magnitude < 0.1){
+/*            Debug.Log(a.Key.x + ", " + a.Key.y + ", " + a.Key.z + ": " + a.Value);*/
+  /*          Debug.Log("position: " + pos);
+            Debug.Log("subtract val: " + (a.Key - corrected));
+            Debug.Log("magnitude: " + (a.Key - corrected).magnitude);
+            Debug.Log("nonrounded x value: " + a.Key.x);*/
+            if((a.Key - corrected).magnitude < 0.01){
                 return a.Value;
             }
         }
