@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
 using System.Linq;
+using Veridium_Core;
 
-namespace Veridium_Animation{
+namespace Veridium_Animation
+{
     public class Await_QuizComplete : AwaitUserBase
     {
 
@@ -102,11 +104,11 @@ namespace Veridium_Animation{
             int i = 0;
             Vector3[] ABC = new Vector3[3];
             foreach (GameObject atom in answer)
-            {}  
+            {  
                 Vector3 atomPos = Vector3.zero;
                 foreach (Atom a in structureBuilder.crystal.atoms.Values)
                 {
-                    if (a.drawnObjectatom == atom) {
+                    if (a.drawnObject == atom) {
                         atomPos = structureBuilder.GetCoordinateAtAtom(a);
                     }
                 }
@@ -286,10 +288,9 @@ namespace Veridium_Animation{
             submitButton.SetActive(false);
         }
 
-        protected override void UpdateAnim(){
-
+        protected override void UpdateAnim()
+        {
             base.UpdateAnim();
-
         }
     }
 }
