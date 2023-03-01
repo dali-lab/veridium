@@ -125,7 +125,7 @@ namespace Veridium_Animation
                         Vector3 AC = ABC[2] - ABC[0];
                         N = new Vector3((AB.y * AC.z - AB.z * AC.y), (AB.z * AC.x - AB.x * AC.z), (AB.x * AC.y - AB.y * AC.x));
                     }
-                    if (N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + (atomPos.z - ABC[2].z) != 0)
+                    if (Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + (atomPos.z - ABC[2].z)) < 0.1)
                     {
                         return false;
                     }
