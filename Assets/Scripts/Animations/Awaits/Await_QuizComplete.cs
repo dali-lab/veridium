@@ -102,7 +102,7 @@ namespace Veridium_Animation{
             int i = 0;
             Vector3[] ABC = new Vector3[3];
             foreach (GameObject atom in answer)
-            {}  
+            {  
                 Vector3 atomPos = Vector3.zero;
                 foreach (Atom a in structureBuilder.crystal.atoms.Values)
                 {
