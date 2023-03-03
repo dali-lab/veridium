@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Veridium_Interaction;
 using System.Linq;
 using Veridium_Core;
+using System;
 
 namespace Veridium_Animation
 {
@@ -64,7 +65,7 @@ namespace Veridium_Animation
         public void CollisionWithAtom(GameObject atom)
         {
             if(atom.GetComponent<Anim_GlowPulse>() != null) Destroy(atom.GetComponent<Anim_GlowPulse>());
-            
+
             atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
 
             if(answer.Contains(atom))
@@ -82,7 +83,7 @@ namespace Veridium_Animation
             {
                 answer.Add(atom);
                 Debug.Log("Selected atom at position: " + atom.transform.position);
-                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;
+                anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;                                                                 
                 anim.easingType = EasingType.Exponential;
                 anim.fadeTime = 0.5f;
                 initialColor = atom.GetComponent<Renderer>().materials[0].GetColor("_EmissionColor");

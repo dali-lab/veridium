@@ -80,6 +80,14 @@ namespace Veridium_Core{
             new Vector3(-0.25f, -0.25f * cageHeight,-Mathf.Sqrt(3)/12.0f),
             new Vector3(0.25f, 0.25f * cageHeight,Mathf.Sqrt(3)/12.0f)
         };
+
+        public static Vector3[] cell2MultiUnitCellCenterPositions = new Vector3[]
+        {
+            // new Vector3(1.25f, -0.375f, 0.7216878f), // layer 0
+            // new Vector3(1.25f, 1.125f, 0.7216878f) // layer 2
+            new Vector3(1.5f, 0f, Mathf.Sqrt(3)/2.0f), // layer 0
+            new Vector3(1.5f, 1.5f, Mathf.Sqrt(3)/2.0f), // layer 2
+        };
         
         public static float cageLineWidth = 0.005f;
 
