@@ -1323,6 +1323,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
 --- !u!1 &358934929
 GameObject:
   m_ObjectHideFlags: 0
@@ -13456,6 +13457,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
 --- !u!1001 &769904278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14587,6 +14589,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 6
 --- !u!1 &1343234588
 GameObject:
   m_ObjectHideFlags: 0
@@ -14694,6 +14697,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
 --- !u!4 &1406200435
 Transform:
   m_ObjectHideFlags: 0
@@ -16497,6 +16501,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
 --- !u!4 &1676120727
 Transform:
   m_ObjectHideFlags: 0
