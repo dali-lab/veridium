@@ -54,6 +54,7 @@ namespace Veridium_Animation
         public GameObject pointer;
         public GameObject submitButton;
         public GameObject backdrop;
+        public int atomsOnLayer;
 
         // private SegmentPlay segmentPlay;
         private PointerSelector pointerSelector;
@@ -142,7 +143,7 @@ namespace Veridium_Animation
             Debug.Log("solution count: " + solutionSet.Count);
 
             // Correct answer: at least 6 atoms on the same layer (plane)
-            if(onSamePlane(answer) && answer.Count >= 6   /*answer.SetEquals(solutionSet)*/)
+            if(onSamePlane(answer) && answer.Count >= atomsOnLayer   /*answer.SetEquals(solutionSet)*/)
             {
                 VeridiumButton.Instance.Disable();
                 foreach (GameObject atom in answer)

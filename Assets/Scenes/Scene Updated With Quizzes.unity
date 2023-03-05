@@ -1323,6 +1323,78 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
+--- !u!1 &340726119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 340726121}
+  - component: {fileID: 340726120}
+  m_Layer: 0
+  m_Name: Select Atoms Quiz Q1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &340726120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340726119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b860c98ceae2a5048ae3926aec18e8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 1
+  duration: 0
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  skipSegment: 1
+  onComplete:
+    actionType: 0
+    animation: {fileID: 0}
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    animator: {fileID: 0}
+    timing: 0
+  structureBuilder: {fileID: 133654971}
+  solution:
+  - {x: -1, y: -1, z: 1}
+  - {x: -1, y: 1, z: -1}
+  - {x: 1, y: -1, z: -1}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 0, z: -1}
+  glowColor: {r: 0.10849059, g: 1, b: 0.12078844, a: 0}
+  feedbackManagerGO: {fileID: 613857064}
+  pointer: {fileID: 2039544233}
+  submitButton: {fileID: 769904280}
+  backdrop: {fileID: 730695367}
+  atomsOnLayer: 7
+--- !u!4 &340726121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340726119}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.29802203, y: 0.2516613, z: -0.046652555}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5069879808787311079}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &358934929
 GameObject:
   m_ObjectHideFlags: 0
@@ -13456,6 +13528,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
 --- !u!1001 &769904278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14587,6 +14660,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 6
 --- !u!1 &1343234588
 GameObject:
   m_ObjectHideFlags: 0
@@ -14694,6 +14768,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
 --- !u!4 &1406200435
 Transform:
   m_ObjectHideFlags: 0
@@ -16497,6 +16572,7 @@ MonoBehaviour:
   pointer: {fileID: 2039544233}
   submitButton: {fileID: 769904280}
   backdrop: {fileID: 730695367}
+  atomsOnLayer: 0
 --- !u!4 &1676120727
 Transform:
   m_ObjectHideFlags: 0
@@ -18055,7 +18131,7 @@ MonoBehaviour:
           - m_Target: {fileID: 881861620}
             m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
               Assembly-CSharp
-            m_MethodName: Lock
+            m_MethodName: Unlock
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -18068,12 +18144,19 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     - actionType: 0
-      animation: {fileID: 257400769300232916}
+      animation: {fileID: 3257348294753705231}
       onPlay:
         m_PersistentCalls:
           m_Calls: []
       animator: {fileID: 0}
-      timing: 2
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 340726120}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 1
     realDuration: 0
   - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
     audioEN: {fileID: 8300000, guid: 72c55284e60c6a140b143c8137c9f576, type: 3}
@@ -19266,6 +19349,7 @@ Transform:
   - {fileID: 114158679}
   - {fileID: 1529013518}
   - {fileID: 1628929313}
+  - {fileID: 340726121}
   m_Father: {fileID: 548511508}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
