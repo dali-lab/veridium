@@ -561,8 +561,58 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &488439513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4443436591988934230, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+  m_PrefabInstance: {fileID: 1656221472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &488439514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488439513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5920a68e8d2434090d4cd93d48be8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressDepth: 0.015
+  onPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1658212413}
+        m_TargetAssemblyTypeName: FadeScreen, Assembly-CSharp
+        m_MethodName: fadeThenLoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Scene Updated With Quizzes
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1712628619}
+        m_TargetAssemblyTypeName: BeginningAudio, Assembly-CSharp
+        m_MethodName: StopAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &673561489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2367886369127094122, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+  m_PrefabInstance: {fileID: 1656221472}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &791892350
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +934,38 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.04
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1069687666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6068006652127205234, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+  m_PrefabInstance: {fileID: 1656221472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1069687667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069687666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084b74dd136f1714593e5ce36400c522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPress:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2015313342}
+        m_TargetAssemblyTypeName: LanguageButtons, Assembly-CSharp
+        m_MethodName: SelectGerman
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1121959837
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +1029,38 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7318310290506564360, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
   m_PrefabInstance: {fileID: 1656221472}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1324062086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2285456805936388608, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+  m_PrefabInstance: {fileID: 1656221472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1324062087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324062086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084b74dd136f1714593e5ce36400c522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPress:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2015313342}
+        m_TargetAssemblyTypeName: LanguageButtons, Assembly-CSharp
+        m_MethodName: SelectEnglish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1368721833 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7318310289519313740, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
@@ -1291,6 +1405,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1447136088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4360509721780801033, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+  m_PrefabInstance: {fileID: 1656221472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1447136089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447136088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5920a68e8d2434090d4cd93d48be8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressDepth: 0.015
+  onPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1378554115}
+        m_TargetAssemblyTypeName: Veridium_Animation.AnimSequence, Assembly-CSharp
+        m_MethodName: PlaySequenceFromStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1712628619}
+        m_TargetAssemblyTypeName: BeginningAudio, Assembly-CSharp
+        m_MethodName: StopAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1473510846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1479,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1473510848
 MonoBehaviour:
@@ -1370,6 +1529,10 @@ PrefabInstance:
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1712628619}
+    - target: {fileID: 298663286659599662, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 598394855578441976, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1382,6 +1545,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4570860728356404456, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.162
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570860728356404456, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.226
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586789639778234218, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7318310289519313745, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1392,7 +1567,7 @@ PrefabInstance:
       objectReference: {fileID: 1712628619}
     - target: {fileID: 9098289172923872890, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9098289172923872890, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1480,7 +1655,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1693570150
 PrefabInstance:
@@ -1859,7 +2034,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1721082543 stripped
 GameObject:
@@ -1876,6 +2051,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1774835665, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}
   m_PrefabInstance: {fileID: 1656221472}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2015313341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2015313343}
+  - component: {fileID: 2015313342}
+  m_Layer: 0
+  m_Name: LanguageButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2015313342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015313341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cdc03cb75334749b4382806fb5243c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishButton: {fileID: 1324062086}
+  germanButton: {fileID: 1069687666}
+  offset: 0.015
+--- !u!4 &2015313343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015313341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 673561489}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082375132 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2082375132, guid: b8b0e311e18c97249a4e239690e00ef9, type: 3}

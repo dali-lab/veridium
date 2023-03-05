@@ -8,12 +8,14 @@ using UnityEngine.Events;
 public class ButtonChangeScene : MonoBehaviour
 {
 
-    [SerializeField] private float threshold = 0.1f;
+/*    [SerializeField] private float threshold = 0.1f;
     [SerializeField] private float deadZone = 0.025f;
-
+*/
     private bool isPressed;
     private Vector3 startPos;
     // private ConfigurableJoint joint;
+
+    public float pressDepth;
 
     public UnityEvent onPressed;
 
@@ -67,7 +69,7 @@ public class ButtonChangeScene : MonoBehaviour
 
     IEnumerator ButtonPressAnim()
     {
-        transform.Translate(0f, -0.01f, 0f);
+        transform.Translate(0f, -pressDepth, 0f);
         yield return new WaitForSeconds(0.5f);
         transform.localPosition = startPos;
         isPressed = false;
