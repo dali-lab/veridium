@@ -287,7 +287,7 @@ namespace Veridium_Core
                 {
                     this.vertices[i].Draw(baseLength * 2);
                     Vector3 test = this.vertices[i].GetPosition() / Constants.hexBaseLength;
-                    Debug.Log("ATOMPOSITION: " + test.x + ", " + test.y + ", " + test.z);
+                    // Debug.Log("ATOMPOSITION: " + test.x + ", " + test.y + ", " + test.z);
                 }
             }
 

@@ -839,7 +839,7 @@ MonoBehaviour:
   endTransform: {fileID: 0}
   useTransform: 0
   target: {fileID: 44540866}
-  easingType: 1
+  easingType: 3
   easeOutOnly: 0
 --- !u!4 &114158679
 Transform:
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
-  animSequence: {fileID: 0}
+  animSequence: {fileID: 880578051606167105}
   selfDestruct: 0
   skipSegment: 1
   onComplete:
@@ -16609,6 +16609,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc84c194db85c4ccc86ddc1f73a5364d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1712391381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8443100902444958120, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
+  m_PrefabInstance: {fileID: 936844114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &1713923539 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7195915981451021405, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
@@ -18112,7 +18117,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     - actionType: 0
-      animation: {fileID: 257400769300232916}
+      animation: {fileID: 4523803549893419621}
       onPlay:
         m_PersistentCalls:
           m_Calls: []
@@ -18123,6 +18128,53 @@ MonoBehaviour:
     audioEN: {fileID: 8300000, guid: 07e5370c7e6b7ba498552c409e74f627, type: 3}
     audioDE: {fileID: 8300000, guid: c3af16601d5b9a34dbbc00cc462f12cf, type: 3}
     animations:
+    - actionType: 0
+      animation: {fileID: 3257348294753705231}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 340726120}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 2
+    - actionType: 0
+      animation: {fileID: 114158678}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 1
+    - actionType: 0
+      animation: {fileID: 1654319188}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 3
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1712391381}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 2
     - actionType: 1
       animation: {fileID: 0}
       onPlay:
@@ -18142,21 +18194,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 3257348294753705231}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 340726120}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 1
+      timing: 4
     realDuration: 0
   - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
     audioEN: {fileID: 8300000, guid: 72c55284e60c6a140b143c8137c9f576, type: 3}

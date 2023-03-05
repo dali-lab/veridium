@@ -83,7 +83,7 @@ namespace Veridium_Animation
             else
             {
                 answer.Add(atom);
-                Debug.Log("Selected atom at position: " + atom.transform.position);
+                // Debug.Log("Selected atom at position: " + atom.transform.position);
                 anim = atom.AddComponent<Anim_Glow>() as Anim_Glow;                                                                 
                 anim.easingType = EasingType.Exponential;
                 anim.fadeTime = 0.5f;
@@ -91,7 +91,7 @@ namespace Veridium_Animation
                 anim.selfDestruct = true;
                 anim.emissionColor = glowColor;
                 anim.Play();
-                Debug.Log("Highlighted atom");
+                // Debug.Log("Highlighted atom");
             }
 
         }
@@ -127,6 +127,7 @@ namespace Veridium_Animation
                         Vector3 AC = ABC[2] - ABC[0];
                         N = new Vector3((AB.y * AC.z - AB.z * AC.y), (AB.z * AC.x - AB.x * AC.z), (AB.x * AC.y - AB.y * AC.x));
                     }
+                    Debug.Log(Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + (atomPos.z - ABC[2].z)));
                     if (Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + (atomPos.z - ABC[2].z)) < 0.1)
                     {
                         return false;
@@ -203,14 +204,16 @@ namespace Veridium_Animation
 
         public override void Play()
         {
+            Debug.Log("CALLING AWAIT QUIZ COMPLETE");
             base.Play();
-
+            Debug.Log("after base.play");
             // gets the associated gameobjects for the atoms in solution
-            FillSolutionSet(solutionSet, solution);
+            // FillSolutionSet(solutionSet, solution);
 
             feedbackManagerGO.SetActive(true);
             feedbackManager = feedbackManagerGO.GetComponent<AudioFeedbackManager>();
             pointer.SetActive(true);
+            Debug.Log("set pointer active");
             pointerSelector = pointer.GetComponentInChildren<PointerSelector>();
             pointerSelector.onAtomSelect.AddListener(CollisionWithAtom);
             // StartCoroutine(EnableSubmitButton());
@@ -244,7 +247,7 @@ namespace Veridium_Animation
             foreach (Vector3 vec in solution)
             {
                 solutionSet.Add(structureBuilder.GetAtomAtCoordinate(vec, structureBuilder.cellType).drawnObject);
-                Debug.Log("added vector: " + vec);
+                // Debug.Log("added vector: " + vec);
             }
         }
 

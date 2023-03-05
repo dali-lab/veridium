@@ -47,7 +47,7 @@ public class VeridiumButton : MonoBehaviour
     public void Pressed()
     {
         if (!pressable) return;
-        Debug.Log("Pressed!");
+        // Debug.Log("Pressed!");
         onInteracted.Invoke();
         if (bt == ButtonType.CONTINUE) Disable();
     }

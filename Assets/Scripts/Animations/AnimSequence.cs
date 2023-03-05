@@ -68,7 +68,7 @@ namespace Veridium_Animation{
         void Awake(){
 
             if(audioSource == null) audioSource = GetComponent<AudioSource>();
-            Debug.Log("AUDIO SEQUENCE: " + audioSource);
+            // Debug.Log("AUDIO SEQUENCE: " + audioSource);
 
             playingAnims = new List<AnimationBase>();
 

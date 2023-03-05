@@ -52,7 +52,7 @@ public class ButtonChangeScene : MonoBehaviour
     {
         if (other.tag == "pointer" && !isPressed) 
         {
-            Debug.Log("TRIGGERED WITH POINTER");
+            // Debug.Log("TRIGGERED WITH POINTER");
             isPressed = true;
             onPressed.Invoke();
             StartCoroutine(ButtonPressAnim());
