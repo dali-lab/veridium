@@ -1100,7 +1100,7 @@ MonoBehaviour:
   segments:
   - audio: {fileID: 0}
     audioEN: {fileID: 8300000, guid: d161b3686962ef144b5053bab2a316dc, type: 3}
-    audioDE: {fileID: 0}
+    audioDE: {fileID: 8300000, guid: db4e1a3bff54e034e956696d2d9a0374, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -1195,8 +1195,8 @@ MonoBehaviour:
       timing: 0
     realDuration: 0
   - audio: {fileID: 0}
-    audioEN: {fileID: 8300000, guid: 7c343502206406d439966c0a130b6350, type: 3}
-    audioDE: {fileID: 0}
+    audioEN: {fileID: 8300000, guid: 0bedbb35fc2144742b5887a268122ae9, type: 3}
+    audioDE: {fileID: 8300000, guid: 143ac2aa98536874c901a351ab72bb2d, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -1238,8 +1238,8 @@ MonoBehaviour:
       timing: 12
     realDuration: 0
   - audio: {fileID: 0}
-    audioEN: {fileID: 8300000, guid: 846acc35b674fee44a4804a18c2600b5, type: 3}
-    audioDE: {fileID: 0}
+    audioEN: {fileID: 8300000, guid: ef24aee7ae365ba458f98cd9c5ed7b2f, type: 3}
+    audioDE: {fileID: 8300000, guid: 51448c40e775946469373f8a00995012, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -1926,6 +1926,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 3
+  EN: {fileID: 8300000, guid: 1b2a614c9c961d14a9b0559efdd4d86c, type: 3}
+  DE: {fileID: 8300000, guid: a91cc38c5bf76814baa22439187fb3ad, type: 3}
 --- !u!82 &1712628620
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1936,7 +1938,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 53b7ca8b3f39de249ab9eb44c6b41bd8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1b2a614c9c961d14a9b0559efdd4d86c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

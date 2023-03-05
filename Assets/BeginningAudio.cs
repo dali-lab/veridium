@@ -6,10 +6,16 @@ public class BeginningAudio : MonoBehaviour
 {
     [SerializeField] float delay;
 
+    [SerializeField] AudioClip EN;
+    [SerializeField] AudioClip DE;
     AudioSource audio => GetComponent<AudioSource>();
     IEnumerator WaitThenPlayAudio()
     {
         yield return new WaitForSeconds(delay);
+
+        if (Language.language == "English") audio.clip = EN;
+        else audio.clip = DE;
+
         audio.Play();
     }
 
