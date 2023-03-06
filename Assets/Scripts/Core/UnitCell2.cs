@@ -325,7 +325,9 @@ namespace Veridium_Core
                 positions[i] += worldPosition;
             }
 
-            GameObject cage = MonoBehaviour.Instantiate(new GameObject(), builder.transform, false);
+            // GameObject cage = MonoBehaviour.Instantiate(new GameObject(), builder.transform, false);
+            GameObject cage = new GameObject("Cage");
+            cage.transform.parent = builder.transform;
             cage.tag = "cage";
             lr = cage.AddComponent<LineRenderer>();
 

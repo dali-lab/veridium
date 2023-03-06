@@ -75,6 +75,9 @@ public class StructureBuilder : MonoBehaviour
         lr.endWidth = Constants.cageLineWidth;
 
         initialized = false;
+        foreach(Transform child in transform) {
+            Destroy(child.gameObject);
+        }
     }
 
     public Atom GetAtomAtCoordinate(Vector3 pos, CellType type){

@@ -100,7 +100,10 @@ namespace Veridium_Core{
             // cages = new Dictionary<Vector3, GameObject>();
             unitCells = new Dictionary<Vector3, UnitCell>();
             drawMode = CrystalState.SINGLECELL;
+
+            if (infiniteObject != null) Debug.Log(infiniteObject.name);
             MonoBehaviour.Destroy(infiniteObject);
+
             infiniteObject = null;
         }
 
@@ -291,6 +294,7 @@ namespace Veridium_Core{
                         infiniteObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
                         infiniteObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
                     }
+                    infiniteObject.transform.SetParent(builder.transform);
                     
                     break;
             }

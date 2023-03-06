@@ -112,6 +112,7 @@ namespace Veridium_Animation
                 {
                     if (a.drawnObject == atom) {
                         atomPos = structureBuilder.GetCoordinateAtAtom(a);
+                        break;
                     }
                 }
                 // Compute planar equation
@@ -127,8 +128,8 @@ namespace Veridium_Animation
                         Vector3 AC = ABC[2] - ABC[0];
                         N = new Vector3((AB.y * AC.z - AB.z * AC.y), (AB.z * AC.x - AB.x * AC.z), (AB.x * AC.y - AB.y * AC.x));
                     }
-                    Debug.Log(Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + (atomPos.z - ABC[2].z)));
-                    if (Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + (atomPos.z - ABC[2].z)) < 0.1)
+                    Debug.Log("Plane" + Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + N.z * (atomPos.z - ABC[2].z)));
+                    if (Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + N.z * (atomPos.z - ABC[2].z)) > 0.1)
                     {
                         return false;
                     }
@@ -208,7 +209,7 @@ namespace Veridium_Animation
             base.Play();
             Debug.Log("after base.play");
             // gets the associated gameobjects for the atoms in solution
-            // FillSolutionSet(solutionSet, solution);
+            FillSolutionSet(solutionSet, solution);
 
             feedbackManagerGO.SetActive(true);
             feedbackManager = feedbackManagerGO.GetComponent<AudioFeedbackManager>();
@@ -241,6 +242,8 @@ namespace Veridium_Animation
         public void FillSolutionSet(HashSet<GameObject> solutionSet, Vector3[] solution)
         {
             solutionSet.Clear();
+
+            if (structureBuilder.cellType == CellType.HEX) return;
 
             // Debug.Log("ATOMS IN CRYSTAL STRUCTURE: " + structureBuilder.crystal.atoms.Count);
 

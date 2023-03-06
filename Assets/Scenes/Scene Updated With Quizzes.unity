@@ -828,7 +828,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 0
   duration: 1.5
-  animSequence: {fileID: 0}
+  animSequence: {fileID: 880578051606167105}
   selfDestruct: 0
   endLocation: {x: 0, y: 0, z: 0}
   updateLocation: 0
@@ -1441,7 +1441,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 0
   duration: 1.5
-  animSequence: {fileID: 0}
+  animSequence: {fileID: 880578051606167105}
   selfDestruct: 0
   endLocation: {x: 0, y: 0, z: 0}
   updateLocation: 0
@@ -13761,8 +13761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5920a68e8d2434090d4cd93d48be8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.1
-  deadZone: 0.025
+  pressDepth: 0
   onPressed:
     m_PersistentCalls:
       m_Calls:
@@ -15064,7 +15063,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 0
   duration: 2
-  animSequence: {fileID: 0}
+  animSequence: {fileID: 880578051606167105}
   selfDestruct: 0
   steps: []
   structureBuilder: {fileID: 133654971}
@@ -16448,7 +16447,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 0
   duration: 2
-  animSequence: {fileID: 0}
+  animSequence: {fileID: 880578051606167105}
   selfDestruct: 0
   steps: []
   structureBuilder: {fileID: 133654971}
@@ -16498,7 +16497,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 0
   duration: 1
-  animSequence: {fileID: 0}
+  animSequence: {fileID: 880578051606167105}
   selfDestruct: 0
   structureBuilder: {fileID: 133654971}
   fadeIn: 0
@@ -19176,7 +19175,7 @@ MonoBehaviour:
   playOnStart: 0
   indefiniteDuration: 1
   duration: 0
-  animSequence: {fileID: 0}
+  animSequence: {fileID: 880578051606167105}
   selfDestruct: 0
   skipSegment: 1
   onComplete:
