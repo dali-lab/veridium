@@ -25,6 +25,10 @@ namespace Veridium_Animation
             new Vector3(0,0,-1)
         };
 
+        public bool useSolutionSet = false;
+        public bool isMGQ2 = false;
+        private XRBaseInteractor interactor;
+
         // // 14 atoms that form the cubic face centered unit cell
         // private Vector3[] solution2 =
         //     new Vector3[] {
@@ -144,10 +148,71 @@ namespace Veridium_Animation
             Debug.Log("answer count:" + answer.Count);
             Debug.Log("solution count: " + solutionSet.Count);
 
+            // First, force user to drop whatever they're holding
+            interactor = structureBuilder.GetComponentInParent<StructureController>().selectingInteractor;
+            print("INTERACTOR: " + interactor);
+            interactor.allowSelect = false;
+            // sc.hand1.GetComponent<HandDistanceGrabber>().allowSelect = false;
+            // sc.hand2.GetComponent<HandDistanceGrabber>().allowSelect = false;
+        
+            if (useSolutionSet)
+            {
+                if (answer.SetEquals(solutionSet))
+                {
+                    RightAnswerCallback();
+                }
+                else WrongAnswerCallback(); 
+
+                return;
+            }
+
+            if (isMGQ2)
+            {
+                float correctDistance = 0.08429995f;
+                if (answer.Count != 2) // Make sure only 2 atoms are selected
+                {
+                    WrongAnswerCallback();
+                    return;
+                }
+                List<GameObject> the2atoms = new List<GameObject>();
+                foreach (GameObject atomGO in answer)
+                {
+                    the2atoms.Add(atomGO);
+                }
+                float localDist = Vector3.Distance(the2atoms[0].transform.localPosition, the2atoms[1].transform.localPosition);
+                // float worldDist = Vector3.Distance(the2atoms[0].transform.position, the2atoms[1].transform.position);
+
+                // print("LOCAL DIST: " + localDist);
+                // print("WORLD DIST: " + worldDist);
+                if (the2atoms[0].transform.position.y != the2atoms[1].transform.position.y && Mathf.Abs(localDist - correctDistance) <= 0.001)
+                {
+                    RightAnswerCallback();
+                }
+                else 
+                {
+                    WrongAnswerCallback();
+                }
+                return;
+            }
+
             // Correct answer: at least 6 atoms on the same layer (plane)
             if(onSamePlane(answer) && answer.Count >= atomsOnLayer   /*answer.SetEquals(solutionSet)*/)
             {
-                VeridiumButton.Instance.Disable();
+                RightAnswerCallback();
+            }
+            else // Wrong answer
+            {
+                WrongAnswerCallback();
+            }
+        }
+
+        private void RightAnswerCallback()
+        {
+            if (interactor != null) interactor.allowSelect = true;
+            // structureBuilder.GetComponentInParent<StructureController>().hand2.GetComponent<HandDistanceGrabber>().allowSelect = true;
+
+
+            VeridiumButton.Instance.Disable();
                 foreach (GameObject atom in answer)
                 {
                     atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
@@ -165,17 +230,19 @@ namespace Veridium_Animation
                 
                 pointerSelector.onAtomSelect.RemoveListener(CollisionWithAtom);
                 // segmentPlay.onInteractionStart.RemoveListener(OnAnswerSubmit);
-
+                answer.Clear();
                 // pointer.SetActive(false);
                 feedbackManager.PlayCorrectAudio();
                 StartCoroutine(WaitToCompleteAction());
                 //*** StartCoroutine(FadeOutBackdrop());
-                
+        }
 
-            }
-            else // Wrong answer
-            {
-                foreach(GameObject atom in answer)
+        private void WrongAnswerCallback()
+        {
+            if (interactor != null) interactor.allowSelect = true;
+            // structureBuilder.GetComponentInParent<StructureController>().hand2.GetComponent<HandDistanceGrabber>().allowSelect = true;
+
+            foreach(GameObject atom in answer)
                 {
                     atom.TryGetComponent<Anim_Glow>(out Anim_Glow anim);
                     if (anim != null)
@@ -191,7 +258,6 @@ namespace Veridium_Animation
                 feedbackManager.PlayWrongAudio();
                 VeridiumButton.Instance.Enable();
                 // segmentPlay.sphereAnim.SetBool("respawnSphere", true);
-            }
         }
 
         IEnumerator WaitToCompleteAction()

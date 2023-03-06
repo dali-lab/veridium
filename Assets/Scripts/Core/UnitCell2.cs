@@ -328,6 +328,9 @@ namespace Veridium_Core
             // GameObject cage = MonoBehaviour.Instantiate(new GameObject(), builder.transform, false);
             GameObject cage = new GameObject("Cage");
             cage.transform.parent = builder.transform;
+            cage.transform.localPosition = Vector3.zero;
+            cage.transform.localRotation = Quaternion.identity;
+            cage.transform.localScale = Vector3.one;
             cage.tag = "cage";
             lr = cage.AddComponent<LineRenderer>();
 

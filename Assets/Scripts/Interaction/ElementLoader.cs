@@ -76,6 +76,8 @@ namespace Veridium_Interaction{
 
             base.OnSelectExiting(interactable);
 
+            StartCoroutine(DropObjectFromHand());
+
             structureBase.ElementRemoved();
             heldElement = null;
 
@@ -87,7 +89,14 @@ namespace Veridium_Interaction{
             }
 
             if(insertedAnimation != null) insertedAnimation.SetBool("circuitActive", false);
+        }
 
+        IEnumerator DropObjectFromHand()
+        {
+            XRBaseInteractor interactor = structureBase.GetComponentInChildren<StructureController>().selectingInteractor;
+            interactor.allowSelect = false;
+            yield return new WaitForSeconds(0.1f);
+            interactor.allowSelect = true;
         }
 
         public void Lock(){
