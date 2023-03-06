@@ -5146,7 +5146,7 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[0].audioDE
       value: 
-      objectReference: {fileID: 8300000, guid: 90fedb4913d51d34c8152c1c913fcc04, type: 3}
+      objectReference: {fileID: 8300000, guid: 996ec1b75ead01348987af2d64c3031a, type: 3}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[0].audioEN
       value: 
@@ -5170,7 +5170,7 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[3].audioDE
       value: 
-      objectReference: {fileID: 8300000, guid: b9f1733fa8c995846812491ef7396ea4, type: 3}
+      objectReference: {fileID: 8300000, guid: d1652d3eedbaf0d45b5dd8d14a6b19e6, type: 3}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[3].audioEN
       value: 
@@ -5218,7 +5218,7 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[9].audioDE
       value: 
-      objectReference: {fileID: 8300000, guid: 64c32f2ee16dfe843b228ef010081401, type: 3}
+      objectReference: {fileID: 8300000, guid: 5a2ef8638e0f71e408b638a648ea376f, type: 3}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[9].audioEN
       value: 
@@ -5226,7 +5226,7 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[10].audioDE
       value: 
-      objectReference: {fileID: 8300000, guid: a8bf85d478227954e93e6bdae347490b, type: 3}
+      objectReference: {fileID: 8300000, guid: f783e0af54be1cd418b99a45ba4b7960, type: 3}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[10].audioEN
       value: 
