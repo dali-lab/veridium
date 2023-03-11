@@ -133,7 +133,7 @@ namespace Veridium_Animation
                         N = new Vector3((AB.y * AC.z - AB.z * AC.y), (AB.z * AC.x - AB.x * AC.z), (AB.x * AC.y - AB.y * AC.x));
                     }
                     Debug.Log("Plane" + Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + N.z * (atomPos.z - ABC[2].z)));
-                    if (Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + N.z * (atomPos.z - ABC[2].z)) > 0.1)
+                    if (Math.Abs(N.x * (atomPos.x - ABC[2].x) + N.y * (atomPos.y - ABC[2].y) + N.z * (atomPos.z - ABC[2].z)) > 0.05)
                     {
                         return false;
                     }
@@ -151,7 +151,7 @@ namespace Veridium_Animation
             // First, force user to drop whatever they're holding
             interactor = structureBuilder.GetComponentInParent<StructureController>().selectingInteractor;
             print("INTERACTOR: " + interactor);
-            interactor.allowSelect = false;
+            if (interactor != null) interactor.allowSelect = false;
             // sc.hand1.GetComponent<HandDistanceGrabber>().allowSelect = false;
             // sc.hand2.GetComponent<HandDistanceGrabber>().allowSelect = false;
         
