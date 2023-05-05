@@ -150,7 +150,7 @@ namespace Veridium_Animation
 
             // First, force user to drop whatever they're holding
             interactor = structureBuilder.GetComponentInParent<StructureController>().selectingInteractor;
-            print("INTERACTOR: " + interactor);
+            // print("INTERACTOR: " + interactor);
             if (interactor != null) interactor.allowSelect = false;
             // sc.hand1.GetComponent<HandDistanceGrabber>().allowSelect = false;
             // sc.hand2.GetComponent<HandDistanceGrabber>().allowSelect = false;

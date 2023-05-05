@@ -2224,7 +2224,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -17951,8 +17951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   segments:
-  - audio: {fileID: 8300000, guid: 7b12a293f0016154db8420e083db7e37, type: 3}
-    audioEN: {fileID: 8300000, guid: 190386cf8f185bf4eaa984d4eceb1bc1, type: 3}
+  - audio: {fileID: 8300000, guid: 64d1abb10f1f656469db57e3d245eca3, type: 3}
+    audioEN: {fileID: 8300000, guid: 64d1abb10f1f656469db57e3d245eca3, type: 3}
     audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
     animations:
     - actionType: 1
@@ -17976,183 +17976,9 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 452610fc99e79484495aede7d4cc0035, type: 3}
-    audioEN: {fileID: 8300000, guid: 6524a997d41c5ff469ab31f785b05303, type: 3}
-    audioDE: {fileID: 8300000, guid: c0ead5da309f3bd4abdd1a443e8fb483, type: 3}
-    animations:
-    - actionType: 0
-      animation: {fileID: 668290273061005163}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0.5
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: ba13d740e717713428233acb93df6ccc, type: 3}
-    audioEN: {fileID: 8300000, guid: e4159573774d6b2418f642a60655cbc9, type: 3}
-    audioDE: {fileID: 8300000, guid: 903ddae9f02df89438552ce33728d011, type: 3}
-    animations: []
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 78687f1ce33beda48b9aa09fce7d0767, type: 3}
-    audioEN: {fileID: 8300000, guid: 7ef644f1330780644963ab0ad93e7ed3, type: 3}
-    audioDE: {fileID: 8300000, guid: 6a9ec834b824f594db63276adb85c489, type: 3}
-    animations:
-    - actionType: 0
-      animation: {fileID: 643396846914619396}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 881861620}
-            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
-              Assembly-CSharp
-            m_MethodName: Lock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 1736405475788085631}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 11
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 881861620}
-            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
-              Assembly-CSharp
-            m_MethodName: Lock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 0
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 50d4afd407883934aace4dea0a836b77, type: 3}
-    audioEN: {fileID: 8300000, guid: 971b36895c3e41644a150914bfccd2da, type: 3}
-    audioDE: {fileID: 8300000, guid: 0b6c5fec2d9519545b87bf0b580a2509, type: 3}
-    animations: []
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: d7b8f568dbd0b0f489c31a01b9a735f9, type: 3}
-    audioEN: {fileID: 8300000, guid: a8839ad57af98034d809756fc7cabbbd, type: 3}
-    audioDE: {fileID: 8300000, guid: 4a644d5942dc0174980bd42986edc09f, type: 3}
-    animations:
-    - actionType: 0
-      animation: {fileID: 5449109303071723493}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 2873344737655374000}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
-    audioEN: {fileID: 8300000, guid: 3e3e6e6ab3ae27e46bcd6e21a0148152, type: 3}
-    audioDE: {fileID: 8300000, guid: 498fc1d24ba3bec40819d3548a8e25a6, type: 3}
-    animations:
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 5822048638379776990}
-            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 19
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 964975469046288100}
-            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 22
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 5089736242654718525}
-            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 29
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3629157229576736648}
-            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 30
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
-    audioEN: {fileID: 8300000, guid: 090cc975ae58f3543a8e92f8b4d74d90, type: 3}
-    audioDE: {fileID: 8300000, guid: b7929a68d5491ee4e960ce26981ba952, type: 3}
+  - audio: {fileID: 8300000, guid: 216fc9c32ad8c964889a7373790d0324, type: 3}
+    audioEN: {fileID: 8300000, guid: 216fc9c32ad8c964889a7373790d0324, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -18173,180 +17999,12 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 23
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 964975469046288100}
-            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 23
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 5089736242654718525}
-            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 23
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3629157229576736648}
-            m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 23
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
-    audioEN: {fileID: 8300000, guid: b1a0ecaa7c7ec50448314740ded41636, type: 3}
-    audioDE: {fileID: 8300000, guid: df58bb35f65777b43bec2c2f1fe97b71, type: 3}
-    animations:
-    - actionType: 0
-      animation: {fileID: 1628929312}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
       timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 881861620}
-            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
-              Assembly-CSharp
-            m_MethodName: Unlock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 18
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
-    audioEN: {fileID: 8300000, guid: 8c3f40e4f495a584ea8c049d53dfcc40, type: 3}
-    audioDE: {fileID: 8300000, guid: 8da1961e505a4b749b665d83bd0a8371, type: 3}
+  - audio: {fileID: 8300000, guid: 169a4e03b8ad59f43bdfff0b18a53c74, type: 3}
+    audioEN: {fileID: 8300000, guid: 169a4e03b8ad59f43bdfff0b18a53c74, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
     animations:
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 881861620}
-            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
-              Assembly-CSharp
-            m_MethodName: Lock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 4523803549893419621}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 2
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
-    audioEN: {fileID: 8300000, guid: 07e5370c7e6b7ba498552c409e74f627, type: 3}
-    audioDE: {fileID: 8300000, guid: 3f11bb9e9b88f3d4b8cafcc38df1f8d0, type: 3}
-    animations:
-    - actionType: 0
-      animation: {fileID: 3257348294753705231}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 340726120}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 2
-    - actionType: 0
-      animation: {fileID: 114158678}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 1
-    - actionType: 0
-      animation: {fileID: 1654319188}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 3
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1712391381}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 2
     - actionType: 1
       animation: {fileID: 0}
       onPlay:
@@ -18366,38 +18024,12 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 4
-    realDuration: 0
-  - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
-    audioEN: {fileID: 8300000, guid: 72c55284e60c6a140b143c8137c9f576, type: 3}
-    audioDE: {fileID: 8300000, guid: d9ff739b43a306d4c90a229961312146, type: 3}
-    animations:
-    - actionType: 0
-      animation: {fileID: 660181849}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
       timing: 0
-    - actionType: 0
-      animation: {fileID: 1478642223}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 1
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 86f5265d12be1498facaff9a5094ea62, type: 3}
-    audioEN: {fileID: 8300000, guid: cada7697cccab3443af1ae0b9fd54889, type: 3}
-    audioDE: {fileID: 8300000, guid: ddb51facbf5f9d7408250766bcdc10d1, type: 3}
+  - audio: {fileID: 8300000, guid: b36993542cc158d42a62e54e43148387, type: 3}
+    audioEN: {fileID: 8300000, guid: b36993542cc158d42a62e54e43148387, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
     animations:
-    - actionType: 0
-      animation: {fileID: 3257348294753705231}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
     - actionType: 1
       animation: {fileID: 0}
       onPlay:
@@ -18416,10 +18048,23 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 2039544233}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
+      animator: {fileID: 0}
+      timing: 0
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 716e56a336cc3574b8915fa83f07f138, type: 3}
+    audioEN: {fileID: 8300000, guid: 716e56a336cc3574b8915fa83f07f138, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
+    animations:
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 881861620}
+            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+              Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18429,7 +18074,132 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 2
+      timing: 0
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 38c98cd59d0080d46be08e4460b8f13b, type: 3}
+    audioEN: {fileID: 8300000, guid: 38c98cd59d0080d46be08e4460b8f13b, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
+    animations:
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 881861620}
+            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+              Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 273a2d54ae7aeee40b59fb7ba7340ca8, type: 3}
+    audioEN: {fileID: 8300000, guid: 273a2d54ae7aeee40b59fb7ba7340ca8, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
+    animations:
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 881861620}
+            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+              Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 9438c80d52b4820439d791e58a2893f3, type: 3}
+    audioEN: {fileID: 8300000, guid: 9438c80d52b4820439d791e58a2893f3, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
+    animations:
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 881861620}
+            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+              Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 81b3357167772af45b19b18309deb1e9, type: 3}
+    audioEN: {fileID: 8300000, guid: 81b3357167772af45b19b18309deb1e9, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
+    animations:
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 881861620}
+            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+              Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0
+    realDuration: 0
+  - audio: {fileID: 8300000, guid: 4d55e508d50fb0648b80c2b44f8827e7, type: 3}
+    audioEN: {fileID: 8300000, guid: 4d55e508d50fb0648b80c2b44f8827e7, type: 3}
+    audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
+    animations:
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 881861620}
+            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
+              Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0
     realDuration: 0
   audioSource: {fileID: 8149371478297510942}
   sequenceState: 
