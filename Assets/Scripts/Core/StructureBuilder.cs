@@ -142,6 +142,7 @@ public class StructureBuilder : MonoBehaviour
 
         crystal = new Crystal(gameObject.transform.position, gameObject);
         crystal.SetState(state);
+
         crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 6);
         crystal.Draw();
     }
