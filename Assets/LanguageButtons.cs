@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Veridium_Animation;
 
 public class LanguageButtons : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class LanguageButtons : MonoBehaviour
     [SerializeField] GameObject germanButton;
 
     [SerializeField] float offset; // how far buttons go down when pressed
+
+    [SerializeField] AnimSequence onboardingSequence;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class LanguageButtons : MonoBehaviour
         Language.language = "English";
         englishButton.transform.position -= englishButton.transform.up * offset;
         germanButton.transform.position += germanButton.transform.up * offset;
+        if (onboardingSequence != null) onboardingSequence.UpdateLanguage();
 
     }
     public void SelectGerman()
@@ -34,6 +38,8 @@ public class LanguageButtons : MonoBehaviour
         Language.language = "German";
         englishButton.transform.position += englishButton.transform.up * offset;
         germanButton.transform.position -= germanButton.transform.up * offset;
+        if (onboardingSequence != null) onboardingSequence.UpdateLanguage();
+
 
     }
 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class AudioFeedbackManager : MonoBehaviour
 {
-    public List<AudioClip> rightPhrases;
-    public List<AudioClip> wrongPhrases;
+    public List<AudioClip> rightPhrasesEN;
+    public List<AudioClip> wrongPhrasesEN;
+    public List<AudioClip> rightPhrasesDE;
+    public List<AudioClip> wrongPhrasesDE;
     public bool finishedAudio = true;
 
     private AudioSource audioSource;
@@ -22,18 +24,25 @@ public class AudioFeedbackManager : MonoBehaviour
 
     public void PlayCorrectAudio()
     {
-        audioSource.PlayOneShot(PickRandomClip(rightPhrases));
+        if (Language.language == "English")
+            audioSource.PlayOneShot(PickRandomClip(rightPhrasesEN));
+        else if (Language.language == "German")
+            audioSource.PlayOneShot(PickRandomClip(rightPhrasesDE));
+
     }
 
     public void PlayWrongAudio()
     {
-        audioSource.PlayOneShot(PickRandomClip(wrongPhrases));
+        if (Language.language == "English")
+            audioSource.PlayOneShot(PickRandomClip(wrongPhrasesEN));
+        else if (Language.language == "German")
+            audioSource.PlayOneShot(PickRandomClip(wrongPhrasesDE));
     }
 
     // Pick a random audio clip from a list of audio clips
     private AudioClip PickRandomClip(List<AudioClip> clips)
     {
-        int index = Random.Range(0, rightPhrases.Count);
+        int index = Random.Range(0, clips.Count);
         return clips[index];
     }
 }

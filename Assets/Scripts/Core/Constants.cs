@@ -73,7 +73,104 @@ namespace Veridium_Core{
             new Vector3(0, 0, 0)        // 14
         };
 
+        private static float cageHeight = 1.5f;
+        public static float hexBaseLength = 0.2f;
+        public static Vector3[] cell2BasicPositions = new Vector3[]
+        {
+            new Vector3(-0.25f, -0.25f * cageHeight,-Mathf.Sqrt(3)/12.0f),
+            new Vector3(0.25f, 0.25f * cageHeight,Mathf.Sqrt(3)/12.0f)
+        };
+
+        public static Vector3[] cell2MultiUnitCellCenterPositions = new Vector3[]
+        {
+            // new Vector3(1.25f, -0.375f, 0.7216878f), // layer 0
+            // new Vector3(1.25f, 1.125f, 0.7216878f) // layer 2
+            new Vector3(1.5f, 0f, Mathf.Sqrt(3)/2.0f), // layer 0
+            new Vector3(1.5f, 1.5f, Mathf.Sqrt(3)/2.0f), // layer 2
+        };
+        
+        public static float cageLineWidth = 0.005f;
+
+        public static Vector3[] cell2CagePositions = new Vector3[]
+        {
+            // top
+            new Vector3(-0.75f, 0.75f, -Mathf.Sqrt(3)/4f),
+            new Vector3(-0.25f, 0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.75f, 0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.25f, 0.75f, -Mathf.Sqrt(3)/4f),
+
+            // bottom
+            new Vector3(-0.75f, -0.75f, -Mathf.Sqrt(3)/4f),
+            new Vector3(-0.25f, -0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.75f, -0.75f, Mathf.Sqrt(3)/4f),
+            new Vector3(0.25f, -0.75f, -Mathf.Sqrt(3)/4f),
+        };
+
+        private static Vector3 topLayerOffset = new Vector3(1f/2f,3f/4f, Mathf.Sqrt(3.0f) / 6.0f);
         // The array of 14 generic cell positions for an 8 sided unit cell
+        public static Vector3[] cell8BasicPositions = new Vector3[] {
+            // bottom of cell
+/*            new Vector3(0, 0, 0),                              // 0
+            new Vector3(1, 0, 0),                              // 1
+            new Vector3(-1, 0, 0),                              // 2
+            new Vector3(1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)),                              // 3
+            new Vector3(1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)),                              // 4
+            new Vector3(-1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)),                              // 5
+            new Vector3(-1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)),                              // 6
+            
+            // top of cell
+            new Vector3(0, 0, 0) + topLayerOffset,                              // 0
+            new Vector3(1, 0, 0) + topLayerOffset,                              // 1
+            new Vector3(-1, 0, 0) + topLayerOffset,                              // 2
+            new Vector3(1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 3
+            new Vector3(1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 4
+            new Vector3(-1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 5
+            new Vector3(-1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 6
+*/
+            new Vector3(0, 0, 0),                              // 0
+            new Vector3(1, 0, 0),                              // 1
+            new Vector3(1f/2f, 0, (Mathf.Sqrt(3.0f)/2.0f)),                              // 3
+            new Vector3(1f/2f, 0, -(Mathf.Sqrt(3.0f)/2.0f)),                              // 4
+            new Vector3(-1, 0, 0),                              // 2
+            new Vector3(-1f/2f, 0, (Mathf.Sqrt(3.0f)/2.0f)),                              // 5
+            new Vector3(-1f/2f, 0, -(Mathf.Sqrt(3.0f)/2.0f)),                              // 6
+
+
+            new Vector3(0, 0, 0) + topLayerOffset,                              // 0
+            new Vector3(1, 0, 0) + topLayerOffset,                              // 1
+            new Vector3(1f/2f, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 3
+            new Vector3(1f/2f, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 4
+            new Vector3(-1, 0, 0) + topLayerOffset,                              // 2
+            new Vector3(-1f/2f, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 5
+            new Vector3(-1f/2f, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset                              // 6
+
+/*            new Vector3(0, 0, 0) + topLayerOffset,                              // 0
+            new Vector3(1, 0, 0) + topLayerOffset,                              // 1
+            new Vector3(-1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 6
+            new Vector3(-1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 5
+            new Vector3(-1, 0, 0) + topLayerOffset,                              // 2
+            new Vector3(1/2, 0, -(Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 4
+            new Vector3(1/2, 0, (Mathf.Sqrt(3.0f)/2.0f)) + topLayerOffset,                              // 3
+*/
+
+
+/*            new Vector3(0, 0, 0),                              // 1
+            new Vector3(0, 0, 1),                              // 1
+            new Vector3(0, 1, 0),                              // 1
+            new Vector3(0, 1, 1),                              // 1
+            new Vector3(1, 0, 0),                              // 1
+            new Vector3(1, 0, 1),                              // 1
+            new Vector3(1, 1, 0),                              // 1
+            new Vector3(1, 1, 1),                              // 1
+            new Vector3(2, 0, 0),                              // 1
+            new Vector3(2, 0, 1),                              // 1
+            new Vector3(2, 1, 0),                              // 1
+            new Vector3(2, 1, 1),                              // 1
+            new Vector3(3, 1/2, 1/2),                              // 1
+            new Vector3(-1, 1/2, 1/2),                              // 1
+*/        };
+
+/*        // The array of 14 generic cell positions for an 8 sided unit cell
         public static Vector3[] cell8BasicPositions = new Vector3[] {
             // bottom of cell
             new Vector3(0, -0.5f, 0),                              // 0
@@ -92,7 +189,7 @@ namespace Veridium_Core{
             new Vector3(0.7f*(Mathf.Sqrt(3.0f)/2.0f), 0.5f, -0.35f),      // 12
             new Vector3(0.7f*(-(Mathf.Sqrt(3.0f)/2.0f)), 0.5f, -0.35f)     // 13
         };
-
+*/
         // The hashmap relating UnitCell6 variations to the indices of the 
         // vertices in cell6BasicPositions that they contain
         public static Dictionary<CellVariation, int[]> cell6VariationMap = new Dictionary<CellVariation, int[]> {

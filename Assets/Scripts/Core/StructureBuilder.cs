@@ -23,6 +23,9 @@ public class StructureBuilder : MonoBehaviour
     {
 
         if(buildOnStart) BuildCell(cellType, cellVariation, CrystalState.INFINITE, 0.5f, 0.075f, 23);
+        LineRenderer lr = GetComponent<LineRenderer>();
+        lr.startWidth = Constants.cageLineWidth;
+        lr.endWidth = Constants.cageLineWidth;
 
     }
 
@@ -66,22 +69,43 @@ public class StructureBuilder : MonoBehaviour
      */
     public void DestroyCell() {
         crystal.ClearCrystal(gameObject);
+        LineRenderer lr = GetComponent<LineRenderer>();
+        lr.positionCount = 0;
+        lr.startWidth = Constants.cageLineWidth;
+        lr.endWidth = Constants.cageLineWidth;
 
         initialized = false;
+        foreach(Transform child in transform) {
+            Destroy(child.gameObject);
+        }
     }
 
-    public Atom GetAtomAtCoordinate(Vector3 pos){
-
-        Vector3 corrected = pos * 0.25f; //+ transform.position;
+    public Atom GetAtomAtCoordinate(Vector3 pos, CellType type){
+        Vector3 corrected = Vector3.one;
+        if (type == CellType.HEX) corrected = pos * Constants.hexBaseLength; //hexagonals
+        else corrected = pos * 0.25f; //cubics
 
         foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms){
-            
-            if((a.Key - corrected).magnitude < 0.1){
+/*            Debug.Log(a.Key.x + ", " + a.Key.y + ", " + a.Key.z + ": " + a.Value);*/
+  /*          Debug.Log("position: " + pos);
+            Debug.Log("subtract val: " + (a.Key - corrected));
+            Debug.Log("magnitude: " + (a.Key - corrected).magnitude);
+            Debug.Log("nonrounded x value: " + a.Key.x);*/
+            if((a.Key - corrected).magnitude < 0.01){
                 return a.Value;
             }
         }
         return null;
     }
+
+     public Vector3 GetCoordinateAtAtom(Atom a){
+          foreach (KeyValuePair<Vector3, Atom> pair in crystal.atoms){
+              if(GameObject.ReferenceEquals(a, pair.Value)){
+                  return pair.Key / 0.25f;   // Revert vector from corrected value from GetUnitCellAtCoordinate
+              }
+          }
+          return Vector3.zero;
+      }
 
     /**
      * @function GetMillerAtoms
@@ -118,6 +142,7 @@ public class StructureBuilder : MonoBehaviour
 
         crystal = new Crystal(gameObject.transform.position, gameObject);
         crystal.SetState(state);
+
         crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 6);
         crystal.Draw();
     }

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Veridium_Core{
     // Enum used to enumerate unit cell types
-    public enum CellType {
+    public enum  CellType {
         CUBIC,
         ORTHO,
         TETRA,

@@ -74,6 +74,12 @@ namespace Veridium_Animation{
 
             // Find the real ending durations of all segments. These will be longer than audio
             // clip length when animations run longer than it.
+            UpdateLanguage();
+
+        }
+
+        public void UpdateLanguage() 
+        {
             for(int i = 0; i < segments.Count; i++)
             {
                 AnimSegment segment = segments[i];
@@ -88,7 +94,7 @@ namespace Veridium_Animation{
                 segment.realDuration = GetSegmentRealDuration(segment);
                 segments[i] = segment;
 
-                // Give each animation a reference to the anim sequence
+                //Give each animation a reference to the anim sequence
                 foreach (AnimPlayer anim in segment.animations)
                 {
                     if(anim.animation != null) anim.animation.animSequence = this;

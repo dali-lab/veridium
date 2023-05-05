@@ -19,7 +19,10 @@ namespace Veridium_Core{
         // INFINITE describes the state where the crystal structure is 
         // generated recursively to a user-specificed recursion depth
         INFINITE,
-        MULTICELL
+        MULTICELL,
+        // Need 2 different multicell views for hexagonal structures specifically
+        MULTICELLHEX1,
+        MULTICELLHEX2
     };
 
     public enum CrystalView {
@@ -52,6 +55,10 @@ namespace Veridium_Core{
         // structure to the atom itself
         public Dictionary<Vector3, Bond> bonds {get; private set;}
 
+        // The Dictionary relating the position of each cage in the crystal
+        // structure to the cage itself
+        // public Dictionary<Vector3, GameObject> cages {get; private set;}
+
         // The Dictionary relating the positions of each Unit cell in the crystal structure to the atom itself
         public Dictionary<Vector3, UnitCell> unitCells {get; private set;}
 
@@ -69,6 +76,7 @@ namespace Veridium_Core{
         public Crystal(Vector3 centerPoint, GameObject builder) {
             atoms = new Dictionary<Vector3, Atom>();
             bonds = new Dictionary<Vector3, Bond>();
+            // cages = new Dictionary<Vector3, GameObject>();
             unitCells = new Dictionary<Vector3, UnitCell>();
             centerPoint = Vector3.zero;//centerPoint;
             drawMode = CrystalState.SINGLECELL;
@@ -89,9 +97,13 @@ namespace Veridium_Core{
 
             atoms = new Dictionary<Vector3, Atom>();
             bonds = new Dictionary<Vector3, Bond>();
+            // cages = new Dictionary<Vector3, GameObject>();
             unitCells = new Dictionary<Vector3, UnitCell>();
             drawMode = CrystalState.SINGLECELL;
+
+            if (infiniteObject != null) Debug.Log(infiniteObject.name);
             MonoBehaviour.Destroy(infiniteObject);
+
             infiniteObject = null;
         }
 
@@ -113,6 +125,16 @@ namespace Veridium_Core{
             {
                 if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
             }
+
+            foreach (Transform child in builder.transform)
+            {
+                if (child.tag == "cage") MonoBehaviour.Destroy(child.gameObject);
+            }
+
+            // foreach (GameObject cage in cages.Values)
+            // {
+            //     if(cage != null) MonoBehaviour.Destroy(cage);
+            // }
 
             MonoBehaviour.Destroy(infiniteObject);
 
@@ -171,6 +193,71 @@ namespace Veridium_Core{
                         }
                     }
                     break;
+
+                case CrystalState.MULTICELLHEX1:
+
+                    // What we offset everything by
+                    Vector3 hexagonalT = new Vector3(0.75f, 0.75f, Mathf.Sqrt(3)/4f);
+                    for (int i=0; i < 2; i++)
+                    {
+                        for (int j=0; j < 2; j++)
+                        {
+                            for (int k=0; k < 2; k++)
+                            {
+                                Vector3 coord = new Vector3(i,j,k);
+                                Matrix4x4 m = new Matrix4x4(new Vector4(1, 0, 0, 0), new Vector4(0, 1.5f, 0, 0), new Vector4(0.5f, 0, Mathf.Sqrt(3)/2, 0), new Vector4(0, 0, 0, 1)); //Shear
+                                coord = m.MultiplyPoint(coord);
+                                // Debug.Log("Coord: " + coord);
+                                UnitCell unitCell = GetHexUnitCellAtCoordinate(coord);
+                                if (unitCell != null){
+                                    unitCell.builder = builder;
+                                    unitCell.Draw();
+                                    UnitCell2 cell2 = (UnitCell2) unitCell;
+                                    cell2.RescaleCage(-hexagonalT * Constants.hexBaseLength, 0.5f * Vector3.one);
+                                }  
+                            }
+                        }
+                    }
+                    foreach (Atom atom in atoms.Values){
+                        if(atom.drawnObject != null){
+                            atom.drawnObject.transform.localPosition -= hexagonalT * Constants.hexBaseLength;
+                            atom.drawnObject.transform.localPosition /= 2f;
+                            atom.drawnObject.transform.localScale /= 2f;
+                        }
+                    }
+                    break;
+                case CrystalState.MULTICELLHEX2:
+                // What we offset everything by
+                    hexagonalT = new Vector3(1.5f, 0.75f, Mathf.Sqrt(3)/2f);
+                    for (int i=0; i < 3; i++)
+                    {
+                        for (int j=0; j < 2; j++)
+                        {
+                            for (int k=0; k < 3; k++)
+                            {
+                                Vector3 coord = new Vector3(i,j,k);
+                                Matrix4x4 m = new Matrix4x4(new Vector4(1, 0, 0, 0), new Vector4(0, 1.5f, 0, 0), new Vector4(0.5f, 0, Mathf.Sqrt(3)/2, 0), new Vector4(0, 0, 0, 1)); //Shear
+                                coord = m.MultiplyPoint(coord);
+                                // Debug.Log("Coord: " + coord);
+                                UnitCell unitCell = GetHexUnitCellAtCoordinate(coord);
+                                if (unitCell != null){
+                                    unitCell.builder = builder;
+                                    unitCell.Draw();
+                                    UnitCell2 cell2 = (UnitCell2) unitCell;
+                                    cell2.RescaleCage(-hexagonalT * Constants.hexBaseLength, new Vector3(1/3f, 1/2f, 1/3f));
+                                }  
+                            }
+                        }
+                    }
+                    foreach (Atom atom in atoms.Values){
+                        if(atom.drawnObject != null){
+                            atom.drawnObject.transform.localPosition -= hexagonalT * Constants.hexBaseLength;
+                            atom.drawnObject.transform.localPosition = Vector3.Scale(atom.drawnObject.transform.localPosition, new Vector3(1/3f, 1/2f, 1/3f));
+                            atom.drawnObject.transform.localScale /= 3f;
+                        }
+                    }
+                    break;
+
                 case CrystalState.INFINITE:
 
                     string fileName = "";
@@ -207,22 +294,34 @@ namespace Veridium_Core{
                         infiniteObject.GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
                         infiniteObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0.65f);
                     }
+                    infiniteObject.transform.SetParent(builder.transform);
                     
                     break;
             }
         }
 
-        public UnitCell GetUnitCellAtCoordinate(Vector3 pos){
+        public UnitCell GetUnitCellAtCoordinate(Vector3 pos)
+        {
+            Vector3 corrected = pos * 0.5f;
 
-        Vector3 corrected = pos * 0.5f;
-
-        foreach (KeyValuePair<Vector3, UnitCell> a in unitCells){
-            
-            if((a.Key - corrected).magnitude < 0.1){
-                return a.Value;
+            foreach (KeyValuePair<Vector3, UnitCell> a in unitCells){
+                if((a.Key - corrected).magnitude < 0.1){
+                    return a.Value;
+                }
             }
+            return null;
         }
-        return null;
+
+        public UnitCell GetHexUnitCellAtCoordinate(Vector3 pos)
+        {
+            Vector3 corrected = pos * Constants.hexBaseLength;
+
+            foreach (KeyValuePair<Vector3, UnitCell> a in unitCells){
+                if((a.Key - corrected).magnitude < 0.1){
+                    return a.Value;
+                }
+            }
+            return null;
         }
 
         /**
@@ -261,10 +360,12 @@ namespace Veridium_Core{
 
             UnitCell originCell;
             if (type == CellType.HEX) {
-                originCell = new UnitCell8(atomicNumber, centerPoint, a, b, false);
+                originCell = new UnitCell2(atomicNumber, centerPoint, Constants.hexBaseLength, Constants.hexBaseLength, false); // need to scale the unit cell of hex structures to be smaller
+                builder.GetComponentInParent<BoxCollider>().size = Vector3.one * (Constants.hexBaseLength * 1.5f);
             } else {
                 originCell = new UnitCell6(atomicNumber, type, variation, 
                     centerPoint, a, b, c, alpha, beta, gamma);
+                builder.GetComponentInParent<BoxCollider>().size = Vector3.one * 0.6f;
             }
             originCell.builder = builder;
             unitCells[centerPoint] = originCell;

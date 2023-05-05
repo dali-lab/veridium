@@ -122,6 +122,7 @@ namespace Veridium_Core{
             for ( int i = 0; i < this.numVertices; i ++ ) {
                 Vector3 relPosition = Constants.cell8BasicPositions[i];
                 Vector3 atomPosition = GenerateVertexPosition(relPosition);
+                // Debug.Log("relative: " + relPosition + " atomPos: " + atomPosition);
                 Atom newAtom = new Atom(this.atomicNumber, atomPosition);
                 newAtom.builder = builder;
 

@@ -91,6 +91,19 @@ namespace Veridium_Core{
             drawnObject.transform.localScale = new Vector3(1f,1f,distance/0.5f);
             drawnObject.transform.localPosition = midpoint;
             drawnObject.transform.localRotation = Quaternion.LookRotation(end.GetPosition()-start.GetPosition());
+            
+            if (builder.GetComponent<StructureBuilder>().cellType == CellType.HEX)
+            {
+                drawnObject.tag = "bond";
+                Vector3 hexagonalT = new Vector3(1.5f, 0.75f, Mathf.Sqrt(3)/2f);
+                drawnObject.transform.localScale = new Vector3(1f, 1f, distance * 2f / 3f); // wtf is this
+                drawnObject.transform.localPosition -= hexagonalT * Constants.hexBaseLength;
+                drawnObject.transform.localPosition = Vector3.Scale(drawnObject.transform.localPosition, new Vector3(1/3f, 1/2f, 1/3f));
+                Vector3 newCenterPoint = Vector3.Scale((start.GetPosition() - (hexagonalT * Constants.hexBaseLength)), new Vector3(1/3f, 1/2f, 1/3f));
+                drawnObject.transform.localScale *= Constants.hexBaseLength;
+
+                drawnObject.transform.localPosition = Vector3.MoveTowards(drawnObject.transform.localPosition, newCenterPoint, Vector3.Distance(newCenterPoint, drawnObject.transform.localPosition) - drawnObject.transform.localScale.z/4f);
+            }
         }
     }
 }

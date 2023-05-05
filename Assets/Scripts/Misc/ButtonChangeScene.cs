@@ -8,42 +8,71 @@ using UnityEngine.Events;
 public class ButtonChangeScene : MonoBehaviour
 {
 
-    [SerializeField] private float threshold = 0.1f;
+/*    [SerializeField] private float threshold = 0.1f;
     [SerializeField] private float deadZone = 0.025f;
-
+*/
     private bool isPressed;
     private Vector3 startPos;
-    private ConfigurableJoint joint;
+    // private ConfigurableJoint joint;
+
+    public float pressDepth;
 
     public UnityEvent onPressed;
 
     void Start()
     {
         startPos = transform.localPosition;
-        joint = GetComponent<ConfigurableJoint>();
+        // joint = GetComponent<ConfigurableJoint>();
     }
 
     void Update()
     {
-        if (!isPressed && GetValue() + threshold >= 1){
-            isPressed = true;
-            onPressed.Invoke();
-        }
+        // if (!isPressed && GetValue() + threshold >= 1){
+        //     isPressed = true;
+        //     onPressed.Invoke();
+        // }
 
-        if (isPressed && ! (GetValue() + threshold >= 1))
-        {
-            isPressed = false;
-        }
+        // if (isPressed && ! (GetValue() + threshold >= 1))
+        // {
+        //     isPressed = false;
+        // }
 
     }
 
-    private float GetValue()
+    // private float GetValue()
+    // {
+    //     var value = Vector3.Distance(startPos, transform.localPosition) / joint.linearLimit.limit;
+    //     if (Math.Abs(value) < deadZone){
+    //         value = 0;
+    //     }
+    //     return Mathf.Clamp(value, -1f, 1f);
+    // }
+
+    private void OnTriggerEnter(Collider other)
     {
-        var value = Vector3.Distance(startPos, transform.localPosition) / joint.linearLimit.limit;
-        if (Math.Abs(value) < deadZone){
-            value = 0;
+        if (other.tag == "pointer" && !isPressed) 
+        {
+            // Debug.Log("TRIGGERED WITH POINTER");
+            isPressed = true;
+            onPressed.Invoke();
+            StartCoroutine(ButtonPressAnim());
         }
-        return Mathf.Clamp(value, -1f, 1f);
+    }
+
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (other.tag == "pointer")
+    //     {
+    //         isPressed = false;
+    //     }
+    // }
+
+    IEnumerator ButtonPressAnim()
+    {
+        transform.Translate(0f, -pressDepth, 0f);
+        yield return new WaitForSeconds(0.5f);
+        transform.localPosition = startPos;
+        isPressed = false;
     }
 
 

@@ -64,7 +64,7 @@ namespace Veridium_Animation{
                 foreach (Vector3 pos in steps[currentStep].list)
                 {
                     // Draw the atom at the coordinates
-                    Atom atom = structureBuilder.GetAtomAtCoordinate(pos);
+                    Atom atom = structureBuilder.GetAtomAtCoordinate(pos, structureBuilder.cellType);
                     atom.builder = structureBuilder.gameObject;
                     atom.Draw();
 

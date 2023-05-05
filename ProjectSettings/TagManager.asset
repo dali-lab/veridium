@@ -6,6 +6,9 @@ TagManager:
   tags:
   - DebugText
   - atom
+  - pointer
+  - cage
+  - bond
   layers:
   - Default
   - TransparentFX

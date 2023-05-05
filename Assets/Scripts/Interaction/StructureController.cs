@@ -26,6 +26,8 @@ namespace Veridium_Interaction{
         private Vector3 initialHandPosition1, initialHandPosition2;             // controller starting locations
         private Quaternion initialObjectRotation;                               // gameObject rotation
         private Vector3 initialObjectScale, initialObjectDirection;             // gameObject scale, direction of gameObject to midpoint of both controllers
+        private float initialLineWidth;
+        private float changingLineWidth;              // gameObject scale, direction of gameObject to midpoint of both controllers
         private XRBaseInteractor grabInteractor;                                // The grab interactor currently handling this gameObject
         [HideInInspector] public StructureBase structureBase;
 
@@ -81,11 +83,22 @@ namespace Veridium_Interaction{
             if (structureBase.currentState == CrystalState.INFINITE) 
             {
                 //structureBase.elementLoader.ResetStructure();
+                LineRenderer lr = structure.GetComponent<LineRenderer>();
+                lr.startWidth = initialLineWidth;
+                lr.endWidth = initialLineWidth;
                 structureBase.SingleCellView();
                 gameObject.transform.localScale = Vector3.one;
             } 
 
 
+        }
+
+        void Start()
+        {
+            if (structure.TryGetComponent<LineRenderer>(out LineRenderer lr))
+            {
+                initialLineWidth = lr.startWidth;
+            }
         }
 
         // Update is called once per frame
@@ -119,18 +132,64 @@ namespace Veridium_Interaction{
                 //SmoothClampScale();
             }
 
-            if (gameObject.transform.localScale.x >= 2){
+            // Cell Type HEX is different than other cell views
+            if (structureBase?.elementLoader?.heldElement?.type == CellType.HEX)
+            {
+                if (gameObject.transform.localScale.x >= 2.4)
+                {
+                    if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
+                }
+                else if (gameObject.transform.localScale.x >= 1.8)
+                {
+                    if (structureBase.currentState != CrystalState.MULTICELLHEX2)
+                    {
+                        if (structure.TryGetComponent<LineRenderer>(out LineRenderer lr))
+                        {
+                            lr.startWidth = initialLineWidth;
+                            lr.endWidth = initialLineWidth;
+                        }
+                        structureBase.MultiCellView(CellType.HEX, 2); 
+                    }
+                }
+                else if (gameObject.transform.localScale.x >= 1.2)
+                {
+                    if (structureBase.currentState != CrystalState.MULTICELLHEX1) 
+                    {
+                        if (structure.TryGetComponent<LineRenderer>(out LineRenderer lr))
+                        {
+                            lr.startWidth = initialLineWidth;
+                            lr.endWidth = initialLineWidth;
+                        }
+                        structureBase.MultiCellView(CellType.HEX, 1);
+                    }
+                } 
+                else if (gameObject.transform.localScale.x <= 0.9)
+                {
+                    if (structureBase.currentState != CrystalState.SINGLECELL)
+                    {
+                        if (structure.TryGetComponent<LineRenderer>(out LineRenderer lr))
+                        {
+                            lr.startWidth = initialLineWidth;
+                            lr.endWidth = initialLineWidth;
+                        }
+                        structureBase.SingleCellView();
+                    }
+                }
+            }
+            else
+            {
+                if (gameObject.transform.localScale.x >= 2){
 
-                if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
+                    if (structureBase.currentState != CrystalState.INFINITE) structureBase.InfiniteView();
 
-            } else if (gameObject.transform.localScale.x >= 1.2 && structureBase.elementLoader.heldElement.type != CellType.HEX){
+                } else if (gameObject.transform.localScale.x >= 1.2 && structureBase?.elementLoader?.heldElement?.type != CellType.HEX){
 
-                if (structureBase.currentState != CrystalState.MULTICELL) structureBase.MultiCellView();
+                    if (structureBase.currentState != CrystalState.MULTICELL) structureBase.MultiCellView();
 
-            } else if (gameObject.transform.localScale.x <= 0.9){
+                } else if (gameObject.transform.localScale.x <= 0.9){
 
-                if (structureBase.currentState != CrystalState.SINGLECELL) structureBase.SingleCellView();
-
+                    if (structureBase.currentState != CrystalState.SINGLECELL) structureBase.SingleCellView();
+                }
             }
         }
 
@@ -176,6 +235,7 @@ namespace Veridium_Interaction{
             initialHandPosition2 = hand2.transform.position;
             initialObjectRotation = gameObject.transform.rotation;
             initialObjectScale = gameObject.transform.localScale;
+            changingLineWidth = structure.GetComponent<LineRenderer>().startWidth;
             initialObjectDirection = gameObject.transform.position - (initialHandPosition1 + initialHandPosition2) * 0.5f; 
         }
 
@@ -200,6 +260,12 @@ namespace Veridium_Interaction{
             
             // set the position of the object to the center of both hands based on the original object direction relative to the new scale and rotation
             gameObject.transform.position = (0.5f * (currentHandPosition1 + currentHandPosition2)) + (handRot * (initialObjectDirection * p));
+
+            if (structure.TryGetComponent<LineRenderer>(out LineRenderer lr))
+            {
+                lr.startWidth = 1.5f * p * changingLineWidth;
+                lr.endWidth = 1.5f * p * changingLineWidth;
+            }
 
         }
 
