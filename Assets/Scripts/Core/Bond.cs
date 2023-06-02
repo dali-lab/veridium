@@ -19,6 +19,7 @@ namespace Veridium_Core{
         private Atom start;
         private Atom end;
         public GameObject drawnObject {get; private set;}
+        public GameObject cylinderChild {get; private set;}
         public GameObject builder;
 
         /**
@@ -86,7 +87,7 @@ namespace Veridium_Core{
             float distance = Vector3.Distance(start.GetPosition(), end.GetPosition());
 
             drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Edge"), midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
-                
+            cylinderChild = drawnObject.transform.GetChild(0).gameObject;
             drawnObject.transform.SetParent(builder.transform);
             drawnObject.transform.localScale = new Vector3(1f,1f,distance/0.5f);
             drawnObject.transform.localPosition = midpoint;

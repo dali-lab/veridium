@@ -86,15 +86,28 @@ public class StructureBuilder : MonoBehaviour
         else corrected = pos * 0.25f; //cubics
 
         foreach (KeyValuePair<Vector3, Atom> a in crystal.atoms){
-/*            Debug.Log(a.Key.x + ", " + a.Key.y + ", " + a.Key.z + ": " + a.Value);*/
-  /*          Debug.Log("position: " + pos);
-            Debug.Log("subtract val: " + (a.Key - corrected));
-            Debug.Log("magnitude: " + (a.Key - corrected).magnitude);
-            Debug.Log("nonrounded x value: " + a.Key.x);*/
             if((a.Key - corrected).magnitude < 0.01){
                 return a.Value;
             }
         }
+        return null;
+    }
+
+    public Bond GetBondAtCoordinate(Vector3 pos, CellType type)
+    {
+        Vector3 corrected = Vector3.one;
+        corrected = pos;
+        // print("TRYING TO FIND: " + corrected);
+        foreach (KeyValuePair<Vector3, Bond> b in crystal.bonds) 
+        {
+            // print(b.Key);
+            // print("MAGNITUDE: " + (b.Key - corrected).magnitude);
+            if ((b.Key - corrected).magnitude < 0.01)
+            {
+                return b.Value;
+            }
+        }
+
         return null;
     }
 
