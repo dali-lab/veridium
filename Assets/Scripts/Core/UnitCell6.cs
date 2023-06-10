@@ -137,6 +137,8 @@ namespace Veridium_Core{
 
                     if (b != c && b != a && a != c) {
                         this.b = a;
+                        this.a = c;
+
                     }
 
                     this.alpha = 90;
