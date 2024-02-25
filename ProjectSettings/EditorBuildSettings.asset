@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Lab Onboarding.unity
     guid: 59c77df695697584ca82fad66aca98d8
   - enabled: 1
-    path: Assets/Scenes/Scene Updated With Quizzes.unity
+    path: Assets/Scenes/Element Structures.unity
     guid: 66f065dc011b2084e9f849bd3bf68f1b
   - enabled: 0
     path: Assets/Scenes/Scene Updated.unity

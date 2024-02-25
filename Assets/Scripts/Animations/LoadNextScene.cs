@@ -7,6 +7,6 @@ public class LoadNextScene : MonoBehaviour
 {
     public void LoadLab()
     {
-        SceneManager.LoadScene("Scene Updated With Quizzes");
+        SceneManager.LoadScene("Element Strucures");
     }
 }
