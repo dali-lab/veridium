@@ -14,4 +14,10 @@ public class LanguageButton : MonoBehaviour
 
         onPress.Invoke();
     }
+
+    [ContextMenu("Press")]
+    public void Press()
+    {
+        onPress.Invoke();
+    }
 }
