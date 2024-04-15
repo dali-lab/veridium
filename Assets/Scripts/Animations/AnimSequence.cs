@@ -30,11 +30,24 @@ namespace Veridium_Animation{
         // A segment of a lecture that lasts as long as the audio clip. Can have any number of animations associated
         [System.Serializable]
         public struct AnimSegment {
-            public AudioClip audio;                         // This should be used for lecture audio
             public AudioClip audioEN;                       // Each segment has an ENGLISH audio clip
             public AudioClip audioDE;                         // Each segment has a GERMAN audio clip.
             public List<AnimPlayer> animations;             // List of animations set in the inspector.
             [HideInInspector] public float realDuration;    // The real duration of the segment. Longer than audio clip length if animations run over time
+
+            public AudioClip GetAudioClip(){
+                if (Language.language == "English")
+                {
+                    return audioEN;
+                } 
+                else if (Language.language == "German")
+                {
+                    if (audioDE != null) return audioDE;
+                }
+                
+                Debug.LogError("No audio clip found for language " + Language.language);
+                return null;
+            }
         }
 
         // A single animation on a segment that specifies the animation to play and the time into the clip it should start playing
@@ -83,14 +96,7 @@ namespace Veridium_Animation{
             for(int i = 0; i < segments.Count; i++)
             {
                 AnimSegment segment = segments[i];
-                if (Language.language == "English")
-                {
-                    segment.audio = segment.audioEN;
-                } 
-                else if (Language.language == "German")
-                {
-                    if (segment.audioDE != null) segment.audio = segment.audioDE;
-                }
+
                 segment.realDuration = GetSegmentRealDuration(segment);
                 segments[i] = segment;
 
@@ -181,8 +187,8 @@ namespace Veridium_Animation{
             // sequenceState += "audio length: " + segments[currentIndex].audio.length.ToString() + "\n";
             // sequenceState += "audio is playing: " + audioSource.isPlaying.ToString() + "\n";
 
-            bool audioFinished = !audioSource.isPlaying && audioSource.time >= segments[currentIndex].audio.length;
-            bool audioNearlyFinished  = audioSource.isPlaying && audioSource.time >= segments[currentIndex].audio.length - 2 * Time.deltaTime;
+            bool audioFinished = !audioSource.isPlaying && audioSource.time >= segments[currentIndex].GetAudioClip().length;
+            bool audioNearlyFinished  = audioSource.isPlaying && audioSource.time >= segments[currentIndex].GetAudioClip().length - 2 * Time.deltaTime;
             if (!audioHasFinished) audioHasFinished = audioFinished || audioNearlyFinished;
 
             // Determine whether there are animations blocking the transition to the next segment
@@ -237,7 +243,7 @@ namespace Veridium_Animation{
             if (audioSource != null)
             {
                 audioSource.Stop();
-                audioSource.clip = segment.audio;
+                audioSource.clip = segment.GetAudioClip();
                 audioSource.Play();
 
                 audioHasFinished = false;
@@ -295,7 +301,7 @@ namespace Veridium_Animation{
             }
 
             currentIndex ++;
-            audioSource.clip = segments[currentIndex].audio;
+            audioSource.clip = segments[currentIndex].GetAudioClip();
             audioSource.Play();
             audioHasFinished = false;
 
@@ -374,9 +380,9 @@ namespace Veridium_Animation{
 
         private float GetSegmentRealDuration(AnimSegment segment)
         {
-            if (segment.audio == null) return 0f;
+            if (segment.GetAudioClip() == null) return 0f;
             
-            float latestTime = segment.audio.length;
+            float latestTime = segment.GetAudioClip().length;
 
             foreach (AnimPlayer anim in segment.animations)
             {

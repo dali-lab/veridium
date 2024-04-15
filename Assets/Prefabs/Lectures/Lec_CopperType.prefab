@@ -2354,8 +2354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   segments:
-  - audio: {fileID: 8300000, guid: b2dcb3a7d9faf8049943df8f16cdfccf, type: 3}
-    audioEN: {fileID: 8300000, guid: 32963aeb1f45172479ab21744c88c61c, type: 3}
+  - audioEN: {fileID: 8300000, guid: 32963aeb1f45172479ab21744c88c61c, type: 3}
     audioDE: {fileID: 8300000, guid: 996ec1b75ead01348987af2d64c3031a, type: 3}
     animations:
     - actionType: 0
@@ -2424,8 +2423,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 846a63d0f9a0cbe4a9bf0ca591ae5dc6, type: 3}
-    audioEN: {fileID: 8300000, guid: 3f117237a2d41d541a65859292099587, type: 3}
+  - audioEN: {fileID: 8300000, guid: 3f117237a2d41d541a65859292099587, type: 3}
     audioDE: {fileID: 8300000, guid: 457173d04dc7adc41aa466246acf5303, type: 3}
     animations:
     - actionType: 0
@@ -2456,8 +2454,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 11
     realDuration: 0
-  - audio: {fileID: 8300000, guid: da27cc3a63e90ba4caf48eae862b544f, type: 3}
-    audioEN: {fileID: 8300000, guid: d67ed0bda2dd47540a2f6146324df483, type: 3}
+  - audioEN: {fileID: 8300000, guid: d67ed0bda2dd47540a2f6146324df483, type: 3}
     audioDE: {fileID: 8300000, guid: ab048e3f024e9284185852dcac731029, type: 3}
     animations:
     - actionType: 0
@@ -2495,8 +2492,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 9ec02a9800900a647ae170e1f94e4e64, type: 3}
-    audioEN: {fileID: 8300000, guid: 571885c051e19ad4bab56ad202858ea1, type: 3}
+  - audioEN: {fileID: 8300000, guid: 571885c051e19ad4bab56ad202858ea1, type: 3}
     audioDE: {fileID: 8300000, guid: d1652d3eedbaf0d45b5dd8d14a6b19e6, type: 3}
     animations:
     - actionType: 0
@@ -2507,8 +2503,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 2.5
     realDuration: 4
-  - audio: {fileID: 8300000, guid: 1f350d12a1bbdf745a848cb7c592414a, type: 3}
-    audioEN: {fileID: 8300000, guid: 50f4d945eb52fd049bd34b36b22bd602, type: 3}
+  - audioEN: {fileID: 8300000, guid: 50f4d945eb52fd049bd34b36b22bd602, type: 3}
     audioDE: {fileID: 8300000, guid: e7092c8185959ce4db8e8068cc307056, type: 3}
     animations:
     - actionType: 0
@@ -2540,8 +2535,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 2
     realDuration: 4
-  - audio: {fileID: 8300000, guid: 75ae9f80dc544bb4a87e68991e702804, type: 3}
-    audioEN: {fileID: 8300000, guid: 54083aec80c1b404d8de7730afebc4e4, type: 3}
+  - audioEN: {fileID: 8300000, guid: 54083aec80c1b404d8de7730afebc4e4, type: 3}
     audioDE: {fileID: 8300000, guid: 9d045543191611844b33d18774975383, type: 3}
     animations:
     - actionType: 0
@@ -2559,13 +2553,11 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 2
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 6c7a26b53b161d94ba556cb2e411a65a, type: 3}
-    audioEN: {fileID: 8300000, guid: 1eab782b748aa0543b7231a86f642116, type: 3}
+  - audioEN: {fileID: 8300000, guid: 1eab782b748aa0543b7231a86f642116, type: 3}
     audioDE: {fileID: 8300000, guid: 95a178f82ef174048ade5d852ba7610f, type: 3}
     animations: []
     realDuration: 0
-  - audio: {fileID: 8300000, guid: d04bcc17cb0e76848b5ebc1fdb3de66f, type: 3}
-    audioEN: {fileID: 8300000, guid: 884404567f0fac14bbc06664c7171818, type: 3}
+  - audioEN: {fileID: 8300000, guid: 884404567f0fac14bbc06664c7171818, type: 3}
     audioDE: {fileID: 8300000, guid: 37b333b06a260ca4bb2f7073d689707c, type: 3}
     animations:
     - actionType: 0
@@ -2576,8 +2568,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 9f3d9b8743af9364c9ee5f820c698701, type: 3}
-    audioEN: {fileID: 8300000, guid: 47e543e460ad935429c79deb9f9837da, type: 3}
+  - audioEN: {fileID: 8300000, guid: 47e543e460ad935429c79deb9f9837da, type: 3}
     audioDE: {fileID: 8300000, guid: 386ee8b485df01c4082d066d2d7b8107, type: 3}
     animations:
     - actionType: 0
@@ -2588,8 +2579,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: ec07f18a51f94d9429d8130555393df2, type: 3}
-    audioEN: {fileID: 8300000, guid: c17e90ab967b7c749b88ab48b285c19a, type: 3}
+  - audioEN: {fileID: 8300000, guid: c17e90ab967b7c749b88ab48b285c19a, type: 3}
     audioDE: {fileID: 8300000, guid: 5a2ef8638e0f71e408b638a648ea376f, type: 3}
     animations:
     - actionType: 0
@@ -2600,8 +2590,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 0641acef60aff2e408e22e38a7dd7a16, type: 3}
-    audioEN: {fileID: 8300000, guid: b59e56fb444293b409ff69d12d017f9c, type: 3}
+  - audioEN: {fileID: 8300000, guid: b59e56fb444293b409ff69d12d017f9c, type: 3}
     audioDE: {fileID: 8300000, guid: f783e0af54be1cd418b99a45ba4b7960, type: 3}
     animations:
     - actionType: 0
@@ -2840,8 +2829,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 9.78
     realDuration: 0
-  - audio: {fileID: 8300000, guid: bfa952d5eabd2634781c1e624697f734, type: 3}
-    audioEN: {fileID: 8300000, guid: 035504d8536fc0042824375ddecff488, type: 3}
+  - audioEN: {fileID: 8300000, guid: 035504d8536fc0042824375ddecff488, type: 3}
     audioDE: {fileID: 8300000, guid: b3aa6612d2d4f3f47985ba445d9b0bbf, type: 3}
     animations:
     - actionType: 0
@@ -3005,8 +2993,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 6
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 0de49b9ff0f8fce4fba7eb90a0f5f3e1, type: 3}
-    audioEN: {fileID: 8300000, guid: 6f37783ef809f584ba89871c623843b4, type: 3}
+  - audioEN: {fileID: 8300000, guid: 6f37783ef809f584ba89871c623843b4, type: 3}
     audioDE: {fileID: 8300000, guid: 5a3b0511cc059b54d98420612edbe598, type: 3}
     animations:
     - actionType: 0
@@ -3049,8 +3036,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 0df79a979f52261459204d42e0a2bcb6, type: 3}
-    audioEN: {fileID: 8300000, guid: 76b86bf4cb6f8bc4a9585bef6df00bd8, type: 3}
+  - audioEN: {fileID: 8300000, guid: 76b86bf4cb6f8bc4a9585bef6df00bd8, type: 3}
     audioDE: {fileID: 8300000, guid: a13a1f0310a3a7c4b840ada57deca526, type: 3}
     animations:
     - actionType: 0
@@ -3061,8 +3047,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: b22f585428707fd4ba1f1fb70faa0ce8, type: 3}
-    audioEN: {fileID: 8300000, guid: 4c6f55e55dce09c458e4311614762cd9, type: 3}
+  - audioEN: {fileID: 8300000, guid: 4c6f55e55dce09c458e4311614762cd9, type: 3}
     audioDE: {fileID: 8300000, guid: d11578bca0839f74a9697435cb36e6b6, type: 3}
     animations:
     - actionType: 0
@@ -3169,8 +3154,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 32963aeb1f45172479ab21744c88c61c, type: 3}
-    audioEN: {fileID: 8300000, guid: 8c3f40e4f495a584ea8c049d53dfcc40, type: 3}
+  - audioEN: {fileID: 8300000, guid: 8c3f40e4f495a584ea8c049d53dfcc40, type: 3}
     audioDE: {fileID: 8300000, guid: 8da1961e505a4b749b665d83bd0a8371, type: 3}
     animations:
     - actionType: 0
@@ -3238,8 +3222,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 0}
-    audioEN: {fileID: 8300000, guid: 1f581cb8356bd3647a491a0f1e5624b6, type: 3}
+  - audioEN: {fileID: 8300000, guid: 1f581cb8356bd3647a491a0f1e5624b6, type: 3}
     audioDE: {fileID: 8300000, guid: 7716ebcda753c5b4a8d27b5ec66e48ae, type: 3}
     animations:
     - actionType: 1
@@ -3283,8 +3266,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 2
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 32963aeb1f45172479ab21744c88c61c, type: 3}
-    audioEN: {fileID: 8300000, guid: 8a9fb47adf4728b43bc4d66fea98e82e, type: 3}
+  - audioEN: {fileID: 8300000, guid: 8a9fb47adf4728b43bc4d66fea98e82e, type: 3}
     audioDE: {fileID: 8300000, guid: 114637de46140444e970299ae8f03881, type: 3}
     animations:
     - actionType: 0
@@ -3330,8 +3312,7 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audio: {fileID: 8300000, guid: 32963aeb1f45172479ab21744c88c61c, type: 3}
-    audioEN: {fileID: 8300000, guid: cada7697cccab3443af1ae0b9fd54889, type: 3}
+  - audioEN: {fileID: 8300000, guid: cada7697cccab3443af1ae0b9fd54889, type: 3}
     audioDE: {fileID: 8300000, guid: ddb51facbf5f9d7408250766bcdc10d1, type: 3}
     animations:
     - actionType: 0
