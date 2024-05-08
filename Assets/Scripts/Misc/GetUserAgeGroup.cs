@@ -9,6 +9,7 @@ public class GetUserAgeGroup : MonoBehaviour
     void Start()
     {
         #if !UNITY_EDITOR
+        Core.AsyncInitialize();
         UserAgeCategory.Get();
         #endif
     }
