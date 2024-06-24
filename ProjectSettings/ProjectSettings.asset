@@ -235,6 +235,8 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: -6410715089341966643, guid: 17f9ae5d487784116b7fafe60779d77e, type: 2}
   - {fileID: 11400000, guid: fa0b2fa50db00425091f97f8f7662a22, type: 2}
   metroInputSource: 0
@@ -262,7 +264,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 32
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
