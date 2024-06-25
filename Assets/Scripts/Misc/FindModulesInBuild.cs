@@ -18,11 +18,11 @@ public class FindModulesInBuild : MonoBehaviour
 
         foreach( string scene in scenes )
         {
-            string modulePrefabPath = scene.Replace(".unity", ".prefab");
+            string modulePrefabPath = Path.GetFileName(scene).Replace(".unity", "");
+            GameObject modulePrefab = Resources.Load<GameObject>(modulePrefabPath);
 
-            if(File.Exists(modulePrefabPath) )
+            if(modulePrefab != null)
             {
-                GameObject modulePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(modulePrefabPath);
                 VeridiumModule module = modulePrefab.GetComponent<VeridiumModule>();
                 if( module != null )
                 {
