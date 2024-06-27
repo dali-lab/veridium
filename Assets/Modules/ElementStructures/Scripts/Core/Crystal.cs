@@ -284,6 +284,7 @@ namespace Veridium_Core{
 
                     infiniteObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("MeshPrefab"));
                     infiniteObject.layer = LayerMask.NameToLayer("InfiniteOnly");
+                    // TODO: Bad practice to do this with hardcoded paths
                     infiniteObject.GetComponent<MeshFilter>().mesh = Resources.Load<Mesh>("InfiniteViews/" + fileName);
                     infiniteObject.GetComponent<Renderer>().material = Resources.Load<Material>("M_Atom_Infinite");
                     infiniteObject.transform.localScale = Vector3.one * 150f;
