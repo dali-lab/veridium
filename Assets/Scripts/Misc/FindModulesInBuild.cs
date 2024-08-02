@@ -16,6 +16,7 @@ public class FindModulesInBuild : MonoBehaviour
             scenes[i] = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex( i );
         }
 
+        int j = 0;
         foreach( string scene in scenes )
         {
             string modulePrefabPath = Path.GetFileName(scene).Replace(".unity", "");
@@ -31,7 +32,9 @@ public class FindModulesInBuild : MonoBehaviour
                     
                     // instantiate the module
                     GameObject moduleInstance = Instantiate(modulePrefab);
-                    moduleInstance.transform.position = transform.TransformPoint(Vector3.forward * 0.2f);
+                    moduleInstance.transform.position = transform.TransformPoint(Vector3.forward * 0.3f * j);
+                    moduleInstance.transform.rotation = transform.rotation;
+                    j++;
                 }
             }
         }
