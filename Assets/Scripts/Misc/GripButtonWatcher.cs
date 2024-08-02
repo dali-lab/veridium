@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [System.Serializable]
 public class GripButtonEvent : UnityEvent { }
@@ -65,8 +66,17 @@ public class GripButtonWatcher : MonoBehaviour
         int currentGripsPressed = 0;
         foreach (var device in devicesWithGripButton)
         {
-            bool gripButtonState = false;
+            /*bool gripButtonState = false;
             device.TryGetFeatureValue(CommonUsages.gripButton, out gripButtonState); // gripButtonState is the value of the gripButton
+            if (gripButtonState)
+            {
+                currentGripsPressed++;
+                Debug.Log("Added one to grips pressed");
+            }*/
+            
+            bool gripButtonState = false;
+            InputHelpers.IsPressed(device, InputHelpers.Button.Grip, out gripButtonState);
+            
             if (gripButtonState)
             {
                 currentGripsPressed++;
