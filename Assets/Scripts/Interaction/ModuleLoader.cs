@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Veridium_Interaction{
+
+    [RequireComponent(typeof(AudioSource))]
     public class ModuleLoader : XRSocketInteractor
     {
         public FadeScreen fadeScreen;
@@ -14,6 +16,7 @@ namespace Veridium_Interaction{
             if (interactable.transform.parent.TryGetComponent(out VeridiumModule module))
             {
                 Debug.Log("VeridiumModule found.");
+                GetComponent<AudioSource>().Play();
                 fadeScreen.fadeThenLoadScene(module.GetScenePath());
             } else {
                 
