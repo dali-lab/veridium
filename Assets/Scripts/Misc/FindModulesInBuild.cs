@@ -34,6 +34,8 @@ public class FindModulesInBuild : MonoBehaviour
                     GameObject moduleInstance = Instantiate(modulePrefab);
                     moduleInstance.transform.position = transform.TransformPoint(Vector3.forward * 0.3f * j);
                     moduleInstance.transform.rotation = transform.rotation;
+
+                    moduleInstance.GetComponent<VeridiumModule>().SetScenePath(scene);
                     j++;
                 }
             }
