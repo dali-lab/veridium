@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.tymski.screenshot": {
+      "version": "git@github.com:Tymski/UnityScreenshot.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7503483e57951a7318259a2f9c98dd26e8c20d02"
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,
@@ -26,7 +33,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.16",
+      "version": "2.0.22",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -196,6 +203,13 @@
         "com.unity.ugui": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "unity-dependencies-hunter": {
+      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f5f9b5d2f168c7ab0f0a65d99db97e3763501a85"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -75,6 +75,12 @@ public class ButtonChangeScene : MonoBehaviour
         isPressed = false;
     }
 
+    [ContextMenu("Press")]
+    public void Press()
+    {
+        onPressed.Invoke();
+    }
+
 
     //IEnumerator enterMainSceneRoutine()
 }

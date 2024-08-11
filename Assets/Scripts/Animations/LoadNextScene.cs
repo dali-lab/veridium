@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LoadNextScene : MonoBehaviour
 {
+    public string sceneName;
+    
+    public void LoadScene()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+    /*
     public void LoadLab()
     {
-        SceneManager.LoadScene("Scene Updated With Quizzes");
-    }
+        SceneManager.LoadScene("Element Strucures");
+    }*/
 }
