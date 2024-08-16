@@ -5,6 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Veridium_Interaction{
 
+    public enum Hand {None, Left, Right};
+
     public class HandDistanceGrabber : XRDirectInteractor
     {
         /// <summary>
@@ -22,6 +24,7 @@ namespace Veridium_Interaction{
         public Vector3 hitLocation;
         public float hitDistance;
         public bool distanceGrabbed;
+        public Hand hand;
 
 
         // Start is called before the first frame update

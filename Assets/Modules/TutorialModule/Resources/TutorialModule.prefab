@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6762675171381211692}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 208, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5968016832966886891}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3300278418508898491
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114,13 +114,29 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 481281373218417566, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 939993202167918857, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1748071484846062392, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
       propertyPath: m_Name
       value: TutorialModule
       objectReference: {fileID: 0}
+    - target: {fileID: 2050274989788277693, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2545106171075467827, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
       propertyPath: m_Text
       value: Tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145649711590325376, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
       propertyPath: m_RootOrder
@@ -170,9 +186,13 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6499885116934976107, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7508512486087805299, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Interaction{
-
+namespace Veridium.Modules 
+{
     [RequireComponent(typeof(AudioSource))]
     public class ModuleLoader : XRSocketInteractor
     {
