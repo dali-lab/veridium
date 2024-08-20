@@ -13,7 +13,7 @@ namespace Veridium.Modules
         protected override void OnSelectEntering(XRBaseInteractable interactable){
             Debug.Log("OnSelectEntered() on ModuleLoader");
             base.OnSelectEntering(interactable);
-            if (interactable.transform.parent.TryGetComponent(out VeridiumModule module))
+            if (interactable.TryGetComponent(out VeridiumModule module))
             {
                 Debug.Log("VeridiumModule found.");
                 GetComponent<AudioSource>().Play();

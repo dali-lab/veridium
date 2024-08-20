@@ -2309,6 +2309,37 @@ MonoBehaviour:
       onPlay:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 1766513675}
+            m_TargetAssemblyTypeName: Veridium.Modules.FindModulesInBuild, Assembly-CSharp
+            m_MethodName: HideAllButOne
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Tutorial
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 1766513675}
+            m_TargetAssemblyTypeName: Veridium.Modules.FindModulesInBuild, Assembly-CSharp
+            m_MethodName: LockModule
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Tutorial
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0.2
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
           - m_Target: {fileID: 2089647230}
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
@@ -2398,16 +2429,16 @@ MonoBehaviour:
       onPlay:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1658212413}
-            m_TargetAssemblyTypeName: FadeScreen, Assembly-CSharp
-            m_MethodName: fadeThenLoadScene
+          - m_Target: {fileID: 1766513675}
+            m_TargetAssemblyTypeName: Veridium.Modules.FindModulesInBuild, Assembly-CSharp
+            m_MethodName: UnlockModule
             m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 1
+              m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: Lab Onboarding
+              m_StringArgument: Tutorial
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
@@ -2443,6 +2474,49 @@ MonoBehaviour:
             m_CallState: 2
       animator: {fileID: 0}
       timing: 0
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2089647230}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 576042304}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 1439204854}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0.2
     realDuration: 0
   audioSource: {fileID: 1378554116}
   sequenceState: 
@@ -3772,6 +3846,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moduleFolder: Assets/Modules
+  modules: []
+  moduleSocket: {fileID: 7057068181726279299, guid: 4c05c95700a0676439221dcaf1621714, type: 3}
 --- !u!4 &1766513676
 Transform:
   m_ObjectHideFlags: 0
