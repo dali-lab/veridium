@@ -64,6 +64,7 @@ namespace Veridium_Interaction{
                 if(!hitDistanceGrab.collider.gameObject.GetComponent<HandDistanceGrabbable>().drawRay) drawline = false;
             } else if (hittedRayPoint) {    // if hit raypoint layer mask
                 drawline = true;
+                
             }
 
             if (drawline) {
