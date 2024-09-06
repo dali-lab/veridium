@@ -19,7 +19,7 @@ If you want to contribute to VeRidium, the [Wiki](https://github.com/dali-lab/ve
 * Alexander Huang-Mende '25 | Developer
 * Devon Starr '25 | Developer
 * Julian Wu '22 | Developer + Mentor
-* Julian Arnold ' 22 | Developer
+* Julian Arnold '22 | Developer
 
 
 ## Acknowledgments
