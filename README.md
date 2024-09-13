@@ -7,8 +7,8 @@ More Info on our [Website](https://www.bcp.fu-berlin.de/chemie/chemie/forschung/
 
 ## How-Tos for contributers
 If you want to contribute to VeRidium, the [Wiki](https://github.com/dali-lab/veridium/wiki) might have some useful pages.
-* How to create your own module for VeRidium: TODO
-* General Set-Up: [How to set up VeRidium](https://github.com/dali-lab/veridium/wiki/How-to-set-up-veridium)
+* [How To Create Your Own Module For VeRidium](https://github.com/dali-lab/veridium/wiki/Creating-Your-Own-Module-For-VeRidium)
+* General Set-Up: [How To Set Up VeRidium](https://github.com/dali-lab/veridium/wiki/How-to-set-up-veridium)
 
 
 ## Authors
