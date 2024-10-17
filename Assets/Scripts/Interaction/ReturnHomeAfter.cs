@@ -23,6 +23,7 @@ namespace Veridium_Interaction {
         // Called by the grab interactable
         public void UnInteracted()
         {
+            if (!gameObject.activeSelf) return;
             StartCoroutine(WaitThenGoHome());
         }
 

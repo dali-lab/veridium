@@ -5,16 +5,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Veridium_Interaction{
 
-    public enum Hand {None, Left, Right};
-
-    public class HandDistanceGrabber : XRDirectInteractor
+    public class HandDistanceClicker : XRDirectInteractor
     {
-        /// <summary>
-        /// HandDistanceGrabber should be attached to a game object with a direct interactor
-        /// and a sphere collider. This script requires that there be a DistanceGrab layer.
-        /// All distance grabbables should be assigned to that layer. grabBegun and grabEnded
-        /// should be added to the relevant callbacks in the direct interactor.
-        /// </summary>
+        // TODO: Super Hacky, make this better
+
 
         public float rayDistance = 3f;              // Distance to detect DistanceGrabbables
         public bool distanceGrabActive = true;      // Modify this to enable or disable distance grab
@@ -32,7 +26,7 @@ namespace Veridium_Interaction{
         {
 
             // Prepare the layer mask for the sphere trace collision filter
-            layerMask = 1 << LayerMask.NameToLayer("DistanceGrab");
+            layerMask = 1 << LayerMask.NameToLayer("RayPoint");
 
             // Store the original center
             colliderOriginalCenter = GetComponent<SphereCollider>().center;
@@ -42,6 +36,11 @@ namespace Veridium_Interaction{
         // Update is called once per frame
         void Update()
         {
+            if(GetComponentInParent<HandDistanceGrabber>().grabbed()) {
+                GetComponent<SphereCollider>().enabled = false;
+            } else {
+                GetComponent<SphereCollider>().enabled = true;
+            }
 
             // Only grab if not grabbing and distance grab is activated
             if(distanceGrabActive && !grabbing){
@@ -51,10 +50,10 @@ namespace Veridium_Interaction{
                 bool hitted = Physics.SphereCast(transform.position, 0.05f, transform.forward, out hit, Mathf.Infinity, layerMask);
 
                 // Set hovered if the sphere cast hit a DistanceGrabbable
-                HandDistanceGrabbable hovered = null;
-                if (hitted && hit.collider.gameObject.GetComponent<HandDistanceGrabbable>() != null){
+                HandDistanceClickable hovered = null;
+                if (hitted && hit.collider.gameObject.GetComponent<HandDistanceClickable>() != null){
 
-                    hovered = hit.collider.gameObject.GetComponent<HandDistanceGrabbable>();
+                    hovered = hit.collider.gameObject.GetComponent<HandDistanceClickable>();
 
                     hitDistance = hit.distance;
 

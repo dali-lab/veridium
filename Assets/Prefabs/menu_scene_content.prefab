@@ -1241,8 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5920a68e8d2434090d4cd93d48be8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.1
-  deadZone: 0.025
+  pressDepth: 0
   onPressed:
     m_PersistentCalls:
       m_Calls:
@@ -1618,6 +1617,7 @@ MonoBehaviour:
   englishButton: {fileID: 631914980}
   germanButton: {fileID: 1208137765}
   offset: 0.015
+  onboardingSequence: {fileID: 0}
 --- !u!1 &1118810624295016281
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,8 +2237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5920a68e8d2434090d4cd93d48be8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.1
-  deadZone: 0.025
+  pressDepth: 0
   onPressed:
     m_PersistentCalls:
       m_Calls:

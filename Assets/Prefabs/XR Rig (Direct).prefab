@@ -538,6 +538,7 @@ MonoBehaviour:
   hitLocation: {x: 0, y: 0, z: 0}
   hitDistance: 0
   distanceGrabbed: 0
+  hand: 2
 --- !u!82 &6239716506476430315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1147,6 +1148,7 @@ MonoBehaviour:
   hitLocation: {x: 0, y: 0, z: 0}
   hitDistance: 0
   distanceGrabbed: 0
+  hand: 1
 --- !u!82 &3459961009445086116
 AudioSource:
   m_ObjectHideFlags: 0
