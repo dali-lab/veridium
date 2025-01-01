@@ -68,5 +68,16 @@ namespace Veridium_Interaction{
         {
             GetComponent<XRGrabInteractable_Lockable>().Unlock();
         }
+
+
+        [ContextMenu("Insert in element loader")]
+        public void InsertInElementLoader()
+        {
+            ElementLoader loader = FindObjectOfType<ElementLoader>();
+            if (loader != null)
+            {
+                loader.InsertElement(this);
+            }
+        }
     }
 }

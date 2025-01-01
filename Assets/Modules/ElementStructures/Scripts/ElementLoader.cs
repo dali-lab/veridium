@@ -52,8 +52,12 @@ namespace Veridium_Interaction{
                 exitTileScript.ExitToMenu();
             }
 
+            InsertElement(interactable.gameObject.GetComponent<PTElement>());
+        }
 
-            heldElement = interactable.gameObject.GetComponent<PTElement>();
+        public void InsertElement(PTElement element) {
+            
+            heldElement = element;
 
             if (heldElement == null) return;
 

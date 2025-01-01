@@ -283,6 +283,7 @@ namespace Veridium_Animation{
         }
 
         // Resets the sequence and plays from the start
+        [ContextMenu("Play Sequence From Start")]
         public void PlaySequenceFromStart(){
 
             ResetSequence();
