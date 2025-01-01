@@ -724,29 +724,10 @@ MonoBehaviour:
       onPlay:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 936844117}
-            m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
-            m_MethodName: Lock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
           - m_Target: {fileID: 881861620}
             m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
               Assembly-CSharp
-            m_MethodName: Unlock
+            m_MethodName: Lock
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -4467,29 +4448,10 @@ MonoBehaviour:
       onPlay:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 936844117}
-            m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
-            m_MethodName: Lock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
           - m_Target: {fileID: 881861620}
             m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
               Assembly-CSharp
-            m_MethodName: Unlock
+            m_MethodName: Lock
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -18269,6 +18231,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6923397188796341110}
     m_Modifications:
+    - target: {fileID: 921125170992599556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981979524324664694, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0008
+      objectReference: {fileID: 0}
+    - target: {fileID: 981979524324664694, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0046
+      objectReference: {fileID: 0}
     - target: {fileID: 1139634914230391189, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -18277,6 +18251,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: ffc371a42079e4739ab5c0e8ed511c9d, type: 2}
+    - target: {fileID: 2000175532178479950, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: materialIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_RootOrder
       value: 49
@@ -18320,6 +18298,10 @@ PrefabInstance:
     - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: Polonium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550559951849918020, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: selectableByGrabWhenLocked
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: variation
@@ -19156,29 +19138,10 @@ MonoBehaviour:
       onPlay:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 936844117}
-            m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
-            m_MethodName: Lock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
           - m_Target: {fileID: 881861620}
             m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
               Assembly-CSharp
-            m_MethodName: Unlock
+            m_MethodName: Lock
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -23642,6 +23605,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 06607bf08be523a49a5d885ad074fc75, type: 2}
+    - target: {fileID: 6670569952692714000, guid: 2b0e5eb2be375428e97a2c12d8f0f51c, type: 3}
+      propertyPath: type
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7529503440298986538, guid: 2b0e5eb2be375428e97a2c12d8f0f51c, type: 3}
       propertyPath: m_IsActive
       value: 1
