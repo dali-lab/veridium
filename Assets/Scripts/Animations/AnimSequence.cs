@@ -170,7 +170,8 @@ namespace Veridium_Animation{
             }
 
             // Find animations that are done playing
-            foreach (AnimationBase anim in playingAnims){
+            for (int i = playingAnims.Count - 1; i >= 0; i--){
+                AnimationBase anim = playingAnims[i];
 
                 if(!anim.playing || anim.elapsedTime < 0){
 
