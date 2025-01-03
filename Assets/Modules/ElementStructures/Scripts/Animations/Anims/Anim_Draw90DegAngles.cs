@@ -10,7 +10,6 @@ namespace Veridium_Animation
     public class Anim_Draw90DegAngles : AnimationBase
     {
         public StructureBuilder structureBuilder; 
-        public StructureBase structureBase;
         public GameObject anglePrefab;
 
         public override void Play()
@@ -63,6 +62,7 @@ namespace Veridium_Animation
                         angleSymbol.transform.localPosition = Vector3.zero;
                         angleSymbol.transform.localRotation = Quaternion.LookRotation(Vector3.Cross(-b, c).normalized, c);
                         angleSymbol.transform.localScale = new Vector3(300, 300, 300);
+                        angleSymbol.tag = "angleSymbol";
 
                     }
                 }
