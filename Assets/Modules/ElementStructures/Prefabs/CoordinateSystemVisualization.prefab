@@ -1181,6 +1181,10 @@ MonoBehaviour:
     line: {fileID: 4829037132006386976}
     tip: {fileID: 761435114712095641}
     label: {fileID: 949223529798145046}
+  regularOpacity: 0.5
+  highlightOpacity: 0.7
+  regularThickness: 0.006
+  highlightThickness: 0.02
 --- !u!1 &7055930090637546132
 GameObject:
   m_ObjectHideFlags: 0

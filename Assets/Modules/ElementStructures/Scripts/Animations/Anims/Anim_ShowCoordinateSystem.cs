@@ -36,7 +36,8 @@ namespace Veridium_Animation{
         // Called when animation ends
         public override void End()
         {
-            coordinateSystem.SetFadePercent(1);
+            coordinateSystem = null;
+
             base.End();
         }
 

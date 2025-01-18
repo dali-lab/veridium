@@ -40,8 +40,8 @@ public class CoordinateSystemVisualization : MonoBehaviour
     {
         AxisVisualization axis = axisIndex == 0 ? A : axisIndex == 1 ? B : C;
 
-        setAxisOpacity(axis, Mathf.Lerp(0, highlightOpacity, percent));
-        setAxisThickness(axis, Mathf.Lerp(0, highlightThickness, percent));
+        setAxisOpacity(axis, Mathf.Lerp(regularOpacity, highlightOpacity, percent));
+        setAxisThickness(axis, Mathf.Lerp(regularThickness, highlightThickness, percent));
     }
 
     private void setAxisOpacity(AxisVisualization axis, float opacity)
@@ -65,5 +65,11 @@ public class CoordinateSystemVisualization : MonoBehaviour
         axis.line.endWidth = thickness;
         axis.tip.startWidth = thickness;
         axis.tip.endWidth = thickness;
+    }
+
+    public float GetAxisHighlightPercent(int axisIndex)
+    {
+        AxisVisualization axis = axisIndex == 0 ? A : axisIndex == 1 ? B : C;
+        return (axis.line.material.color.a - regularOpacity) / (highlightOpacity - regularOpacity);
     }
 }
