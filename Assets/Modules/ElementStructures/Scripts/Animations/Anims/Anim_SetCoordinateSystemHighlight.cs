@@ -55,7 +55,7 @@ namespace Veridium_Animation{
         // Called every frame while animation is playing
         protected override void UpdateAnim()
         {
-            float blend = Easing.EaseFull(elapsedTimePercent, EasingType.Bounce);
+            float blend = Easing.EaseOut(elapsedTimePercent, EasingType.Bounce);
 
             coordinateSystem.SetAxisHighlightPercent(0, Mathf.Lerp(previousHighlightA ? 1.0f : 0.0f, highlightA ? 1.0f : 0.0f, blend));
             coordinateSystem.SetAxisHighlightPercent(1, Mathf.Lerp(previousHighlightB ? 1.0f : 0.0f, highlightB ? 1.0f : 0.0f, blend));
