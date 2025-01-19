@@ -64,6 +64,14 @@ namespace Veridium_Animation
                         angleSymbol.transform.localScale = new Vector3(300, 300, 300);
                         angleSymbol.tag = "angleSymbol";
 
+                        Anim_Fade anim = angleSymbol.GetComponentInChildren<Renderer>().gameObject.AddComponent<Anim_Fade>() as Anim_Fade;
+                        anim.easingType = EasingType.Exponential;
+                        anim.startingOpacity = 0f;
+                        anim.endingOpacity = .4f;
+                        anim.duration = duration;
+
+                        anim.Play();
+
                     }
                 }
             }
