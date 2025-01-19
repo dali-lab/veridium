@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
-using UnityEditor;
-using UnityEditor.UIElements;
-using UnityEngine.UIElements;
 
 namespace Veridium_Animation{
     public class AnimSequence : MonoBehaviour
@@ -178,7 +175,7 @@ namespace Veridium_Animation{
                     anim.Pause();
                     anim.End();
                     playingAnims.Remove(anim);
-
+                    
                 }
 
             }
@@ -303,6 +300,11 @@ namespace Veridium_Animation{
             }
 
             currentIndex ++;
+            if (currentIndex >= segments.Count) {
+                playing = false;
+                return;
+            }
+            
             audioSource.clip = segments[currentIndex].GetAudioClip();
             audioSource.Play();
             audioHasFinished = false;
