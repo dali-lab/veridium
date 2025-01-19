@@ -23,8 +23,6 @@ namespace Veridium_Animation
                     visibleAtoms.Add(atom);
                 }
             }
-            
-            Debug.Log("Number of visible atoms: " + visibleAtoms.Count);
 
             // find incident bonds for each atom
             foreach (Atom atom in visibleAtoms)
@@ -41,8 +39,6 @@ namespace Veridium_Animation
                         incidentBonds.Add(bond);
                     }
                 }
-
-                Debug.Log("Number of incident bonds: " + incidentBonds.Count);
                 
 
                 // find the angle between each pair of incident bonds
