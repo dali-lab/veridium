@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using Veridium.Core;
 using Veridium.Animation;
 
 /// <summary>
@@ -10,7 +6,8 @@ using Veridium.Animation;
 /// Supports interaction of user and structure
 /// </summary>
 
-namespace Veridium.Interaction{
+namespace Veridium.Modules.ElementStructures
+{
     public class StructureBase : MonoBehaviour
     {
         private bool grabbed;                           // Whether the structure has been grabbed by the user

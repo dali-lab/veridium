@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium.Animation;
 
-namespace Veridium.Interaction{
+namespace Veridium.Modules.ElementStructures
+{
     public class ElementLoader : XRSocketInteractor
     {
 

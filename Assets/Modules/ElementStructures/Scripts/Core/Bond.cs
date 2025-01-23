@@ -7,7 +7,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
     /**
      * @class Bond
      * Class that describes a linear bond between two Atom objects. Contains

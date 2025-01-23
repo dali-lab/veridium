@@ -8,7 +8,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Veridium.Interaction;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
     /**
     * @class Atom
     * Object class used to store positioning data and distinguishing characteristics for an atom

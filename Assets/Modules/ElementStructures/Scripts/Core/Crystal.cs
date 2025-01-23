@@ -8,7 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
 
     // Enum used to describe how the crystal is being rendered in the current 
     // display context

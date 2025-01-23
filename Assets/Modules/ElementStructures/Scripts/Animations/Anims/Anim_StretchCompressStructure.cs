@@ -1,7 +1,5 @@
 using UnityEngine;
 using Veridium.Animation;
-using Veridium.Core;
-using Veridium.Interaction;
 
 namespace Veridium.Modules.ElementStructures
 {

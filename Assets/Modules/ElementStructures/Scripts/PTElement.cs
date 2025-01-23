@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Veridium.Core;
+using Veridium.Interaction;
 
-namespace Veridium.Interaction{
-    
+namespace Veridium.Modules.ElementStructures
+{    
     public class PTElement : MonoBehaviour
     {
 
