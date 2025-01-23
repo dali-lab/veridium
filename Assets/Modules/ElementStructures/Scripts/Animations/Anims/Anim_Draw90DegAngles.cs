@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using Veridium.Animation;
 using Veridium.Core;
-using Veridium.Interaction;
 
-namespace Veridium.Animation
+namespace Veridium.Modules.ElementStructures
 {
     public class Anim_Draw90DegAngles : AnimationBase
     {

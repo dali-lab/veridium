@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Veridium.Animation;
 using Veridium.Core;
 using Veridium.Interaction;
 
-namespace Veridium.Animation{
+namespace Veridium.Modules.ElementStructures
+{
     public class Anim_StretchCompressStructure : AnimationBase
     {
         public Vector3 endScale = new Vector3(1,1,1);

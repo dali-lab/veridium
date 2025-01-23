@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Veridium.Animation;
 using Veridium.Core;
 
-namespace Veridium.Animation {
+namespace Veridium.Modules.ElementStructures
+{
     public class Anim_Show_2x1x1 : AnimationBase
     {
         ///<summary>
