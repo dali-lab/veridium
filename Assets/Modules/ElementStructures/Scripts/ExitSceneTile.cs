@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Events;
 
-namespace Veridium_Interaction{
+namespace Veridium.Interaction{
     public class ExitSceneTile : HandDistanceGrabbable
     {
 

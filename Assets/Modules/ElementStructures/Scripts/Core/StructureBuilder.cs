@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using Veridium_Core;
+using Veridium.Core;
 using System.Linq;
 
 public class StructureBuilder : MonoBehaviour

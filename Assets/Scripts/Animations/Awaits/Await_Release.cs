@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class Await_Release : AwaitUserBase
     {
 

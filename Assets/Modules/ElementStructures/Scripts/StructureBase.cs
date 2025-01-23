@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using Veridium_Core;
-using Veridium_Animation;
+using Veridium.Core;
+using Veridium.Animation;
 
 /// <summary>
 /// StructureBase controls the main structure on the podium 
 /// Supports interaction of user and structure
 /// </summary>
 
-namespace Veridium_Interaction{
+namespace Veridium.Interaction{
     public class StructureBase : MonoBehaviour
     {
         private bool grabbed;                           // Whether the structure has been grabbed by the user

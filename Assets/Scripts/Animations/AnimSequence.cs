@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class AnimSequence : MonoBehaviour
     {
         
