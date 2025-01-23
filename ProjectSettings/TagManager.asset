@@ -9,6 +9,7 @@ TagManager:
   - pointer
   - cage
   - bond
+  - angleSymbol
   layers:
   - Default
   - TransparentFX
