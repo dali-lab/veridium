@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using Veridium_Interaction;
+using Veridium.Interaction;
 using System.Linq;
-using Veridium_Core;
+using Veridium.Core;
 using System;
 
-namespace Veridium_Animation
+namespace Veridium.Animation
 {
     public class Await_QuizComplete : AwaitUserBase
     {

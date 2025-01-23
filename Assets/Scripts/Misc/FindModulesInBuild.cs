@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using Veridium_Interaction;
+using Veridium.Interaction;
 
 namespace Veridium.Modules
 {

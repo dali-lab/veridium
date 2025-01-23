@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Veridium_Interaction;
+using Veridium.Interaction;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Veridium.Modules

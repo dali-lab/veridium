@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Core
+namespace Veridium.Core
 {
     /**
      * @class UnitCell2
