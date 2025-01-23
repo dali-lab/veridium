@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium_Core;
-using Veridium_Interaction;
+using Veridium.Core;
+using Veridium.Interaction;
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class Anim_DepictElement : AnimationBase
     {
         public PTElement element;

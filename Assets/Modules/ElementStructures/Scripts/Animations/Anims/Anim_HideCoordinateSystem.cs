@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium_Interaction;
+using Veridium.Interaction;
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class Anim_HideCoordinateSystem : AnimationBase
     {
         public GameObject coordinateSystemPrefab;
