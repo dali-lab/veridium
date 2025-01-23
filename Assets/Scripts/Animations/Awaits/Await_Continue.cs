@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using Veridium_Interaction;
+using Veridium.Interaction;
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class Await_Continue : AwaitUserBase
     {
 

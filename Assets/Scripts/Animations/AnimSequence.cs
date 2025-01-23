@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class AnimSequence : MonoBehaviour
     {
         

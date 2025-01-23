@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Interaction{
+namespace Veridium.Interaction{
     public class XRGrabInteractable_Lockable : XRGrabInteractable{
         
         public bool locked {get; private set;}

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium_Interaction;
-using Veridium_Core;
+using Veridium.Interaction;
+using Veridium.Core;
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class Anim_ViewMode : AnimationBase
     {
 

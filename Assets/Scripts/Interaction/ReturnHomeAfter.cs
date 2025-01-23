@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium_Interaction {
+namespace Veridium.Interaction {
 
     [RequireComponent(typeof(AudioSource))]
     public class ReturnHomeAfter : MonoBehaviour

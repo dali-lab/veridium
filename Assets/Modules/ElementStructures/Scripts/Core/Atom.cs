@@ -6,9 +6,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium_Interaction;
+using Veridium.Interaction;
 
-namespace Veridium_Core{
+namespace Veridium.Core{
     /**
     * @class Atom
     * Object class used to store positioning data and distinguishing characteristics for an atom

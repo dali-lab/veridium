@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Veridium_Animation{
+namespace Veridium.Animation{
     public class Anim_SpinUp : AnimationBase
     {
 

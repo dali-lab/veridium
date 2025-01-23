@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium_Animation;
-using Veridium_Interaction;
+using Veridium.Animation;
+using Veridium.Interaction;
 using UnityEngine.XR;
 using UnityEngine.Events;
 

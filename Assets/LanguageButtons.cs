@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium_Animation;
+using Veridium.Animation;
 
 public class LanguageButtons : MonoBehaviour
 {
