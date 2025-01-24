@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2693083700406040967
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -6816334920753646984, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: description
+      value: This module teaches you about the composition of amino acids
+      objectReference: {fileID: 0}
+    - target: {fileID: -6816334920753646984, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: displayName
+      value: Amino Acids
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748071484846062392, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_Name
+      value: AminoAcids
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830384105181487873, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e7b82d600ae4444ea5b8409b8cd9bd7, type: 3}
