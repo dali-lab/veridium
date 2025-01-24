@@ -21,12 +21,12 @@ namespace Veridium.Animation{
 
             grabInteractable.selectEntered.AddListener(Grabbed);
 
-            if(grabInteractable.isSelected && grabInteractable.selectingInteractor is XRDirectInteractor) CompleteAction();
+            if(grabInteractable.isSelected && grabInteractable.GetOldestInteractorSelecting() is XRDirectInteractor) CompleteAction();
         }
 
         void Grabbed(SelectEnterEventArgs args){
 
-            if(args.interactor is XRDirectInteractor) {
+            if(args.interactorObject is XRDirectInteractor) {
                 CompleteAction();
                 grabInteractable.selectEntered.RemoveListener(Grabbed);
             }

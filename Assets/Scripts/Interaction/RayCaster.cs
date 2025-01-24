@@ -29,8 +29,9 @@ namespace Veridium.Interaction{
             layerMaskDistanceGrab = 1 << LayerMask.NameToLayer("DistanceGrab");
             layerMaskRayPoint = 1 << LayerMask.NameToLayer("RayPoint");
             lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.SetWidth(lineWidth, lineWidth);
-            lineRenderer.SetVertexCount(2);                                 // two vertices: start (controller) and end (RayPoint layer)
+            lineRenderer.startWidth = lineWidth;
+            lineRenderer.endWidth = lineWidth;
+            lineRenderer.positionCount = 2;                                 // two vertices: start (controller) and end (RayPoint layer)
             grabbing = GetComponent<HandDistanceGrabber>().grabbed();       // check if the controller is grabbing any tiles
             interactor = GetComponent<XRDirectInteractor>();
         }
@@ -53,7 +54,7 @@ namespace Veridium.Interaction{
             if (hitDistanceGrab.collider == null || hitDistanceGrab.collider.gameObject == null || hitDistanceGrab.collider.gameObject.GetComponent<HandDistanceGrabbable>() == null) {
                 isSelectable = false;
             } else {
-                isSelectable = hitDistanceGrab.collider.gameObject.GetComponent<HandDistanceGrabbable>().IsSelectableBy(interactor);
+                isSelectable = hitDistanceGrab.collider.gameObject.GetComponent<HandDistanceGrabbable>().IsSelectableBy(interactor as IXRSelectInteractor);
             }
 
             // conditions for rendering line

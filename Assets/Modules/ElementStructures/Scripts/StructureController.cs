@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.AR;
 using Veridium.Core;
 
 namespace Veridium.Interaction{
@@ -36,9 +38,11 @@ namespace Veridium.Interaction{
         }
 
         // extends OnSelectEntering from XRGrabInteractable. Stores initial information from the interactors
-        protected override void OnSelectEntering(XRBaseInteractor interactor){
+        protected override void OnSelectEntering(SelectEnterEventArgs args) {
 
-            base.OnSelectEntering(interactor); // Run this method in parent
+            base.OnSelectEntering(args); // Run this method in parent
+
+            XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
 
             // Store the attach transform of the interactor
             interactorPosition = interactor.attachTransform.localPosition;
@@ -63,10 +67,11 @@ namespace Veridium.Interaction{
         }
 
         // extends OnSelectExiting from XRGrabInteractabe. Resets the structure to its state before grabbing
-        protected override void OnSelectExiting(XRBaseInteractor interactor) {
+        protected override void OnSelectExiting(SelectExitEventArgs args) {
 
+            base.OnSelectExiting(args); // Run this method in parent
 
-            base.OnSelectExiting(interactor); // Run this method in parent
+            XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
 
             // Reset the attach transform to its original position
             interactor.attachTransform.localPosition = Vector3.zero; //interactorPosition; This is a hacky fix. Ideally the attach transform should be moved with scaling

@@ -41,9 +41,9 @@ namespace Veridium.Modules
         }
 
         void Update() {
-            if (handDistanceGrabbable.isSelected && handDistanceGrabbable.selectingInteractor is HandDistanceGrabber) {
-                Debug.Log(handDistanceGrabbable.selectingInteractor);
-                HandDistanceGrabber grabber = (HandDistanceGrabber) handDistanceGrabbable.selectingInteractor;
+            if (handDistanceGrabbable.isSelected && handDistanceGrabbable.GetOldestInteractorSelecting() is HandDistanceGrabber) {
+                Debug.Log(handDistanceGrabbable.GetOldestInteractorSelecting());
+                HandDistanceGrabber grabber = (HandDistanceGrabber) handDistanceGrabbable.GetOldestInteractorSelecting();
 
                 if (grabber.hand == Hand.Left) {
                     nameTextLeft.gameObject.SetActive(false);
