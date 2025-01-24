@@ -21,7 +21,7 @@ namespace Veridium.Interaction{
 
             base.OnHoverEntered(args);
 
-            if(args.interactor is XRDirectInteractor){
+            if(args.interactorObject is XRDirectInteractor){
                 hovered = true;
                 if (highlight != null) highlight.Highlight();
             }
@@ -31,13 +31,13 @@ namespace Veridium.Interaction{
 
             base.OnHoverExited(args);
 
-            if(args.interactor is XRDirectInteractor){
+            if(args.interactorObject is XRDirectInteractor){
                 hovered = false;
                 if (highlight != null) highlight.Unhighlight();
             }
         }
 
-        public bool isHovered(){
+        new public bool isHovered(){
             return hovered;
         }
     }

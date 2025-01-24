@@ -30,7 +30,7 @@ public class ReflectLeftHand : MonoBehaviour
 
     private void Grab(SelectEnterEventArgs args)
     {  // if (Left hand Grabs the tool, mirror the transform about the yz-plane
-        if (args.interactor.name.Substring(0, 4) == "Left")
+        if (args.interactorObject.transform.name.Substring(0, 4) == "Left")
         {
             grabHandle.localPosition = new Vector3(-1 * grabHandle.localPosition.x, grabHandle.localPosition.y, grabHandle.localPosition.z);
             grabHandle.localRotation = Quaternion.Euler(grabHandle.localRotation.eulerAngles.x, -1 * grabHandle.localRotation.eulerAngles.y, -1 * grabHandle.localRotation.eulerAngles.z);

@@ -63,7 +63,7 @@ public class XRHandController : MonoBehaviour
 
     private GameObject CheckHandInteractor()
     {
-        GameObject grabbed = this.transform.parent.GetComponent<XRDirectInteractor>()?.selectTarget?.gameObject; // nullish coalescing to check for grabbed gameobject
+        GameObject grabbed = transform.parent.GetComponent<XRDirectInteractor>()?.GetOldestInteractableSelected().transform.gameObject; // nullish coalescing to check for grabbed gameobject
         return grabbed;
     }
 

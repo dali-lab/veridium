@@ -16,13 +16,13 @@ namespace Veridium.Animation{
 
             grabInteractable.selectExited.AddListener(Released);
 
-            if(!grabInteractable.isSelected || !(grabInteractable.selectingInteractor is XRDirectInteractor)) CompleteAction();
+            if(!grabInteractable.isSelected || !(grabInteractable.GetOldestInteractorSelecting() is XRDirectInteractor)) CompleteAction();
 
         }
 
         void Released(SelectExitEventArgs args){
 
-            if(args.interactor is XRDirectInteractor) CompleteAction();
+            if(args.interactorObject is XRDirectInteractor) CompleteAction();
             
         }
 
@@ -30,7 +30,7 @@ namespace Veridium.Animation{
 
             base.UpdateAnim();
 
-            if(!grabInteractable.isSelected || !(grabInteractable.selectingInteractor is XRDirectInteractor)) CompleteAction();
+            if(!grabInteractable.isSelected || !(grabInteractable.GetOldestInteractorSelecting() is XRDirectInteractor)) CompleteAction();
         }
     }
 }

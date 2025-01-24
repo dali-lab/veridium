@@ -11,7 +11,7 @@ namespace Veridium.Interaction{
         public bool selectableByGrabWhenLocked = false;
         private bool rigidBodyEnabled;
 
-        public override bool IsSelectableBy(XRBaseInteractor interactor){
+        public override bool IsSelectableBy(IXRSelectInteractor interactor){
             bool baseCase = base.IsSelectableBy(interactor);
             if(locked){
                 if(interactor is XRDirectInteractor){
@@ -25,7 +25,7 @@ namespace Veridium.Interaction{
             }
         }
 
-        public override bool IsHoverableBy(XRBaseInteractor interactor){
+        public override bool IsHoverableBy(IXRHoverInteractor interactor){
             bool baseCase = base.IsHoverableBy(interactor);
             if(locked){
                 if(interactor is XRDirectInteractor){
