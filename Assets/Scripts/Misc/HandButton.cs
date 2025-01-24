@@ -14,7 +14,7 @@ public class HandButton : XRBaseInteractable
     [SerializeField] private float buttonPressDepth = 0.5f;
 
     private float previousHandHeight = 0.0f;
-    private XRBaseInteractor hoverInteractor = null;
+    private IXRHoverInteractor hoverInteractor = null;
 
     protected override void Awake()
     {
@@ -29,22 +29,22 @@ public class HandButton : XRBaseInteractable
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
         base.OnHoverEntered(args);
-        StartPress(args.interactor);
+        StartPress(args.interactorObject);
     }
 
     protected override void OnHoverExited(HoverExitEventArgs args)
     {
         base.OnHoverExited(args);
-        EndPress(args.interactor);
+        EndPress(args.interactorObject);
     }
 
-    private void StartPress(XRBaseInteractor interactor)
+    private void StartPress(IXRHoverInteractor interactor)
     {
         hoverInteractor = interactor;
         previousHandHeight = GetLocalYPosition(hoverInteractor.transform.position);
     }
 
-    private void EndPress(XRBaseInteractor interactor)
+    private void EndPress(IXRHoverInteractor _)
     {
         hoverInteractor = null;
         previousHandHeight = 0.0f;
@@ -67,7 +67,7 @@ public class HandButton : XRBaseInteractable
 
     public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
     {
-        if (hoverInteractor)
+        if (hoverInteractor != null)
         {
             float newHandHeight = GetLocalYPosition(hoverInteractor.transform.position);
             float handDiff = previousHandHeight - newHandHeight;

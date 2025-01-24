@@ -37,8 +37,8 @@ public class ToothGrab : MonoBehaviour
 
     public void Grab(SelectEnterEventArgs args)
     {
-        grabHandle.transform.rotation = args.interactor.transform.rotation;
-        grabHandle.transform.position = args.interactor.transform.position;
+        grabHandle.transform.rotation = args.interactorObject.transform.rotation;
+        grabHandle.transform.position = args.interactorObject.transform.position;
         // originalMaxRaycastDistance = args.interactor.GetComponent<XRRayInteractor>().maxRaycastDistance;
         // args.interactor.GetComponent<XRRayInteractor>().maxRaycastDistance = 0; // equivalent to disabling it
         // args.interactor.GetComponent<XRInteractorLineVisual>().enabled = false;
