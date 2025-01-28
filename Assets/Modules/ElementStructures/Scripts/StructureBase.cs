@@ -101,6 +101,7 @@ namespace Veridium.Modules.ElementStructures
         }
 
         // Enables infinite view for the crystal lattice
+        [ContextMenu("Switch to infinite view")]
         public void InfiniteView(){
 
             currentState = CrystalState.INFINITE;
@@ -114,6 +115,7 @@ namespace Veridium.Modules.ElementStructures
         }
 
         // Enables multi-cell view for the crystal
+        [ContextMenu("Switch to multi-cell view")]
         public void MultiCellView(){
 
             if(currentState == CrystalState.INFINITE){
@@ -177,6 +179,7 @@ namespace Veridium.Modules.ElementStructures
         }
 
         // Enables single cell view for the crystal
+        [ContextMenu("Switch to single-cell view")]
         public void SingleCellView(){
 
             if(currentState == CrystalState.INFINITE){

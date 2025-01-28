@@ -274,6 +274,13 @@ namespace Veridium.Modules.ElementStructures
                                 break;
                             }
                         break;
+                        case CellType.TETRA:
+                            switch (cellVariation){
+                                case CellVariation.BODY:
+                                    fileName = "InfiniteBCT";
+                                break;
+                            }
+                        break;
                         case CellType.HEX:
                             switch (cellVariation){
                                 case CellVariation.BODY:
@@ -281,6 +288,9 @@ namespace Veridium.Modules.ElementStructures
                                 break;
                             }
                         break;
+                        default:
+                            throw new Exception("Invalid cell type for infinite view");
+                        
                     }
 
                     infiniteObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("MeshPrefab"));
