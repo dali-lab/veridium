@@ -20159,14 +20159,14 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       animator: {fileID: 0}
-      timing: 8
+      timing: 7
     - actionType: 0
       animation: {fileID: 724013636}
       onPlay:
         m_PersistentCalls:
           m_Calls: []
       animator: {fileID: 0}
-      timing: 11
+      timing: 10
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 81b3357167772af45b19b18309deb1e9, type: 3}
     audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
