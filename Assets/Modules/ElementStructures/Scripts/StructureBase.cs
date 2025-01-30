@@ -29,37 +29,6 @@ namespace Veridium.Interaction{
             structureController.structureBase = this;
         }
 
-        void Update(){
-
-            // Fade out spheres near the camera
-            if (currentState == CrystalState.INFINITE){
-
-                /*
-                foreach (Atom atom in structureBuilder.crystal.atoms.Values)
-                {
-                    if ((FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude - atom.drawnObject.transform.lossyScale.x < .5){
-                        atom.drawnObject.GetComponent<Renderer>().materials[0].EnableKeyword("_ALPHABLEND_ON");
-                        Color color = gameObject.GetComponent<Renderer>().materials[0].color;
-                        float distance = (FindObjectsOfType<Camera>()[0].transform.position - atom.drawnObject.transform.position).magnitude;
-                        float distancePercent = (distance - atom.drawnObject.transform.lossyScale.x * 0.5f) / 0.5f;
-                        color.a = distancePercent;
-                        gameObject.GetComponent<Renderer>().materials[0].color = color;
-                    } else {
-                        atom.drawnObject.GetComponent<Renderer>().materials[0].DisableKeyword("_ALPHABLEND_ON");
-                    }
-                }*/
-
-                if(!structureController.structureSelected){
-                    structureController.gameObject.transform.position = (structureController.hand1.transform.position + structureController.hand2.transform.position) / 2;
-                    structureController.gameObject.transform.rotation = Quaternion.identity;
-                    structureController.gameObject.transform.localScale = Vector3.one * 100f;
-                } else if (!structureController.scaleGrabberSelected){
-                    structureController.gameObject.transform.localScale = Vector3.one * 2f;
-                }
-            }
-
-        }
-
         // Prompts the structureBuilder to construct a structure base on an element
         public void ElementAdded(PTElement element){
 
