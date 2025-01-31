@@ -28,8 +28,9 @@ namespace Veridium.Interaction{
 
 
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
+            base.Start();
 
             // Prepare the layer mask for the sphere trace collision filter
             layerMask = 1 << LayerMask.NameToLayer("DistanceGrab");
@@ -91,9 +92,9 @@ namespace Veridium.Interaction{
         }
 
         // Updates whether the direct interactor is grabbing.
-        protected override void OnSelectEntered(XRBaseInteractable interactable){
+        protected override void OnSelectEntered(SelectEnterEventArgs args){
 
-            base.OnSelectEntered(interactable);
+            base.OnSelectEntered(args);
 
             grabbing = true;
 
@@ -104,9 +105,9 @@ namespace Veridium.Interaction{
         }
 
         // Updates whether the direct interactor is grabbing.
-        protected override void OnSelectExited(XRBaseInteractable interactable){
+        protected override void OnSelectExited(SelectExitEventArgs args){
 
-            base.OnSelectExited(interactable);
+            base.OnSelectExited(args);
 
             grabbing = false;
 
