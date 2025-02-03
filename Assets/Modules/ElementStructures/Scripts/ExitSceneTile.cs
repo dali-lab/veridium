@@ -56,7 +56,7 @@ namespace Veridium.Modules.ElementStructures
                     }
 
                 }
-            } else if(GetComponent<XRGrabInteractable>().selectingInteractor is XRDirectInteractor) {
+            } else if(GetComponent<XRGrabInteractable>().GetOldestInteractorSelecting() is XRDirectInteractor) {
 
                 if(heldTimer < timeUntilExit){
 
@@ -77,18 +77,18 @@ namespace Veridium.Modules.ElementStructures
         }
 
         // Called by the grab interactable
-        protected override void OnSelectEntering(XRBaseInteractor interactor){
+        protected override void OnSelectEntering(SelectEnterEventArgs args) {
 
-            base.OnSelectEntering(interactor); // Run this method in parent
+            base.OnSelectEntering(args); // Run this method in parent
 
             interacted = true;
             unHeldTimer = 0f;
         }
 
         // Called by the grab interactable
-        protected override void OnSelectExiting(XRBaseInteractor interactor) {
+        protected override void OnSelectExiting(SelectExitEventArgs args) {
             
-            base.OnSelectExiting(interactor); // Run this method in parent
+            base.OnSelectExiting(args); // Run this method in parent
 
             interacted = false;
             heldTimer = 0f;

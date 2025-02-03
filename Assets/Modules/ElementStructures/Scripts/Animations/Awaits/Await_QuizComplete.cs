@@ -104,7 +104,6 @@ namespace Veridium.Modules.ElementStructures
             // Planar Equation: ax + by + cz = d
             // where the normal vector N = (a, b, c)
             Vector3 N = Vector3.zero; // Normal vector
-            int d = 0;
             int i = 0;
             Vector3[] ABC = new Vector3[3];
             foreach (GameObject atom in answer)
@@ -147,7 +146,7 @@ namespace Veridium.Modules.ElementStructures
             Debug.Log("solution count: " + solutionSet.Count);
 
             // First, force user to drop whatever they're holding
-            interactor = structureBuilder.GetComponentInParent<StructureController>().selectingInteractor;
+            interactor = structureBuilder.GetComponentInParent<StructureController>().GetOldestInteractorSelecting() as XRBaseInteractor;
             // print("INTERACTOR: " + interactor);
             if (interactor != null) interactor.allowSelect = false;
             // sc.hand1.GetComponent<HandDistanceGrabber>().allowSelect = false;

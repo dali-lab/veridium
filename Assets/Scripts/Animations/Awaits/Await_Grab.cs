@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -9,10 +10,12 @@ namespace Veridium.Animation{
         
         public XRGrabInteractable grabInteractable;
 
-        void Awake(){
+        public int numHandsRequired = 1;
 
+        protected override void Start()
+        {
+            base.Start();
             grabInteractable.selectEntered.AddListener(Grabbed);
-
         }
 
         public override void Play()
@@ -21,12 +24,11 @@ namespace Veridium.Animation{
 
             grabInteractable.selectEntered.AddListener(Grabbed);
 
-            if(grabInteractable.isSelected && grabInteractable.selectingInteractor is XRDirectInteractor) CompleteAction();
+            if(grabInteractable.isSelected && grabInteractable.GetOldestInteractorSelecting() is XRDirectInteractor) CompleteAction();
         }
 
         void Grabbed(SelectEnterEventArgs args){
-
-            if(args.interactor is XRDirectInteractor) {
+            if (grabInteractable.interactorsSelecting.Where(x => x is XRDirectInteractor).Count() >= numHandsRequired) {
                 CompleteAction();
                 grabInteractable.selectEntered.RemoveListener(Grabbed);
             }

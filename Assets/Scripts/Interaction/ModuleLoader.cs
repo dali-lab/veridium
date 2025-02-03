@@ -10,10 +10,10 @@ namespace Veridium.Modules
     {
         public FadeScreen fadeScreen;
 
-        protected override void OnSelectEntering(XRBaseInteractable interactable){
+        protected override void OnSelectEntering(SelectEnterEventArgs args) {
             Debug.Log("OnSelectEntered() on ModuleLoader");
-            base.OnSelectEntering(interactable);
-            if (interactable.TryGetComponent(out VeridiumModule module))
+            base.OnSelectEntering(args);
+            if (args.interactableObject.transform.TryGetComponent(out VeridiumModule module))
             {
                 Debug.Log("VeridiumModule found.");
                 GetComponent<AudioSource>().Play();

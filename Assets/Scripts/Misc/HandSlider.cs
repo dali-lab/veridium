@@ -12,7 +12,7 @@ public class HandSlider : MonoBehaviour
     [SerializeField] private GameObject parent;
     private float maxX, minX;
 
-    private XRBaseInteractor interactor;
+    private IXRSelectInteractor interactor;
     private bool shouldGetHandPos = false;
     private XRGrabInteractable grabInteractor => GetComponent<XRGrabInteractable>();
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class HandSlider : MonoBehaviour
         if (shouldGetHandPos)
         {
             // Update the position of the 3D slider
-            float newXPos = Mathf.Clamp(GetLocalXPosition(interactor.GetComponent<Transform>().position), minX, maxX);
+            float newXPos = Mathf.Clamp(GetLocalXPosition(interactor.transform.position), minX, maxX);
 
             Vector3 newPos = new Vector3(newXPos, transform.localPosition.y, transform.localPosition.z);
             transform.localPosition = newPos;
@@ -66,14 +66,14 @@ public class HandSlider : MonoBehaviour
 
     private void GrabbedBy(SelectEnterEventArgs args)
     {
-        interactor = GetComponent<XRGrabInteractable>().selectingInteractor;
-        interactor.gameObject.GetComponent<XRDirectInteractor>().hideControllerOnSelect = true;
+        interactor = GetComponent<XRGrabInteractable>().GetOldestInteractorSelecting();
+        interactor.transform.GetComponent<XRDirectInteractor>().hideControllerOnSelect = true;
         transform.SetParent(parent.transform);
 
         shouldGetHandPos = true;
     }
 
-    public Vector3 GetInteractorPosition() => interactor.GetComponent<Transform>().position;
+    public Vector3 GetInteractorPosition() => interactor.transform.position;
 
     private float GetLocalXPosition(Vector3 position)
     {

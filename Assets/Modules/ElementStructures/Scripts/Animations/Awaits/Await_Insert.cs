@@ -19,14 +19,14 @@ namespace Veridium.Modules.ElementStructures
         {
             base.Play();
 
-            if(socketInteractor.selectTarget != null){
-                if(socketInteractor.selectTarget.GetComponent<PTElement>() != null && (elementName == "" || socketInteractor.selectTarget.GetComponent<PTElement>().elementName == elementName)) CompleteAction();
+            if(socketInteractor.GetOldestInteractableSelected() != null){
+                if(socketInteractor.GetOldestInteractableSelected().transform.GetComponent<PTElement>() != null && (elementName == "" || socketInteractor.GetOldestInteractableSelected().transform.GetComponent<PTElement>().elementName == elementName)) CompleteAction();
             }
         }
 
         void Inserted(SelectEnterEventArgs args){
 
-            if(args.interactable.GetComponent<PTElement>() != null && (elementName == "" || args.interactable.GetComponent<PTElement>().elementName == elementName)) CompleteAction();
+            if(args.interactableObject.transform.GetComponent<PTElement>() != null && (elementName == "" || args.interactableObject.transform.GetComponent<PTElement>().elementName == elementName)) CompleteAction();
         }
 
     }

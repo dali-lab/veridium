@@ -44,11 +44,11 @@ namespace Veridium.Modules.ElementStructures
 
 
         // Overrides OnSelectEntering, used to detect when element tiles are added to the slot
-        protected override void OnSelectEntering(XRBaseInteractable interactable){
+        protected override void OnSelectEntering(SelectEnterEventArgs args){
             // Debug.Log("PUT A THING INTO THE THING!!!");
 
-            base.OnSelectEntering(interactable);
-            if (interactable.TryGetComponent<ExitSceneTile>(out exitTileScript))
+            base.OnSelectEntering(args);
+            if (args.interactableObject.transform.TryGetComponent<ExitSceneTile>(out exitTileScript))
             {
                 exitTileScript.ExitToMenu();
             }
@@ -77,9 +77,9 @@ namespace Veridium.Modules.ElementStructures
         }
 
         // Overrides OnSelectExiting, used to detect when element tiles are removed from the slot
-        protected override void OnSelectExiting(XRBaseInteractable interactable){
+        protected override void OnSelectExiting(SelectExitEventArgs args){
 
-            base.OnSelectExiting(interactable);
+            base.OnSelectExiting(args);
 
             StartCoroutine(DropObjectFromHand());
 
@@ -98,7 +98,7 @@ namespace Veridium.Modules.ElementStructures
 
         IEnumerator DropObjectFromHand()
         {
-            XRBaseInteractor interactor = structureBase.GetComponentInChildren<StructureController>().selectingInteractor;
+            XRBaseInteractor interactor = structureBase.GetComponentInChildren<StructureController>().GetOldestInteractorSelecting() as XRBaseInteractor;
             interactor.allowSelect = false;
             yield return new WaitForSeconds(0.1f);
             interactor.allowSelect = true;
