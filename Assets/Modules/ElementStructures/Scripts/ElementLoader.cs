@@ -53,7 +53,7 @@ namespace Veridium.Modules.ElementStructures
                 exitTileScript.ExitToMenu();
             }
 
-            InsertElement(interactable.gameObject.GetComponent<PTElement>());
+            InsertElement(args.interactableObject.transform.GetComponent<PTElement>());
         }
 
         public void InsertElement(PTElement element) {
