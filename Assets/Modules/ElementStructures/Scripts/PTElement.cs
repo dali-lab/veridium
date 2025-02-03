@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Veridium.Core;
+using Veridium.Interaction;
 
-namespace Veridium.Interaction{
-    
+namespace Veridium.Modules.ElementStructures
+{    
     public class PTElement : MonoBehaviour
     {
 
@@ -67,6 +66,17 @@ namespace Veridium.Interaction{
         public void Unlock()
         {
             GetComponent<XRGrabInteractable_Lockable>().Unlock();
+        }
+
+
+        [ContextMenu("Insert in element loader")]
+        public void InsertInElementLoader()
+        {
+            ElementLoader loader = FindObjectOfType<ElementLoader>();
+            if (loader != null)
+            {
+                loader.InsertElement(this);
+            }
         }
     }
 }

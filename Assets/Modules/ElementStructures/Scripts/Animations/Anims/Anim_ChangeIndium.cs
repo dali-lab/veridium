@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium.Core;
+using Veridium.Animation;
 
-namespace Veridium.Animation{
-    public class Anim_GlowIndiumBonds : AnimationBase
+namespace Veridium.Modules.ElementStructures
+{
+    public class Anim_ChangeIndium : AnimationBase
     {
 
         public StructureBuilder structureBuilder;
@@ -14,12 +15,13 @@ namespace Veridium.Animation{
         [System.Serializable]
         public class ListWrapper<T>
         {
-            public List<T> list;
-            public bool unglow;
-            public Color glowColor;
+            public List<T> atomList;
+            public List<T> bondList;
+            public bool isElongating;
+            public bool isCompressing;
         }
 
-        public Anim_GlowIndiumBonds(){
+        public Anim_ChangeIndium(){
             duration = 4f;
         }
         
@@ -49,21 +51,21 @@ namespace Veridium.Animation{
             if(step != currentStep){
                 currentStep = step;
                 // print("inside steps");
-                foreach (Vector3 pos in steps[currentStep].list)
+                foreach (Vector3 pos in steps[currentStep].bondList)
                 {
                     Bond bond = structureBuilder.GetBondAtCoordinate(pos, structureBuilder.cellType);
 
-                    if(!steps[currentStep].unglow){
-                            Anim_Glow anim = bond.cylinderChild.AddComponent<Anim_Glow>() as Anim_Glow;
-                            anim.easingType = EasingType.Exponential;
-                            anim.selfDestruct = true;
-                            anim.emissionColor = steps[currentStep].glowColor;
-                            anim.fadeTime = 1f;
-                            anim.Play();
-                        } else {
-                            Anim_Glow anim = bond.cylinderChild.GetComponent<Anim_Glow>();
-                            if(anim != null) anim.Pause();
-                        }
+                    if(bond != null && bond.drawnObject != null){
+                        Anim_MoveTo anim = bond.drawnObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+                        anim.target = bond.drawnObject;
+                        anim.endScale = new Vector3(1f, 1f, 0.8f);
+                        anim.Play();
+                        anim.Pause();
+                    }
+                    // } else {
+                    //     Anim_Glow anim = bond.cylinderChild.GetComponent<Anim_Glow>();
+                    //     if(anim != null) anim.Pause();
+                    // }
                 }
             }
         }

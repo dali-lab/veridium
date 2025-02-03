@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using Veridium.Interaction;
+using Veridium.Animation;
 
-namespace Veridium.Animation{
+namespace Veridium.Modules.ElementStructures
+{
     public class Await_Insert : AwaitUserBase
     {
 

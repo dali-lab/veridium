@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Veridium.Animation;
 
-namespace Veridium.Interaction{
+namespace Veridium.Modules.ElementStructures
+{
     public class ElementLoader : XRSocketInteractor
     {
 
@@ -52,8 +53,12 @@ namespace Veridium.Interaction{
                 exitTileScript.ExitToMenu();
             }
 
+            InsertElement(args.interactableObject.transform.GetComponent<PTElement>());
+        }
 
-            heldElement = args.interactableObject.transform.GetComponent<PTElement>();
+        public void InsertElement(PTElement element) {
+            
+            heldElement = element;
 
             if (heldElement == null) return;
 

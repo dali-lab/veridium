@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using Veridium.Core;
 using Veridium.Animation;
 
 /// <summary>
@@ -10,7 +6,8 @@ using Veridium.Animation;
 /// Supports interaction of user and structure
 /// </summary>
 
-namespace Veridium.Interaction{
+namespace Veridium.Modules.ElementStructures
+{
     public class StructureBase : MonoBehaviour
     {
         private bool grabbed;                           // Whether the structure has been grabbed by the user
@@ -73,6 +70,7 @@ namespace Veridium.Interaction{
         }
 
         // Enables infinite view for the crystal lattice
+        [ContextMenu("Switch to infinite view")]
         public void InfiniteView(){
 
             currentState = CrystalState.INFINITE;
@@ -86,6 +84,7 @@ namespace Veridium.Interaction{
         }
 
         // Enables multi-cell view for the crystal
+        [ContextMenu("Switch to multi-cell view")]
         public void MultiCellView(){
 
             if(currentState == CrystalState.INFINITE){
@@ -149,6 +148,7 @@ namespace Veridium.Interaction{
         }
 
         // Enables single cell view for the crystal
+        [ContextMenu("Switch to single-cell view")]
         public void SingleCellView(){
 
             if(currentState == CrystalState.INFINITE){

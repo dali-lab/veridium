@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.AR;
-using Veridium.Core;
+using Veridium.Interaction;
 
-namespace Veridium.Interaction{
+namespace Veridium.Modules.ElementStructures
+{
     public class StructureController : HandDistanceGrabbable
     {
 

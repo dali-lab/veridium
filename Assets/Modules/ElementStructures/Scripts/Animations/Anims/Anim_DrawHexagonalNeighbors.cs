@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium.Core;
+using Veridium.Animation;
 
-namespace Veridium.Animation{
-    public class Anim_DestroyHexagonalNeighbors : AnimationBase
+namespace Veridium.Modules.ElementStructures
+{
+    public class Anim_DrawHexagonalNeighbors : AnimationBase
     {
 
         ///<summary>
@@ -36,29 +37,26 @@ namespace Veridium.Animation{
         public override void Play()
         {
             base.Play();
-            // foreach (Vector3 centerUnitCell in Constants.cell2MultiUnitCellCenterPositions)
-            // {
-            //     UnitCell uc = structureBuilder.crystal.GetHexUnitCellAtCoordinate(centerUnitCell);
-            //     Atom[] unitCellAtoms = uc.GetVertices();
-
-
-
-            //     // Draw a bond from this center Atom to all 6 of its neighbors
-            //     foreach (Vector3 localNeighbor in neighborRelativeLocations)
-            //     {
-            //         Bond bond0 = new Bond(unitCellAtoms[0], new Atom(69, unitCellAtoms[0].GetPosition() + localNeighbor)); // layer 0
-            //         Bond bond1 = new Bond(unitCellAtoms[1], new Atom(69, unitCellAtoms[1].GetPosition() + localNeighbor)); // layer 1
-
-            //         bond0.builder = structureBuilder.gameObject;
-            //         bond1.builder = structureBuilder.gameObject;
-
-            //         bond0.Draw();
-            //         bond1.Draw();
-            //     }
-            // }
-            foreach (Transform child in structureBuilder.transform)
+            currentStep = -1;
+            foreach (Vector3 centerUnitCell in Constants.cell2MultiUnitCellCenterPositions)
             {
-                if (child.tag == "bond") Destroy(child.gameObject);
+                UnitCell uc = structureBuilder.crystal.GetHexUnitCellAtCoordinate(centerUnitCell);
+                Atom[] unitCellAtoms = uc.GetVertices();
+
+
+
+                // Draw a bond from this center Atom to all 6 of its neighbors
+                foreach (Vector3 localNeighbor in neighborRelativeLocations)
+                {
+                    Bond bond0 = new Bond(unitCellAtoms[0], new Atom(69, unitCellAtoms[0].GetPosition() + localNeighbor)); // layer 0
+                    Bond bond1 = new Bond(unitCellAtoms[1], new Atom(69, unitCellAtoms[1].GetPosition() + localNeighbor)); // layer 1
+
+                    bond0.builder = structureBuilder.gameObject;
+                    bond1.builder = structureBuilder.gameObject;
+
+                    bond0.Draw();
+                    bond1.Draw();
+                }
             }
         }
 

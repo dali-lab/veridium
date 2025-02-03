@@ -3,15 +3,11 @@
  * @title   Miller
  */
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
 using UnityEngine;
-using Veridium.Core;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
     /**
      * @class Miller
      * Static class containing a set of helper functions used for miller index
