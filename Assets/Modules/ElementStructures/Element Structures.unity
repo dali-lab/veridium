@@ -4200,6 +4200,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 881861620}
+  numHandsRequired: 1
 --- !u!4 &580749966
 Transform:
   m_ObjectHideFlags: 0
@@ -8176,7 +8177,7 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[14].animations.Array.data[3].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1712391381}
+      objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[15].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8188,7 +8189,7 @@ PrefabInstance:
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[15].animations.Array.data[3].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1712391381}
+      objectReference: {fileID: 0}
     - target: {fileID: 8636669077205291291, guid: e001a2758aae94976844edf59cd2945f, type: 3}
       propertyPath: segments.Array.data[16].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -12221,6 +12222,7 @@ MonoBehaviour:
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
+      m_Flags: 0
     m_Reference: {fileID: 0}
   threshold: 0.8
   resetThreshold: 0.2
@@ -13438,6 +13440,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 6923397188796341109}
+  numHandsRequired: 1
 --- !u!114 &1089182770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13753,6 +13756,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 1804243018}
+  numHandsRequired: 1
 --- !u!114 &1196025791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14384,6 +14388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
 --- !u!4 &1343234590
 Transform:
   m_ObjectHideFlags: 0
@@ -16617,6 +16623,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 881861620}
+  numHandsRequired: 1
 --- !u!4 &1571452772
 Transform:
   m_ObjectHideFlags: 0
@@ -17220,11 +17227,6 @@ Transform:
   m_Father: {fileID: 616306707}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1712391381 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8443100902444958120, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
-  m_PrefabInstance: {fileID: 936844114}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &1713923539 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7195915981451021405, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
@@ -19048,6 +19050,10 @@ PrefabInstance:
     - target: {fileID: 9130913863735385194, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_Name
       value: PoloniumSocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130913863735385194, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
@@ -20898,7 +20904,7 @@ MonoBehaviour:
       onPlay:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1712391381}
+          - m_Target: {fileID: 0}
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
             m_Mode: 6
@@ -22912,6 +22918,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 6923397188796341109}
+  numHandsRequired: 1
 --- !u!224 &4904890567208448474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23496,6 +23503,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 1696279811}
+  numHandsRequired: 1
 --- !u!1 &5770600150159366350
 GameObject:
   m_ObjectHideFlags: 0
@@ -24412,7 +24420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5326651425314126447, guid: 2b0e5eb2be375428e97a2c12d8f0f51c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5495549531249548572, guid: 2b0e5eb2be375428e97a2c12d8f0f51c, type: 3}
       propertyPath: m_RootOrder
@@ -25176,6 +25184,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 881861620}
+  numHandsRequired: 1
 --- !u!82 &8149371478297510942
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25982,6 +25991,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 881861620}
+  numHandsRequired: 1
 --- !u!224 &8844891023770534743
 RectTransform:
   m_ObjectHideFlags: 0
