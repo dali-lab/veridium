@@ -1183,8 +1183,9 @@ MonoBehaviour:
     label: {fileID: 949223529798145046}
   regularOpacity: 0.5
   highlightOpacity: 0.7
-  regularThickness: 0.006
-  highlightThickness: 0.02
+  regularThickness: 0.01
+  highlightThickness: 0.03
+  blinkColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7055930090637546132
 GameObject:
   m_ObjectHideFlags: 0

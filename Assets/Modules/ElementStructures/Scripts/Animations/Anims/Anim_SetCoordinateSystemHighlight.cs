@@ -55,11 +55,20 @@ namespace Veridium.Modules.ElementStructures
         // Called every frame while animation is playing
         protected override void UpdateAnim()
         {
-            float blend = Easing.EaseOut(elapsedTimePercent, EasingType.Bounce);
+            float highlightTime = Mathf.Min(elapsedTimePercent * 2.0f, 1.0f);
+            float blinkTime = 1.0f - Mathf.Abs(highlightTime - 0.5f) * 2.0f;
 
-            coordinateSystem.SetAxisHighlightPercent(0, Mathf.Lerp(previousHighlightA ? 1.0f : 0.0f, highlightA ? 1.0f : 0.0f, blend));
-            coordinateSystem.SetAxisHighlightPercent(1, Mathf.Lerp(previousHighlightB ? 1.0f : 0.0f, highlightB ? 1.0f : 0.0f, blend));
-            coordinateSystem.SetAxisHighlightPercent(2, Mathf.Lerp(previousHighlightC ? 1.0f : 0.0f, highlightC ? 1.0f : 0.0f, blend));
+            float highlightBlend = Easing.EaseOut(elapsedTimePercent, EasingType.Bounce);
+            float blinkBlend = Easing.EaseOut(blinkTime, EasingType.Quadratic);
+
+            coordinateSystem.SetAxisHighlightPercent(0, Mathf.Lerp(previousHighlightA ? 1.0f : 0.0f, highlightA ? 1.0f : 0.0f, highlightBlend));
+            coordinateSystem.SetAxisHighlightPercent(1, Mathf.Lerp(previousHighlightB ? 1.0f : 0.0f, highlightB ? 1.0f : 0.0f, highlightBlend));
+            coordinateSystem.SetAxisHighlightPercent(2, Mathf.Lerp(previousHighlightC ? 1.0f : 0.0f, highlightC ? 1.0f : 0.0f, highlightBlend));
+
+            // only blink when highlighting enabled
+            coordinateSystem.SetAxisBlinkPercent(0, !previousHighlightA && highlightA ? blinkBlend: 0.0f);
+            coordinateSystem.SetAxisBlinkPercent(1, !previousHighlightB && highlightB ? blinkBlend: 0.0f);
+            coordinateSystem.SetAxisBlinkPercent(2, !previousHighlightC && highlightC ? blinkBlend: 0.0f);
 
             base.UpdateAnim();
         }

@@ -25,10 +25,22 @@ namespace Veridium.Modules.ElementStructures
         public float regularThickness = 0.01f;
         public float highlightThickness = 0.02f;
 
+        
+        public Color blinkColor = Color.white;
+
+        private Color aColor;
+        private Color bColor;
+        private Color cColor;
+
+
         void Start() {
             setAxisThickness(A, regularThickness);
             setAxisThickness(B, regularThickness);
             setAxisThickness(C, regularThickness);
+
+            aColor = A.line.material.color;
+            bColor = B.line.material.color;
+            cColor = C.line.material.color;
         }
 
         public void SetFadePercent(float percent)
@@ -46,6 +58,15 @@ namespace Veridium.Modules.ElementStructures
             setAxisThickness(axis, Mathf.Lerp(regularThickness, highlightThickness, percent));
         }
 
+        public void SetAxisBlinkPercent(int axisIndex, float percent)
+        {
+            AxisVisualization axis = axisIndex == 0 ? A : axisIndex == 1 ? B : C;
+            Color originalColor = axisIndex == 0 ? aColor : axisIndex == 1 ? bColor : cColor;
+
+            Color color = Color.Lerp(originalColor, blinkColor, percent);
+            setAxisColor(axis, color);
+        }
+
         private void setAxisOpacity(AxisVisualization axis, float opacity)
         {
             Color color = axis.line.material.color;
@@ -58,6 +79,16 @@ namespace Veridium.Modules.ElementStructures
 
             color = axis.label.color;
             color.a = opacity;
+            axis.label.color = color;
+        }
+
+        private void setAxisColor(AxisVisualization axis, Color color)
+        {
+            // don't change alpha
+            color.a = axis.line.material.color.a;
+
+            axis.line.material.color = color;
+            axis.tip.material.color = color;
             axis.label.color = color;
         }
 

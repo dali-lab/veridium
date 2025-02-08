@@ -857,7 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   indefiniteDuration: 0
-  duration: 1
+  duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
   coordinateSystemPrefab: {fileID: 6599345234231435817, guid: c722556fbfe5e8e44b9a90c69466bae6, type: 3}
@@ -4148,7 +4148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   indefiniteDuration: 0
-  duration: 1
+  duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
   coordinateSystemPrefab: {fileID: 6599345234231435817, guid: c722556fbfe5e8e44b9a90c69466bae6, type: 3}
@@ -12164,7 +12164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   indefiniteDuration: 0
-  duration: 1
+  duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
   coordinateSystemPrefab: {fileID: 6599345234231435817, guid: c722556fbfe5e8e44b9a90c69466bae6, type: 3}
@@ -19095,7 +19095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   indefiniteDuration: 0
-  duration: 1
+  duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
   coordinateSystemPrefab: {fileID: 6599345234231435817, guid: c722556fbfe5e8e44b9a90c69466bae6, type: 3}
