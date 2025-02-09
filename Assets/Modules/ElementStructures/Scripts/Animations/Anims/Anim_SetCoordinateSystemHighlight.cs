@@ -58,7 +58,7 @@ namespace Veridium.Modules.ElementStructures
             float highlightTime = Mathf.Min(elapsedTimePercent * 2.0f, 1.0f);
             float blinkTime = 1.0f - elapsedTimePercent;
 
-            float highlightBlend = Easing.EaseOut(elapsedTimePercent, EasingType.Bounce);
+            float highlightBlend = Easing.EaseOut(highlightTime, EasingType.Bounce);
             float blinkBlend = Easing.EaseIn(blinkTime, EasingType.Quadratic);
 
             coordinateSystem.SetAxisHighlightPercent(0, Mathf.Lerp(previousHighlightA ? 1.0f : 0.0f, highlightA ? 1.0f : 0.0f, highlightBlend));
