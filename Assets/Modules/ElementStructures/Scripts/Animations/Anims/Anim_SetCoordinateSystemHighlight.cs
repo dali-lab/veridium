@@ -56,10 +56,10 @@ namespace Veridium.Modules.ElementStructures
         protected override void UpdateAnim()
         {
             float highlightTime = Mathf.Min(elapsedTimePercent * 2.0f, 1.0f);
-            float blinkTime = 1.0f - Mathf.Abs(highlightTime - 0.5f) * 2.0f;
+            float blinkTime = 1.0f - elapsedTimePercent;
 
             float highlightBlend = Easing.EaseOut(elapsedTimePercent, EasingType.Bounce);
-            float blinkBlend = Easing.EaseOut(blinkTime, EasingType.Quadratic);
+            float blinkBlend = Easing.EaseIn(blinkTime, EasingType.Quadratic);
 
             coordinateSystem.SetAxisHighlightPercent(0, Mathf.Lerp(previousHighlightA ? 1.0f : 0.0f, highlightA ? 1.0f : 0.0f, highlightBlend));
             coordinateSystem.SetAxisHighlightPercent(1, Mathf.Lerp(previousHighlightB ? 1.0f : 0.0f, highlightB ? 1.0f : 0.0f, highlightBlend));
