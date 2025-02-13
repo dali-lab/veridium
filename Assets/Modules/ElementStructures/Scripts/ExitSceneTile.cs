@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Events;
+using Veridium.Interaction;
 
-namespace Veridium.Interaction{
+namespace Veridium.Modules.ElementStructures
+{
     public class ExitSceneTile : HandDistanceGrabbable
     {
 

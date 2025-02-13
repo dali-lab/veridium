@@ -8,7 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
 
     // Enum used to describe how the crystal is being rendered in the current 
     // display context
@@ -273,6 +274,13 @@ namespace Veridium.Core{
                                 break;
                             }
                         break;
+                        case CellType.TETRA:
+                            switch (cellVariation){
+                                case CellVariation.BODY:
+                                    fileName = "InfiniteBCT";
+                                break;
+                            }
+                        break;
                         case CellType.HEX:
                             switch (cellVariation){
                                 case CellVariation.BODY:
@@ -280,6 +288,9 @@ namespace Veridium.Core{
                                 break;
                             }
                         break;
+                        default:
+                            throw new Exception("Invalid cell type for infinite view");
+                        
                     }
 
                     infiniteObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("MeshPrefab"));

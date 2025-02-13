@@ -7,7 +7,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
     // Static class the wraps global constants pertinent to the unit cell classes
     public static class Constants {
         // The maximum number of vertices in a 6-sided unit cell

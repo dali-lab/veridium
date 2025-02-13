@@ -7,7 +7,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
     /**
      * @class UnitCell8
      * Object class used to store all associated information for an 8 sided unit

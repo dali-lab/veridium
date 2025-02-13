@@ -7,7 +7,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
     /**
      * @class UnitCell
      * Defines the UnitCell abstract class interface structure. The abstract

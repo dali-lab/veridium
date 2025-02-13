@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Veridium.Core;
+using Veridium.Animation;
 
-namespace Veridium.Animation{
+namespace Veridium.Modules.ElementStructures
+{
     public class Anim_GlowAtomsConstant : AnimationBase
     {
         public List<ListWrapper<Vector3>> steps;

@@ -143,17 +143,6 @@ MonoBehaviour:
   fadeScreen: {fileID: 3974468}
   fadeDuration: 1
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &9952396 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 591026970929561983, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
-  m_PrefabInstance: {fileID: 936844114}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &44540866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1460324923880807827, guid: 5719ddcf80da74072ad750da83d7f6a4, type: 3}
@@ -2099,7 +2088,8 @@ MonoBehaviour:
         m_Calls: []
     animator: {fileID: 0}
     timing: 0
-  grabInteractable: {fileID: 9952396}
+  grabInteractable: {fileID: 881861620}
+  numHandsRequired: 2
 --- !u!1 &537928781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5007,6 +4997,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 1518146661468493862}
+  numHandsRequired: 1
 --- !u!114 &1749428572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5159,6 +5150,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 881861620}
+  numHandsRequired: 1
 --- !u!4 &1831798896
 Transform:
   m_ObjectHideFlags: 0
@@ -6034,6 +6026,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 881861620}
+  numHandsRequired: 1
 --- !u!23 &95835468909042386
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17449,6 +17442,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 1518146661468493862}
+  numHandsRequired: 1
 --- !u!23 &3837156381487107917
 MeshRenderer:
   m_ObjectHideFlags: 0

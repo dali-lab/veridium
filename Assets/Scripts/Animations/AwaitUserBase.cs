@@ -47,7 +47,7 @@ namespace Veridium.Animation{
             if (playing) awaitingAction = false;
             // Debug.Log(animSequence);
 
-            if (skipSegment && animSequence.CanMoveOn()) animSequence.PlayNextSegment();
+            if (animSequence && skipSegment && animSequence.CanMoveOn()) animSequence.PlayNextSegment();
             
             Invoke("OnComplete", onComplete.timing + Time.deltaTime);
 

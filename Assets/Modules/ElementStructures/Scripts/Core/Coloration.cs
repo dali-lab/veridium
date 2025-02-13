@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Veridium.Core{
+namespace Veridium.Modules.ElementStructures
+{
     public class Coloration
     {
         private static readonly Dictionary<string, string> Colors
