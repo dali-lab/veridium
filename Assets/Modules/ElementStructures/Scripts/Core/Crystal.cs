@@ -32,7 +32,8 @@ namespace Veridium.Modules.ElementStructures
         BallAndStick,
         // INFINITE describes the state where the crystal structure is 
         // generated recursively to a user-specificed recursion depth
-        ClosePacked
+        ClosePacked,
+        NoBonds
     };
 
     /**

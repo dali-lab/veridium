@@ -5,27 +5,35 @@ namespace Veridium.Modules.ElementStructures
 {
     public class Anim_StretchCompressStructure : AnimationBase
     {
-        public Vector3 endScale = new Vector3(1,1,1);
         public EasingType easingType = EasingType.Linear;
-        private Vector3 startingScale;
+
+        private Matrix4x4 startingTransformation;
+        private Matrix4x4 endingTransformation;
+
         [HideInInspector] public bool easeOutOnly = false;
 
-        public StructureBase structureBase;
+        public Vector3 stretchDirection = Vector3.up;
+        public float stretchAmount = 1;
 
-        private GameObject target;
+        public StructureBase structureBase;
         
         public override void Play()
         {
             base.Play();
 
-            target = structureBase.structureController.gameObject;
-            startingScale = target.transform.localScale;
+            startingTransformation = structureBase.GetStructureDeformation();
 
+            // Construct the ending transformation:
+            // 1. Construct matrix that rotates stretchDirection to Vector3.up
+            Vector3 axis = Vector3.Cross(stretchDirection, Vector3.up);
+            float angle = Vector3.Angle(stretchDirection, Vector3.up);
+            Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(angle, axis));
+
+            // 2. Scale structure in the direction of stretchDirection
+            endingTransformation = rotationMatrix.inverse * Matrix4x4.Scale(new Vector3(1, stretchAmount, 1)) * rotationMatrix;
         }
 
 
-        // Somewhat lazy implementation, scales entire structure and then scales atoms and bonds back to original size
-        // Only works when bonds are either perpendicular or parallel to the squeezing direction
         protected override void UpdateAnim()
         {
             base.UpdateAnim();
@@ -38,46 +46,28 @@ namespace Veridium.Modules.ElementStructures
                 alpha = Easing.EaseOut(elapsedTimePercent, easingType);
             }
 
-            target.transform.localScale = (endScale - startingScale) * alpha + startingScale;
-
-
-            Vector3 reverseScale = new Vector3(
-                1 / target.transform.localScale.x,
-                1 / target.transform.localScale.y,
-                1 / target.transform.localScale.z 
-            );
-
-            // apply inverse scaling to atoms
-            foreach (Atom atom in structureBase.structureBuilder.crystal.atoms.Values)
-            {
-                if (atom.drawnObject != null)
-                {
-                    atom.drawnObject.transform.localScale = reverseScale * 0.15f;
-                }
-            }
-            
-            // apply inverse scaling to bonds
-            foreach (Bond bond in structureBase.structureBuilder.crystal.bonds.Values)
-            {
-                if (bond.drawnObject != null)
-                {
-                    Vector3 right = target.transform.InverseTransformDirection(bond.drawnObject.transform.right).normalized;
-                    Vector3 up = target.transform.InverseTransformDirection(bond.drawnObject.transform.up).normalized;
-
-                    Vector3 newLocalScale = new Vector3(
-                        Mathf.Abs(Vector3.Dot(right, reverseScale)),
-                        Mathf.Abs(Vector3.Dot(up, reverseScale)),
-                        1
-                    );
-
-                    bond.drawnObject.transform.localScale = newLocalScale;
-                }
-            }
+            Matrix4x4 structureTransformation = LerpMat(startingTransformation, endingTransformation, alpha);
+            structureBase.SetStructureDeformation(structureTransformation);
         }
 
         public override void Pause()
         {
             base.Pause();
+        }
+
+        private Matrix4x4 LerpMat(Matrix4x4 a, Matrix4x4 b, float t)
+        {
+            Matrix4x4 result = new Matrix4x4();
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    result[i, j] = Mathf.Lerp(a[i, j], b[i, j], t);
+                }
+            }
+
+            return result;
         }
 
     }

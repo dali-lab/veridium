@@ -27,8 +27,8 @@ namespace Veridium.Modules.ElementStructures
             anim.updateRotation = false;
             anim.updateScale = true;
 
-            anim.endLocation = new Vector3(-0.175f, 0, 0) + structureBuilder.gameObject.transform.parent.position;
-            anim.endScale = new Vector3(.7f, .7f, .7f);
+            anim.endLocation = new Vector3(-0.25f, 0, 0) + structureBuilder.gameObject.transform.parent.position;
+            //anim.endScale = new Vector3(.7f, .7f, .7f);
 
             anim.duration = 1f;
             anim.easingType = EasingType.Exponential;

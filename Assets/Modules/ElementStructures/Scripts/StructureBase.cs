@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using Veridium.Animation;
 
 /// <summary>
@@ -21,6 +22,9 @@ namespace Veridium.Modules.ElementStructures
         public ElementLoader elementLoader;             // Element loader associated with this structure
         public StructureController structureController; // Structure controller associated with this 
         public CrystalState currentState, desiredState;
+
+        private Matrix4x4 currentStructureDeformation = Matrix4x4.identity;
+        public UnityEvent<Matrix4x4> onStructureDeformed = new UnityEvent<Matrix4x4>();
 
         void Awake(){
             structureController.structureBase = this;
@@ -182,9 +186,7 @@ namespace Veridium.Modules.ElementStructures
 
         public void ClosePackedView(){
 
-            foreach(Bond bond in structureBuilder.crystal.bonds.Values){
-                Destroy(bond.drawnObject);
-            }
+            NoBondsView();
 
             foreach (Atom atom in structureBuilder.crystal.atoms.Values)
             {
@@ -202,6 +204,13 @@ namespace Veridium.Modules.ElementStructures
                 }
             }
 
+        }
+
+        public void NoBondsView(){
+
+            foreach(Bond bond in structureBuilder.crystal.bonds.Values){
+                Destroy(bond.drawnObject);
+            }
         }
 
         public void BallAndStickView(){
@@ -235,6 +244,29 @@ namespace Veridium.Modules.ElementStructures
             elementLoader.Unlock();
 
             desiredState = currentState;
+        }
+
+
+        public void SetStructureDeformation(Matrix4x4 deformation) {
+
+            foreach (Atom atom in structureBuilder.crystal.atoms.Values)
+            {
+                if (atom.drawnObject) 
+                    atom.drawnObject.transform.localPosition = deformation.MultiplyPoint(atom.GetPosition());
+            }
+
+            foreach (Bond bond in structureBuilder.crystal.bonds.Values)
+            {
+                if (bond.drawnObject) bond.UpdateDrawnPosition(deformation);
+            }
+
+            currentStructureDeformation = deformation;
+
+            onStructureDeformed.Invoke(deformation);
+        }
+
+        public Matrix4x4 GetStructureDeformation() {
+            return currentStructureDeformation;
         }
     }
 }

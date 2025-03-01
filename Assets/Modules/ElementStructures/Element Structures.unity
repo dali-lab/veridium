@@ -8890,9 +8890,10 @@ MonoBehaviour:
   duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
-  endScale: {x: 1, y: 0.71, z: 1}
   easingType: 0
   easeOutOnly: 0
+  stretchDirection: {x: 0, y: 1, z: 0}
+  stretchAmount: 0.71
   structureBase: {fileID: 936844115}
 --- !u!1 &726187197
 GameObject:
@@ -13022,9 +13023,10 @@ MonoBehaviour:
   duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
-  endScale: {x: 1, y: 0.9, z: 1}
   easingType: 0
   easeOutOnly: 0
+  stretchDirection: {x: 0, y: 1, z: 0}
+  stretchAmount: 0.9
   structureBase: {fileID: 936844115}
 --- !u!4 &1001738065 stripped
 Transform:
@@ -14112,6 +14114,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 896fa19ace32f7d478c44580894a8f4a, type: 3}
+--- !u!1 &1229434529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229434530}
+  - component: {fileID: 1229434531}
+  m_Layer: 0
+  m_Name: No Bonds View
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229434530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229434529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5516788629581231192}
+  m_RootOrder: 42
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1229434531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229434529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533e680a18e7c4da2a4f157cf1a1063f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 0
+  duration: 0.1
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  updateCrystalState: 0
+  crystalState: 0
+  updateViewMode: 0
+  crystalView: 2
+  structureBase: {fileID: 936844115}
 --- !u!114 &1234194735 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8678882282445788558, guid: e001a2758aae94976844edf59cd2945f, type: 3}
@@ -14444,9 +14499,10 @@ MonoBehaviour:
   duration: 2
   animSequence: {fileID: 0}
   selfDestruct: 0
-  endScale: {x: 1, y: 1, z: 1}
   easingType: 0
   easeOutOnly: 0
+  stretchDirection: {x: 0, y: 1, z: 0}
+  stretchAmount: 1
   structureBase: {fileID: 936844115}
 --- !u!1 &1393016584
 GameObject:
@@ -19934,6 +19990,13 @@ MonoBehaviour:
           m_Calls: []
       animator: {fileID: 0}
       timing: 12
+    - actionType: 0
+      animation: {fileID: 1229434531}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 12
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 3c2838c177e9c0e4a86a1f8872e99c4b, type: 3}
     audioDE: {fileID: 8300000, guid: b18a288188d42d54db23fdabf818bd64, type: 3}
@@ -21077,7 +21140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   indefiniteDuration: 0
-  duration: 2
+  duration: 0.1
   animSequence: {fileID: 0}
   selfDestruct: 0
   updateCrystalState: 0
@@ -23205,6 +23268,7 @@ Transform:
   - {fileID: 2075945328}
   - {fileID: 249194735}
   - {fileID: 641533984}
+  - {fileID: 1229434530}
   m_Father: {fileID: 548511508}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

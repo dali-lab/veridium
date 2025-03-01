@@ -37,6 +37,9 @@ namespace Veridium.Modules.ElementStructures
                     case CrystalView.ClosePacked:
                         structureBase.ClosePackedView();
                         break;
+                    case CrystalView.NoBonds:
+                        structureBase.NoBondsView();
+                        break;
                 }
             }
         }
