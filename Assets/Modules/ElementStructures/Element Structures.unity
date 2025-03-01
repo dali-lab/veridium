@@ -14164,7 +14164,7 @@ MonoBehaviour:
   selfDestruct: 0
   updateCrystalState: 0
   crystalState: 0
-  updateViewMode: 0
+  updateViewMode: 1
   crystalView: 2
   structureBase: {fileID: 936844115}
 --- !u!114 &1234194735 stripped

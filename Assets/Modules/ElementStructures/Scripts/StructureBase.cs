@@ -51,6 +51,9 @@ namespace Veridium.Modules.ElementStructures
             structureController.Unlock(); // unlock structure when removed in case it was locked during lecture and removed mid lecture
             structureBuilder.DestroyCell();
             VeridiumButton.Instance.Disable();
+
+            onStructureDeformed.RemoveAllListeners();
+            currentStructureDeformation = Matrix4x4.identity;
         }
 
         public void SetView(CrystalState state){
