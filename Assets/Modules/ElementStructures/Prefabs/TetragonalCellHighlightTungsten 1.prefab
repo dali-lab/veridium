@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
       propertyPath: highlightedPos.e11
-      value: 0.73
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 6786256900161749426, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
       propertyPath: m_Name

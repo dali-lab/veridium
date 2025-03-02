@@ -52,20 +52,48 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+      propertyPath: highlightedWidth
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+      propertyPath: notHighlightWidth
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+      propertyPath: highlightedColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
       propertyPath: highlightedColor.b
-      value: 0.8113208
+      value: 0.47484276
       objectReference: {fileID: 0}
     - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
       propertyPath: highlightedColor.g
-      value: 0.8113208
+      value: 0.47484276
       objectReference: {fileID: 0}
     - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
       propertyPath: highlightedColor.r
-      value: 0.8113208
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
       propertyPath: highlightedPos.e11
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+      propertyPath: notHighlightColor.a
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+      propertyPath: notHighlightColor.b
+      value: 0.47450984
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+      propertyPath: notHighlightColor.g
+      value: 0.47450984
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+      propertyPath: notHighlightColor.r
+      value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 6527760783895684531, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
       propertyPath: unitCellHighlightPositions.Array.size

@@ -66,8 +66,8 @@ MonoBehaviour:
   highlightedDistance: 0.05
   highlightedWidth: 0.025
   highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  notHighlightWidth: 0.005
-  notHighlightColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
+  notHighlightWidth: 0.015
+  notHighlightColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0.4}
   unitCellHighlightPositions:
   - {x: 0, y: 0.25, z: 0}
   - {x: 0.25, y: 0.25, z: 0.25}
