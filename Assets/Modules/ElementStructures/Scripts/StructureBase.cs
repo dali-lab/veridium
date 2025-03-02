@@ -212,7 +212,17 @@ namespace Veridium.Modules.ElementStructures
         public void NoBondsView(){
 
             foreach(Bond bond in structureBuilder.crystal.bonds.Values){
-                Destroy(bond.drawnObject);
+                if (bond.drawnObject != null) {
+                    Anim_MoveTo anim = bond.drawnObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
+                    anim.updateLocation = false;
+                    anim.updateRotation = false;
+                    anim.easingType = EasingType.Quadratic;
+                    anim.easeOutOnly = false;
+                    anim.duration = 1f;
+                    anim.selfDestruct = true;
+                    anim.endScale = new Vector3(0,0,1);
+                    anim.Play();
+                }
             }
         }
 
