@@ -12959,6 +12959,10 @@ MonoBehaviour:
   - {x: 0.25, y: 0.25, z: -0.25}
   - {x: 0.25, y: -0.25, z: -0.25}
   - {x: 0, y: -0.25, z: 0}
+  cageHighlights:
+  - {fileID: 6786256900161749426, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
+  - {fileID: 3576651157005393942, guid: 198270e84af05d24a942f9f421c51eae, type: 3}
+  - {fileID: 3576651157005393942, guid: 633236c6ea82ba049a863e7b8d3d5b25, type: 3}
 --- !u!95 &962167921 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4191118299638486128, guid: 2b0e5eb2be375428e97a2c12d8f0f51c, type: 3}

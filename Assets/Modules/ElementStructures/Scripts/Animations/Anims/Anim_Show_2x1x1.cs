@@ -13,12 +13,19 @@ namespace Veridium.Modules.ElementStructures
 
         public StructureBuilder structureBuilder;
         public Vector3[] unitCellHighlightPositions;
+
+        public GameObject[] cageHighlights;
         
         // Called when animation is started
         public override void Play()
         {
             draw2x1x1Crystal();
-            drawCellHighlight();
+            //drawCellHighlight();
+
+            foreach (GameObject cage in cageHighlights)
+            {
+                Instantiate(cage, structureBuilder.transform);
+            }
 
             if (structureBuilder.gameObject.GetComponent<Anim_MoveTo>() != null) Destroy(structureBuilder.gameObject.GetComponent<Anim_MoveTo>());
             Anim_MoveTo anim = structureBuilder.gameObject.AddComponent<Anim_MoveTo>() as Anim_MoveTo;
