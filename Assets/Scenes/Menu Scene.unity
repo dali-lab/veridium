@@ -8137,8 +8137,8 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 12
     realDuration: 0
-  - audioEN: {fileID: 8300000, guid: ef24aee7ae365ba458f98cd9c5ed7b2f, type: 3}
-    audioDE: {fileID: 8300000, guid: 51448c40e775946469373f8a00995012, type: 3}
+  - audioEN: {fileID: 8300000, guid: 8c2ef1b181fe4a549bd74c6d61eb1b32, type: 3}
+    audioDE: {fileID: 8300000, guid: 9fa9152c86a1a2548988397b25220cbb, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -8158,7 +8158,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 13
+      timing: 15
     - actionType: 1
       animation: {fileID: 0}
       onPlay:
@@ -8189,7 +8189,18 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 0
+      timing: 15
+    - actionType: 0
+      animation: {fileID: 2084294667}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 17
+    realDuration: 0
+  - audioEN: {fileID: 8300000, guid: 3cdbee48047986c4ba7e1804b12b63e4, type: 3}
+    audioDE: {fileID: 8300000, guid: 3dd6c85eb9b774f488cfb91a63e5e224, type: 3}
+    animations:
     - actionType: 1
       animation: {fileID: 0}
       onPlay:
@@ -8232,7 +8243,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 0.2
+      timing: 2
     realDuration: 0
   audioSource: {fileID: 1378554116}
   sequenceState: 
@@ -8344,6 +8355,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1121959839}
+  - {fileID: 2084294666}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10157,6 +10169,67 @@ Transform:
   m_Father: {fileID: 673561489}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2084294665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2084294666}
+  - component: {fileID: 2084294667}
+  m_Layer: 0
+  m_Name: Await Grab Module
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2084294666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084294665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1378554117}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2084294667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084294665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1661f323380319a4f8c72527895de2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 1
+  duration: 0
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  skipSegment: 0
+  onComplete:
+    actionType: 0
+    animation: {fileID: 0}
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    animator: {fileID: 0}
+    timing: 0
+  grabInteractable: {fileID: 0}
+  numHandsRequired: 1
+  moduleName: Tutorial
+  findModulesInBuild: {fileID: 1766513675}
 --- !u!1 &2089647230
 GameObject:
   m_ObjectHideFlags: 0
