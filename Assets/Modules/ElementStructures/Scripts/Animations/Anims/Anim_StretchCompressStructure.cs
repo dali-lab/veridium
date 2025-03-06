@@ -22,15 +22,7 @@ namespace Veridium.Modules.ElementStructures
             base.Play();
 
             startingTransformation = structureBase.GetStructureDeformation();
-
-            // Construct the ending transformation:
-            // 1. Construct matrix that rotates stretchDirection to Vector3.up
-            Vector3 axis = Vector3.Cross(stretchDirection, Vector3.up);
-            float angle = Vector3.Angle(stretchDirection, Vector3.up);
-            Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(angle, axis));
-
-            // 2. Scale structure in the direction of stretchDirection
-            endingTransformation = rotationMatrix.inverse * Matrix4x4.Scale(new Vector3(1, stretchAmount, 1)) * rotationMatrix;
+            endingTransformation = Utils.getStretchTransformation(stretchDirection, stretchAmount);
         }
 
 
