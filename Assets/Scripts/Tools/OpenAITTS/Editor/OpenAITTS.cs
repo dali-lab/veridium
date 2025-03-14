@@ -16,11 +16,11 @@ namespace Veridium.Tools
         string suffix = "_DE";
         string secretKey = "";
 
-        [MenuItem("Tools/Text to Speech (OpenAI)")]
+        [MenuItem("Tools/Text To Speech (OpenAI)")]
         public static void ShowExample()
         {
             OpenAITTS wnd = GetWindow<OpenAITTS>();
-            wnd.titleContent = new GUIContent("Text to Speech (OpenAI)");
+            wnd.titleContent = new GUIContent("Text To Speech (OpenAI)");
         }
 
         public void CreateGUI()
