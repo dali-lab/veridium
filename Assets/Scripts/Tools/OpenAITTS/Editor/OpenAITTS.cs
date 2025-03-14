@@ -31,9 +31,9 @@ namespace Veridium.Tools
 
             // try to load secret key from file
             string secretKeyPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + Path.DirectorySeparatorChar + ".openaikey";
-            if (System.IO.File.Exists(secretKeyPath))
+            if (File.Exists(secretKeyPath))
             {
-                secretKey = System.IO.File.ReadAllText(secretKeyPath).Trim();
+                secretKey = File.ReadAllText(secretKeyPath).Trim();
                 Debug.Log("Secret key found: " + secretKey);
             } else
             {
@@ -43,8 +43,11 @@ namespace Veridium.Tools
 
                 return;
             }
+            
+            Label explanation = new Label("Enter the text you want to convert to speech. Use [CUT] to split the text into multiple clips. Things in <angle brackets> will be ignored. Output is stored in Assets/TTSOutput.");
+            explanation.style.whiteSpace = WhiteSpace.Normal;
+            root.Add(explanation);
 
-            // scrool view
             ScrollView scrollView = new ScrollView();
             root.Add(scrollView);
 
