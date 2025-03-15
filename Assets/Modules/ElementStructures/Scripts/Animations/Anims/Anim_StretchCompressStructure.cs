@@ -23,6 +23,8 @@ namespace Veridium.Modules.ElementStructures
 
             startingTransformation = structureBase.GetStructureDeformation();
             endingTransformation = Utils.getStretchTransformation(stretchDirection, stretchAmount);
+
+            Debug.Log("Ending Transformation: " + endingTransformation);
         }
 
 
