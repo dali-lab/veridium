@@ -4716,7 +4716,7 @@ MonoBehaviour:
   playOnStart: 0
   segments:
   - audioEN: {fileID: 8300000, guid: 1491108efe402ad43875feb8900d8c33, type: 3}
-    audioDE: {fileID: 8300000, guid: 1491108efe402ad43875feb8900d8c33, type: 3}
+    audioDE: {fileID: 8300000, guid: 86e4d15c92401ee409fc01927cff5828, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -4761,11 +4761,11 @@ MonoBehaviour:
       timing: 39
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 2ce7f5458fc4fa649b81839dee6d7851, type: 3}
-    audioDE: {fileID: 8300000, guid: 2ce7f5458fc4fa649b81839dee6d7851, type: 3}
+    audioDE: {fileID: 8300000, guid: 9e57578fa47bf5e47a473199d7c5d131, type: 3}
     animations: []
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 47e2236b6f821d64c9b4b27ffd155033, type: 3}
-    audioDE: {fileID: 8300000, guid: 47e2236b6f821d64c9b4b27ffd155033, type: 3}
+    audioDE: {fileID: 8300000, guid: 29be5bb683960c64ba3f029463267291, type: 3}
     animations:
     - actionType: 0
       animation: {fileID: 851567691}
@@ -4790,7 +4790,7 @@ MonoBehaviour:
       timing: 5.05
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: c5c9e5f244bbe9645832d943f3b167f3, type: 3}
-    audioDE: {fileID: 8300000, guid: c5c9e5f244bbe9645832d943f3b167f3, type: 3}
+    audioDE: {fileID: 8300000, guid: 064afa5bc6e9f964192d182e777a6f59, type: 3}
     animations:
     - actionType: 0
       animation: {fileID: 1376167354}
@@ -4801,7 +4801,7 @@ MonoBehaviour:
       timing: 20
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 4d066dd7e5329414b9160d8f6553b05c, type: 3}
-    audioDE: {fileID: 8300000, guid: 4d066dd7e5329414b9160d8f6553b05c, type: 3}
+    audioDE: {fileID: 8300000, guid: 019dec169660cb04baff23907ead8362, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -4825,7 +4825,7 @@ MonoBehaviour:
       timing: 0
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: c78d830807d69a845bb20b5f073875f7, type: 3}
-    audioDE: {fileID: 8300000, guid: c78d830807d69a845bb20b5f073875f7, type: 3}
+    audioDE: {fileID: 8300000, guid: b9402cf0cbfbe21418cbb95d9e0090f6, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
