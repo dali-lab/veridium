@@ -3720,6 +3720,7 @@ MonoBehaviour:
   cageHighlights:
   - {fileID: 3576651157005393942, guid: 655b12194365add42bef8ce37ba28d9f, type: 3}
   - {fileID: 3576651157005393942, guid: 7930bc2567f11e94f8d16655c5c97686, type: 3}
+  - {fileID: 3576651157005393942, guid: 6c51cc59e1edef741b8bf272b340a249, type: 3}
 --- !u!1 &537928781
 GameObject:
   m_ObjectHideFlags: 0
@@ -4698,6 +4699,7 @@ Transform:
   - {fileID: 535190483}
   - {fileID: 1376167353}
   - {fileID: 1116978458}
+  - {fileID: 2026803649}
   m_Father: {fileID: 548511508}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4799,30 +4801,31 @@ MonoBehaviour:
           m_Calls: []
       animator: {fileID: 0}
       timing: 20
+    - actionType: 0
+      animation: {fileID: 1116978459}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 26
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 4d066dd7e5329414b9160d8f6553b05c, type: 3}
     audioDE: {fileID: 8300000, guid: 019dec169660cb04baff23907ead8362, type: 3}
     animations:
-    - actionType: 1
-      animation: {fileID: 0}
+    - actionType: 0
+      animation: {fileID: 1376167354}
       onPlay:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 881861620}
-            m_TargetAssemblyTypeName: Veridium_Interaction.XRGrabInteractable_Lockable,
-              Assembly-CSharp
-            m_MethodName: Unlock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       animator: {fileID: 0}
-      timing: 0
+      timing: 10
+    - actionType: 0
+      animation: {fileID: 2026803650}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 15
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: c78d830807d69a845bb20b5f073875f7, type: 3}
     audioDE: {fileID: 8300000, guid: b9402cf0cbfbe21418cbb95d9e0090f6, type: 3}
@@ -19068,6 +19071,59 @@ MonoBehaviour:
     - {x: -1, y: -1, z: -1}
     fadeIn: 0
   structureBuilder: {fileID: 133654971}
+--- !u!1 &2026803648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026803649}
+  - component: {fileID: 2026803650}
+  m_Layer: 0
+  m_Name: Compress111ToAlphaPolonium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026803649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026803648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 616306707}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026803650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026803648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9a60ead6fe14b4bae757b6d4cfe161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 0
+  duration: 2
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  easingType: 0
+  easeOutOnly: 0
+  stretchDirection: {x: 1, y: 1, z: 1}
+  stretchAmount: 0.577
+  structureBase: {fileID: 936844115}
 --- !u!1 &2032415361
 GameObject:
   m_ObjectHideFlags: 0
