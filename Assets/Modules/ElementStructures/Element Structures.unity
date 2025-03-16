@@ -3720,7 +3720,6 @@ MonoBehaviour:
   cageHighlights:
   - {fileID: 3576651157005393942, guid: 655b12194365add42bef8ce37ba28d9f, type: 3}
   - {fileID: 3576651157005393942, guid: 7930bc2567f11e94f8d16655c5c97686, type: 3}
-  - {fileID: 3576651157005393942, guid: 6c51cc59e1edef741b8bf272b340a249, type: 3}
 --- !u!1 &537928781
 GameObject:
   m_ObjectHideFlags: 0
@@ -13157,7 +13156,6 @@ MonoBehaviour:
   cageHighlights:
   - {fileID: 6786256900161749426, guid: 7a0c794113613374faa8fdac2219fc55, type: 3}
   - {fileID: 3576651157005393942, guid: 198270e84af05d24a942f9f421c51eae, type: 3}
-  - {fileID: 3576651157005393942, guid: 633236c6ea82ba049a863e7b8d3d5b25, type: 3}
 --- !u!95 &962167921 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4191118299638486128, guid: 2b0e5eb2be375428e97a2c12d8f0f51c, type: 3}

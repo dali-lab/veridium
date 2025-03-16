@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1926277411049846460}
   - component: {fileID: 6527760783895684531}
   m_Layer: 0
-  m_Name: TetragonalCellHighlight
+  m_Name: IndiumHighlightTetragonal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,9 +63,45 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
+  highlightedPositions:
+  - e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0.9
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  - e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0.71
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   highlightedDistance: 0.05
   highlightedWidth: 0.025
   highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  highlightedColors:
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 0.3647059, g: 1, b: 0.96862745, a: 1}
   notHighlightWidth: 0.015
   notHighlightColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0.4}
   unitCellHighlightPositions:

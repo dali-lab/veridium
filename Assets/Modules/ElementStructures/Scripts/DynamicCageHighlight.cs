@@ -15,10 +15,10 @@ namespace Veridium.Modules.ElementStructures
         public Material material;
 
 
-        public Matrix4x4 highlightedPos;
+        public Matrix4x4[] highlightedPositions;
         public float highlightedDistance = 0.2f;
         public float highlightedWidth = 0.1f;
-        public Color highlightedColor = Color.yellow;
+        public Color[] highlightedColors;
         
         public float notHighlightWidth = 0.05f;
         public Color notHighlightColor = new Color(0.5f, 0.5f, 0.5f, .4f);
@@ -57,9 +57,13 @@ namespace Veridium.Modules.ElementStructures
 
         public void UpdateCageHighlight(Matrix4x4 deformationMatrix)
         {
-            float highlight = Mathf.Max(0, 1 - Matrix4x4Distance(deformationMatrix, highlightedPos) / highlightedDistance);
+            float[] distances = highlightedPositions.Select(p => Matrix4x4Distance(deformationMatrix, p)).ToArray();
 
-            lr.material.color = Color.Lerp(notHighlightColor, highlightedColor, highlight);
+            int minIndex = distances.ToList().IndexOf(distances.Min());
+
+            float highlight = Mathf.Max(0, 1 - distances[minIndex] / highlightedDistance);
+
+            lr.material.color = Color.Lerp(notHighlightColor, highlightedColors[minIndex], highlight);
 
             lr.startWidth = Mathf.Lerp(notHighlightWidth, highlightedWidth, highlight);
             lr.endWidth = Mathf.Lerp(notHighlightWidth, highlightedWidth, highlight);
