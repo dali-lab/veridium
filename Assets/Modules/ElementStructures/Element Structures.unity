@@ -924,6 +924,77 @@ Transform:
   m_Father: {fileID: 5069879808787311079}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &121023648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 121023649}
+  - component: {fileID: 121023650}
+  m_Layer: 0
+  m_Name: Draw60DegAngles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &121023649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121023648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 616306707}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121023650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121023648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72d80cef1c63d48a8c102786f3209a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 0
+  duration: 2
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  structureBuilder: {fileID: 133654971}
+  anglePrefab: {fileID: 8850024353605666476, guid: 4c7f736c8747475479223ded8df92a81, type: 3}
+  addAngleText: 1
+  shouldDrawAllAngles: 0
+  anglesToDraw:
+  - rootAtom: {x: -0.25, y: -0.25, z: -0.25}
+    incidentAtom1: {x: 0, y: -0.25, z: 0}
+    incidentAtom2: {x: -0.25, y: 0, z: 0}
+  - rootAtom: {x: -0.25, y: -0.25, z: -0.25}
+    incidentAtom1: {x: 0, y: 0, z: -0.25}
+    incidentAtom2: {x: 0, y: -0.25, z: 0}
+  - rootAtom: {x: -0.25, y: -0.25, z: -0.25}
+    incidentAtom1: {x: -0.25, y: 0, z: 0}
+    incidentAtom2: {x: 0, y: 0, z: -0.25}
+  - rootAtom: {x: 0.25, y: 0.25, z: 0.25}
+    incidentAtom1: {x: 0.25, y: 0, z: 0}
+    incidentAtom2: {x: 0, y: 0, z: 0.25}
+  - rootAtom: {x: 0.25, y: 0.25, z: 0.25}
+    incidentAtom1: {x: 0.25, y: 0, z: 0}
+    incidentAtom2: {x: 0, y: 0.25, z: 0}
+  - rootAtom: {x: 0.25, y: 0.25, z: 0.25}
+    incidentAtom1: {x: 0, y: 0.25, z: 0}
+    incidentAtom2: {x: 0, y: 0, z: 0.25}
 --- !u!1 &126121815
 GameObject:
   m_ObjectHideFlags: 0
@@ -4699,6 +4770,8 @@ Transform:
   - {fileID: 1376167353}
   - {fileID: 1116978458}
   - {fileID: 2026803649}
+  - {fileID: 1331978939}
+  - {fileID: 121023649}
   m_Father: {fileID: 548511508}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4760,6 +4833,13 @@ MonoBehaviour:
           m_Calls: []
       animator: {fileID: 0}
       timing: 39
+    - actionType: 0
+      animation: {fileID: 1331978940}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 41
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 2ce7f5458fc4fa649b81839dee6d7851, type: 3}
     audioDE: {fileID: 8300000, guid: 9e57578fa47bf5e47a473199d7c5d131, type: 3}
@@ -4811,6 +4891,13 @@ MonoBehaviour:
   - audioEN: {fileID: 8300000, guid: 4d066dd7e5329414b9160d8f6553b05c, type: 3}
     audioDE: {fileID: 8300000, guid: 019dec169660cb04baff23907ead8362, type: 3}
     animations:
+    - actionType: 0
+      animation: {fileID: 121023650}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 8
     - actionType: 0
       animation: {fileID: 1376167354}
       onPlay:
@@ -14656,6 +14743,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8afd0fbab914d16af490ec0b4f7395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1331978938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331978939}
+  - component: {fileID: 1331978940}
+  m_Layer: 0
+  m_Name: ContinueTo1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1331978939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331978938}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 616306707}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1331978940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331978938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b512c05ce52e2488bb246e9e80e2eb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 1
+  duration: 0
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  skipSegment: 1
+  onComplete:
+    actionType: 0
+    animation: {fileID: 0}
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    animator: {fileID: 0}
+    timing: 0
+  lectureAnimSequence: {fileID: 498834983034987518}
+  resetIndex: 1
 --- !u!1 &1343234588
 GameObject:
   m_ObjectHideFlags: 0
@@ -17227,6 +17373,9 @@ MonoBehaviour:
   selfDestruct: 0
   structureBuilder: {fileID: 133654971}
   anglePrefab: {fileID: 8850024353605666476, guid: 4c7f736c8747475479223ded8df92a81, type: 3}
+  addAngleText: 0
+  shouldDrawAllAngles: 1
+  anglesToDraw: []
 --- !u!1 &1654319187
 GameObject:
   m_ObjectHideFlags: 0

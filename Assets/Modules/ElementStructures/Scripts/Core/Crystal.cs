@@ -337,6 +337,16 @@ namespace Veridium.Modules.ElementStructures
             return null;
         }
 
+        public Atom GetAtomAtPosition(Vector3 pos)
+        {
+            foreach (KeyValuePair<Vector3, Atom> a in atoms){
+                if((a.Key - pos).magnitude < 0.1){
+                    return a.Value;
+                }
+            }
+            return null;
+        }
+
         /**
          * @function SetState
          * @input newState  The new drawState of the crystal
