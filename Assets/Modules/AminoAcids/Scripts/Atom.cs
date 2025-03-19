@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Veridium.Modules.AminoAcids {
-    public class Atom : Component
+    public class Atom : MonoBehaviour
     {
         public Element element;
         public int AtomicNumber => element.ToAtomicNumber();
@@ -16,15 +16,14 @@ namespace Veridium.Modules.AminoAcids {
         public HashSet<Atom> Neighbors => new HashSet<Atom>(bonds.Select(bond => bond.Other(this)));
         public Molecule molecule;
 
-        public void TransferTo(Molecule other) {
-            if (other == null) {
-                GameObject go = new GameObject("Molecule");
-                go.transform.SetPositionAndRotation(transform.position, transform.rotation);
-                other = go.AddComponent<Molecule>();
-            }
+        void Start() {
+            molecule = GetComponentInParent<Molecule>();
+            bonds = new HashSet<Bond>(molecule.GetComponentsInChildren<Bond>().Where(b => b.atom1 == this || b.atom2 == this));
+        }
 
-            molecule.atoms.Remove(this);
-            other.AddAtom(this);
+        void Update()
+        {
+            transform.LookAt(Camera.main.transform);
         }
 
         public void BondWith(Atom other) {
@@ -35,11 +34,17 @@ namespace Veridium.Modules.AminoAcids {
             bond.Create(this, other);
         }
 
-        public bool TryGetBondTo(Atom other, out Bond bond) {
-            bond = null;
-            if (!Neighbors.Contains(other)) return false;
-            bond = bonds.First(bond => bond.Other(this) == other);
-            return true;
+        // public bool TryGetBondTo(Atom other, out Bond bond) {
+        //     bond = null;
+        //     if (!Neighbors.Contains(other)) return false;
+        //     bond = bonds.First(bond => bond.Other(this) == other);
+        //     return true;
+        // }
+
+        public void OnTriggerEnter(Collider collider) {
+            if (!collider.TryGetComponent(out Atom otherAtom)) return;
+
+            molecule.MergeWith(otherAtom.molecule, this, otherAtom);
         }
     }
 }

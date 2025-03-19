@@ -6,7 +6,7 @@ using Oculus.Platform;
 using Oculus.Interaction;
 
 namespace Veridium.Modules.AminoAcids {
-    public class Bond : Component
+    public class Bond : MonoBehaviour
     {
         public Atom atom1;
         public Atom atom2;
@@ -30,7 +30,8 @@ namespace Veridium.Modules.AminoAcids {
                 cylinder.transform.parent = transform;
                 cylinder.transform.localPosition = Vector3.zero;
                 cylinder.transform.localRotation = Quaternion.identity;
-                cylinder.transform.localScale = new Vector3(0.1f, 1f, 0.1f);
+                cylinder.transform.localScale = new Vector3(0.25f, 1f, 0.25f);
+                cylinder.GetComponent<Renderer>().material = Resources.Load<Material>("Bond");
             }
         }
 
