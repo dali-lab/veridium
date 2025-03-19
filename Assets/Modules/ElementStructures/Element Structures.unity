@@ -14951,7 +14951,7 @@ MonoBehaviour:
   easingType: 0
   easeOutOnly: 0
   stretchDirection: {x: 1, y: 1, z: 1}
-  stretchAmount: 0.824
+  stretchAmount: 0.7566439
   structureBase: {fileID: 936844115}
 --- !u!1 &1393016584
 GameObject:
@@ -19269,7 +19269,7 @@ MonoBehaviour:
   easingType: 0
   easeOutOnly: 0
   stretchDirection: {x: 1, y: 1, z: 1}
-  stretchAmount: 0.577
+  stretchAmount: 0.5
   structureBase: {fileID: 936844115}
 --- !u!1 &2032415361
 GameObject:
