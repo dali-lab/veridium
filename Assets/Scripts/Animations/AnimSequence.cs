@@ -290,6 +290,7 @@ namespace Veridium.Animation{
         }
 
         // Plays the next animation in the list and adds the listener to it
+        [ContextMenu("Play Next Segment")]
         public void PlayNextSegment(){
 
             audioSource.Stop();

@@ -5,19 +5,11 @@ using UnityEngine;
 
 namespace Veridium.Modules.ElementStructures
 {
-    [System.Serializable]
-    public struct AxisVisualization
-    {
-        public LineRenderer line;
-        public LineRenderer tip;
-        public TextMeshPro label;
-    }
-
     public class CoordinateSystemVisualization : MonoBehaviour
     {
-        public AxisVisualization A;
-        public AxisVisualization B;
-        public AxisVisualization C;
+        public GameObject arrowPrefab;
+
+        public List<ArrowVisualization> drawnArrows;
 
         public float regularOpacity = 0.5f;
         public float highlightOpacity = 0.7f;
@@ -32,78 +24,65 @@ namespace Veridium.Modules.ElementStructures
         private Color bColor;
         private Color cColor;
 
-
-        void Start() {
-            setAxisThickness(A, regularThickness);
-            setAxisThickness(B, regularThickness);
-            setAxisThickness(C, regularThickness);
-
-            aColor = A.line.material.color;
-            bColor = B.line.material.color;
-            cColor = C.line.material.color;
-        }
-
         public void SetFadePercent(float percent)
         {
-            setAxisOpacity(A, Mathf.Lerp(0, regularOpacity, percent));
-            setAxisOpacity(B, Mathf.Lerp(0, regularOpacity, percent));
-            setAxisOpacity(C, Mathf.Lerp(0, regularOpacity, percent));
+            for (int i = 0; i < drawnArrows.Count; i++)
+            {
+                SetAxisFadePercent(i, percent);
+            }
+        }
+
+        public void SetAxisFadePercent(int axisIndex, float percent)
+        {
+            ArrowVisualization axis = drawnArrows[axisIndex];
+            axis.SetOpacity(Mathf.Lerp(0, regularOpacity, percent));
         }
 
         public void SetAxisHighlightPercent(int axisIndex, float percent)
         {
-            AxisVisualization axis = axisIndex == 0 ? A : axisIndex == 1 ? B : C;
+            ArrowVisualization axis = drawnArrows[axisIndex];
 
-            setAxisOpacity(axis, Mathf.Lerp(regularOpacity, highlightOpacity, percent));
-            setAxisThickness(axis, Mathf.Lerp(regularThickness, highlightThickness, percent));
+            axis.SetOpacity(Mathf.Lerp(regularOpacity, highlightOpacity, percent));
+            axis.SetLineWidth(Mathf.Lerp(regularThickness, highlightThickness, percent));
         }
 
         public void SetAxisBlinkPercent(int axisIndex, float percent)
         {
-            AxisVisualization axis = axisIndex == 0 ? A : axisIndex == 1 ? B : C;
-            Color originalColor = axisIndex == 0 ? aColor : axisIndex == 1 ? bColor : cColor;
-
-            Color color = Color.Lerp(originalColor, blinkColor, percent);
-            setAxisColor(axis, color);
-        }
-
-        private void setAxisOpacity(AxisVisualization axis, float opacity)
-        {
-            Color color = axis.line.material.color;
-            color.a = opacity;
-            axis.line.material.color = color;
-
-            color = axis.tip.material.color;
-            color.a = opacity;
-            axis.tip.material.color = color;
-
-            color = axis.label.color;
-            color.a = opacity;
-            axis.label.color = color;
-        }
-
-        private void setAxisColor(AxisVisualization axis, Color color)
-        {
-            // don't change alpha
-            color.a = axis.line.material.color.a;
-
-            axis.line.material.color = color;
-            axis.tip.material.color = color;
-            axis.label.color = color;
-        }
-
-        private void setAxisThickness(AxisVisualization axis, float thickness)
-        {
-            axis.line.startWidth = thickness;
-            axis.line.endWidth = thickness;
-            axis.tip.startWidth = thickness;
-            axis.tip.endWidth = thickness;
+            ArrowVisualization axis = drawnArrows[axisIndex];
+            axis.SetColor(Color.Lerp(axis.color, blinkColor, percent));
         }
 
         public float GetAxisHighlightPercent(int axisIndex)
         {
-            AxisVisualization axis = axisIndex == 0 ? A : axisIndex == 1 ? B : C;
-            return (axis.line.material.color.a - regularOpacity) / (highlightOpacity - regularOpacity);
+            ArrowVisualization axis = drawnArrows[axisIndex];
+            return (axis.arrowHead.material.color.a - regularOpacity) / (highlightOpacity - regularOpacity);
+        }
+
+        public ArrowVisualization DrawArrow(Vector3 from, Vector3 to, Color color, string label)
+        {
+            GameObject arrow = Instantiate(arrowPrefab, transform);
+            ArrowVisualization arrowVis = arrow.GetComponent<ArrowVisualization>();
+
+            arrowVis.SetFromTo(from, to);
+            arrowVis.SetLabel(label);
+            arrowVis.SetColor(color);
+            arrowVis.SetOpacity(regularOpacity);
+            arrowVis.SetLineWidth(regularThickness);
+
+            arrowVis.color = color;
+            
+            drawnArrows.Add(arrowVis);
+            return arrowVis;
+        }
+
+        public void ClearAxes()
+        {
+            foreach (ArrowVisualization arrow in drawnArrows)
+            {
+                Destroy(arrow.gameObject);
+            }
+
+            drawnArrows.Clear();
         }
     }
 }

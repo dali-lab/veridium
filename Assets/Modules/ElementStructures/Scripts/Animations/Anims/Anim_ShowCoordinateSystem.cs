@@ -3,10 +3,19 @@ using Veridium.Animation;
 
 namespace Veridium.Modules.ElementStructures
 {
+    [System.Serializable]
+    public struct AxisData {
+        public Vector3 direction;
+        public Color color;
+        public string label;
+    }
+
     public class Anim_ShowCoordinateSystem : AnimationBase
     {
         public GameObject coordinateSystemPrefab;
         public StructureBase structureBase;
+
+        public AxisData[] axes;
 
         private CoordinateSystemVisualization coordinateSystem;
         
@@ -22,6 +31,11 @@ namespace Veridium.Modules.ElementStructures
                 coordinateSystem.transform.localScale = new Vector3(1, 1, 1);
 
                 this.coordinateSystem = coordinateSystem.GetComponent<CoordinateSystemVisualization>();
+                this.coordinateSystem.ClearAxes();
+            }
+
+            foreach (AxisData axis in axes) {
+                coordinateSystem.DrawArrow(Vector3.zero, axis.direction, axis.color, axis.label);
             }
 
             coordinateSystem.SetAxisHighlightPercent(0, 0);
