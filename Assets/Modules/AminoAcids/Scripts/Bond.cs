@@ -10,6 +10,7 @@ namespace Veridium.Modules.AminoAcids {
     {
         public Atom atom1;
         public Atom atom2;
+        public Molecule Molecule => atom1.Molecule;
         public int electrons;
 
         public void Create(Atom atom1, Atom atom2, int electrons = 2) {
@@ -17,10 +18,10 @@ namespace Veridium.Modules.AminoAcids {
             this.atom2 = atom2;
             this.electrons = electrons;
 
-            atom1.bonds.Add(this);
-            atom2.bonds.Add(this);
+            atom1.Bonds.Add(this);
+            atom2.Bonds.Add(this);
 
-            transform.parent = atom1.molecule.transform;
+            transform.parent = atom1.Molecule.transform;
             transform.localScale = Vector3.one;
             transform.position = (atom1.transform.position + atom2.transform.position) / 2;
             transform.up = (atom2.transform.position - atom1.transform.position).normalized;
@@ -36,9 +37,10 @@ namespace Veridium.Modules.AminoAcids {
         }
 
         public void Destroy() {
-            atom1.bonds.Remove(this);
-            atom2.bonds.Remove(this);
+            atom1.Bonds.Remove(this);
+            atom2.Bonds.Remove(this);
             Destroy(gameObject);
+            Molecule.Split(atom1, atom2);
         }
 
         public Atom Other(Atom atom) {

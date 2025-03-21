@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Meta.WitAi;
 using Meta.WitAi.Utilities;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -12,12 +13,17 @@ namespace Veridium.Modules.AminoAcids {
     [RequireComponent(typeof(XRGrabInteractable))]
     public class Molecule : MonoBehaviour {
         public HashSet<Atom> atoms;
+        public bool Mergeable = true;
         public XRGrabInteractable grabInteractable;
         private float selectedSince = float.PositiveInfinity;
 
+        void Awake()
+        {
+            atoms = new HashSet<Atom>(GetComponentsInChildren<Atom>());
+        }
+
         void Start() {
             grabInteractable = GetComponent<XRGrabInteractable>();
-            atoms = new HashSet<Atom>(GetComponentsInChildren<Atom>());
             grabInteractable.firstSelectEntered.AddListener(UpdateSelected);
             grabInteractable.lastSelectExited.AddListener(ResetSelected);
         }
@@ -32,6 +38,7 @@ namespace Veridium.Modules.AminoAcids {
 
         public void MergeWith(Molecule other, Atom bondingAtom1, Atom bondingAtom2) {
             if (other == this) return;
+            if (!Mergeable || !other.Mergeable) return;
             if (selectedSince > other.selectedSince) return;
             if (selectedSince == other.selectedSince && GetInstanceID() < other.GetInstanceID()) return;
 
@@ -62,18 +69,84 @@ namespace Veridium.Modules.AminoAcids {
 
             // Transfer colliders
             grabInteractable.colliders.AddRange(other.grabInteractable.colliders);
-            StartCoroutine(TriggerColliderUpdate(interactor1, interactor2));
+            StartCoroutine(TriggerColliderUpdateAndReselect(interactor1, interactor2));
 
             // Destroy other molecule
             Destroy(other.gameObject);
+
+            // Notify MoleculeManager
+            MoleculeManager.Instance.UpdateMolecule(this);
         }
 
-        private IEnumerator TriggerColliderUpdate(IXRSelectInteractor interactor1, IXRSelectInteractor interactor2) {
+        public void Split(Atom atom1, Atom atom2) {
+            List<Atom> atomsToTransfer = atom2.GetConnectedAtoms();
+            List<Transform> TsToTransfer = atomsToTransfer.Select(a => a.transform).ToList();
+            if (atomsToTransfer.Contains(atom1)) return;
+
+            Molecule newMolecule = Instantiate(MoleculeManager.Instance.EmptyMoleculePrefab, transform.position, transform.rotation);
+            newMolecule.transform.localScale = transform.localScale;
+
+            foreach (Collider c in grabInteractable.colliders.Where(c => TsToTransfer.Contains(c.transform)).ToList()) {
+                c.transform.SetParent(newMolecule.transform);
+                grabInteractable.colliders.Remove(c);
+                newMolecule.grabInteractable.colliders.Add(c);
+            }
+
+            foreach (Atom atom in atomsToTransfer) {
+                RemoveAtom(atom);
+                newMolecule.AddAtom(atom);
+
+                foreach (Bond bond in atom.Bonds) {
+                    bond.transform.SetParent(newMolecule.transform);
+                }
+            }
+
+            StartCoroutine(TriggerColliderUpdate());
+            newMolecule.StartCoroutine(newMolecule.TriggerColliderUpdate());
+            StartCoroutine(MoveSplitMoleculesApart(newMolecule, atom1, atom2));
+        }
+
+        private IEnumerator MoveSplitMoleculesApart(Molecule other, Atom atom1, Atom atom2, float duration = 0.3f, float distanceEach = 0.1f) {
+            Vector3 direction = (atom2.transform.position - atom1.transform.position).normalized;
+            Vector3 offset = direction * distanceEach;
+
+            Vector3 startPosSelf = transform.position;
+            Vector3 targetPosSelf = transform.position - offset;
+            Vector3 startPosOther = other.transform.position;
+            Vector3 targetPosOther = other.transform.position + offset;
+
+            Mergeable = false;
+            other.Mergeable = false;
+
+            float elapsedTime = 0;
+            while (elapsedTime <= duration) {
+                elapsedTime += Time.deltaTime;
+                transform.position = Vector3.Lerp(startPosSelf, targetPosSelf, elapsedTime / duration);
+                other.transform.position = Vector3.Lerp(startPosOther, targetPosOther, elapsedTime / duration);
+                yield return null;
+            }
+
+            // transform.position = targetPosSelf;
+            // other.transform.position = targetPosOther;
+
+            Mergeable = true;
+            other.Mergeable = true;
+        }
+
+        private IEnumerator TriggerColliderUpdateAndReselect(IXRSelectInteractor interactor1, IXRSelectInteractor interactor2) {
             grabInteractable.interactionManager.UnregisterInteractable(grabInteractable as IXRInteractable);
             yield return new WaitForEndOfFrame();
             grabInteractable.interactionManager.RegisterInteractable(grabInteractable as IXRInteractable);
             if (interactor1 != null) grabInteractable.interactionManager.SelectEnter(interactor1, grabInteractable);
             if (interactor2 != null) grabInteractable.interactionManager.SelectEnter(interactor2, grabInteractable);
+        }
+
+        private IEnumerator TriggerColliderUpdate() {
+            yield return new WaitForSeconds(0.1f);
+            grabInteractable.interactionManager.SelectExit(grabInteractable.GetOldestInteractorSelecting(), grabInteractable);
+            grabInteractable.interactionManager.UnregisterInteractable(grabInteractable as IXRInteractable);
+            yield return new WaitForEndOfFrame();
+            grabInteractable.interactionManager.RegisterInteractable(grabInteractable as IXRInteractable);
         }
 
         public void ResizeAndAlign(Molecule other, Atom bondingAtom1, Atom bondingAtom2) {
@@ -85,18 +158,12 @@ namespace Veridium.Modules.AminoAcids {
 
         public void AddAtom(Atom atom) {
             atoms.Add(atom);
-            atom.molecule = this;
+            atom.Molecule = this;
             atom.transform.SetParent(transform);
         }
 
         public void RemoveAtom(Atom atom) {
             atoms.Remove(atom);
-            atom.molecule = null;
-            atom.transform.SetParent(null);
-
-            foreach (Bond bond in atom.bonds.Where(bond => atoms.Contains(bond.Other(atom)))) {
-                bond.Destroy();
-            }
         }
     }
 }

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 
 namespace Veridium.Modules.AminoAcids {
+    [Serializable]
     public class MolfileAtom
     {
         public int ID;
