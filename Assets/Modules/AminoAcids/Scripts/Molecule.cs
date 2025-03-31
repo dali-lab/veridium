@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Meta.WitAi;
-using Meta.WitAi.Utilities;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
 
 namespace Veridium.Modules.AminoAcids {
 
     [RequireComponent(typeof(XRGrabInteractable))]
     public class Molecule : MonoBehaviour {
+        public const float bondLength = 0.2f;
         public HashSet<Atom> atoms;
         public bool Mergeable = true;
         public XRGrabInteractable grabInteractable;
+        public UnityEvent<Molecule> OnMoleculeChanged = new UnityEvent<Molecule>();
         private float selectedSince = float.PositiveInfinity;
 
-        void Awake()
+        public void Awake()
         {
             atoms = new HashSet<Atom>(GetComponentsInChildren<Atom>());
         }
@@ -36,18 +35,14 @@ namespace Veridium.Modules.AminoAcids {
             selectedSince = float.PositiveInfinity;
         }
 
-        public void MergeWith(Molecule other, Atom bondingAtom1, Atom bondingAtom2) {
-            if (other == this) return;
+        public void MergeWith(Molecule other, Atom bondingAtom1, Atom bondingAtom2, int electrons = 2, bool keepDistance = false) {
+            if (other == this) { bondingAtom1.BondWith(bondingAtom2, electrons); return; }
             if (!Mergeable || !other.Mergeable) return;
             if (selectedSince > other.selectedSince) return;
             if (selectedSince == other.selectedSince && GetInstanceID() < other.GetInstanceID()) return;
 
-            // Get interactors
-            IXRSelectInteractor interactor1 = grabInteractable.GetOldestInteractorSelecting();
-            IXRSelectInteractor interactor2 = other.grabInteractable.GetOldestInteractorSelecting();
-
             // Align size and position
-            ResizeAndAlign(other, bondingAtom1, bondingAtom2);
+            if (!keepDistance) ResizeAndAlign(other, bondingAtom1, bondingAtom2);
 
             // Reparent atoms
             foreach (Atom atom in other.atoms) {
@@ -65,17 +60,23 @@ namespace Veridium.Modules.AminoAcids {
             }
 
             // Bond atoms
-            bondingAtom1.BondWith(bondingAtom2);
+            bondingAtom1.BondWith(bondingAtom2, electrons);
 
             // Transfer colliders
             grabInteractable.colliders.AddRange(other.grabInteractable.colliders);
-            StartCoroutine(TriggerColliderUpdateAndReselect(interactor1, interactor2));
 
             // Destroy other molecule
-            Destroy(other.gameObject);
+            if (keepDistance) {
+                DestroyImmediate(other.gameObject);
+                return;
+            }
 
-            // Notify MoleculeManager
-            MoleculeManager.Instance.UpdateMolecule(this);
+            IXRSelectInteractor interactor1 = grabInteractable.GetOldestInteractorSelecting();
+            IXRSelectInteractor interactor2 = other.grabInteractable.GetOldestInteractorSelecting();
+            StartCoroutine(TriggerColliderUpdateAndReselect(interactor1, interactor2));
+
+            Destroy(other.gameObject);
+            MoleculeChanged();
         }
 
         public void Split(Atom atom1, Atom atom2) {
@@ -104,6 +105,8 @@ namespace Veridium.Modules.AminoAcids {
             StartCoroutine(TriggerColliderUpdate());
             newMolecule.StartCoroutine(newMolecule.TriggerColliderUpdate());
             StartCoroutine(MoveSplitMoleculesApart(newMolecule, atom1, atom2));
+
+            MoleculeChanged();
         }
 
         private IEnumerator MoveSplitMoleculesApart(Molecule other, Atom atom1, Atom atom2, float duration = 0.3f, float distanceEach = 0.1f) {
@@ -133,6 +136,11 @@ namespace Veridium.Modules.AminoAcids {
             other.Mergeable = true;
         }
 
+        private void MoleculeChanged() {
+            MoleculeManager.Instance.UpdateMolecule(this);
+            OnMoleculeChanged.Invoke(this);
+        }
+
         private IEnumerator TriggerColliderUpdateAndReselect(IXRSelectInteractor interactor1, IXRSelectInteractor interactor2) {
             grabInteractable.interactionManager.UnregisterInteractable(grabInteractable as IXRInteractable);
             yield return new WaitForEndOfFrame();
@@ -150,7 +158,7 @@ namespace Veridium.Modules.AminoAcids {
         }
 
         public void ResizeAndAlign(Molecule other, Atom bondingAtom1, Atom bondingAtom2) {
-            Vector3 bondDirection = 2 * transform.localScale.x * (bondingAtom2.transform.position - bondingAtom1.transform.position).normalized;
+            Vector3 bondDirection = bondLength * (bondingAtom2.transform.position - bondingAtom1.transform.position).normalized;
             other.transform.localScale = transform.localScale;
             Vector3 newDirection = bondingAtom2.transform.position - bondingAtom1.transform.position;
             other.transform.position -= newDirection - bondDirection;
@@ -164,6 +172,23 @@ namespace Veridium.Modules.AminoAcids {
 
         public void RemoveAtom(Atom atom) {
             atoms.Remove(atom);
+        }
+
+        [ContextMenu("Center Molecule")]
+        public void CenterMolecule() {
+            // Get center point of transform respecting all children
+            Vector3 center = Vector3.zero;
+            foreach (Transform child in transform) {
+                center += child.position;
+            }
+            center /= transform.childCount;
+
+            Vector3 toCenter = center - transform.position;
+
+            // Move all children by toCenter offset
+            foreach (Transform child in transform) {
+                child.position -= toCenter;
+            }
         }
     }
 }

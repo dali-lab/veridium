@@ -12,13 +12,15 @@ namespace Veridium.Modules.AminoAcids {
         public int NaturalValenceElectrons;
         public int MaxValenceElectrons => element == Element.H || element == Element.He ? 2 : 8;
         public int CurrentValenceElectrons => NaturalValenceElectrons - Bonds.Count + Bonds.Sum(bond => bond.electrons);
-        public HashSet<Bond> Bonds;
+        public HashSet<Bond> Bonds = new HashSet<Bond>();
         public HashSet<Atom> Neighbors => new HashSet<Atom>(Bonds.Select(bond => bond.Other(this)));
         public Molecule Molecule;
+        public bool acceptsBonds = true;
 
         void Start() {
             Molecule = GetComponentInParent<Molecule>();
             Bonds = new HashSet<Bond>(Molecule.GetComponentsInChildren<Bond>().Where(b => b.atom1 == this || b.atom2 == this));
+            GetComponentInChildren<AtomBondingPoint>().gameObject.SetActive(acceptsBonds);
         }
 
         void Update()
@@ -26,12 +28,13 @@ namespace Veridium.Modules.AminoAcids {
             transform.LookAt(Camera.main.transform);
         }
 
-        public void BondWith(Atom other) {
+        public void BondWith(Atom other, int electrons = 2) {
             if (Neighbors.Contains(other)) return;
 
-            GameObject go = new GameObject("Bond");
+            string name = $"{this.name.Split(' ')[0]}-{other.name.Split(' ')[0]}";
+            GameObject go = new GameObject(name);
             Bond bond = go.AddComponent<Bond>();
-            bond.Create(this, other);
+            bond.Create(this, other, electrons);
         }
 
         public bool IsConnectedTo(Atom other) {
@@ -83,10 +86,10 @@ namespace Veridium.Modules.AminoAcids {
         //     return true;
         // }
 
-        public void OnTriggerEnter(Collider collider) {
-            if (!collider.TryGetComponent(out Atom otherAtom)) return;
+        // public void OnTriggerEnter(Collider collider) {
+        //     if (!collider.TryGetComponent(out Atom otherAtom)) return;
 
-            Molecule.MergeWith(otherAtom.Molecule, this, otherAtom);
-        }
+        //     Molecule.MergeWith(otherAtom.Molecule, this, otherAtom);
+        // }
     }
 }

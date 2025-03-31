@@ -48,7 +48,7 @@ namespace Veridium.Modules.AminoAcids {
             {
                 List<MolfileAtom> atomCandidates = Molfile.Atoms.Where(ma => atomPredicate(ma, atom)).ToList();
                 if (atomCandidates.Count == 0) return $"Element not found in molfile ({atom.element})";
-                Debug.Log($"For atom {atom.element}, found {atomCandidates.Count} candidates");
+                // Debug.Log($"For atom {atom.element}, found {atomCandidates.Count} candidates");
                 bool foundCorrespondingAtom = false;
                 foreach (MolfileAtom candidate in atomCandidates)
                 {
@@ -56,13 +56,13 @@ namespace Veridium.Modules.AminoAcids {
 
                     if (visitedAtoms.Contains(candidate)) continue;
                     List<MolfileBond> correspondingBonds = Molfile.Bonds.Where(mb => mb.Atom1.ID == candidate.ID || mb.Atom2.ID == candidate.ID).ToList();
-                    Debug.Log($"For atom {atom.element}, found {correspondingBonds.Count} corresponding bonds");
+                    // Debug.Log($"For atom {atom.element}, found {correspondingBonds.Count} corresponding bonds");
                     if (correspondingBonds.Count != atom.Bonds.Count) continue;
 
                     visitedBonds.Clear();
                     foreach (Bond bond in atom.Bonds) {
                         MolfileBond correspondingBond = correspondingBonds.FirstOrDefault(mb => bondPredicate(mb, bond));
-                        Debug.Log($"For bond {bond.atom1.element}-{bond.atom2.element}, found corresponding bond {correspondingBond?.Atom1.Element}-{correspondingBond?.Atom2.Element}");
+                        // Debug.Log($"For bond {bond.atom1.element}-{bond.atom2.element}, found corresponding bond {correspondingBond?.Atom1.Element}-{correspondingBond?.Atom2.Element}");
                         if (correspondingBond == null) { nextCandidate = true; break; }
                         visitedBonds.Add(correspondingBond);
                     }

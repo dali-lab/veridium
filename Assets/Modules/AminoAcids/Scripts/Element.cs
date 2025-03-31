@@ -131,5 +131,15 @@ namespace Veridium.Modules.AminoAcids {
         {
             return (int)element;
         }
+
+        public static Color ToColor(this Element element) {
+            return element switch {
+                Element.H => Color.white,
+                Element.C => Color.gray,
+                Element.N => Color.blue,
+                Element.O => Color.red,
+                _ => new Color(0.8f, 0.5f, 0.8f)
+            };
+        }
     }
 }

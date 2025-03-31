@@ -9,6 +9,7 @@ namespace Veridium.Modules.AminoAcids
     {
         public Molecule MoleculePrefab;
         private Molecule molecule;
+        private int collidingAtoms = 0;
 
         void Start()
         {
@@ -22,12 +23,23 @@ namespace Veridium.Modules.AminoAcids
             molecule.Mergeable = false;
         }
 
+        public void OnTriggerEnter(Collider other)
+        {
+            if (!other.attachedRigidbody.TryGetComponent(out Molecule molecule)) return;
+            if (molecule != this.molecule) return;
+            collidingAtoms++;
+        }
+
         public void OnTriggerExit(Collider other)
         {
             if (!other.attachedRigidbody.TryGetComponent(out Molecule molecule)) return;
             if (molecule != this.molecule) return;
-            molecule.Mergeable = true;
 
+            collidingAtoms--;
+            if (collidingAtoms > 0) return;
+
+            molecule.Mergeable = true;
+            molecule.transform.SetParent(null);
             RespawnMolecule();
         }
     }
