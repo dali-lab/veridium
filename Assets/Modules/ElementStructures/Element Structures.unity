@@ -658,7 +658,7 @@ MonoBehaviour:
   playOnStart: 0
   segments:
   - audioEN: {fileID: 8300000, guid: af82e9283fad03742bc89b59f8a7c221, type: 3}
-    audioDE: {fileID: 8300000, guid: af82e9283fad03742bc89b59f8a7c221, type: 3}
+    audioDE: {fileID: 8300000, guid: a141157c62dd08c40b13cba2fc645c99, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -682,15 +682,15 @@ MonoBehaviour:
       timing: 0
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 581373781c333f94f9366991fb4eee59, type: 3}
-    audioDE: {fileID: 8300000, guid: 581373781c333f94f9366991fb4eee59, type: 3}
+    audioDE: {fileID: 8300000, guid: 9e03493749a10474291fda857f3c41bf, type: 3}
     animations: []
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 5f2cfebfcd1dbc44fb6f5d652d35b61e, type: 3}
-    audioDE: {fileID: 8300000, guid: 5f2cfebfcd1dbc44fb6f5d652d35b61e, type: 3}
+    audioDE: {fileID: 8300000, guid: 44d0660a24bb26645ad8cd835f1bca44, type: 3}
     animations: []
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: f5433f2bf8b165a4c804cded272a0394, type: 3}
-    audioDE: {fileID: 8300000, guid: f5433f2bf8b165a4c804cded272a0394, type: 3}
+    audioDE: {fileID: 8300000, guid: 24f88a0431fbc164b8ca3dd44a96b783, type: 3}
     animations: []
     realDuration: 0
   audioSource: {fileID: 49604644}
