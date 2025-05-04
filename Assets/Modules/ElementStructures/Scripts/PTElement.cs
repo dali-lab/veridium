@@ -18,6 +18,8 @@ namespace Veridium.Modules.ElementStructures
         public CellType type = CellType.CUBIC;                  // The greater cell structure of the element
         public CellVariation variation = CellVariation.SIMPLE;  // The variation on the cell structure of the element
         public bool shouldOverrideAtoms = false;                  // Whether to override the atoms in the element loader
+        
+        [Tooltip("Atoms positions to override, in crystal coordinates to allow easy copy-paste from diamond.")]
         public Vector3[] overrideAtoms;
 
         // Start is called before the first frame update
