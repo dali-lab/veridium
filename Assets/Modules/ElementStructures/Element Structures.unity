@@ -640,6 +640,7 @@ Transform:
   - {fileID: 645809999}
   - {fileID: 270345323}
   - {fileID: 335174541}
+  - {fileID: 1347930856}
   m_Father: {fileID: 548511508}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -687,7 +688,14 @@ MonoBehaviour:
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: 5f2cfebfcd1dbc44fb6f5d652d35b61e, type: 3}
     audioDE: {fileID: 8300000, guid: 44d0660a24bb26645ad8cd835f1bca44, type: 3}
-    animations: []
+    animations:
+    - actionType: 0
+      animation: {fileID: 1347930857}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 9
     realDuration: 0
   - audioEN: {fileID: 8300000, guid: f5433f2bf8b165a4c804cded272a0394, type: 3}
     audioDE: {fileID: 8300000, guid: 24f88a0431fbc164b8ca3dd44a96b783, type: 3}
@@ -14987,6 +14995,56 @@ MonoBehaviour:
   stretchDirection: {x: 0, y: 1, z: 0}
   stretchAmount: 1
   structureBase: {fileID: 936844115}
+--- !u!1 &1347930855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1347930856}
+  - component: {fileID: 1347930857}
+  m_Layer: 0
+  m_Name: DepictTellurium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1347930856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347930855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49604642}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1347930857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347930855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94432fbcc9309884e8dcb6d729f8b294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 0
+  duration: 2
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  element: {fileID: 2117680700}
+  structureBase: {fileID: 936844115}
 --- !u!1 &1376167352
 GameObject:
   m_ObjectHideFlags: 0
@@ -19664,7 +19722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9130913863735385194, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
@@ -20085,6 +20143,186 @@ MonoBehaviour:
   updateViewMode: 1
   crystalView: 2
   structureBase: {fileID: 936844115}
+--- !u!1001 &2117680699
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6923397188796341110}
+    m_Modifications:
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_RootOrder
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1428
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3474
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.6486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9640132
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.2658542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 30.835
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278618305942748021, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079781780944814031, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4630882937589237854, guid: faa8ed7de1cd54f5c9d0b04dd960a80a, type: 3}
+    - target: {fileID: 6506996978073560556, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_Name
+      value: Tellurium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: variation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: elementName
+      value: Tellurium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: shouldOverrideAtoms
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[0].x
+      value: 0.7281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[0].y
+      value: 0.7281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[0].z
+      value: 0.99995
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[1].x
+      value: 0.7281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[1].y
+      value: 0.7281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[2].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[2].y
+      value: 0.27192
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[2].z
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[3].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[3].y
+      value: 0.27192
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[3].z
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[4].x
+      value: 0.27192
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[4].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[4].z
+      value: 0.33333
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[5].x
+      value: 0.27192
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[5].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[5].z
+      value: 0.33333
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[6].x
+      value: 0.27192
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[6].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: overrideAtoms.Array.data[6].z
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130913863735385194, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+      propertyPath: m_Name
+      value: TelluriumSocket
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+--- !u!114 &2117680700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7766797239739653141, guid: ded7c5026f0554f0ba6b9c4d69b2e550, type: 3}
+  m_PrefabInstance: {fileID: 2117680699}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcd300057b054b04ad120d97b8e63e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2133690802
 GameObject:
   m_ObjectHideFlags: 0

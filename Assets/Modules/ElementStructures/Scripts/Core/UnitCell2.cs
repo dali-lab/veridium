@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Veridium.Modules.ElementStructures
@@ -42,6 +43,8 @@ namespace Veridium.Modules.ElementStructures
         // Is the hexagon rotated 60 degrees
         private bool inverted;
 
+        private Vector3[] atomPositions = null;
+
         // LineRenderer for the cage
         private LineRenderer lr;
 
@@ -69,12 +72,17 @@ namespace Veridium.Modules.ElementStructures
          * @input inverted      Is the cell rotated 60 degrees?
          * Constructs the hexagonal cell based on the given input parameters.
          */
-        public UnitCell2(int atomicNumber, Vector3 position, float baseLength, float height, bool inverted)
+        public UnitCell2(int atomicNumber, Vector3 position, float baseLength, float height, bool inverted, Vector3[] overrideAtoms = null)
         {
+
+            if (overrideAtoms != null) atomPositions = overrideAtoms.Select(p => CrystalToRelative(p)).ToArray();
+            else atomPositions = Constants.cell2BasicPositions;
+
+            numVertices = atomPositions.Length;
+
             this.worldPosition = position;
             this.baseLength = baseLength;
             this.height = height;
-            this.numVertices = 2;
             this.vertices = new Atom[numVertices];
             this.bonds = new List<Bond>();
             this.inverted = inverted;
@@ -133,7 +141,7 @@ namespace Veridium.Modules.ElementStructures
 
             for (int i = 0; i < this.numVertices; i++)
             {
-                Vector3 relPosition = Constants.cell2BasicPositions[i];
+                Vector3 relPosition = atomPositions[i];
                 Vector3 atomPosition = GenerateVertexPosition(relPosition);
                 // Debug.Log("relative: " + relPosition + " atomPos: " + atomPosition);
                 Atom newAtom = new Atom(this.atomicNumber, atomPosition);
@@ -183,6 +191,24 @@ namespace Veridium.Modules.ElementStructures
             }
             z = this.worldPosition.z + (vertexPositionRel.z * this.height);
             return new Vector3(x, y, z);
+        }
+
+        private Vector3 CrystalToRelative(Vector3 crystalPosition)
+        {
+            Vector3 a = Constants.cell2CagePositions[0] - Constants.cell2CagePositions[1];
+            Vector3 b = Constants.cell2CagePositions[2] - Constants.cell2CagePositions[1];
+            Vector3 c = Constants.cell2CagePositions[1] - Constants.cell2CagePositions[5];
+
+
+            // recenter
+            Vector3 recentered = crystalPosition - Vector3.one * 0.5f;
+
+            Vector3 relPos = Vector3.zero;
+            relPos += a * recentered.x;
+            relPos += b * recentered.y;
+            relPos += c * recentered.z;
+
+            return relPos;
         }
 
         /**

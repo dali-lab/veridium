@@ -375,7 +375,7 @@ namespace Veridium.Modules.ElementStructures
          */
         public void Construct(CellType type, CellVariation variation,
             float a, float b, float c, float alpha, float beta, float gamma, 
-            int atomicNumber, int constructionDepth) {
+            int atomicNumber, int constructionDepth, Vector3[] atomPositions = null) {
 
             this.atomicNumber = atomicNumber;
             cellType = type;
@@ -383,7 +383,7 @@ namespace Veridium.Modules.ElementStructures
 
             UnitCell originCell;
             if (type == CellType.HEX) {
-                originCell = new UnitCell2(atomicNumber, centerPoint, Constants.hexBaseLength, Constants.hexBaseLength, false); // need to scale the unit cell of hex structures to be smaller
+                originCell = new UnitCell2(atomicNumber, centerPoint, Constants.hexBaseLength, Constants.hexBaseLength, false, atomPositions); // need to scale the unit cell of hex structures to be smaller
                 builder.GetComponentInParent<BoxCollider>().size = Vector3.one * (Constants.hexBaseLength * 1.5f);
             } else {
                 originCell = new UnitCell6(atomicNumber, type, variation, 

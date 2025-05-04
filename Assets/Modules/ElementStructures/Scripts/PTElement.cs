@@ -17,6 +17,8 @@ namespace Veridium.Modules.ElementStructures
         public float maxUnHeldTime = 1f;                        // How long before this snaps back home
         public CellType type = CellType.CUBIC;                  // The greater cell structure of the element
         public CellVariation variation = CellVariation.SIMPLE;  // The variation on the cell structure of the element
+        public bool shouldOverrideAtoms = false;                  // Whether to override the atoms in the element loader
+        public Vector3[] overrideAtoms;
 
         // Start is called before the first frame update
         void Start()

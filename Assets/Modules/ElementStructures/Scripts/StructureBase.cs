@@ -35,7 +35,15 @@ namespace Veridium.Modules.ElementStructures
 
             int atomicNumber = Coloration.GetNumberByName(element.name);
 
-            structureBuilder.BuildCell(element.type, element.variation, CrystalState.SINGLECELL, sideLength, sphereRadius, atomicNumber);
+            structureBuilder.BuildCell(
+                element.type, 
+                element.variation, 
+                CrystalState.SINGLECELL, 
+                sideLength, 
+                sphereRadius, 
+                atomicNumber, 
+                element.shouldOverrideAtoms ? element.overrideAtoms : null
+            );
 
             planeIndex = 0;
 
