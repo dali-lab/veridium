@@ -7,6 +7,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 
 namespace Veridium.Modules.ElementStructures
 {
@@ -118,15 +119,8 @@ namespace Veridium.Modules.ElementStructures
          */
         public void Draw() {
 
-            foreach (Bond bond in bonds.Values)
-            {
-                if(bond.drawnObject != null) MonoBehaviour.Destroy(bond.drawnObject);
-            }
-
-            foreach (Atom atom in atoms.Values)
-            {
-                if(atom.drawnObject != null) MonoBehaviour.Destroy(atom.drawnObject);
-            }
+            foreach (Bond bond in bonds.Values) bond.ClearDrawnObject();
+            foreach (Atom atom in atoms.Values) atom.ClearDrawnObject();
 
             foreach (Transform child in builder.transform)
             {
@@ -222,9 +216,25 @@ namespace Veridium.Modules.ElementStructures
                     }
                     foreach (Atom atom in atoms.Values){
                         if(atom.drawnObject != null){
+                            // shift zero point to the center of the hexagonal unit cell
                             atom.drawnObject.transform.localPosition -= hexagonalT * Constants.hexBaseLength;
+
+                            // scale the structure down by half
                             atom.drawnObject.transform.localPosition /= 2f;
                             atom.drawnObject.transform.localScale /= 2f;
+                        }
+                    }
+                    
+                    foreach (Bond bond in bonds.Values)
+                    {
+                        if (bond.drawnObject != null)
+                        {
+                            // shift zero point to the center of the hexagonal unit cell
+                            bond.drawnObject.transform.localPosition -= hexagonalT * Constants.hexBaseLength;
+
+                            // scale the structure down by half
+                            bond.drawnObject.transform.localPosition /= 2f;
+                            bond.drawnObject.transform.localScale /= 2f;
                         }
                     }
                     break;
@@ -375,7 +385,9 @@ namespace Veridium.Modules.ElementStructures
          */
         public void Construct(CellType type, CellVariation variation,
             float a, float b, float c, float alpha, float beta, float gamma, 
-            int atomicNumber, int constructionDepth, Vector3[] atomPositions = null) {
+            int atomicNumber, int constructionDepth, Vector3[] atomPositions = null, BondSpec[][] bondSpec = null) {
+
+            ClearCrystal(builder);
 
             this.atomicNumber = atomicNumber;
             cellType = type;
@@ -383,7 +395,13 @@ namespace Veridium.Modules.ElementStructures
 
             UnitCell originCell;
             if (type == CellType.HEX) {
-                originCell = new UnitCell2(atomicNumber, centerPoint, Constants.hexBaseLength, Constants.hexBaseLength, false, atomPositions); // need to scale the unit cell of hex structures to be smaller
+                Vector3[] overridePositions = null;
+
+                if (atomPositions != null) {
+                    overridePositions = atomPositions.Select(p => UnitCell2.CrystalToRelative(p)).ToArray();
+                }
+
+                originCell = new UnitCell2(atomicNumber, centerPoint, Constants.hexBaseLength, Constants.hexBaseLength, false, overridePositions, bondSpec); // need to scale the unit cell of hex structures to be smaller
                 builder.GetComponentInParent<BoxCollider>().size = Vector3.one * (Constants.hexBaseLength * 1.5f);
             } else {
                 originCell = new UnitCell6(atomicNumber, type, variation, 

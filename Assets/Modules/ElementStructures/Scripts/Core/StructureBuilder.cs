@@ -137,7 +137,7 @@ namespace Veridium.Modules.ElementStructures{
         * @input sphereRadius  The size of the Atoms
         * Creates a crystal according to the given input specificaitons and draws * it to the scene. Times the runtime of processes for benchmarking
         */
-        public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius, int atomicNumber = 0, Vector3[] overridePositions = null) {
+        public void BuildCell(CellType type, CellVariation variation, CrystalState state, float sideLength, float sphereRadius, int atomicNumber = 0, Vector3[] overridePositions = null, BondSpec[][] bondSpec = null) {
 
             // Reset the transform of the structure when building it
             transform.parent.localPosition = Vector3.zero;
@@ -152,7 +152,7 @@ namespace Veridium.Modules.ElementStructures{
             crystal = new Crystal(gameObject.transform.position, gameObject);
             crystal.SetState(state);
 
-            crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 6, overridePositions);
+            crystal.Construct(type, variation, Constants.defaultA, Constants.defaultB, Constants.defaultC, Constants.defaultAlpha, Constants.defaultBeta, Constants.defaultGamma, atomicNumber, 6, overridePositions, bondSpec);
             crystal.Draw();
         }
     }

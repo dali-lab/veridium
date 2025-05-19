@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 namespace Veridium.Modules.ElementStructures
@@ -45,6 +46,8 @@ namespace Veridium.Modules.ElementStructures
 
         private Vector3[] atomPositions = null;
 
+        private BondSpec[][] bondSpec = null;
+
         // LineRenderer for the cage
         private LineRenderer lr;
 
@@ -53,14 +56,14 @@ namespace Veridium.Modules.ElementStructures
          */
         public UnitCell2()
         {
-            this.atomicNumber = 0;
-            this.numVertices = 0;
-            this.baseLength = 0;
-            this.height = 0;
-            this.vertices = null;
-            this.bonds = null;
-            this.worldPosition = new Vector3(0, 0, 0);
-            this.inverted = false;
+            atomicNumber = 0;
+            numVertices = 0;
+            baseLength = 0;
+            height = 0;
+            vertices = null;
+            bonds = null;
+            worldPosition = new Vector3(0, 0, 0);
+            inverted = false;
         }
 
         /**
@@ -72,19 +75,21 @@ namespace Veridium.Modules.ElementStructures
          * @input inverted      Is the cell rotated 60 degrees?
          * Constructs the hexagonal cell based on the given input parameters.
          */
-        public UnitCell2(int atomicNumber, Vector3 position, float baseLength, float height, bool inverted, Vector3[] overrideAtoms = null)
+        public UnitCell2(int atomicNumber, Vector3 position, float baseLength, float height, bool inverted, Vector3[] overrideAtoms = null, BondSpec[][] bondSpec = null)
         {
 
-            if (overrideAtoms != null) atomPositions = overrideAtoms.Select(p => CrystalToRelative(p)).ToArray();
+            if (overrideAtoms != null) atomPositions = overrideAtoms;
             else atomPositions = Constants.cell2BasicPositions;
+
+            if (bondSpec != null) this.bondSpec = bondSpec;
 
             numVertices = atomPositions.Length;
 
-            this.worldPosition = position;
+            worldPosition = position;
             this.baseLength = baseLength;
             this.height = height;
-            this.vertices = new Atom[numVertices];
-            this.bonds = new List<Bond>();
+            vertices = new Atom[numVertices];
+            bonds = new List<Bond>();
             this.inverted = inverted;
         }
 
@@ -98,29 +103,29 @@ namespace Veridium.Modules.ElementStructures
          */
         public override List<Atom> GetMillerAtoms(int h, int k, int l)
         {
-            if (this.numVertices < 8 || this.vertices[0] == null || this.vertices[1] == null || this.vertices[2] == null || this.vertices[7] == null)
+            if (numVertices < 8 || vertices[0] == null || vertices[1] == null || vertices[2] == null || vertices[7] == null)
             {
                 return null;
             }
 
             // Extracts the primitive vectors from the coordinates of the 
             // cell's vertices. 
-            Vector3 cellOrigin = this.vertices[0].GetPosition();
+            Vector3 cellOrigin = vertices[0].GetPosition();
             Vector3 a1, a2, a3;
-            a1 = this.vertices[1].GetPosition() - cellOrigin;
-            a2 = this.vertices[2].GetPosition() - cellOrigin;
-            a3 = this.vertices[7].GetPosition() - cellOrigin;
+            a1 = vertices[1].GetPosition() - cellOrigin;
+            a2 = vertices[2].GetPosition() - cellOrigin;
+            a3 = vertices[7].GetPosition() - cellOrigin;
 
             // Calculates the distance between parallel unit cells
-            float planarSeparation = this.baseLength / (Mathf.Sqrt((4.0f / 3.0f) * (h ^ 2 + k ^ 2 + h * k) + (Mathf.Pow(this.baseLength, 2) / Mathf.Pow(this.height, 2)) * (l ^ 2)));
+            float planarSeparation = baseLength / (Mathf.Sqrt((4.0f / 3.0f) * (h ^ 2 + k ^ 2 + h * k) + (Mathf.Pow(baseLength, 2) / Mathf.Pow(height, 2)) * (l ^ 2)));
 
             // Identifies the atoms on the miller plane
             List<Atom> atoms = new List<Atom>();
-            for (int i = 0; i < this.numVertices; i++)
+            for (int i = 0; i < numVertices; i++)
             {
-                if (Miller.PointInMillerPlane(this.vertices[i].GetPosition(), h, k, l, cellOrigin, a1, a2, a3, planarSeparation))
+                if (Miller.PointInMillerPlane(vertices[i].GetPosition(), h, k, l, cellOrigin, a1, a2, a3, planarSeparation))
                 {
-                    atoms.Add(this.vertices[i]);
+                    atoms.Add(vertices[i]);
                 }
             }
             return atoms;
@@ -134,35 +139,30 @@ namespace Veridium.Modules.ElementStructures
          */
         public override void AddVertices(Dictionary<Vector3, Atom> crystalAtoms)
         {
-            if (this.numVertices == 0)
+            if (numVertices == 0)
             {
                 return;
             }
 
-            for (int i = 0; i < this.numVertices; i++)
+            for (int i = 0; i < numVertices; i++)
             {
                 Vector3 relPosition = atomPositions[i];
                 Vector3 atomPosition = GenerateVertexPosition(relPosition);
-                // Debug.Log("relative: " + relPosition + " atomPos: " + atomPosition);
-                Atom newAtom = new Atom(this.atomicNumber, atomPosition);
+
+                Atom newAtom = new Atom(atomicNumber, atomPosition);
                 newAtom.builder = builder;
 
                 // Makes sure that the atom hasn't already been rendered in 
                 // another cell in the crystal
-                bool overlaps = false;
-                Atom duplicate;
-                if (crystalAtoms.TryGetValue(atomPosition, out duplicate))
+                Atom duplicate = crystalAtoms.FirstOrDefault(kvp => kvp.Value.Equals(newAtom)).Value;
+                if (duplicate != null)
                 {
-                    overlaps = true;
-                    this.vertices[i] = duplicate;
+                    vertices[i] = duplicate;
                 }
                 else
                 {
                     crystalAtoms[atomPosition] = newAtom;
-                }
-                if (!overlaps)
-                {
-                    this.vertices[i] = newAtom;
+                    vertices[i] = newAtom;
                 }
             }
         }
@@ -177,23 +177,17 @@ namespace Veridium.Modules.ElementStructures
          * Constants.cell8BasicPosition
          */
         public Vector3 GenerateVertexPosition(Vector3 vertexPositionRel)
-        {
-            float x, y, z;
-            if (this.inverted)
+        {if (inverted)
             {
-                x = this.worldPosition.x + (vertexPositionRel.y * this.baseLength);
-                y = this.worldPosition.y + (vertexPositionRel.x * this.baseLength);
+                return worldPosition + new Vector3(vertexPositionRel.y * baseLength, vertexPositionRel.x * baseLength, vertexPositionRel.z * height);
             }
             else
             {
-                x = this.worldPosition.x + (vertexPositionRel.x * this.baseLength);
-                y = this.worldPosition.y + (vertexPositionRel.y * this.baseLength);
+                return worldPosition + new Vector3(vertexPositionRel.x * baseLength, vertexPositionRel.y * baseLength, vertexPositionRel.z * height);
             }
-            z = this.worldPosition.z + (vertexPositionRel.z * this.height);
-            return new Vector3(x, y, z);
         }
 
-        private Vector3 CrystalToRelative(Vector3 crystalPosition)
+        public static Vector3 CrystalToRelative(Vector3 crystalPosition)
         {
             Vector3 a = Constants.cell2CagePositions[0] - Constants.cell2CagePositions[1];
             Vector3 b = Constants.cell2CagePositions[2] - Constants.cell2CagePositions[1];
@@ -221,29 +215,30 @@ namespace Veridium.Modules.ElementStructures
          */
         public override void AddBonds(Dictionary<Vector3, Bond> crystalBonds)
         {
-            return;
+            if (bondSpec == null) return;
+
             // Loops through each vertex in the unit cell
-            for (int startIndex = 0; startIndex < this.numVertices; startIndex++)
+            for (int startIndex = 0; startIndex < numVertices; startIndex++)
             {
-                if (startIndex >= Constants.cell8BondMap.Length)
+                if (startIndex >= bondSpec.Length)
                 {
                     continue;
                 }
 
-                Atom startVertex = this.vertices[startIndex];
-                int[] endIndices = Constants.cell8BondMap[startIndex];
+                Atom startVertex = vertices[startIndex];
+                BondSpec[] endIndices = bondSpec[startIndex];
 
                 // Loops through indices of all vertices that should be bound to the startVertex
-                foreach (int endIndex in endIndices)
+                foreach (BondSpec endIndex in endIndices)
                 {
-                    if (endIndex >= this.numVertices)
+                    if (endIndex.atomIndex >= numVertices)
                     {
                         continue;
                     }
 
                     // Ensure no duplicate bonds are created within the unit cell
                     bool duplicate = false;
-                    Atom endVertex = vertices[endIndex];
+                    Atom endVertex = vertices[endIndex.atomIndex];
                     Bond newBond = new Bond(startVertex, endVertex);
                     newBond.builder = builder;
 
@@ -259,23 +254,15 @@ namespace Veridium.Modules.ElementStructures
                     {
                         Vector3 midpoint = (newBond.GetStartPos() + newBond.GetEndPos()) / 2;
                         // If an equivalent bond already exists within the Crystal structure, use it instead
-                        Bond crystalDuplicate;
-                        if (crystalBonds.TryGetValue(midpoint, out crystalDuplicate))
+                        Bond duplicateBond = crystalBonds.FirstOrDefault(kvp => kvp.Value.Equals(newBond)).Value;
+                        if (duplicateBond != null)
                         {
-                            if (crystalDuplicate.Equals(newBond))
-                            {
-                                bonds.Add(crystalDuplicate);
-                            }
-                            else
-                            {
-                                bonds.Add(newBond);
-                                crystalBonds[midpoint] = newBond;
-                            }
+                            bonds.Add(duplicateBond);
                         }
                         else
                         {
-                            bonds.Add(newBond);
                             crystalBonds[midpoint] = newBond;
+                            bonds.Add(newBond);
                         }
                     }
                 }
@@ -285,13 +272,13 @@ namespace Veridium.Modules.ElementStructures
         // Returns the vertex array
         public override Atom[] GetVertices()
         {
-            return this.vertices;
+            return vertices;
         }
 
         // Returns the List of bonds
         public override List<Bond> GetBonds()
         {
-            return this.bonds;
+            return bonds;
         }
         
         /**
@@ -307,19 +294,19 @@ namespace Veridium.Modules.ElementStructures
         {
 
             // Draw the atoms
-            for (int i = 0; i < this.numVertices; i++)
-            {
-                if (this.vertices[i] != null)
-                {
-                    this.vertices[i].Draw(baseLength * 2);
-                    Vector3 test = this.vertices[i].GetPosition() / Constants.hexBaseLength;
-                    // Debug.Log("ATOMPOSITION: " + test.x + ", " + test.y + ", " + test.z);
-                }
+            foreach (Atom atom in vertices) {
+                // dont draw the atom if it has already been drawn by another cell
+                if (atom.drawnObject != null) continue;
+
+                atom.Draw(baseLength * 2);
             }
 
             // Draws the bonds
-            foreach (Bond bond in this.bonds)
+            foreach (Bond bond in bonds)
             {
+                // dont draw the bond if it has already been drawn by another cell
+                if (bond.drawnObject != null) continue;
+
                 bond.Draw();
             }
 
@@ -409,7 +396,7 @@ namespace Veridium.Modules.ElementStructures
 
             foreach (Vector3 direction in neighborRelativeLocations)
             {
-                GenerateNeighborInDirection(direction, this.inverted, crystalCells, crystalAtoms, crystalBonds);
+                GenerateNeighborInDirection(direction, inverted, crystalCells, crystalAtoms, crystalBonds);
             }
         }
 
@@ -433,19 +420,19 @@ namespace Veridium.Modules.ElementStructures
             float xTranslation, yTranslation, zTranslation;
             if (inverted)
             {
-                xTranslation = direction.y * this.baseLength;
-                yTranslation = direction.x * this.baseLength;
+                xTranslation = direction.y * baseLength;
+                yTranslation = direction.x * baseLength;
             }
             else
             {
-                xTranslation = direction.x * this.baseLength;
-                yTranslation = direction.y * this.baseLength;
+                xTranslation = direction.x * baseLength;
+                yTranslation = direction.y * baseLength;
             }
-            zTranslation = direction.z * this.height;
+            zTranslation = direction.z * height;
 
             // Applies the translation
             Vector3 translationVector = new Vector3(xTranslation, yTranslation, zTranslation);
-            Vector3 newCellPos = this.worldPosition + translationVector;
+            Vector3 newCellPos = worldPosition + translationVector;
 
             // Checks that the cell hasn't already been drawn
             UnitCell possibleDuplicate;
@@ -455,10 +442,10 @@ namespace Veridium.Modules.ElementStructures
             }
             else
             {
-                UnitCell2 newCell = new UnitCell2(this.atomicNumber, newCellPos, this.baseLength, this.height, invert);
+                UnitCell2 newCell = new UnitCell2(atomicNumber, newCellPos, baseLength, height, invert, atomPositions, bondSpec);
                 newCell.builder = builder;
                 newCell.AddVertices(crystalAtoms);
-                //newCell.AddBonds(crystalBonds);
+                newCell.AddBonds(crystalBonds);
                 crystalCells[newCellPos] = newCell;
                 
             }

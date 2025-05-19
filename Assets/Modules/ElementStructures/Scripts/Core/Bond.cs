@@ -14,20 +14,22 @@ namespace Veridium.Modules.ElementStructures
      * Class that describes a linear bond between two Atom objects. Contains
      * functionality for comparing and drawing bonds
      */
-    public class Bond {
+    public class Bond
+    {
         // "start" and "end" atoms are inherently arbitrary since direction doesn't really matter
         // in this case start and end are simply used to denote the two Atoms at either ends of the Bonds
         private Atom start;
         private Atom end;
-        public GameObject drawnObject {get; private set;}
-        public GameObject cylinderChild {get; private set;}
+        public GameObject drawnObject { get; private set; }
+        public GameObject cylinderChild { get; private set; }
         public GameObject builder;
 
         /**
          * @constructor
          * Instantiates bond with two atoms
          */
-        public Bond(Atom startAtom, Atom endAtom) {
+        public Bond(Atom startAtom, Atom endAtom)
+        {
             start = startAtom;
             end = endAtom;
         }
@@ -36,7 +38,8 @@ namespace Veridium.Modules.ElementStructures
          * @function GetStart
          * @return Atom start atom
          */
-        public Atom GetStart() {
+        public Atom GetStart()
+        {
             return start;
         }
 
@@ -44,7 +47,8 @@ namespace Veridium.Modules.ElementStructures
          * @function GetEnd
          * @return Atom end atom
          */
-        public Atom GetEnd() {
+        public Atom GetEnd()
+        {
             return end;
         }
 
@@ -53,10 +57,14 @@ namespace Veridium.Modules.ElementStructures
          * @input other another bond
          * @return bool Whether the Bonds are equivalent
          */
-        public bool Equals(Bond other) {
-            if (start.Equals(other.GetStart()) && end.Equals(other.GetEnd())) {
+        public bool Equals(Bond other)
+        {
+            if (start.Equals(other.GetStart()) && end.Equals(other.GetEnd()))
+            {
                 return true;
-            } else if (end.Equals(other.GetStart()) && start.Equals(other.GetEnd())) {
+            }
+            else if (end.Equals(other.GetStart()) && start.Equals(other.GetEnd()))
+            {
                 return true;
             }
             return false;
@@ -66,7 +74,8 @@ namespace Veridium.Modules.ElementStructures
          * @function GetStartPosition
          * @return Vector3 position of start atom
          */
-        public Vector3 GetStartPos() {
+        public Vector3 GetStartPos()
+        {
             return start.GetPosition();
         }
 
@@ -74,7 +83,8 @@ namespace Veridium.Modules.ElementStructures
          * @function GetEndpos
          * @return Vector3 position of end atom
          */
-        public Vector3 GetEndPos() {
+        public Vector3 GetEndPos()
+        {
             return end.GetPosition();
         }
 
@@ -83,28 +93,30 @@ namespace Veridium.Modules.ElementStructures
          * @input linePrefab the Unity prefab of the Bond
          * @input builder the Unity builder object
          */
-        public void Draw() {
-            Vector3 midpoint = (start.GetPosition() + end.GetPosition())/2;
+        public void Draw()
+        {
+            Vector3 midpoint = (start.GetPosition() + end.GetPosition()) / 2;
 
-            drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Edge"), midpoint, Quaternion.LookRotation(end.GetPosition()-start.GetPosition(), Vector3.up));
+            drawnObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Edge"), midpoint, Quaternion.LookRotation(end.GetPosition() - start.GetPosition(), Vector3.up));
             cylinderChild = drawnObject.transform.GetChild(0).gameObject;
-            
+
             UpdateDrawnPosition(Matrix4x4.identity);
         }
 
-        public void UpdateDrawnPosition(Matrix4x4 transformation) {
+        public void UpdateDrawnPosition(Matrix4x4 transformation)
+        {
             Vector3 startPosition = transformation.MultiplyPoint(start.GetPosition());
             Vector3 endPosition = transformation.MultiplyPoint(end.GetPosition());
 
-            Vector3 midpoint = (startPosition + endPosition)/2;
+            Vector3 midpoint = (startPosition + endPosition) / 2;
             float distance = Vector3.Distance(startPosition, endPosition);
 
             drawnObject.transform.SetParent(builder.transform);
-            drawnObject.transform.localScale = new Vector3(1f,1f,distance/0.5f);
+            drawnObject.transform.localScale = new Vector3(1f, 1f, distance / 0.5f);
             drawnObject.transform.localPosition = midpoint;
-            drawnObject.transform.localRotation = Quaternion.LookRotation(endPosition-startPosition, Vector3.up);
-            
-            if (builder.GetComponent<StructureBuilder>().cellType == CellType.HEX)
+            drawnObject.transform.localRotation = Quaternion.LookRotation(endPosition - startPosition, Vector3.up);
+
+            /*if (builder.GetComponent<StructureBuilder>().cellType == CellType.HEX)
             {
                 //TODO: Make this readable
                 drawnObject.tag = "bond";
@@ -116,7 +128,18 @@ namespace Veridium.Modules.ElementStructures
                 drawnObject.transform.localScale *= Constants.hexBaseLength;
 
                 drawnObject.transform.localPosition = Vector3.MoveTowards(drawnObject.transform.localPosition, newCenterPoint, Vector3.Distance(newCenterPoint, drawnObject.transform.localPosition) - drawnObject.transform.localScale.z/4f);
+            }*/
+        }
+
+        public void ClearDrawnObject()
+        {
+            if (drawnObject != null)
+            {
+                MonoBehaviour.Destroy(drawnObject);
             }
+
+            drawnObject = null;
+            cylinderChild = null;
         }
     }
 }

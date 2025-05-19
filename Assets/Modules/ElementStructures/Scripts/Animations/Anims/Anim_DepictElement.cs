@@ -7,7 +7,10 @@ namespace Veridium.Modules.ElementStructures
     {
         public PTElement element;
         public StructureBase structureBase;
-        
+
+        public CrystalState crystalState = CrystalState.SINGLECELL;
+
+
         // Called when animation is started
         public override void Play()
         {
@@ -23,6 +26,10 @@ namespace Veridium.Modules.ElementStructures
             structureBase.ElementRemoved();
             structureBase.ElementAdded(element);
 
+            if (crystalState != CrystalState.SINGLECELL)
+            {
+                structureBase.structureBuilder.Redraw(crystalState);
+            }
 
             base.Play();
         }

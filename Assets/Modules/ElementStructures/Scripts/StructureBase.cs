@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using Veridium.Animation;
@@ -42,7 +43,8 @@ namespace Veridium.Modules.ElementStructures
                 sideLength, 
                 sphereRadius, 
                 atomicNumber, 
-                element.shouldOverrideAtoms ? element.overrideAtoms : null
+                element.shouldOverrideAtoms ? element.overrideAtoms : null,
+                element.shouldOverrideBonds ? element.bondsToOverride.Select(x => x.bonds).ToArray() : null
             );
 
             planeIndex = 0;

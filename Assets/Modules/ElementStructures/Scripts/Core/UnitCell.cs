@@ -9,6 +9,13 @@ using UnityEngine;
 
 namespace Veridium.Modules.ElementStructures
 {
+    [Serializable]
+    public struct BondSpec
+    {
+        public int atomIndex;
+        public Vector3Int cellOffset;
+    }
+
     /**
      * @class UnitCell
      * Defines the UnitCell abstract class interface structure. The abstract

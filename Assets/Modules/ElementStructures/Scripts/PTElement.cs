@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Veridium.Interaction;
@@ -21,6 +22,18 @@ namespace Veridium.Modules.ElementStructures
         
         [Tooltip("Atoms positions to override, in crystal coordinates to allow easy copy-paste from diamond.")]
         public Vector3[] overrideAtoms;
+
+
+        public bool shouldOverrideBonds = false;                  // Whether to override the bonds in the element loader
+
+        [Serializable]
+        public struct AtomBondSpec
+        {
+            public BondSpec[] bonds;
+        }
+
+        [Tooltip("Override bonds for each atom, allows adding offset to atom in neighboring cells.")]
+        public AtomBondSpec[] bondsToOverride = new AtomBondSpec[0];
 
         // Start is called before the first frame update
         void Start()
