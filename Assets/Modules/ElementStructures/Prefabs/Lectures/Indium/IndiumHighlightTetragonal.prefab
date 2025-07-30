@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1926277411049846460}
   - component: {fileID: 6527760783895684531}
+  - component: {fileID: 4151305459030784190}
   m_Layer: 0
   m_Name: IndiumHighlightTetragonal
   m_TagString: Untagged
@@ -46,23 +47,6 @@ MonoBehaviour:
   structureBase: {fileID: 0}
   lr: {fileID: 0}
   material: {fileID: 2100000, guid: 4ec5211455ad7454ab28fcf77ecf8379, type: 2}
-  highlightedPos:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 0.9
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
   highlightedPositions:
   - e00: 1
     e01: 0
@@ -98,7 +82,6 @@ MonoBehaviour:
     e33: 1
   highlightedDistance: 0.05
   highlightedWidth: 0.025
-  highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   highlightedColors:
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   - {r: 0.3647059, g: 1, b: 0.96862745, a: 1}
@@ -121,3 +104,51 @@ MonoBehaviour:
   - {x: 0.25, y: 0.25, z: -0.25}
   - {x: 0.25, y: -0.25, z: -0.25}
   - {x: 0, y: -0.25, z: 0}
+  cageBonds:
+  - start: {x: 0, y: 0.3, z: 0}
+    end: {x: 0.3, y: 0.3, z: 0.3}
+  - start: {x: 0.3, y: 0.3, z: 0.3}
+    end: {x: 0.5, y: 0.3, z: 0}
+  - start: {x: 0.5, y: 0.3, z: 0}
+    end: {x: 0.3, y: 0.3, z: -0.3}
+  - start: {x: 0.3, y: 0.3, z: -0.3}
+    end: {x: 0, y: 0.3, z: 0}
+  - start: {x: 0, y: -0.3, z: 0}
+    end: {x: 0.3, y: -0.3, z: 0.3}
+  - start: {x: 0.3, y: -0.3, z: 0.3}
+    end: {x: 0.5, y: -0.3, z: 0}
+  - start: {x: 0.5, y: -0.3, z: 0}
+    end: {x: 0.3, y: -0.3, z: -0.3}
+  - start: {x: 0.3, y: -0.3, z: -0.3}
+    end: {x: 0, y: -0.3, z: 0}
+  - start: {x: 0, y: -0.3, z: 0}
+    end: {x: 0, y: 0.3, z: 0}
+  - start: {x: 0.3, y: -0.3, z: 0.3}
+    end: {x: 0.3, y: 0.3, z: 0.3}
+  - start: {x: 0.5, y: -0.3, z: 0}
+    end: {x: 0.5, y: 0.3, z: 0}
+  - start: {x: 0.3, y: -0.3, z: -0.3}
+    end: {x: 0.3, y: 0.3, z: -0.3}
+--- !u!114 &4151305459030784190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6786256900161749426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321daddc83d7ae440a53b52eca8f1010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 1
+  indefiniteDuration: 0
+  duration: 5
+  animSequence: {fileID: 0}
+  selfDestruct: 0
+  startingThicknessHighlighted: 0
+  endingThicknessHighlighted: 0.05
+  startingThicknessRegular: 0
+  endingThicknessRegular: 0.015
+  easingType: 2
+  dynamicCageHighlight: {fileID: 6527760783895684531}

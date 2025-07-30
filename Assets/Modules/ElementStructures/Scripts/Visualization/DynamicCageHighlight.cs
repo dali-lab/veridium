@@ -6,6 +6,13 @@ using UnityEngine;
 
 namespace Veridium.Modules.ElementStructures
 {
+    [System.Serializable]
+    public struct CoordinatePair
+    {
+        public Vector3 start;
+        public Vector3 end;
+    }
+
     public class DynamicCageHighlight : MonoBehaviour
     {
         public StructureBase structureBase;
@@ -19,12 +26,15 @@ namespace Veridium.Modules.ElementStructures
         public float highlightedDistance = 0.2f;
         public float highlightedWidth = 0.1f;
         public Color[] highlightedColors;
-        
+
         public float notHighlightWidth = 0.05f;
         public Color notHighlightColor = new Color(0.5f, 0.5f, 0.5f, .4f);
 
-        
+
         public Vector3[] unitCellHighlightPositions;
+
+        public CoordinatePair[] cageBonds;
+        public List<Bond> additionalBonds = new List<Bond>();
 
 
         // Start is called before the first frame update
@@ -33,7 +43,7 @@ namespace Veridium.Modules.ElementStructures
             structureBase = GetComponentInParent<StructureBase>();
             structureBase.onStructureDeformed.AddListener(UpdateCageHighlight);
 
-            lr = gameObject.AddComponent<LineRenderer>();
+            /*lr = gameObject.AddComponent<LineRenderer>();
 
             LineRenderer original = structureBase.structureBuilder.GetComponent<LineRenderer>();
             // System.Type type = original.GetType();
@@ -45,7 +55,35 @@ namespace Veridium.Modules.ElementStructures
             lr.startWidth = notHighlightWidth;
             lr.endWidth = notHighlightWidth;
 
-            lr.SetPositions(unitCellHighlightPositions);
+            lr.SetPositions(unitCellHighlightPositions);*/
+
+            foreach (Atom atom in structureBase.structureBuilder.crystal.atoms.Values)
+            {
+                Vector3 position = atom.GetPosition();
+                
+                
+                if (atom.drawnObject != null)
+                {
+                    Debug.Log($"atom at position {position}");
+                }
+            }
+
+            foreach (CoordinatePair bond in cageBonds)
+            {
+                Atom startAtom = structureBase.structureBuilder.crystal.GetAtomAtPosition(bond.start);
+                Atom endAtom = structureBase.structureBuilder.crystal.GetAtomAtPosition(bond.end);
+
+                Debug.Log($"Creating bond from {startAtom?.GetPosition()} to {endAtom?.GetPosition()}");
+
+                if (startAtom != null && endAtom != null)
+                {
+                    Bond newBond = new Bond(startAtom, endAtom);
+                    newBond.builder = structureBase.structureBuilder.gameObject;
+                    newBond.Draw();
+
+                    additionalBonds.Add(newBond);
+                }
+            }
 
             UpdateCageHighlight(Matrix4x4.identity);
         }
@@ -57,18 +95,23 @@ namespace Veridium.Modules.ElementStructures
 
         public void UpdateCageHighlight(Matrix4x4 deformationMatrix)
         {
+
             float[] distances = highlightedPositions.Select(p => Matrix4x4Distance(deformationMatrix, p)).ToArray();
 
             int minIndex = distances.ToList().IndexOf(distances.Min());
 
             float highlight = Mathf.Max(0, 1 - distances[minIndex] / highlightedDistance);
 
-            lr.material.color = Color.Lerp(notHighlightColor, highlightedColors[minIndex], highlight);
+            Color color = Color.Lerp(notHighlightColor, highlightedColors[minIndex], highlight);
+            float width = Mathf.Lerp(notHighlightWidth, highlightedWidth, highlight);
 
-            lr.startWidth = Mathf.Lerp(notHighlightWidth, highlightedWidth, highlight);
-            lr.endWidth = Mathf.Lerp(notHighlightWidth, highlightedWidth, highlight);
 
-            lr.SetPositions(unitCellHighlightPositions.Select(v => deformationMatrix.MultiplyPoint(v)).ToArray());
+            foreach (Bond bond in additionalBonds)
+            {
+                bond.UpdateDrawnPosition(deformationMatrix);
+                bond.cylinderChild.GetComponent<Renderer>().material.color = color;
+                bond.cylinderChild.transform.localScale = new Vector3(width, 0.26f, width);
+            }
         }
 
 
