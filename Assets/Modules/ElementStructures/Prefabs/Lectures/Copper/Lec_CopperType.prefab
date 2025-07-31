@@ -1690,6 +1690,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 0}
+  numHandsRequired: 1
 --- !u!1 &2305215005268471281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,6 +1780,7 @@ MonoBehaviour:
     animator: {fileID: 0}
     timing: 0
   grabInteractable: {fileID: 0}
+  numHandsRequired: 1
 --- !u!114 &1281349588348103147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3047,113 +3049,6 @@ MonoBehaviour:
       animator: {fileID: 0}
       timing: 0
     realDuration: 0
-  - audioEN: {fileID: 8300000, guid: 4c6f55e55dce09c458e4311614762cd9, type: 3}
-    audioDE: {fileID: 8300000, guid: d11578bca0839f74a9697435cb36e6b6, type: 3}
-    animations:
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 0
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls: []
-      animator: {fileID: 0}
-      timing: 0
-    - actionType: 1
-      animation: {fileID: 0}
-      onPlay:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
-            m_MethodName: Unlock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      animator: {fileID: 0}
-      timing: 0
-    realDuration: 0
   - audioEN: {fileID: 8300000, guid: 8c3f40e4f495a584ea8c049d53dfcc40, type: 3}
     audioDE: {fileID: 8300000, guid: 8da1961e505a4b749b665d83bd0a8371, type: 3}
     animations:
@@ -3343,6 +3238,113 @@ MonoBehaviour:
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
             m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      animator: {fileID: 0}
+      timing: 0
+    realDuration: 0
+  - audioEN: {fileID: 8300000, guid: 4c6f55e55dce09c458e4311614762cd9, type: 3}
+    audioDE: {fileID: 8300000, guid: d11578bca0839f74a9697435cb36e6b6, type: 3}
+    animations:
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 0
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 0
+    - actionType: 1
+      animation: {fileID: 0}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: Veridium_Interaction.StructureBase, Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
