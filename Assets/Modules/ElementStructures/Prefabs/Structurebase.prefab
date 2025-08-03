@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7525836906287132434}
   - component: {fileID: 2923779026218670947}
   - component: {fileID: 3400050630852772206}
-  - component: {fileID: 6988368918596775662}
+  - component: {fileID: 1337758118570242498}
   m_Layer: 7
   m_Name: Structure
   m_TagString: Untagged
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers:
-  - {fileID: 6988368918596775662}
+  - {fileID: 0}
   m_AddDefaultGrabTransformers: 0
   selectableBySocketWhenLocked: 1
   selectableByGrabWhenLocked: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   startHeight: -0.5
   numRotations: 1
   easingType: 0
---- !u!114 &6988368918596775662
+--- !u!114 &1337758118570242498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1460324923880807827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
+  m_Script: {fileID: 11500000, guid: 45b0a90f03e9f0646b3b8b6336fd86f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_PermittedDisplacementAxes: 7
@@ -249,8 +249,9 @@ MonoBehaviour:
   m_ThresholdMoveRatioForScale: 0
   m_ClampScaling: 0
   m_MinimumScaleRatio: 0.25
-  m_MaximumScaleRatio: 3
+  m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.4
+  grabModifiers: []
 --- !u!1 &2652680249787089642
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +311,9 @@ MonoBehaviour:
   structureController: {fileID: 8599175688921419718}
   currentState: 0
   desiredState: 0
+  onStructureDeformed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3129836382147990586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +363,9 @@ MonoBehaviour:
   structureController: {fileID: 8599175688921419718}
   currentState: 0
   desiredState: 0
+  onStructureDeformed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4336108421094066982
 GameObject:
   m_ObjectHideFlags: 0

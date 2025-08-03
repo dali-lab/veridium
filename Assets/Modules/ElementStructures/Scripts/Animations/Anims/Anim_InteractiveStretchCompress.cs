@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Veridium.Animation;
+using Veridium.ElementStructures.Interaction;
+using Veridium.Interaction;
 
 namespace Veridium.Modules.ElementStructures {
     public class Anim_InteractiveStretchCompress : AnimationBase
@@ -22,35 +24,30 @@ namespace Veridium.Modules.ElementStructures {
         
         public float maxStretch = 2.0f;
         public float minStretch = 0.5f;
-        
+
+        public float startStretchFactor = 1.0f;
+
         // Called when animation is started
         public override void Play()
         {
             base.Play();
 
-            Transform structureTransform = structureBase.structureBuilder.transform;
+            GameObject grabModifierGO = new GameObject("StretchCompressGrabModifier");
+            grabModifierGO.transform.parent = structureBase.structureBuilder.transform;
 
-            GameObject handleParent = new GameObject("StretchCompressParent");
-            handleParent.transform.parent = structureTransform;
+            StretchCompressGrabModifier grabModifier = grabModifierGO.AddComponent<StretchCompressGrabModifier>();
+            grabModifier.structureBase = structureBase;
+            grabModifier.compressDirection = stretchCompressDirection;
+            grabModifier.snapPoints = snapPoints;
+            grabModifier.maxStretch = maxStretch;
+            grabModifier.minStretch = minStretch;
 
-            handleParent.transform.localRotation = Quaternion.LookRotation(stretchCompressDirection);
-            
+            grabModifier.lastStretchFactor = startStretchFactor;
 
-            foreach (Atom atom in structureBase.structureBuilder.crystal.atoms.Values) {
-                if (atom.drawnObject) {
-                    GameObject handleGO = Instantiate(handlePrefab, handleParent.transform);
-                    handleGO.transform.position = atom.drawnObject.transform.position;
+            OverridableGrabTransformer grabTransformer = structureBase.structureController.GetComponent<OverridableGrabTransformer>();
+            grabTransformer.grabModifiers = new GrabModifier[] { grabModifier };
 
-                    StructureCompressionHandle handle = handleGO.GetComponent<StructureCompressionHandle>();
-
-                    handle.atomToTrack = atom;
-                    handle.structureBase = structureBase;
-                    handle.compressDirection = stretchCompressDirection;
-                    handle.snapPoints = snapPoints;
-                    handle.maxStretch = maxStretch;
-                    handle.minStretch = minStretch;
-                }
-            }
+            structureBase.structureController.Unlock();
         }
 
         // Called when animation ends

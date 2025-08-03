@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Veridium.Animation;
+using Veridium.ElementStructures.Interaction;
+using Veridium.Interaction;
 
 namespace Veridium.Modules.ElementStructures {
     public class Anim_StopInteractiveStretchCompress : AnimationBase
@@ -12,12 +14,15 @@ namespace Veridium.Modules.ElementStructures {
         ///
         
         public StructureBase structureBase;
-        
+
         // Called when animation is started
         public override void Play()
         {
             base.Play();
-            Destroy(structureBase.GetComponentInChildren<StructureCompressionHandle>().transform.parent.gameObject);
+            Destroy(structureBase.GetComponentInChildren<StretchCompressGrabModifier>().gameObject);
+            structureBase.GetComponentInChildren<OverridableGrabTransformer>().grabModifiers = new GrabModifier[0];
+
+            structureBase.structureController.Lock();
         }
 
         // Called when animation ends

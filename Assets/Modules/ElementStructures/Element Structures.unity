@@ -11367,6 +11367,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 133654971}
     - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[10].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[10].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
       propertyPath: segments.Array.data[0].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 881861620}
@@ -11375,9 +11383,45 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 881861620}
     - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[9].animations.Array.data[2].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 881861620}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[10].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 881861620}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
       propertyPath: segments.Array.data[10].animations.Array.data[3].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 881861620}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[10].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[9].animations.Array.data[2].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[10].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Lock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[9].animations.Array.data[2].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Veridium.Interaction.XRGrabInteractable_Lockable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[10].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Veridium.Interaction.XRGrabInteractable_Lockable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[9].animations.Array.data[2].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815022636814591447, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
+      propertyPath: segments.Array.data[10].animations.Array.data[0].onPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8987346077738280005, guid: 3030658a8be7c3445bf509aa11ad7516, type: 3}
       propertyPath: structure
       value: 

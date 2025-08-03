@@ -4583,6 +4583,7 @@ MonoBehaviour:
   - 0.71
   maxStretch: 1
   minStretch: 0.71
+  startStretchFactor: 0.71
 --- !u!1 &8987346079794205004
 GameObject:
   m_ObjectHideFlags: 0
