@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: "What type of bond connects the amino group to the \u03B1-carbon atom?"
+  - language: German
+    text: "Welche Bindungsart verbindet die Aminogruppe mit dem \u03B1-Kohlenstoffatom?"
+  answers:
+  - texts:
+    - language: English
+      text: Ionic bond
+    - language: German
+      text: Ionenbindung
+  - texts:
+    - language: English
+      text: Hydrogen bond
+    - language: German
+      text: "Wasserstoffbr\xFCcke"
+  - texts:
+    - language: English
+      text: "Covalent single bond (\u03C3 bond)"
+    - language: German
+      text: "Kovalente Einfachbindung (\u03C3-Bindung)"
+  - texts:
+    - language: English
+      text: Van der Waals force
+    - language: German
+      text: Van-der-Waals-Kraft
+  correctAnswer: 4

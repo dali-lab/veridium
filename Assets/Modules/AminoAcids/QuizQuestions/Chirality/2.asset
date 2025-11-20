@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: Which of the following statements about enantiomers is correct?
+  - language: German
+    text: "Welche der folgenden Aussagen \xFCber Enantiomere ist richtig?"
+  answers:
+  - texts:
+    - language: English
+      text: Enantiomers have different molecular formulas.
+    - language: German
+      text: Enantiomere haben unterschiedliche Summenformeln.
+  - texts:
+    - language: English
+      text: Enantiomers differ in all physical properties.
+    - language: German
+      text: Enantiomere unterscheiden sich in allen physikalischen Eigenschaften.
+  - texts:
+    - language: English
+      text: Enantiomers rotate the plane of polarized light in opposite directions
+    - language: German
+      text: Enantiomere drehen die Ebene von polarisiertem Licht in entgegengesetzte
+        Richtungen.
+  - texts:
+    - language: English
+      text: Enantiomers always react differently with non-chiral compounds.
+    - language: German
+      text: Enantiomere reagieren immer unterschiedlich mit achiralen Reagenzien.
+  correctAnswer: 4

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: What does a recamic mixture mean in chemistry?
+  - language: German
+    text: Was beschreibt man in der Chemie als Racemat?
+  answers:
+  - texts:
+    - language: English
+      text: A mixture of multiple isomers with matching rotation of polarized light.
+    - language: German
+      text: Eine Mischung aus mehreren Isomeren mit gleicher Drehung des polarisierten
+        Lichts.
+  - texts:
+    - language: English
+      text: A 1:1 mixture of two enantiomers that as a whole doesn't show optical
+        activity.
+    - language: German
+      text: "Eine 1:1-Mischung zweier Enantiomere, die insgesamt keine optische Aktivit\xE4t
+        zeigt."
+  - texts:
+    - language: English
+      text: A compound with chiral centers that can't be mirrored along some mirror
+        plane.
+    - language: German
+      text: Eine Verbindung mit chiralen Zentren, die in sich nicht an einer Spiegelebene
+        spiegeln lassen.
+  - texts:
+    - language: English
+      text: An enantiomer that rotates the plane of plarized light to the right.
+    - language: German
+      text: Ein Enantiomer, das die Ebene des polarisierten Lichts nach rechts dreht.
+  correctAnswer: 2

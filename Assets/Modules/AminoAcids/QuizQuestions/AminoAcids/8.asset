@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 8
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: Which amino acid contains an aromatic ring in its side chain?
+  - language: German
+    text: "Welche Aminos\xE4ure enth\xE4lt einen aromatischen Ring in der Seitenkette?"
+  answers:
+  - texts:
+    - language: English
+      text: Alanine
+    - language: German
+      text: Alanin
+  - texts:
+    - language: English
+      text: Phenylalanine
+    - language: German
+      text: Phenylalanin
+  - texts:
+    - language: English
+      text: Lysine
+    - language: German
+      text: Lysin
+  - texts:
+    - language: English
+      text: Serine
+    - language: German
+      text: Serin
+  correctAnswer: 2

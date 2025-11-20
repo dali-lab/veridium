@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: "What is the systematic name of the dipeptide Gly\u2013Ala?"
+  - language: German
+    text: "Wie lautet der systematische Name des Dipeptids Gly\u2013Ala?"
+  answers:
+  - texts:
+    - language: English
+      text: Glycine-alanine
+    - language: German
+      text: Glycin-Alanin
+  - texts:
+    - language: English
+      text: Alaninylglycine
+    - language: German
+      text: Alaninglycin
+  - texts:
+    - language: English
+      text: Glycylalanine
+    - language: German
+      text: Glycylalanin
+  - texts:
+    - language: English
+      text: Alaninylglycine
+    - language: German
+      text: Alaninylglycin
+  correctAnswer: 4

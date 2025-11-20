@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: Which termini does a dipeptide have, and what charges do they carry at
+      neutral pH?
+  - language: German
+    text: Welche Enden besitzt ein Dipeptid und welche Ladungen tragen sie bei neutralem
+      pH?
+  answers:
+  - texts:
+    - language: English
+      text: Both ends are neutral
+    - language: German
+      text: Beide Enden sind neutral
+  - texts:
+    - language: English
+      text: "N-terminus: \u2013NH\u2083\u207A, C-terminus: \u2013COO\u207B"
+    - language: German
+      text: "N-Terminus: \u2013NH\u2083\u207A, C-Terminus: \u2013COO\u207B"
+  - texts:
+    - language: English
+      text: "N-terminus: \u2013COO\u207B, C-terminus: \u2013NH\u2083\u207A"
+    - language: German
+      text: "N-Terminus: \u2013COO\u207B, C-Terminus: \u2013NH\u2083\u207A"
+  - texts:
+    - language: English
+      text: Both ends are negatively charged
+    - language: German
+      text: Beide Enden sind negativ geladen
+  correctAnswer: 2

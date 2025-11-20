@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: Which four main groups does every amino acid have?
+  - language: German
+    text: "Welche vier Hauptgruppen besitzt jede Aminos\xE4ure?"
+  answers:
+  - texts:
+    - language: English
+      text: Hydroxyl group, methyl group, carboxyl group, side chain
+    - language: German
+      text: Hydroxylgruppe, Methylgruppe, Carboxylgruppe, Seitenkette
+  - texts:
+    - language: English
+      text: Amino group, carboxyl group, hydrogen atom, side chain (R group)
+    - language: German
+      text: Aminogruppe, Carboxylgruppe, Wasserstoffatom, Seitenkette (R-Rest)
+  - texts:
+    - language: English
+      text: Ester group, carboxyl group, hydrogen atom, phosphate group
+    - language: German
+      text: Estergruppe, Carboxylgruppe, Wasserstoffatom, Phosphatgruppe
+  - texts:
+    - language: English
+      text: Amino group, aldehyde group, carboxyl group, ribonucleotide
+    - language: German
+      text: Aminogruppe, Aldehydgruppe, Carboxylgruppe, Ribonukleotid
+  correctAnswer: 2

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: Why does the order of amino acids affect the properties of a peptide?
+  - language: German
+    text: "Warum beeinflusst die Reihenfolge der Aminos\xE4uren die Eigenschaften
+      eines Peptids?"
+  answers:
+  - texts:
+    - language: English
+      text: Because only the last amino acid is active
+    - language: German
+      text: "Weil nur die letzte Aminos\xE4ure aktiv ist"
+  - texts:
+    - language: English
+      text: Because the peptide bond is polar
+    - language: German
+      text: Weil die Peptidbindung polar ist
+  - texts:
+    - language: English
+      text: Because of the specific properties of the side chains (polarity, charge,
+        etc.)
+    - language: German
+      text: "Wegen der spezifischen Seitenketten-Eigenschaften (Polarit\xE4t, Ladung
+        etc.)"
+  - texts:
+    - language: English
+      text: The order is irrelevant
+    - language: German
+      text: Die Reihenfolge ist ohne Bedeutung
+  correctAnswer: 4

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 9
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: What property does a nonpolar side chain (R group) have?
+  - language: German
+    text: Welche Eigenschaft hat eine unpolare Seitenkette (R-Rest)?
+  answers:
+  - texts:
+    - language: English
+      text: Hydrophilic, forms hydrogen bonds
+    - language: German
+      text: "Hydrophil, bildet Wasserstoffbr\xFCcken"
+  - texts:
+    - language: English
+      text: "Hydrophobic, e.g. \u2013CH\u2083 in alanine"
+    - language: German
+      text: "Hydrophob, z.\u202FB. \u2013CH\u2083 in Alanin"
+  - texts:
+    - language: English
+      text: Positively charged at neutral pH
+    - language: German
+      text: Positiv geladen bei neutralem pH
+  - texts:
+    - language: English
+      text: Reacts with bases
+    - language: German
+      text: Reagiert mit Basen
+  correctAnswer: 2

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 5
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: What happens to the carboxyl group of an amino acid at pH values above
+      7?
+  - language: German
+    text: "Was passiert mit der Carboxylgruppe einer Aminos\xE4ure bei pH-Werten
+      \xFCber 7?"
+  answers:
+  - texts:
+    - language: English
+      text: It becomes protonated
+    - language: German
+      text: Sie wird protoniert
+  - texts:
+    - language: English
+      text: It remains neutral
+    - language: German
+      text: Sie bleibt neutral
+  - texts:
+    - language: English
+      text: "It forms a carboxylate anion (\u2013COO\u207B)"
+    - language: German
+      text: "Sie bildet ein Carboxylat-Anion (\u2013COO\u207B)"
+  - texts:
+    - language: English
+      text: "It reacts with water to form CO\u2082"
+    - language: German
+      text: "Sie reagiert mit Wasser zu CO\u2082"
+  correctAnswer: 4

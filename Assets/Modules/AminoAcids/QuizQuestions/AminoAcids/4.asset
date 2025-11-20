@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: Which statement applies to the Fischer projection of serine?
+  - language: German
+    text: Welche Aussage trifft auf die Fischer-Projektion von Serin zu?
+  answers:
+  - texts:
+    - language: English
+      text: The carboxyl group is at the bottom, the side chain at the top
+    - language: German
+      text: Die Carboxylgruppe befindet sich unten, die Seitenkette oben
+  - texts:
+    - language: English
+      text: The amino group lies vertically, the H atom horizontally
+    - language: German
+      text: Die Aminogruppe liegt vertikal, das H horizontal
+  - texts:
+    - language: English
+      text: The main chain (COOH) runs horizontally, amino group and hydrogen vertically
+    - language: German
+      text: Die Hauptkette (COOH) liegt waagerecht, die Aminogruppe und das Wasserstoffatom
+        senkrecht
+  - texts:
+    - language: English
+      text: The main chain runs vertically with (COOH) at the top, amino group and
+        hydrogen positioned sideways horizontally
+    - language: German
+      text: "Die Hauptkette verl\xE4uft senkrecht mit (COOH) oben, die Aminogruppe
+        und das Wasserstoffatom stehen seitlich waagerecht"
+  correctAnswer: 8

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: "Why is the \u03B1-carbon of an amino acid a chiral center?"
+  - language: German
+    text: "Warum ist der \u03B1-Kohlenstoff einer Aminos\xE4ure ein Chiralit\xE4tszentrum?"
+  answers:
+  - texts:
+    - language: English
+      text: Because it carries two identical substituents
+    - language: German
+      text: "Weil er zwei gleiche Substituenten tr\xE4gt"
+  - texts:
+    - language: English
+      text: Because it carries four different substituents
+    - language: German
+      text: "Weil er vier verschiedene Substituenten tr\xE4gt"
+  - texts:
+    - language: English
+      text: Because it is electrically charged
+    - language: German
+      text: Weil er elektrisch geladen ist
+  - texts:
+    - language: English
+      text: Because it is part of an aromatic ring
+    - language: German
+      text: Weil er Teil eines Aromaten ist
+  correctAnswer: 2

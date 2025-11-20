@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: What happens in the condensation reaction between two amino acids?
+  - language: German
+    text: "Was geschieht bei der Kondensationsreaktion zwischen zwei Aminos\xE4uren?"
+  answers:
+  - texts:
+    - language: English
+      text: "A phosphodiester bond forms between the carboxyl groups (\u2013RO\u2082PO\u2082R\u2013)"
+    - language: German
+      text: "Es entsteht ein Phosphodiester zwischen den Carboxylgruppen (\u2013RO\u2082PO\u2082R\u2013)"
+  - texts:
+    - language: English
+      text: "Water is eliminated and a peptide bond is formed (\u2013CONH\u2013)"
+    - language: German
+      text: "Es wird Wasser abgespalten und eine Peptidbindung gebildet (\u2013CONH\u2013)"
+  - texts:
+    - language: English
+      text: "The amino group is protonated and an ester (\u2013COOR) is formed"
+    - language: German
+      text: Die Aminogruppe wird protoniert und es entsteht ein Ester (-COOR)
+  - texts:
+    - language: English
+      text: "Both amino acids are converted into a sugar (\u2013Glc\u2013)"
+    - language: German
+      text: "Beide Aminos\xE4uren werden zu einem Zucker umgewandelt (\u2013Glc\u2013)"
+  correctAnswer: 2

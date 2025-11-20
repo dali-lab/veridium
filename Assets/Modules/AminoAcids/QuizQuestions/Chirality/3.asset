@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: A chemist researches two pure liquids in the polarimeter. Both are optically
+      active, but spin the plane of polarized light in opposite directions. Which
+      statement is true?
+  - language: German
+    text: "Eine Chemikerin untersucht zwei reine Fl\xFCssigkeiten im Polarimeter.
+      Beide sind optisch aktiv, aber drehen die Ebene des polarisierten Lichts in
+      entgegengesetzte Richtungen. Welche Aussage trifft am besten zu?"
+  answers:
+  - texts:
+    - language: English
+      text: The liquids consist of two enantiomers with the same molecular formula.
+    - language: German
+      text: "Die beiden Fl\xFCssigkeiten bestehen aus zwei Enantiomeren mit derselben
+        Summenformel."
+  - texts:
+    - language: English
+      text: The liquids are diastereomers with the same molecular formula.
+    - language: German
+      text: "Die beiden Fl\xFCssigkeiten sind Diastereomere mit derselben Summenformel."
+  - texts:
+    - language: English
+      text: One liquid contains a meso compound.
+    - language: German
+      text: "Die eine Fl\xFCssigkeit enth\xE4lt eine meso-Verbindung."
+  - texts:
+    - language: English
+      text: Teh liquids have different molecular formulas.
+    - language: German
+      text: "Die beiden Fl\xFCssigkeiten haben unterschiedliche Summenformeln."
+  correctAnswer: 1

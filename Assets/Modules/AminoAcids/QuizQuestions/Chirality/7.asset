@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 7
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: Why can enantiomers (mirrored molecules) smell differently?
+  - language: German
+    text: "Warum k\xF6nnen Enantiomere \u2013 also spiegelbildliche Molek\xFCle \u2013
+      unterschiedlich riechen?"
+  answers:
+  - texts:
+    - language: English
+      text: Because they have different molecular formulas.
+    - language: German
+      text: Weil sie verschiedene Summenformeln besitzen.
+  - texts:
+    - language: English
+      text: Because they evaporate at different speeds and thus are percepted differently.
+    - language: German
+      text: Weil sie unterschiedlich stark verdampfen und daher verschieden wahrgenommen
+        werden.
+  - texts:
+    - language: English
+      text: Because they bind to the body's chiral olfactory receptors in different
+        ways.
+    - language: German
+      text: "Weil sie unterschiedlich an chirale Geruchsrezeptoren im K\xF6rper binden."
+  - texts:
+    - language: English
+      text: Because one of the enantiomers is unstable and decays rapidly.
+    - language: German
+      text: Weil eines der Enantiomere instabil ist und sich schnell zersetzt.
+  correctAnswer: 4

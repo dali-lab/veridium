@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e276160d1c0948bab1212c811c2238b, type: 3}
+  m_Name: 5
+  m_EditorClassIdentifier: 
+  questionText:
+  - language: English
+    text: What is the main difference between D- and L-amino acids?
+  - language: German
+    text: "Worin besteht der Hauptunterschied zwischen D- und L-Aminos\xE4uren?"
+  answers:
+  - texts:
+    - language: English
+      text: They differ in electric charge.
+    - language: German
+      text: Sie unterscheiden sich in ihrer elektrischen Ladung.
+  - texts:
+    - language: English
+      text: They differ in the spatial alignment of the atoms around the chiral carbon
+        atom.
+    - language: German
+      text: "Sie unterscheiden sich in der r\xE4umlichen Anordnung der Atome am chiralen
+        Kohlenstoffatom."
+  - texts:
+    - language: English
+      text: L-amino acids are hydrophilic and D-amino acids are hydrophobic.
+    - language: German
+      text: "L-Aminos\xE4uren sind hydrophil, D-Aminos\xE4uren hydrophob."
+  - texts:
+    - language: English
+      text: D-amino acids appear exclusively in human protein.
+    - language: German
+      text: "D-Aminos\xE4uren kommen ausschlie\xDFlich in Proteinen des Menschen
+        vor."
+  correctAnswer: 2
