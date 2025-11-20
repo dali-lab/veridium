@@ -9,6 +9,7 @@ namespace Veridium.Modules.AminoAcids {
         public static MoleculeManager Instance;
         public UnityEvent<Molecule> OnMoleculeChanged = new UnityEvent<Molecule>();
         public Molecule EmptyMoleculePrefab;
+        public Material previewBondMaterial;
 
         void Start()
         {

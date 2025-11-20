@@ -54,6 +54,7 @@ namespace Veridium.Modules.AminoAcids {
 
                 Molecule molecule = Instantiate(elementPrefabs[atom.Element], transform);
                 molecule.Awake();
+                molecule.Mergeable = true;
                 molecule.transform.localPosition = scale * atom.Position;
 
                 Atom instantiatedAtom = molecule.GetComponentInChildren<Atom>();
@@ -95,8 +96,8 @@ namespace Veridium.Modules.AminoAcids {
             foreach(MolfileBond bond in molfile.Bonds) {
                 Atom atom1 = instantiatedAtoms[bond.Atom1.ID];
                 Atom atom2 = instantiatedAtoms[bond.Atom2.ID];
-                atom1.Molecule.MergeWith(atom2.Molecule, atom1, atom2, 2 * bond.BondType, true);
-                atom2.Molecule.MergeWith(atom1.Molecule, atom2, atom1, 2 * bond.BondType, true);
+                atom1.Molecule.MergeWithAndKeepDistance(atom2.Molecule, atom1, atom2, bond.BondType);
+                atom2.Molecule.MergeWithAndKeepDistance(atom1.Molecule, atom2, atom1, bond.BondType);
             }
 
             Transform moleculeT = transform.GetChild(0);
@@ -105,6 +106,7 @@ namespace Veridium.Modules.AminoAcids {
 
             moleculeT.name = molfile.name;
             moleculeT.parent = null;
+            // moleculeT.GetComponent<Molecule>().CenterMolecule();
         }
     }
 }

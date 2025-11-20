@@ -39,7 +39,7 @@ namespace Veridium.Modules.AminoAcids
             if (collidingAtoms > 0) return;
 
             molecule.Mergeable = true;
-            molecule.transform.SetParent(null);
+            molecule.transform.SetParent(null, true);
             RespawnMolecule();
         }
     }

@@ -138,6 +138,7 @@ namespace Veridium.Modules.AminoAcids {
                 Element.C => Color.gray,
                 Element.N => Color.blue,
                 Element.O => Color.red,
+                Element.S => Color.yellow,
                 _ => new Color(0.8f, 0.5f, 0.8f)
             };
         }

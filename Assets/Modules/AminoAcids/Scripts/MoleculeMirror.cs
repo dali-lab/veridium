@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
 
 namespace Veridium.Modules.AminoAcids {
     public class MoleculeMirror : MonoBehaviour
@@ -12,10 +13,12 @@ namespace Veridium.Modules.AminoAcids {
         private Molecule originalMolecule;
         public int originalCollidersColliding;
         private Molecule mirroredMolecule;
+        public UnityEvent<Molecule> OnMirrorMolecule;
 
         void Start()
         {
             selfCollider = GetComponent<Collider>();
+            OnMirrorMolecule = new UnityEvent<Molecule>();
         }
 
         void Update()
@@ -41,7 +44,7 @@ namespace Veridium.Modules.AminoAcids {
 
             mirrorT.rotation = Quaternion.LookRotation(mirroredForward, mirroredUp);
 
-            mirrorT.localScale = Vector3.Scale(origT.localScale, mirroredScale);
+            mirrorT.localScale = Vector3.Scale(origT.lossyScale, mirroredScale);
             
             // Vector3 eulerOriginal = originalMolecule.transform.rotation.eulerAngles;
             // Vector3 eulerSelf = transform.rotation.eulerAngles;
@@ -82,8 +85,9 @@ namespace Veridium.Modules.AminoAcids {
 
         void SetMirroredMolecule(Molecule molecule)
         {
-            if(originalMolecule) ReleaseOriginalMolecule();
+            if (originalMolecule) ReleaseOriginalMolecule();
             MirrorMolecule(molecule);
+            OnMirrorMolecule.Invoke(mirroredMolecule);
         }
 
         void ReleaseOriginalMolecule() {
@@ -99,7 +103,7 @@ namespace Veridium.Modules.AminoAcids {
 
             Vector3 distanceToOriginal = transform.position - originalMolecule.transform.position;
             mirroredMolecule = Instantiate(molecule, originalMolecule.transform.position + 2 * distanceToOriginal, transform.rotation);
-            mirroredMolecule.transform.localScale = Vector3.Scale(originalMolecule.transform.localScale, new Vector3(-1, 1, 1));
+            mirroredMolecule.transform.localScale = Vector3.Scale(originalMolecule.transform.lossyScale, mirroredScale);
             AlignMirroredMolecule();
             
             originalMolecule.Mergeable = true;

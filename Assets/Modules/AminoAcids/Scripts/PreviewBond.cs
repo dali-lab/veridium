@@ -1,10 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.Events;
 
 namespace Veridium.Modules.AminoAcids {
-    public class Bond : MonoBehaviour
+    public class PreviewBond : MonoBehaviour
     {
         private static Vector3[] singleBondPositions = new Vector3[] {
             Vector3.zero
@@ -30,53 +29,35 @@ namespace Veridium.Modules.AminoAcids {
         public Molecule Molecule => atom1.Molecule;
         public int electrons;
         private Material material;
-        private Material highlightedMaterial;
-        private bool highlighted = false;
-        public UnityEvent<bool> OnToggleHighlight;
 
-        public void Create(Atom atom1, Atom atom2, int electrons, float? animDuration)
+        public static PreviewBond Create(Atom atom1, Atom atom2, int electrons)
         {
-            this.atom1 = atom1;
-            this.atom2 = atom2;
-            this.electrons = electrons;
+            PreviewBond bond = new GameObject("PreviewBond").AddComponent<PreviewBond>();
+            bond.gameObject.hideFlags = HideFlags.HideInHierarchy;
+            bond.atom1 = atom1;
+            bond.atom2 = atom2;
+            bond.electrons = electrons;
+            bond.material = MoleculeManager.Instance.previewBondMaterial;
 
-            atom1.Bonds.Add(this);
-            atom2.Bonds.Add(this);
+            bond.UpdateTransform();
+            bond.CreateCylinders();
 
+            return bond;
+        }
+
+        public void UpdateTransform() {
             Vector3 bondDirection = (atom2.transform.position - atom1.transform.position).normalized;
-            Vector3 forward = Vector3.Cross(bondDirection, Molecule.transform.forward);
+            Vector3 forward = Vector3.Cross(bondDirection, Vector3.forward);
             transform.rotation = Quaternion.LookRotation(forward, bondDirection);
 
-            transform.parent = atom1.Molecule.transform;
-
-#if UNITY_EDITOR
-            material = AssetDatabase.LoadAssetAtPath<Material>($"Assets/Modules/AminoAcids/Materials/Bonds/{atom1.element}-{atom2.element}.mat");
-#else
-            material = new Material(Shader.Find("Shader Graphs/BondGraph"));
-            material.SetColor("Color1", atom1.element.ToColor());
-            material.SetColor("Color2", atom2.element.ToColor());
-#endif
-
-            CreateCylinders();
-
-            if (animDuration != null && false) // fix animation
-            {
-                StartCoroutine(AnimateBondExtension((float)animDuration));
-            }
-            else
-            {
-                Vector3 atom1ToAtom2 = atom2.transform.position - atom1.transform.position;
-                float distance = Vector3.Distance(atom1.transform.position, atom2.transform.position);
-                float radiusDiff = atom1.transform.lossyScale.x - atom2.transform.lossyScale.x;
-                transform.localScale = new Vector3(1, 0.5f * distance / transform.parent.lossyScale.y, 1);
-                transform.position = (atom1.transform.position + atom2.transform.position) / 2 + radiusDiff * atom1ToAtom2;
-            }
+            float distance = Vector3.Distance(atom1.transform.position, atom2.transform.position);
+            float minScale = Mathf.Min(atom1.Molecule.transform.lossyScale.x, atom2.Molecule.transform.lossyScale.x);
+            transform.localScale = new Vector3(minScale, 0.5f * distance, minScale);
+            transform.position = (atom1.transform.position + atom2.transform.position) / 2;
         }
 
         private void CreateCylinders()
         {
-            float scale = (atom1.transform.localScale.x + atom2.transform.localScale.x) / 2f;
-
             Vector3[] positions = electrons switch
             {
                 1 => singleBondPositions,
@@ -85,16 +66,14 @@ namespace Veridium.Modules.AminoAcids {
                 4 => quadrupleBondPositions,
                 _ => singleBondPositions
             };
-
             for (int i = 0; i < electrons; i++)
             {
                 GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 cylinder.transform.parent = transform;
                 cylinder.transform.localPosition = positions[i];
                 cylinder.transform.localRotation = Quaternion.identity;
-                cylinder.transform.localScale = new Vector3(0.25f * scale, 1f, 0.25f * scale);
+                cylinder.transform.localScale = new Vector3(0.25f, 1f, 0.25f);
                 cylinder.GetComponent<Renderer>().material = material;
-                Molecule.grabInteractable.colliders.Add(cylinder.GetComponent<Collider>());
             }
         }
 
@@ -114,7 +93,6 @@ namespace Veridium.Modules.AminoAcids {
 
             electrons = newElectrons;
             CreateCylinders();
-            StartCoroutine(Molecule.TriggerColliderUpdate());
         }
 
         private IEnumerator AnimateBondExtension(float duration)
@@ -139,45 +117,6 @@ namespace Veridium.Modules.AminoAcids {
                 yield return null;
             }
             transform.localScale = endScale;
-        }
-
-        public void Destroy()
-        {
-            // print("Destroying Bond");
-            foreach (Collider collider in GetComponentsInChildren<Collider>())
-            {
-                Molecule.grabInteractable.colliders.Remove(collider);
-            }
-            atom1.Bonds.Remove(this);
-            atom2.Bonds.Remove(this);
-            Destroy(gameObject);
-            Molecule.Split(atom1, atom2);
-        }
-
-        public Atom Other(Atom atom)
-        {
-            if (atom == atom1) return atom2;
-            if (atom == atom2) return atom1;
-            return null;
-        }
-
-        public void ToggleHighlight()
-        {
-            if (!highlighted && !highlightedMaterial)
-            {
-                highlightedMaterial = new Material(Shader.Find("Shader Graphs/HighlightedBondGraph"));
-                highlightedMaterial.SetColor("Color1", atom1.element.ToColor());
-                highlightedMaterial.SetColor("Color2", atom2.element.ToColor());
-            }
-
-            Material mat = highlighted ? material : highlightedMaterial;
-            foreach (Transform child in transform)
-            {
-                child.GetComponent<Renderer>().material = mat;
-            }
-    
-            highlighted = !highlighted;
-            OnToggleHighlight.Invoke(highlighted);
         }
     }
 }
