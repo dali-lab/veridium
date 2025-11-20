@@ -59,9 +59,21 @@ PrefabInstance:
       propertyPath: element
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3871400507359497529, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
+      propertyPath: NaturalValenceElectrons
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5114556382684461455, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5347123767722460906, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
       propertyPath: m_Name
       value: C Atom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347123767722460906, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7579608330691416085, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
       propertyPath: m_Materials.Array.data[0]

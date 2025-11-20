@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5114556382684461455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 7666741681281692263}
   m_RootOrder: 0
@@ -172,6 +172,9 @@ MonoBehaviour:
   NaturalValenceElectrons: 0
   Molecule: {fileID: 3221593433873873171}
   acceptsBonds: 1
+  OnToggleHighlight:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &107615617854187887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,7 +228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3299790514310860920, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
       propertyPath: m_Name
-      value: Unnamed Atom
+      value: Unnamed Atom (Create Prefab Variants from this obejct)
       objectReference: {fileID: 0}
     - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
       propertyPath: m_Colliders.Array.size
@@ -235,6 +238,34 @@ PrefabInstance:
       propertyPath: m_Colliders.Array.data[0]
       value: 
       objectReference: {fileID: 7928307182662331338}
+    - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3871400507359497529}
+    - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Veridium.Modules.AminoAcids.Atom, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299790514310860922, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb70a8ff208d14236b1ff90a167cf2f0, type: 3}
 --- !u!4 &3221593433873873166 stripped

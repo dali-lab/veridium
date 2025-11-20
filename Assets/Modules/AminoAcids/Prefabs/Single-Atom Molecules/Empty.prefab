@@ -227,5 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a889713b53a4b6db9a1e0eca94945a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mergeable: 1
+  Mergeable: 0
   grabInteractable: {fileID: 3299790514310860922}
+  OnMoleculeChanged:
+    m_PersistentCalls:
+      m_Calls: []

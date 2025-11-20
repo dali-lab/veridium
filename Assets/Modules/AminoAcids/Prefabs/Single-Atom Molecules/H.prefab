@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: H
       objectReference: {fileID: 0}
+    - target: {fileID: 3871400507359497529, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
+      propertyPath: NaturalValenceElectrons
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5347123767722460906, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
       propertyPath: m_Name
       value: H Atom
@@ -63,5 +67,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5376f1eb3002e429da39dd50f86f18a6, type: 2}
+    - target: {fileID: 7666741681281692263, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666741681281692263, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666741681281692263, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6514624589ce42f1b0f378465af7b91, type: 3}
