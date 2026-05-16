@@ -32,7 +32,7 @@ namespace Veridium.Modules.AminoAcids
 
         public void EnqueueQuestion(QuizQuestion question)
         {
-            if (questions.Count == 0)
+            if (currentQuestion == null)
             {
                 LoadQuestion(question);
                 return;
@@ -110,6 +110,7 @@ namespace Veridium.Modules.AminoAcids
 
         private void LoadStandbyConfig()
         {
+            currentQuestion = null;
             questionText.text = Language.language switch
             {
                 "German" => "Quizfragen werden hier erscheinen, um dein Wissen zu testen!",
@@ -126,6 +127,20 @@ namespace Veridium.Modules.AminoAcids
                 };
                 answerTexts[i].color = Color.white;
                 answerButtons[i].interactable = false;
+            }
+        }
+
+        [ContextMenu("Pick correct answer")]
+        public void PickCorrectAnswer()
+        {
+            if (currentQuestion == null) return;
+
+            foreach (QuizAnswer answer in Enum.GetValues(typeof(QuizAnswer)))
+            {
+                if (!currentQuestion.correctAnswer.HasFlag(answer)) continue;
+
+                int answerIndex = (int)Math.Log((int)answer, 2);
+                CheckAnswer(answerIndex);
             }
         }
     }

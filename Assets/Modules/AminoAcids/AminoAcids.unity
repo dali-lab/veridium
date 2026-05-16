@@ -9822,8 +9822,8 @@ MonoBehaviour:
   - {fileID: 2023444430}
   - {fileID: 1922229565}
   buttonPodium: {fileID: 2964924345988816197}
-  podiumRetractedPosition: {x: 0, y: -0.66, z: 0.6700001}
-  podiumExtendedPosition: {x: 0, y: -0.14400005, z: 0.6700001}
+  podiumRetractedPosition: {x: 0, y: -0.66, z: 0.2408404}
+  podiumExtendedPosition: {x: 0, y: -0.14400005, z: 0.2408404}
 --- !u!1 &541835977
 GameObject:
   m_ObjectHideFlags: 0
@@ -14734,6 +14734,75 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &925317244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925317246}
+  - component: {fileID: 925317245}
+  m_Layer: 0
+  m_Name: Await Chirality Quiz
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &925317245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925317244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2997425e9be4a44806a8751ac1a3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 0
+  indefiniteDuration: 1
+  duration: 0
+  animSequence: {fileID: 2023444430}
+  selfDestruct: 0
+  skipSegment: 1
+  onComplete:
+    actionType: 0
+    animation: {fileID: 0}
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    animator: {fileID: 0}
+    timing: 0
+  awaiters: []
+  quizScreen: {fileID: 1778746490}
+  questions:
+  - {fileID: 11400000, guid: db65e4d599edd4aff974ebf7d7a797fe, type: 2}
+  - {fileID: 11400000, guid: 108e0f3fd219149789a280bfb5906a49, type: 2}
+  - {fileID: 11400000, guid: 2cf01eafc5f4d42719f2084a99790e83, type: 2}
+  - {fileID: 11400000, guid: 9f915f21baaa04c03baf6b34dbcddbad, type: 2}
+  - {fileID: 11400000, guid: f49b6bad0b9e4462c8385d0b135ec4cd, type: 2}
+  - {fileID: 11400000, guid: bcb6cd7c0071145e2b76ba26e9ba18e3, type: 2}
+  - {fileID: 11400000, guid: 7fe4a40641bea45e28482dd300d95cb9, type: 2}
+  - {fileID: 11400000, guid: b2609a89d62294af3aabf1f029e38793, type: 2}
+  selectAtRandom: 2
+--- !u!4 &925317246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925317244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2023444429}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925603323
 GameObject:
   m_ObjectHideFlags: 0
@@ -25246,7 +25315,7 @@ GameObject:
   - component: {fileID: 1575493101}
   - component: {fileID: 1575493102}
   m_Layer: 0
-  m_Name: Await Quiz
+  m_Name: Await Amino Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25304,7 +25373,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93f132a8ac44947e3b59471e4f155e5f, type: 2}
   - {fileID: 11400000, guid: 7c6ddd24ac54247df9025a38b8d8421b, type: 2}
   - {fileID: 11400000, guid: 85d606519fd124396a919f4253ebaa0b, type: 2}
-  selectAtRandom: 3
+  selectAtRandom: 2
 --- !u!1 &1590712148
 GameObject:
   m_ObjectHideFlags: 0
@@ -32407,6 +32476,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1575493101}
+  - {fileID: 925317246}
   m_Father: {fileID: 539861173}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32424,19 +32494,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   segments:
-  - audioEN: {fileID: 0}
-    audioDE: {fileID: 0}
+  - audioEN: {fileID: 8300000, guid: e26ee34e067c14a379b58734748adfa5, type: 3}
+    audioDE: {fileID: 8300000, guid: 49e4b2cd9a3b343cbaeee668399b107a, type: 3}
     animations:
     - actionType: 0
-      animation: {fileID: 0}
+      animation: {fileID: 1575493102}
       onPlay:
         m_PersistentCalls:
           m_Calls: []
       animator: {fileID: 0}
-      timing: 0
+      timing: 4.5
     realDuration: 0
-  - audioEN: {fileID: 0}
-    audioDE: {fileID: 0}
+  - audioEN: {fileID: 8300000, guid: 2aba0eef68f6a4a9fb4d5acd249d3c2c, type: 3}
+    audioDE: {fileID: 8300000, guid: e3cb15a53b072442ea0e00fc4bb7a4ec, type: 3}
+    animations:
+    - actionType: 0
+      animation: {fileID: 925317245}
+      onPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      animator: {fileID: 0}
+      timing: 3
+    realDuration: 0
+  - audioEN: {fileID: 8300000, guid: 247cd6de5379443a381b8152820ac62a, type: 3}
+    audioDE: {fileID: 8300000, guid: 28f0e6778d8e94202b9658873b7c6247, type: 3}
     animations:
     - actionType: 1
       animation: {fileID: 0}
@@ -32457,7 +32538,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       animator: {fileID: 0}
-      timing: 0
+      timing: 2.5
     realDuration: 0
   audioSource: {fileID: 2023444431}
   sequenceState: 

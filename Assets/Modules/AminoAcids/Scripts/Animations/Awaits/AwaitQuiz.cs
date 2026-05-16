@@ -16,8 +16,9 @@ namespace Veridium.Modules.AminoAcids {
         public override void Play()
         {
             base.Play();
-            List<QuizQuestion> randomQuestions = questions.SelectRandom(selectAtRandom).ToList();
-            quizScreen.EnqueueQuestions(selectAtRandom <= 0 ? randomQuestions : questions);
+            List<QuizQuestion> questionsToBeAsked = questions.SelectRandom(selectAtRandom);
+            print(questionsToBeAsked.Count);
+            quizScreen.EnqueueQuestions(questionsToBeAsked);
             quizScreen.onQuizComplete.AddListener(OnQuizComplete);
         }
 

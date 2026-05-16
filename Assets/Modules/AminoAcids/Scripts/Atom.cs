@@ -150,7 +150,7 @@ namespace Veridium.Modules.AminoAcids {
             return connectedTransforms.ToList();
         }
 
-        private void Highlight()
+        public void Highlight()
         {
             if (storedMaterial)
             {
@@ -166,7 +166,7 @@ namespace Veridium.Modules.AminoAcids {
             OnToggleHighlight.Invoke(true);
         }
 
-        private void Unhighlight()
+        public void Unhighlight()
         {
             if (!storedMaterial) return;
             (storedMaterial, atomRenderer.material) = (atomRenderer.material, storedMaterial);

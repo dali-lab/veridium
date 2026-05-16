@@ -9,6 +9,7 @@ using Oculus.Interaction;
 namespace Veridium.Modules.AminoAcids {
     public enum BondManipulationMode
     {
+        Create,
         Cycle,
         Single,
         Double,
@@ -22,6 +23,7 @@ namespace Veridium.Modules.AminoAcids {
         public TextMeshPro modeText;
         public UnityEvent<Atom, Atom, int, int> alteredBond;
         private XRGrabInteractable interactable;
+        private Atom atomForNewBond;
 
         void Start()
         {
@@ -32,9 +34,26 @@ namespace Veridium.Modules.AminoAcids {
 
         void OnTriggerEnter(Collider other)
         {
-            Bond bond = other.GetComponentInParent<Bond>();
-            if (!bond) return;
-            ManipulateBond(bond);
+            if (CurrentMode == BondManipulationMode.Create)
+            {
+                if (other.TryGetComponent(out Atom atom)) HandleAtomForNewBond(atom);
+                return;   
+            }
+            if (other.TryGetComponentInParent(out Bond bond)) ManipulateBond(bond);
+        }
+
+        private void HandleAtomForNewBond(Atom atom)
+        {
+            if (!atomForNewBond)
+            {
+                atomForNewBond = atom;
+                atomForNewBond.Highlight();
+                return;
+            }
+
+            atomForNewBond.BondWith(atom, 1);
+            atomForNewBond.Unhighlight();
+            atomForNewBond = null;
         }
 
         private void ManipulateBond(Bond bond)
